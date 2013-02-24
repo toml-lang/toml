@@ -227,3 +227,5 @@ Implementations
 --------
 
 node.js - https://github.com/aaronblohowiak/toml
+Ruby - https://github.com/jm/toml
+
