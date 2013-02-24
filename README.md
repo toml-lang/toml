@@ -236,6 +236,7 @@ Implementations
 --------
 
 - node.js - https://github.com/aaronblohowiak/toml
+- node.js/browser - https://github.com/ricardobeat/toml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
 - Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
 - Ruby (@eMancu) - https://github.com/eMancu/toml_parser-ruby (toml_parser-ruby gem)
