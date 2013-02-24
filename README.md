@@ -191,6 +191,9 @@ to do it for you.
 [x.y.z.w] # for this to work
 ```
 
+When converted to a hash table, an empty key group should result in the key's
+value being an empty hash table.
+
 Be careful not to overwrite previous keys. That's dumb. And should produce an
 error.
 
