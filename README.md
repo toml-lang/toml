@@ -18,7 +18,11 @@ Example
 ```toml
 # This is a TOML document. Boom.
 
-title = "TOML Example"
+[meta]
+title = "TOML Example" # short desc of the contents
+description = "This is an example TOML file that demonstrates the use of the spec." # long desc of contents
+last_updated = 2013-02-24T11:00:00Z # when this was last updated. this should be automatic.
+checksum = "e99a18c428cb38d5f260853678922e03" # md5 of this document, minus the [meta] keygroup 
 
 [owner]
 name = "Tom Preston-Werner"
