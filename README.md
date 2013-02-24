@@ -224,12 +224,11 @@ KEY = [^\.]+
 KEYGROUPNAME = KEY ( '.' KEY )*
 STRING = '"' ([^\"\\]|'\\'[0tnr"\\])* '"
 DIGIT = [0-9]
-DIGITS = Digit+
 SIGN = [\-]
-INTEGER = '0'|(SIGN? [1-9] Digit*)
+INTEGER = '0'|(SIGN? [1-9] DIGIT*)
 # Lets have exponents, nans and infinity so we're not nonstandard douchebags
 FLOAT = (   (INTEGER '.') \
-          | (((SIGN? '0'?)| INTEGER)? '.' DIGITS) \
+          | (((SIGN? '0'?)| INTEGER)? '.' DIGIT+) \
         ( 'e' INTEGER) ) \
         |  SIGN? ( [sq]'nan' | 'inf' )
 BOOLEAN = TRUE | FALSE
