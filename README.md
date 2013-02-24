@@ -239,3 +239,4 @@ Implementations
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
 - Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
 - Python - https://github.com/uiri/toml
+- C#/.NET - https://github.com/rossipedia/toml-net
