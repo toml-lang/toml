@@ -74,12 +74,12 @@ characters must be escaped.
 Here is the list of special characters.
 
 ```
-\" - quote
-\0 - null character
-\r - carriage return
-\n - newline
-\t - tab
-\\ - backslash
+\0 - null character  (0x00)
+\t - tab             (0x09)
+\n - newline         (0x0a)
+\r - carriage return (0x0d)
+\" - quote           (0x22)
+\\ - backslash       (0x5c)
 ```
 
 Integers are bare numbers, all alone.
