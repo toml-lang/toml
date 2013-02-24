@@ -1,0 +1,26 @@
+# Comment
+
+# String
+string = "string\n\t\"string"
+
+# Integer
+integer = 42
+
+# Float
+pi = 3.14159
+
+# DateTime
+datetime = 1979-05-27T07:32:00Z
+
+# Simple array
+simple_array = [1, 2, 3]
+
+# Nested array
+nested_array = [[[1], 2], 3]
+
+# Keygroup
+[a.b.c]
+d = "test"
+
+[e]
+f = "test"
