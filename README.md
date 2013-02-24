@@ -88,6 +88,7 @@ Here is the list of special characters.
 ```
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
+64-bit minimum size expected.
 
 ```toml
 42
@@ -95,7 +96,8 @@ Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 ```
 
 Floats are like integers except they have a single dot within. There must be at
-least one number on each side of the decimal point.
+least one number on each side of the decimal point. 64-bit (double) precision
+expected.
 
 ```toml
 3.1415
