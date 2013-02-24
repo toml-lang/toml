@@ -208,9 +208,9 @@ Array ::= '[' \
 
 Value ::= STRING | INTEGER | FLOAT | BOOLEAN | DATETIME | Array
   
-KeyValue ::= KEY '=' Value
+KeyValue ::= KEY '=' Value // whitespace = WHITESPACE
 
-KeyGroup ::= '[' KEYGROUPNAME ']'
+KeyGroup ::= '[' KEYGROUPNAME ']' // whitespace = WHITESPACE
 
 ROOT ::= (KeyGroup | KeyValue)* // whitespace = WHITESPACE
 
