@@ -50,14 +50,15 @@ data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers supp
 Spec
 ----
 
-TOML is designed to be unambiguous and as simple as possible. There should only
+TOML aims to be unambiguous and as simple as possible. There should only
 be one way to do anything. TOML maps to a simple hash table. TOML is
-case-sensitive.
+case-sensitive. TOML files are encoded using UTF8.
 
 Definitions
 -----------
 
-Whitespace means tab (0x09) or space (0x20).
+Whitespace only means tab (0x09) or space (0x20). 
+New lines are delimited by CR (0x0A), LF (0x0D), or CRLF.
 
 Comments
 --------
@@ -76,13 +77,13 @@ Primitives
 String, Integer, Float, Boolean, Datetime, Array.
 
 Strings are UTF8 surrounded by double quotes. Quotes and other special
-characters must be escaped.
+characters must be escaped. 
 
 ```toml
 "I'm a string. \"You can quote me\". Tab \t newline \n you get it."
 ```
 
-Here is the list of special characters.
+Here is the list of special characters. No other escape codes are recognized, and will cause an error.
 
 ```
 \0 - null character  (0x00)
@@ -103,7 +104,8 @@ Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 
 Floats are like integers except they have a single dot within. There must be at
 least one number on each side of the decimal point. 64-bit (double) precision
-expected.
+expected. Don't expect floating point to be accurate, converting from decimal
+into binary is implementation defined. 
 
 ```toml
 3.1415
@@ -117,10 +119,12 @@ true
 false
 ```
 
-Datetimes are ISO8601 dates, but only the full zulu form is allowed.
+Datetimes are RFC3339 (ISO8601) dates, but only the full zulu form is allowed. No timezones, No offsets. 
+Yes fractional seconds.
 
 ```toml
 1979-05-27T07:32:00Z
+1979-05-27T07:32:00.123Z
 ```
 
 Arrays are square brackets with other primitives inside. Whitespace is ignored.
@@ -151,7 +155,7 @@ There are two ways to make keys. I call them "key groups" and "keys". Both are
 just regular keys, but key groups only ever have a single hash as their value.
 
 Key groups appear in square brackets on a line by themselves. You can tell them
-apart from arrays because arrays are only ever values.
+apart from arrays because arrays are only ever values. 
 
 ```toml
 [keygroup]
@@ -160,7 +164,7 @@ apart from arrays because arrays are only ever values.
 Under that, and until the next key or EOF are the key/values of that key group.
 keys are on the left of the equals sign and values are on the right. Keys start
 with the first non-whitespace character and end with the last non-whitespace
-character before the equals sign.
+character before the left most equals sign. Keys cannot be zero length.
 
 ```toml
 [keygroup]
@@ -171,7 +175,7 @@ You can indent keys and their values as much as you like. Tabs or spaces. Knock
 yourself out. Why, you ask? Because you can have nested hashes. Snap.
 
 Nested hashes are denoted by key groups with dots in them. Name your key groups
-whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
+whatever crap you please, just don't use a dot. Dot is reserved. OBEY. Don't use "[" or "]" either. You have been warned.
 
 ```toml
 [key.tater]
