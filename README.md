@@ -136,7 +136,7 @@ type = "pug"
 In JSON land, that would give you the following structure.
 
 ```json
-{ 'key': { 'tater': { 'type': 'pug' } } }
+{ "key": { "tater": { "type": "pug" } } }
 ```
 
 You don't need to specify all the superkeys if you don't want to. TOML knows how
