@@ -26,7 +26,7 @@ organization = "GitHub"
 bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
 dob = 1979-05-27T07:32:00Z # First class dates? Why not?
 signature = """
-Tom Preston-Warner
+Tom Preston-Werner
 GitHub CEO
 """
 
@@ -95,6 +95,18 @@ Here is the list of special characters.
 \r - carriage return (0x0d)
 \" - quote           (0x22)
 \\ - backslash       (0x5c)
+```
+
+Multi-line strings may also be declared by surrounding the content with
+triple double quotes. Tabs, newlines, and carriage returns do not need
+to be escaped inside a multi-line string primitive.
+
+```toml
+"""
+I'm a multi-line string. You can
+
+  insert multiple lines and indent me if you like.
+"""
 ```
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
