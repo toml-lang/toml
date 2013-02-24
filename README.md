@@ -241,6 +241,9 @@ MIT.
 Implementations
 --------
 
+If you have an implementation, send a pull request adding to this list. Please
+note the commit SHA1 or version tag that your parser supports in your Readme.
+
 - node.js - https://github.com/aaronblohowiak/toml
 - node.js/browser - https://github.com/ricardobeat/toml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
