@@ -1,7 +1,7 @@
 TOML
 ====
 
-Tom's Own Markup Language.
+Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner.
 
