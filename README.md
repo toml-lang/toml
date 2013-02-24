@@ -218,4 +218,6 @@ MIT.
 Implementations
 --------
 
-node.js - https://github.com/aaronblohowiak/toml
+- node.js - https://github.com/aaronblohowiak/toml
+- Ruby (@jm) - https://github.com/jm/toml (toml gem)
+- Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
