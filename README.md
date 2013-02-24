@@ -125,7 +125,15 @@ Elements are separated by commas. No, you can't mix data types, that's stupid.
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
 [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
+```
 
+Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
+ignore newlines between the brackets.
+
+```toml
+key = [
+  1, 2, 3
+]
 ```
 
 That's it. That's all you need, and you're gonna like it.
