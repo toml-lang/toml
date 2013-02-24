@@ -76,8 +76,10 @@ Primitives
 
 String, Integer, Float, Boolean, Datetime, Array.
 
-Strings are UTF8 surrounded by double quotes. Quotes and other special
-characters must be escaped. 
+Strings come in two forms, Quoted and Unquoted, but always UTF8.
+
+Quoted strings are surrounded by double quotes. Quotes and other special
+characters must be escaped.
 
 ```toml
 "I'm a string. \"You can quote me\". Tab \t newline \n you get it."
@@ -92,6 +94,23 @@ Here is the list of special characters. No other escape codes are recognized, an
 \r - carriage return (0x0d)
 \" - quote           (0x22)
 \\ - backslash       (0x5c)
+```
+
+Unquoted strings are like the above, but can only include some alphanumeric characters. 
+No whitespace, No Control Codes, No dots (.) in them, or []'s. They're pretty much the 
+identifers you know and love in your language of choice. They must start with a letter, 
+and can contain/start with underscores.
+
+``toml
+i_am_an_unquoted_string
+isnt_this_neat
+``
+
+The lowercase names "true" and "false" are special, they aren't strings, they are booleans.
+
+```toml
+true
+false
 ```
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
@@ -112,12 +131,6 @@ into binary is implementation defined.
 -0.01
 ```
 
-Booleans are just the tokens you're used to. Always lowercase.
-
-```toml
-true
-false
-```
 
 Datetimes are RFC3339 (ISO8601) dates, but only the full zulu form is allowed. No timezones, No offsets. 
 Yes fractional seconds.
@@ -135,6 +148,7 @@ Elements are separated by commas. No, you can't mix data types, that's stupid.
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
 [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
+[ a, b, c ]
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
@@ -155,37 +169,47 @@ There are two ways to make keys. I call them "key groups" and "keys". Both are
 just regular keys, but key groups only ever have a single hash as their value.
 
 Key groups appear in square brackets on a line by themselves. You can tell them
-apart from arrays because arrays are only ever values. 
+apart from arrays because arrays are only ever values. The name of a keygroup
+can be a quoted or unquoted string:
 
 ```toml
 [keygroup]
 ```
+is the same as:
+
+```toml
+["keygroup"]
+```
 
 Under that, and until the next key or EOF are the key/values of that key group.
-keys are on the left of the equals sign and values are on the right. Keys start
-with the first non-whitespace character and end with the last non-whitespace
-character before the left most equals sign. Keys cannot be zero length.
+Keys are a quoted or unquoted string, followed by an equals sign, then a value.
 
 ```toml
 [keygroup]
 key = "value"
+"key2" = "another value"
 ```
 
 You can indent keys and their values as much as you like. Tabs or spaces. Knock
 yourself out. Why, you ask? Because you can have nested hashes. Snap.
 
-Nested hashes are denoted by key groups with dots in them. Name your key groups
-whatever crap you please, just don't use a dot. Dot is reserved. OBEY. Don't use "[" or "]" either. You have been warned.
+Nested hashes are denoted seperating strings by dots. Both quoted and unquoted strings
+can be used.
 
 ```toml
 [key.tater]
 type = "pug"
 ```
-
 In JSON land, that would give you the following structure.
 
 ```json
 { "key": { "tater": { "type": "pug" } } }
+```
+You can also use quoted strings, if you're feeling special.
+
+```toml
+["key"."tater"]
+"type" = "pug"
 ```
 
 You don't need to specify all the superkeys if you don't want to. TOML knows how
