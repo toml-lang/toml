@@ -209,6 +209,15 @@ type = "apple"
 apple = "yes"
 ```
 
+Inclusion
+---------
+
+Parse a file into the specified hash
+
+```toml
+[hash] @ "file.toml"  # Include a file in the specified namespace
+```
+
 Seriously?
 ----------
 
