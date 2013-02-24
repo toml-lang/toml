@@ -242,3 +242,4 @@ Implementations
 - Python (@uiri) - https://github.com/uiri/toml
 - C#/.NET - https://github.com/rossipedia/toml-net
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
+- PHP (@jimbomoss) - https://github.com/jamesmoss/toml
