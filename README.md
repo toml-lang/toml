@@ -44,7 +44,7 @@ Spec
 ----
 
 TOML is designed to be unambiguous and as simple as possible. There should only
-be one way to do anything. TOML maps to a simple hash.
+be one way to do anything. TOML maps to a simple hash. TOML is case-sensitive.
 
 Comments
 --------
