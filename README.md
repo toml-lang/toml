@@ -82,16 +82,18 @@ Here is the list of special characters.
 \\ - backslash       (0x5c)
 ```
 
-Integers are bare numbers, all alone.
+Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 
 ```toml
 42
+-17
 ```
 
 Floats are like integers except they have a single dot within.
 
 ```toml
 3.1415
+-0.01
 ```
 
 Booleans are just the tokens you're used to. Always lowercase.
