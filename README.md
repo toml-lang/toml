@@ -232,12 +232,6 @@ Oh god, you're right
 
 Yuuuup. Wanna help? Send a pull request. Or write a parser. BE BRAVE.
 
-License
--------
-
-MIT.
-
-
 Implementations
 --------
 
