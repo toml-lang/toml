@@ -9,6 +9,9 @@ TOML is like INI, only better.
 
 If it's not working for you, you're not drinking enough whisky.
 
+Be warned, this spec is still changing a lot. Until it's marked as 1.0, you
+should assume that it is unstable and act accordingly.
+
 Example
 -------
 
