@@ -45,7 +45,6 @@ enabled = true
 
 # If you add numbers in the definition, TOML assumes you are defining an array of hashes/objects
 
-
 [alternative_servers[0]]
 ip = "10.0.0.1"
 dc = "eqdc10"
