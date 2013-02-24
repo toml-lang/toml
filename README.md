@@ -251,3 +251,4 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
 - Java (@agrison) - https://github.com/agrison/jtoml
+- Go (@thompelletier) - https://github.com/pelletier/go-toml
