@@ -149,6 +149,9 @@ Hash me
 
 There are two ways to make keys. I call them "key groups" and "keys". Both are
 just regular keys, but key groups only ever have a single hash as their value.
+Keys contain only letters, numbers or underscore (`_`) characters, and must 
+start with a letter or underscore.  Name your key groups whatever crap you 
+please, just don't use funny characters. They cause trouble. OBEY.
 
 Key groups appear in square brackets on a line by themselves. You can tell them
 apart from arrays because arrays are only ever values.
@@ -158,9 +161,8 @@ apart from arrays because arrays are only ever values.
 ```
 
 Under that, and until the next key or EOF are the key/values of that key group.
-keys are on the left of the equals sign and values are on the right. Keys start
-with the first non-whitespace character and end with the last non-whitespace
-character before the equals sign.
+Keys are on the left of the equals sign and values are on the right. You can put 
+whitespace in between, but that's all you get: key, equals sign, value. Simple.
 
 ```toml
 [keygroup]
@@ -170,8 +172,7 @@ key = "value"
 You can indent keys and their values as much as you like. Tabs or spaces. Knock
 yourself out. Why, you ask? Because you can have nested hashes. Snap.
 
-Nested hashes are denoted by key groups with dots in them. Name your key groups
-whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
+Nested hashes are denoted by key groups with dots in them. 
 
 ```toml
 [key.tater]
