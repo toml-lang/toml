@@ -44,7 +44,7 @@ enabled = true
   dc = "eqdc10"
 
 [clients]
-data: [ [1, 2], [a, b] ] # just an update to make sure parsers support it
+data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers support it
 ```
 
 Spec
