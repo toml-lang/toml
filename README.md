@@ -27,6 +27,7 @@ dob = 1979-05-27T07:32:00Z # First class dates? Why not?
 server = "192.168.1.1"
 ports = [ "8001", "8001", "8002" ]
 connection_max = 5000
+enabled = true
 
 [servers]
 
@@ -44,7 +45,8 @@ Spec
 ----
 
 TOML is designed to be unambiguous and as simple as possible. There should only
-be one way to do anything. TOML maps to a simple hash. TOML is case-sensitive.
+be one way to do anything. TOML maps to a simple hash table. TOML is case-
+sensitive.
 
 Comments
 --------
@@ -60,7 +62,7 @@ key = "value" # Yeah, you can do this.
 Primitives
 ----------
 
-String, Integer, Float, Datetime, Array.
+String, Integer, Float, Boolean, Datetime, Array.
 
 Strings are UTF8 surrounded by double quotes. Quotes and other special
 characters must be escaped.
@@ -79,6 +81,13 @@ Floats are like integers except they have a single dot within.
 
 ```toml
 3.1415
+```
+
+Booleans are just the tokens you're used to. Always lowercase.
+
+```toml
+true
+false
 ```
 
 Datetimes are ISO8601 dates, but only the full zulu form is allowed.
