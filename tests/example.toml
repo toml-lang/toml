@@ -27,3 +27,6 @@ enabled = true
 
 [clients]
 data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers support it
+
+[poultry]
+@poultry.toml
