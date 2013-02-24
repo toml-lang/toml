@@ -240,3 +240,4 @@ Implementations
 - Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
 - Python - https://github.com/uiri/toml
 - C#/.NET - https://github.com/rossipedia/toml-net
+- PHP (@jimbomoss) - https://github.com/jamesmoss/toml
