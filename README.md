@@ -27,7 +27,7 @@ bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
 dob = 1979-05-27T07:32:00Z # First class dates? Why not?
 
 [database]
-server = "192.168.1.1"
+server = 192.168.1.1
 ports = [ 8001, 8001, 8002 ]
 connection_max = 5000
 enabled = true
@@ -36,11 +36,11 @@ enabled = true
 
   # You can indent as you please. Tabs or spaces. TOML don't care.
   [servers.alpha]
-  ip = "10.0.0.1"
+  ip = 10.0.0.1
   dc = "eqdc10"
 
   [servers.beta]
-  ip = "10.0.0.2"
+  ip = 10.0.0.2
   dc = "eqdc10"
 
 [clients]
@@ -69,6 +69,13 @@ line.
 # I am a comment. Hear me roar. Roar.
 key = "value" # Yeah, you can do this.
 ```
+
+IP Addresses
+------------
+
+IP address values can be unquoted. Quoted IP addresses will just be treated as strings.
+
+`ip = 127.0.0.1` is treated like `ip = "127.0.0.1"`. Save your double quotes. You'll need them.
 
 Primitives
 ----------
