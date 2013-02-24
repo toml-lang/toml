@@ -194,7 +194,7 @@ But why?
 --------
 
 Because we need a decent human readable format that maps to a hash and the YAML
-spec is like 600 pages long and gives me rage. No, JSON doesn't count. You know
+spec is like 80 pages long and gives me rage. No, JSON doesn't count. You know
 why.
 
 Oh god, you're right
