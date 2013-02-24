@@ -71,6 +71,17 @@ characters must be escaped.
 "I'm a string. \"You can quote me\". Tab \t newline \n you get it."
 ```
 
+Here is the list of special characters.
+
+```
+\" - quote
+\0 - null character
+\r - carriage return
+\n - newline
+\t - tab
+\\ - backslash
+```
+
 Integers are bare numbers, all alone.
 
 ```toml
