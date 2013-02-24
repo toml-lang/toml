@@ -27,6 +27,7 @@ dob = 1979-05-27T07:32:00Z # First class dates? Why not?
 server = "192.168.1.1"
 ports = [ "8001", "8001", "8002" ]
 connection_max = 5000
+enabled = true
 
 [servers]
 
@@ -44,7 +45,8 @@ Spec
 ----
 
 TOML is designed to be unambiguous and as simple as possible. There should only
-be one way to do anything. TOML maps to a simple hash.
+be one way to do anything. TOML maps to a simple hash table. TOML is case-
+sensitive.
 
 Comments
 --------
@@ -60,7 +62,7 @@ key = "value" # Yeah, you can do this.
 Primitives
 ----------
 
-String, Integer, Float, Datetime, Array.
+String, Integer, Float, Boolean, Datetime, Array.
 
 Strings are UTF8 surrounded by double quotes. Quotes and other special
 characters must be escaped.
@@ -69,16 +71,37 @@ characters must be escaped.
 "I'm a string. \"You can quote me\". Tab \t newline \n you get it."
 ```
 
-Integers are bare numbers, all alone.
+Here is the list of special characters.
+
+```
+\0 - null character  (0x00)
+\t - tab             (0x09)
+\n - newline         (0x0a)
+\r - carriage return (0x0d)
+\" - quote           (0x22)
+\\ - backslash       (0x5c)
+```
+
+Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 
 ```toml
 42
+-17
 ```
 
-Floats are like integers except they have a single dot within.
+Floats are like integers except they have a single dot within. There must be at
+least one number on each side of the decimal point.
 
 ```toml
 3.1415
+-0.01
+```
+
+Booleans are just the tokens you're used to. Always lowercase.
+
+```toml
+true
+false
 ```
 
 Datetimes are ISO8601 dates, but only the full zulu form is allowed.
@@ -94,6 +117,7 @@ by commas. No, you can't mix data types, that's stupid.
 [ 1, 2, 3 ]
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
+[ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
 
 ```
 
@@ -103,7 +127,7 @@ Hash me
 -------
 
 There are two ways to make keys. I call them "key groups" and "keys". Both are
-just regular keys, but key groups only ever have a single has as their value.
+just regular keys, but key groups only ever have a single hash as their value.
 
 Key groups appear in square brackets on a line by themselves. You can tell them
 apart from arrays because arrays are only ever values.
@@ -136,7 +160,7 @@ type = "pug"
 In JSON land, that would give you the following structure.
 
 ```json
-{ 'key': { 'tater': { 'type': 'pug' } } }
+{ "key": { "tater": { "type": "pug" } } }
 ```
 
 You don't need to specify all the superkeys if you don't want to. TOML knows how
@@ -170,7 +194,7 @@ But why?
 --------
 
 Because we need a decent human readable format that maps to a hash and the YAML
-spec is like 600 pages long and gives me rage. No, JSON doesn't count. You know
+spec is like 80 pages long and gives me rage. No, JSON doesn't count. You know
 why.
 
 Oh god, you're right
