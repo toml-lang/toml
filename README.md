@@ -98,14 +98,15 @@ Here is the list of special characters.
 ```
 
 Multi-line strings may also be declared by surrounding the content with
-triple double quotes. Tabs, newlines, and carriage returns do not need
-to be escaped inside a multi-line string primitive.
+triple double quotes. Tabs, newlines, double quotes, and carriage returns
+do not need to be escaped inside a multi-line string primitive.
 
 ```toml
 """
 I'm a multi-line string. You can
 
-  insert multiple lines and indent me if you like.
+  * insert multiple lines and indent me if you like.
+  * add "quoted text" without worry (just don't triple it)
 """
 ```
 
