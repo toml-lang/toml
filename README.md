@@ -89,7 +89,8 @@ Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 -17
 ```
 
-Floats are like integers except they have a single dot within.
+Floats are like integers except they have a single dot within. There must be at
+least one number on each side of the decimal point.
 
 ```toml
 3.1415
