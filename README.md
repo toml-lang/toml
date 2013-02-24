@@ -116,6 +116,7 @@ by commas. No, you can't mix data types, that's stupid.
 [ 1, 2, 3 ]
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
+[ [ 1, 2 ], ["a", "b", "c"] ] # Nope. Not cool.
 
 ```
 
