@@ -134,11 +134,17 @@ Elements are separated by commas. No, you can't mix data types, that's stupid.
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
-ignore newlines between the brackets.
+ignore newlines between the brackets. Terminating commas are ok before the
+closing bracket.
 
 ```toml
 key = [
   1, 2, 3
+]
+
+key = [
+  1,
+  2, # this is ok
 ]
 ```
 
