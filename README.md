@@ -215,7 +215,7 @@ Inclusion
 Parse a file into the specified hash
 
 ```toml
-[hash] @ "file.toml"  # Include a file in the specified namespace
+@file.toml  # Include a file in the current namespace
 ```
 
 Seriously?
