@@ -42,6 +42,9 @@ enabled = true
   [servers.beta]
   ip = "10.0.0.2"
   dc = "eqdc10"
+
+[clients]
+data: [ [1, 2], [a, b] ] # just an update to make sure parsers support it
 ```
 
 Spec
