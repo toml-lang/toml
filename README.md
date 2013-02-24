@@ -5,7 +5,7 @@ Tom's Own Markup Language.
 
 By Tom Preston-Werner.
 
-TOML is like INI, only better. And standardized.
+TOML is like INI, only better.
 
 If it's not working for you, you're not drinking enough whisky.
 
