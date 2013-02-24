@@ -103,7 +103,7 @@ Hash me
 -------
 
 There are two ways to make keys. I call them "key groups" and "keys". Both are
-just regular keys, but key groups only ever have a single has as their value.
+just regular keys, but key groups only ever have a single hash as their value.
 
 Key groups appear in square brackets on a line by themselves. You can tell them
 apart from arrays because arrays are only ever values.
