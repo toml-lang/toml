@@ -195,6 +195,7 @@ apple = "yes"
 EBNF Like a Boss
 ----------------
 ```text
+
 Array ::= '[' \
      STRING   {',' STRING  } \
    | INTEGER  {',' INTEGER } \
@@ -202,7 +203,8 @@ Array ::= '[' \
    | BOOLEAN  {',' BOOLEAN } \
    | DATETIME {',' DATETIME} \
    | Array    {',' Array   } \
-   ']'
+   ']' // whitespace = ARRAY_WHITESPACE
+
 
 Value ::= STRING | INTEGER | FLOAT | BOOLEAN | DATETIME | Array
   
@@ -210,16 +212,14 @@ KeyValue ::= KEY '=' Value
 
 KeyGroup ::= '[' KEYGROUPNAME ']'
 
-ROOT ::= (KeyGroup | KeyValue)*
+ROOT ::= (KeyGroup | KeyValue)* // whitespace = WHITESPACE
 
 ##### Tokens
 
-## NonTerminals
 COMMENT = #.*^
 WHITESPACE = [\ \t]
 ARRAY_WHITESPACE = [\ \t\r\n]
 
-## Terminals
 KEY = [^\.]+
 KEYGROUPNAME = KEY ( '.' KEY )*
 STRING = '"' ([^\"\\]|'\\'[0tnr"\\])* '"
