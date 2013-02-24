@@ -75,7 +75,8 @@ Primitives
 
 String, Integer, Float, Boolean, Datetime, Array.
 
-Strings are UTF8 surrounded by double quotes. Quotes and other special
+Strings come in two forms, Identifier like and Quoted, but always UTF8.
+Quoted Strings are surrounded by double quotes. Quotes and other special
 characters must be escaped.
 
 ```toml
@@ -91,6 +92,21 @@ Here is the list of special characters.
 \r - carriage return (0x0d)
 \" - quote           (0x22)
 \\ - backslash       (0x5c)
+```
+
+Identifier like strings are like the identifiers in the languages you love. 
+Must start with a letter or underscore, then followed by any alphanumberic character, or underscore.
+They must contain whitespace, dots, square brackets [], backslashes or escape sequences.
+
+```toml
+i_am_a_string
+```
+
+Two names are reserved. The lowercase "true" and "false" are not strings, but booleans.
+
+```toml
+true
+false
 ```
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
@@ -110,13 +126,6 @@ expected.
 -0.01
 ```
 
-Booleans are just the tokens you're used to. Always lowercase.
-
-```toml
-true
-false
-```
-
 Datetimes are ISO8601 dates, but only the full zulu form is allowed.
 
 ```toml
@@ -129,6 +138,7 @@ Elements are separated by commas. No, you can't mix data types, that's stupid.
 ```toml
 [ 1, 2, 3 ]
 [ "red", "yellow", "green" ]
+[ a, b, c ]
 [ [ 1, 2 ], [3, 4, 5] ]
 [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
 ```
@@ -156,28 +166,32 @@ Hash me
 There are two ways to make keys. I call them "key groups" and "keys". Both are
 just regular keys, but key groups only ever have a single hash as their value.
 
-Key groups appear in square brackets on a line by themselves. You can tell them
-apart from arrays because arrays are only ever values.
+Key groups are strings in square brackets on a line by themselves. You can tell them
+apart from arrays because arrays are only ever values. 
 
 ```toml
 [keygroup]
 ```
 
+You can also use quoted strings, if you're feeling fancy.
+
+```toml
+["keygroup"]
+```
+
 Under that, and until the next key or EOF are the key/values of that key group.
-keys are on the left of the equals sign and values are on the right. Keys start
-with the first non-whitespace character and end with the last non-whitespace
-character before the equals sign.
+Key/Values are a string, followed by an equals sign (=), then a primitive value.
 
 ```toml
 [keygroup]
 key = "value"
+"key2" = "value"
 ```
 
 You can indent keys and their values as much as you like. Tabs or spaces. Knock
 yourself out. Why, you ask? Because you can have nested hashes. Snap.
 
-Nested hashes are denoted by key groups with dots in them. Name your key groups
-whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
+Nested hashes are just keygroups with more than one string seperated by a dot (.).
 
 ```toml
 [key.tater]
@@ -188,6 +202,13 @@ In JSON land, that would give you the following structure.
 
 ```json
 { "key": { "tater": { "type": "pug" } } }
+```
+
+Guess what, you can put quoted strings in too! It gives the same JSON.
+
+```toml
+["key"."tater"]
+type = "pug"
 ```
 
 You don't need to specify all the superkeys if you don't want to. TOML knows how
