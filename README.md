@@ -48,6 +48,11 @@ TOML is designed to be unambiguous and as simple as possible. There should only
 be one way to do anything. TOML maps to a simple hash table. TOML is case-
 sensitive.
 
+Definitions
+-----------
+
+Whitespace means tab (0x09) or space (0x20).
+
 Comments
 --------
 
@@ -110,8 +115,8 @@ Datetimes are ISO8601 dates, but only the full zulu form is allowed.
 1979-05-27T07:32:00Z
 ```
 
-Arrays are square brackets with other primitives inside. Elements are separated
-by commas. No, you can't mix data types, that's stupid.
+Arrays are square brackets with other primitives inside. Whitespace is ignored.
+Elements are separated by commas. No, you can't mix data types, that's stupid.
 
 ```toml
 [ 1, 2, 3 ]
