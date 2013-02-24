@@ -25,6 +25,10 @@ name = "Tom Preston-Werner"
 organization = "GitHub"
 bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
 dob = 1979-05-27T07:32:00Z # First class dates? Why not?
+signature = """
+Tom Preston-Warner
+GitHub CEO
+"""
 
 [database]
 server = "192.168.1.1"
