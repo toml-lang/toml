@@ -27,14 +27,10 @@ module TOML
       return if seen[ostruct]
       seen[ostruct] = true
       case ostruct
-      when OpenStruct
-        ostructToHash ostruct.instance_variable_get(:@table), seen
-      when Hash
-        Hash[ostruct.select { |k,_| k != :__ }.map { |k,v| v = ostructToHash(v, seen) and [k, v] }.compact]
-      when Array
-        ostruct.map { |v| ostructToHash(v) }.compact
-      else
-        ostruct
+      when OpenStruct; ostructToHash ostruct.instance_variable_get(:@table), seen
+      when Hash; Hash[ostruct.select { |k,_| k != :__ }.map { |k,v| v = ostructToHash(v, seen) and [k, v] }.compact]
+      when Array; ostruct.map { |v| ostructToHash(v) }.compact
+      else ostruct
       end
     end
   end
@@ -48,11 +44,11 @@ module TOML
   class << self
   private
     def to_ruby(toml)
-      "if true\n" +
-      toml.
-        gsub(/^\s*\[([a-z0-9_.]+)\]\s*$/i) { |sec| " end; #{1.upto($1.split(".").length-1).map { |i| "#{$1.split(".")[0...i].join(".")} ||= OpenStruct.new" }.join ";" }; #{$1} = OpenStruct.new; _section(#{$1}.instance_variable_get(:@table)) do |__| __[binding]; " }.
-        gsub(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/) { |x| "Date.parse(%{#{x}})" } +
-      " end "
+      "if true\n#{toml.gsub(/^\s*\[([a-z0-9_.]+)\]\s*$/i){|sec|" end; #{1.
+      upto($1.split(".").length-1).map { |i| "#{$1.split(".")[0...i].join(
+      ".")}||=OpenStruct.new"}.join";"}; #{$1} = OpenStruct.new; _section(
+      #{$1}.instance_variable_get(:@table)) do |__| __[binding]; " }.gsub(
+      /\d{4}(-\d{2}){2}T(\d{2}:){2}\d{2}Z/){|x|"Date.parse(%{#{x}})"}}end"
     end
   end
 end
