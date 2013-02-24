@@ -134,11 +134,12 @@ Elements are separated by commas. No, you can't mix data types, that's stupid.
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
-ignore newlines between the brackets.
+ignore newlines between the brackets. You can put a comma at the end, TOML don't 
+care.
 
 ```toml
 key = [
-  1, 2, 3
+  1, 2, 3,
 ]
 ```
 
