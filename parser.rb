@@ -67,6 +67,10 @@ module TOML
             o << "\\"
           when '"'
             o << '"'
+          when "r"
+            o << "\r"
+          when "0"
+            o << "\0"
           else
             raise "Unexpected escape character: '\\#{val[s]}'"
           end
@@ -102,10 +106,14 @@ module TOML
       elsif val =~ /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)/
         # Date: 1979-05-27T07:32:00Z
         return [$1.length, DateTime.iso8601($1)]
-      elsif val =~ /^(\d+\.\d+)/
+      elsif val =~ /^(-?\d+\.\d+)/
         return [$1.length, $1.to_f]
-      elsif val =~ /^(\d+)/
+      elsif val =~ /^(-?\d+)/
         return [$1.length, $1.to_i]
+      elsif val =~ /^(true)/
+        return [$1.length, true]
+      elsif val =~ /^(false)/
+        return [$1.length, false]
       else
         raise "Unrecognized expression: '#{val}'"
       end
