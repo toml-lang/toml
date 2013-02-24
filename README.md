@@ -244,3 +244,4 @@ Implementations
 - C#/.NET - https://github.com/rossipedia/toml-net
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
+- Java (@agrison) - https://github.com/agrison/jtoml
