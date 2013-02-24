@@ -5,9 +5,12 @@ Tom's Own Markup Language.
 
 By Tom Preston-Werner.
 
+If it's not working for you, you're not drinking enough whisky.
+
 TOML is like INI, only better. And standardized.
 
-If it's not working for you, you're not drinking enough whisky.
+![Standards](http://imgs.xkcd.com/comics/standards.png)
+
 
 Example
 -------
