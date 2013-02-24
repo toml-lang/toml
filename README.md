@@ -238,6 +238,7 @@ Implementations
 - node.js - https://github.com/aaronblohowiak/toml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
 - Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
+- Ruby (@eMancu) - https://github.com/eMancu/toml_parser-ruby (toml_parser-ruby gem)
 - Python (@f03lipe) - https://github.com/f03lipe/toml-python
 - Python (@uiri) - https://github.com/uiri/toml
 - C#/.NET - https://github.com/rossipedia/toml-net
