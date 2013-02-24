@@ -192,6 +192,53 @@ type = "apple"
 apple = "yes"
 ```
 
+EBNF Like a Boss
+----------------
+```text
+Array ::= '[' \
+     STRING   {',' STRING  } \
+   | INTEGER  {',' INTEGER } \
+   | FLOAT    {',' FLOAT   } \
+   | BOOLEAN  {',' BOOLEAN } \
+   | DATETIME {',' DATETIME} \
+   | Array    {',' Array   } \
+   ']'
+
+Value ::= STRING | INTEGER | FLOAT | BOOLEAN | DATETIME | Array
+  
+KeyValue ::= KEY '=' Value
+
+KeyGroup ::= '[' KEYGROUPNAME ']'
+
+ROOT ::= (KeyGroup | KeyValue)*
+
+##### Tokens
+
+## NonTerminals
+COMMENT = #.*^
+WHITESPACE = [\ \t]
+
+## Terminals
+KEY = [^\.]+
+KEYGROUPNAME = KEY ( '.' KEY )*
+STRING = '"' ([^\"\\]|'\\'[0tnr"\\])* '"
+DIGIT = [0-9]
+DIGITS = Digit+
+SIGN = [\-]
+INTEGER = '0'|(SIGN? [1-9] Digit*)
+# Lets have exponents, nans and infinity so we're not nonstandard douchebags
+FLOAT = (   (INTEGER '.') \
+          | (((SIGN? '0'?)| INTEGER)? '.' DIGITS) \
+        ( 'e' INTEGER) ) \
+        |  SIGN? ( [sq]'nan' | 'inf' )
+BOOLEAN = TRUE | FALSE
+TRUE = 'true'
+FALSE = 'false'
+DATE = DIGIT{4} '-' DIGIT{2} '-' DIGIT{2}
+TIME = DIGIT{2} ':' DIGIT{2} ':' DIGIT{2}
+DATETIME = DATE 'T' TIME 'Z'
+```
+
 Seriously?
 ----------
 
