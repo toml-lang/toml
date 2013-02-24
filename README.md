@@ -223,19 +223,18 @@ ARRAY_WHITESPACE = [\ \t\r\n]
 KEY = [^\.]+
 KEYGROUPNAME = KEY ( '.' KEY )*
 STRING = '"' ([^\"\\]|'\\'[0tnr"\\])* '"
-DIGIT = [0-9]
 SIGN = [\-]
-INTEGER = '0'|(SIGN? [1-9] DIGIT*)
+INTEGER = '0'|(SIGN? [1-9] [0-9]*)
 # Lets have exponents, nans and infinity so we're not nonstandard douchebags
 FLOAT = (   (INTEGER '.') \
-          | (((SIGN? '0'?)| INTEGER)? '.' DIGIT+) \
+          | (((SIGN? '0'?)| INTEGER)? '.' [0-9]+) \
         ( 'e' INTEGER) ) \
         |  SIGN? ( [sq]'nan' | 'inf' )
 BOOLEAN = TRUE | FALSE
 TRUE = 'true'
 FALSE = 'false'
-DATE = DIGIT{4} '-' DIGIT{2} '-' DIGIT{2}
-TIME = DIGIT{2} ':' DIGIT{2} ':' DIGIT{2}
+DATE = [0-9]{4} '-' [0-9]{2} '-' [0-9]{2}
+TIME = [0-9]{2} ':' [0-9]{2} ':' [0-9]{2}
 DATETIME = DATE 'T' TIME 'Z'
 ```
 
