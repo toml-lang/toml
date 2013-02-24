@@ -217,6 +217,7 @@ ROOT ::= (KeyGroup | KeyValue)*
 ## NonTerminals
 COMMENT = #.*^
 WHITESPACE = [\ \t]
+ARRAY_WHITESPACE = [\ \t\r\n]
 
 ## Terminals
 KEY = [^\.]+
