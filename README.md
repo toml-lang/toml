@@ -259,3 +259,4 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
 - Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
+- Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
