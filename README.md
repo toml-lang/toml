@@ -257,6 +257,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Objective C - https://github.com/mneorr/toml-objc.git
 - Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
+- Perl - https://github.com/dlc/toml
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
 - PHP (@coop182) - https://github.com/coop182/toml-php
