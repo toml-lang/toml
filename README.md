@@ -254,3 +254,4 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Java (@agrison) - https://github.com/agrison/jtoml
 - Clojure (@lantiga) - https://github.com/lantiga/clj-toml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
+- Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
