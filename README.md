@@ -238,17 +238,26 @@ Implementations
 If you have an implementation, send a pull request adding to this list. Please
 note the commit SHA1 or version tag that your parser supports in your Readme.
 
+- C#/.NET - https://github.com/LBreedlove/Toml.net
+- C#/.NET - https://github.com/rossipedia/toml-net
+- Clojure (@lantiga) - https://github.com/lantiga/clj-toml
+- Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
+- Go (@thompelletier) - https://github.com/pelletier/go-toml
+- Java (@agrison) - https://github.com/agrison/jtoml
 - node.js - https://github.com/aaronblohowiak/toml
 - node.js/browser - https://github.com/ricardobeat/toml
 - node.js - https://github.com/BinaryMuse/toml-node
-- Node.js (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
+- node.js (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
+- Objective C - https://github.com/mneorr/toml-objc.git
+- Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
+- Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
+- PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
+- PHP (@jimbomoss) - https://github.com/jamesmoss/toml
+- PHP (@coop182) - https://github.com/coop182/toml-php
+- Python (@f03lipe) - https://github.com/f03lipe/toml-python
+- Python (@uiri) - https://github.com/uiri/toml
+- Python - https://github.com/bryant/pytoml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
 - Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
 - Ruby (@eMancu) - https://github.com/eMancu/toml_parser-ruby (toml_parser-ruby gem)
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
-- Python (@f03lipe) - https://github.com/f03lipe/toml-python
-- Python (@uiri) - https://github.com/uiri/toml
-- C#/.NET - https://github.com/rossipedia/toml-net
-- PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
-- PHP (@jimbomoss) - https://github.com/jamesmoss/toml
-- Java (@agrison) - https://github.com/agrison/jtoml
