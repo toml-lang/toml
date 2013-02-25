@@ -215,6 +215,14 @@ type = "apple"
 apple = "yes"
 ```
 
+Validate a toml file
+----------
+
+A TOML file could be validated with anoter file called TOLS.
+
+For more specification see [tols.md](tols.md)
+
+
 Seriously?
 ----------
 

@@ -1,0 +1,53 @@
+# This is a TOLS document. Boom.
+# This is also a TOML document. Boooom.
+
+[title.scheme]
+primitive = "String"
+required = true
+
+[owner]
+    [owner.name.scheme]
+    primitive = "String"
+    required = true
+
+    [owner.organization.scheme]
+    primitive = "String"
+    required = false
+
+    [owner.dob.scheme]
+    primitive = "Datetime"
+    required = true
+    range.min = 1913-05-27T07:32:00Z
+    range.max = 2013-05-27T07:32:00Z
+
+[database]
+    [database.server.scheme]
+    primitive = "String"
+    required = true
+
+    [database.ports.scheme]
+    primitive = "Array"
+    required = true
+    range.min = 0
+    content.primitive =  "Integer"
+    content.range.min = 1024
+    content.range.max = 49151
+
+    [database.connection_max.scheme]
+    primitive = "Integer"
+    required = false
+    default = 5000
+
+    [database.enabled.scheme]
+    primitive = "Boolean"
+    default = false
+
+# the toml should have at least one server with ip
+[servers.0.ip.scheme]
+primitive = "String"
+required = true
+
+# having the following line doesn't change anything.
+#[clients]
+# primitive = "Array"
+# required = false
