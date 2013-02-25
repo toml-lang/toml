@@ -248,6 +248,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - C#/.NET - https://github.com/rossipedia/toml-net
 - Clojure (@lantiga) - https://github.com/lantiga/clj-toml
 - Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
+- Erlang - https://github.com/kalta/etoml.git
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Java (@agrison) - https://github.com/agrison/jtoml
 - node.js - https://github.com/aaronblohowiak/toml
