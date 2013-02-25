@@ -247,6 +247,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - node.js - https://github.com/aaronblohowiak/toml
 - node.js/browser - https://github.com/ricardobeat/toml
 - node.js - https://github.com/BinaryMuse/toml-node
+- node.js (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
 - Objective C - https://github.com/mneorr/toml-objc.git
 - Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
