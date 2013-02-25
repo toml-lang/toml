@@ -248,6 +248,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Python (@f03lipe) - https://github.com/f03lipe/toml-python
 - Python (@uiri) - https://github.com/uiri/toml
 - C#/.NET - https://github.com/rossipedia/toml-net
+- Objective C - https://github.com/mneorr/toml-objc.git
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
 - PHP (@coop182) - https://github.com/coop182/toml-php
