@@ -247,16 +247,16 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
 - Python (@f03lipe) - https://github.com/f03lipe/toml-python
 - Python (@uiri) - https://github.com/uiri/toml
-- C#/.NET - https://github.com/LBreedlove/Toml.net
-- Python - https://github.com/bryant/pytoml
-- C#/.NET - https://github.com/rossipedia/toml-net
-- Objective C - https://github.com/mneorr/toml-objc.git
+- Python (@bryant) - https://github.com/bryant/pytoml
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
 - PHP (@coop182) - https://github.com/coop182/toml-php
-- Java (@agrison) - https://github.com/agrison/jtoml
+- C#/.NET (@LBreedlove) - https://github.com/LBreedlove/Toml.net
+- C#/.NET (@rossipedia) - https://github.com/rossipedia/toml-net
+- Objective-C (@mneorr) - https://github.com/mneorr/toml-objc.git
+- Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
 - Clojure (@lantiga) - https://github.com/lantiga/clj-toml
+- Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
+- Java (@agrison) - https://github.com/agrison/jtoml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
-- Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
-- Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
