@@ -257,6 +257,5 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Python (@uiri) - https://github.com/uiri/toml
 - Python - https://github.com/bryant/pytoml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
-- Ruby (@dirk) - https://github.com/dirk/toml-ruby (toml-ruby gem)
 - Ruby (@eMancu) - https://github.com/eMancu/toml_parser-ruby (toml_parser-ruby gem)
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
