@@ -51,6 +51,17 @@ hosts = [
   "alpha",
   "omega"
 ]
+
+# Anonymous hashes within arrays
+[dependencies.#]
+  [-]
+  groupId    = "com.google.api-client"
+  artifactId = "google-api-client"
+  version    = "1.13.2-beta"
+  [-]
+  groupId    = "com.google.api-client"
+  artifactId = "google-api-client-servlet"
+  version    = "1.13.1-beta"
 ```
 
 Spec
