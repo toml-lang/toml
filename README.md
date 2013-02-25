@@ -18,39 +18,42 @@ Example
 ```toml
 # This is a TOML document. Boom.
 
-title = "TOML Example"
+title: "TOML Example"
 
-[owner]
-name = "Tom Preston-Werner"
-organization = "GitHub"
-bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
-dob = 1979-05-27T07:32:00Z # First class dates? Why not?
+cd /owner
+name: "Tom Preston-Werner"
+organization: "GitHub"
+bio: "GitHub Cofounder & CEO\nLikes tater tots and beer."
+dob: 1979-05-27T07:32:00Z # First class dates? Why not?
 
-[database]
-server = "192.168.1.1"
-ports = [ 8001, 8001, 8002 ]
-connection_max = 5000
-enabled = true
+cd /database
+server: "192.168.1.1"
+ports: ( 8001, 8001, 8002 )
+connection_max: 5000
+enabled: true
 
-[servers]
+cd /servers
 
   # You can indent as you please. Tabs or spaces. TOML don't care.
-  [servers.alpha]
-  ip = "10.0.0.1"
-  dc = "eqdc10"
+  cd alpha
+  ip: "10.0.0.1"
+  dc: "eqdc10"
+  cd ..
 
-  [servers.beta]
-  ip = "10.0.0.2"
-  dc = "eqdc10"
+  cd beta
+  ip: "10.0.0.2"
+  dc: "eqdc10"
 
-[clients]
-data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers support it
+
+
+cd /clients
+data: (("gamma", "delta"), (1, 2)) # just an update to make sure parsers support it
 
 # Line breaks are OK when inside arrays
-hosts = [
+hosts: (
   "alpha",
   "omega"
-]
+)
 ```
 
 Spec
@@ -73,7 +76,7 @@ line.
 
 ```toml
 # I am a comment. Hear me roar. Roar.
-key = "value" # Yeah, you can do this.
+key: "value" # Yeah, you can do this.
 ```
 
 Primitives
@@ -144,11 +147,11 @@ ignore newlines between the brackets. Terminating commas are ok before the
 closing bracket.
 
 ```toml
-key = [
+key: [
   1, 2, 3
 ]
 
-key = [
+key: [
   1,
   2, # this is ok
 ]
@@ -176,7 +179,7 @@ character before the equals sign.
 
 ```toml
 [keygroup]
-key = "value"
+key: "value"
 ```
 
 You can indent keys and their values as much as you like. Tabs or spaces. Knock
@@ -187,7 +190,7 @@ whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
 
 ```toml
 [key.tater]
-type = "pug"
+type: "pug"
 ```
 
 In JSON land, that would give you the following structure.
@@ -215,10 +218,10 @@ error.
 ```toml
 # DO NOT WANT
 [fruit]
-type = "apple"
+type: "apple"
 
 [fruit.type]
-apple = "yes"
+apple: "yes"
 ```
 
 Seriously?
