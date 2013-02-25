@@ -99,6 +99,14 @@ Here is the list of special characters.
 \\ - backslash       (0x5c)
 ```
 
+Other special characters are reserved and, if used, TOML should produce an
+error. This means paths on Windows will always have to use double backslashes.
+
+```toml
+wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
+right = "C:\\Users\\nodejs\\templates"
+```
+
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 64-bit minimum size expected.
 
