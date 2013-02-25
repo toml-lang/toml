@@ -81,8 +81,8 @@ Primitives
 
 String, Integer, Float, Boolean, Datetime, Array.
 
-Strings are UTF8 surrounded by double quotes. Quotes and other special
-characters must be escaped.
+Strings are single-line values surrounded by double quotes encoded in UTF-8.
+Quotes and other special characters must be escaped.
 
 ```toml
 "I'm a string. \"You can quote me\". Tab \t newline \n you get it."
