@@ -27,12 +27,12 @@ Example
 # This is a TOLS document. Boom.
 # This is also a TOML document. Boooom. (see rule n.1)
 
-[title.scheme]         # scheme is a keyword
+[title]
 primitive = "String"   # the title must be a String
 required = true        #
 length.max = 254       # max string length (exclusive <)
 
-[age.scheme]
+[age]
 primitive = "Integer"  # the age must be an Integer
 range.max = 100        # age is not required, but if the value is defined, should be maximum 100 (exclusive <)
 range.min = 17         # age is not required, but if the value is defined, should be minimum 17 (exclusive >)
@@ -65,7 +65,7 @@ enabled = true
 
 ```toml
 # tols
-[enabled.scheme]
+[enabled]
 primitive = "Boolean"      # Typing the enable value to Boolean
 default = true
 # required = false         # if omitted the required is false by default
@@ -82,7 +82,7 @@ age = 34
 
 ```toml
 # tols
-[age.scheme]
+[age]
 primitive = "Integer"       # Typing the value
 default = 190               # The default value for the current key
 required = false            # by default is false
@@ -95,7 +95,7 @@ range.max = 0               # (exclusive >)
 ```toml
 # tols
 
-[email.scheme]
+[email]
 primitive = "String"            # typing
 required = true                 # default is false
 # default = "liuggio@gmail.com"  # the default value for the current key
@@ -111,12 +111,12 @@ pattern= "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"   #regular expression
 data = [ ["gamma", "delta"], [1, 2] ]
 ```
 
-Here the scheme
+Here the scheme validator
 
 ```toml
 # tols
 
-[data.scheme]
+[data]
 primitive = "Array"         # Typing
 length.max = 2              # max array length (exclusive <)
 length.min = 0              # min array length (exclusive >)
@@ -127,7 +127,7 @@ Mmmm this is so easy, I want to validate also "gamma" and "delta" how could I do
 ```toml
 # tols
 [data]
-    [data.0.scheme]              # this is the first element of data ["gamma", "delta"]
+    [data.0]                     # this is the first element of data ["gamma", "delta"]
     primitive = "Array"          # is an Array
     length.max = 2               # max length (exclusive <)
     length.min = 0               # min length (exclusive >)
@@ -135,7 +135,7 @@ Mmmm this is so easy, I want to validate also "gamma" and "delta" how could I do
     content.length.max = 254     # content takes the String as scheme behaviour
 #    content.pattern = /?/       # regular expr
 
-    [data.1.scheme]                   # we are validating the [1, 2]
+    [data.1]                   # we are validating the [1, 2]
     primitive = "Array"          # should be an array
     length.max = 2               # max string length (exclusive <)
     length.min = 0               # min length (exclusive >)
@@ -156,7 +156,7 @@ orange = "no"
 
 ```toml
 # tols
-[fruit.type.apple.scheme]
+[fruit.type.apple]
 primitive = "String"
 required = true
 length.max = 3
@@ -166,7 +166,7 @@ or just put the validation in the apple.type content
 
 ```toml
 # tols
-[fruit.type.scheme]
+[fruit.type]
 primitive = "Hash"
 required = true
 length.max = 3
@@ -178,9 +178,7 @@ content.length.max = 3
 All the keywords
 -------
 
-TOLS schema has 8 keywords.
-
-- **schema** is an Hash and describes the behaviour for a defined field.
+TOLS schema has 7 keywords.
 
 - **primitive** could be: ["String", "Integer", "Float", "Boolean", "Datetime", "Array", "Hash"].
 

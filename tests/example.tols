@@ -1,49 +1,55 @@
 # This is a TOLS document. Boom.
 # This is also a TOML document. Boooom.
 
-[title.scheme]
+[title]
 primitive = "String"
 required = true
 
 [owner]
-    [owner.name.scheme]
+    [owner.name]
     primitive = "String"
     required = true
 
-    [owner.organization.scheme]
+    [owner.organization]
     primitive = "String"
     required = false
 
-    [owner.dob.scheme]
+    [owner.dob]
     primitive = "Datetime"
     required = true
-    range.min = 1913-05-27T07:32:00Z
-    range.max = 2013-05-27T07:32:00Z
+        [owner.dob.range]
+        min = 1913-05-27T07:32:00Z
+        max = 2013-05-27T07:32:00Z
 
 [database]
-    [database.server.scheme]
+    [database.server]
     primitive = "String"
     required = true
 
-    [database.ports.scheme]
+    [database.ports]
     primitive = "Array"
     required = true
-    range.min = 0
-    content.primitive =  "Integer"
-    content.range.min = 1024
-    content.range.max = 49151
+        [database.ports.range]
+        min = 0
 
-    [database.connection_max.scheme]
+        [database.ports.content]
+        primitive =  "Integer"
+
+        [database.ports.content.range]
+        min = 1024
+        max = 49151
+
+    [database.connection_max]
     primitive = "Integer"
     required = false
     default = 5000
 
-    [database.enabled.scheme]
+    [database.enabled]
     primitive = "Boolean"
     default = false
 
 # the toml should have at least one server with ip
-[servers.0.ip.scheme]
+[servers.0.ip]
 primitive = "String"
 required = true
 
