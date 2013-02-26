@@ -259,6 +259,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - CoffeeScript (@biilmann) - https://github.com/biilmann/coffee-toml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go (@laurent22) - https://github.com/laurent22/toml-go
+- Go Validator (@BurntSushi) - https://github.com/BurntSushi/toml/tree/master/tomlv
 - Java (@agrison) - https://github.com/agrison/jtoml
 - node.js - https://github.com/aaronblohowiak/toml
 - node.js/browser - https://github.com/ricardobeat/toml
@@ -280,17 +281,4 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Ruby (@eMancu) - https://github.com/eMancu/toml_parser-ruby (toml_parser-ruby gem)
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
 - Scala - https://github.com/axelarge/tomelette
-
-Validators
-----------
-
-[tomlv](https://github.com/BurntSushi/toml/tree/master/tomlv) will validate
-any TOML file with decent error messages.
-
-If Go is installed, you can try it with:
-
-```bash
-go get github.com/BurntSushi/toml/tomlv
-tomlv some-toml-file.toml
-```
 
