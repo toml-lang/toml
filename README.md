@@ -263,6 +263,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Go (@laurent22) - https://github.com/laurent22/toml-go
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Java (@agrison) - https://github.com/agrison/jtoml
+- Literate CoffeeScript (@JonathanAbrams) - https://github.com/JonAbrams/tomljs
 - node.js - https://github.com/aaronblohowiak/toml
 - node.js/browser - https://github.com/ricardobeat/toml
 - node.js - https://github.com/BinaryMuse/toml-node
