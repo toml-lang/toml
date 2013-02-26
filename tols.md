@@ -30,15 +30,17 @@ Example
 [title]
 primitive = "String"   # the title must be a String
 required = true        #
-length.max = 254       # max string length (exclusive <)
+    [title.length]
+    max = 254       # max string length (exclusive <)
 
 [age]
 primitive = "Integer"  # the age must be an Integer
-range.max = 100        # age is not required, but if the value is defined, should be maximum 100 (exclusive <)
-range.min = 17         # age is not required, but if the value is defined, should be minimum 17 (exclusive >)
+    [age.range]
+    min = 17         # age is not required, but if the value is defined, should be minimum 17 (exclusive >)
+    max = 100        # age is not required, but if the value is defined, should be maximum 100 (exclusive <)
 ```
 
-The above validates the following two examples
+The above **validates** the following two examples
 
 ```toml
 title = "TOML Example"
@@ -49,7 +51,7 @@ age = 34
 title = "TOML Example"
 ```
 
-and also could help to **generate** a toml file (see use case n.2)
+and also could help to **generates** a toml file (see use case n.2)
 
 ```toml
 title = ""
@@ -86,8 +88,9 @@ age = 34
 primitive = "Integer"       # Typing the value
 default = 190               # The default value for the current key
 required = false            # by default is false
-range.min = 0               # (exclusive <)
-range.max = 0               # (exclusive >)
+   [age.range]
+   min = 0               # (exclusive <)
+   max = 0               # (exclusive >)
 ```
 
 # String example < Boolean
@@ -99,8 +102,9 @@ range.max = 0               # (exclusive >)
 primitive = "String"            # typing
 required = true                 # default is false
 # default = "liuggio@gmail.com"  # the default value for the current key
-length.max = 254                # max string length (exclusive <)
-length.min = 5                  # min length (exclusive >)
+    [email.length]
+    max = 254                # max string length (exclusive <)
+    min = 5                  # min length (exclusive >)
 pattern= "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"   #regular expression
 ```
 
@@ -118,9 +122,11 @@ Here the scheme validator
 
 [data]
 primitive = "Array"         # Typing
-length.max = 2              # max array length (exclusive <)
-length.min = 0              # min array length (exclusive >)
-content.primitive = "Array" # in toml you can't mix data types, so you could explicit the first nested content
+    [data.length]
+    max = 2              # max array length (exclusive <)
+    min = 0              # min array length (exclusive >)
+    [data.content]
+    primitive = "Array" # in toml you can't mix data types, so you could explicit the first nested content
 ```
 Mmmm this is so easy, I want to validate also "gamma" and "delta" how could I do?
 
@@ -129,19 +135,25 @@ Mmmm this is so easy, I want to validate also "gamma" and "delta" how could I do
 [data]
     [data.0]                     # this is the first element of data ["gamma", "delta"]
     primitive = "Array"          # is an Array
-    length.max = 2               # max length (exclusive <)
-    length.min = 0               # min length (exclusive >)
-    content.primitive = "String" # the content should be a String
-    content.length.max = 254     # content takes the String as scheme behaviour
-#    content.pattern = /?/       # regular expr
+        [data.0.length]
+        max = 2               # max length (exclusive <)
+        min = 0               # min length (exclusive >)
+        [data.0.content]
+        primitive = "String" # the content should be a String
+#       pattern = /?/       # regular expr
+        [data.0.content.length]
+        max = 254     # content takes the String as scheme behaviour
 
     [data.1]                   # we are validating the [1, 2]
     primitive = "Array"          # should be an array
-    length.max = 2               # max string length (exclusive <)
-    length.min = 0               # min length (exclusive >)
-    content.primitive = "Integer"# content takes the Integer Scheme Behaviour
-    content.range.min = 0
-    content.range.max = 10
+        [data.1.length]
+        max = 2               # max string length (exclusive <)
+        min = 0               # min length (exclusive >)
+        [data.0.content]
+        primitive = "Integer" # content takes the Integer Scheme Behaviour
+        [data.0.content.range]
+        min = 0
+        max = 10
 ```
 
 # Hash
@@ -159,7 +171,8 @@ orange = "no"
 [fruit.type.apple]
 primitive = "String"
 required = true
-length.max = 3
+    [fruit.type.apple.length]
+    max = 3
 ```
 
 or just put the validation in the apple.type content
@@ -169,10 +182,13 @@ or just put the validation in the apple.type content
 [fruit.type]
 primitive = "Hash"
 required = true
-length.max = 3
-content.primitive = "String"
-content.required = true
-content.length.max = 3
+    [fruit.type.apple.length]
+    max = 3
+    [fruit.type.apple.content]
+    primitive = "String"
+    required = true
+        [fruit.type.apple.content.length]
+        max = 3
 ```
 
 All the keywords
