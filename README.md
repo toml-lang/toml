@@ -280,3 +280,17 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Ruby (@eMancu) - https://github.com/eMancu/toml_parser-ruby (toml_parser-ruby gem)
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
 - Scala - https://github.com/axelarge/tomelette
+
+Validators
+----------
+
+[tomlv](https://github.com/BurntSushi/toml/tree/master/tomlv) will validate
+any TOML file with decent error messages.
+
+If Go is installed, you can try it with:
+
+```bash
+go get github.com/BurntSushi/toml/tomlv
+tomlv some-toml-file.toml
+```
+
