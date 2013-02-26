@@ -1,0 +1,13 @@
+[cache.clients.default]
+type = "redis"
+alias = "default"
+dsn = ["127.0.0.1"]
+logging = false
+
+[cache.clients.secondary]
+type = "memcache"
+alias = "secondary"
+dsn = ["127.0.0.2", "127.0.0.3"]
+logging = false
+    [cache.clients.secondary.options]
+    connection_persistent = true

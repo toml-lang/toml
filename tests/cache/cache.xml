@@ -1,0 +1,12 @@
+<red:config xmlns:red="http://toml.com/tests/cache">
+
+    <red:client type="redis" alias="default" logging="true">
+        <red:dsn>127.0.0.1</red:dsn>
+    </red:client>
+
+    <red:client type="memcache" alias="secondary" logging="false">
+        <red:dsn>127.0.0.2</red:dsn>
+        <red:dsn>127.0.0.3</red:dsn>
+        <red:options connection-persistent="true"/>
+    </red:client>
+</red:config>

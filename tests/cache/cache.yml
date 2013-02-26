@@ -1,0 +1,14 @@
+cache:
+    clients:
+        default:
+            type: redis
+            alias: default
+            dsn: 127.0.0.1
+            logging: true
+        secondary:
+            type: memcache
+            alias: secondary
+            dsn: [127.0.0.2, 127.0.0.3]
+            logging: false
+            options:
+                connection_persistent: true

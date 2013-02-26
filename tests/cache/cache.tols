@@ -1,0 +1,36 @@
+[cache.clients]
+primitive = "Hash"                      # could be omitted
+    [cache.clients.client]              # defines a new prototype, its name is not important
+    primitive = "Hash"
+        [cache.clients.client.occurrence]
+        min = 0                         # at least one occurrence, no maximum
+# start the prototype
+        [cache.clients.client.type]
+        primitive = "String"             # typing
+        required = true                  # default is false
+            [cache.clients.client.type.range]
+            in = ["redis", "memcache"]
+            notin = ["mysql"]               #mysql as cache is not supported
+
+        [cache.clients.client.alias]
+        primitive = "String"             # typing
+        required = true                  # default is false
+
+        [cache.clients.client.dsn]
+        primitive = "Array"
+            [cache.clients.client.dsn.content]
+            primitive = "String"
+            pattern = "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"  # regex for ip address, this is an example is not working
+
+        [cache.clients.client.logging]
+        primitive = "Boolean"
+        default = true
+
+        [cache.clients.client.options]
+        primitive = "Hash"
+            [cache.clients.client.options.connection_persistent]
+            primitive = "Boolean"
+            default = true
+
+            [cache.clients.client.options.connection_timeout]
+            primitive = "Integer"

@@ -218,7 +218,7 @@ apple = "yes"
 Validate a toml file
 ----------
 
-A TOML file could be validated with anoter file called TOLS.
+A **TOML** file can be created and validated thanks to a **TOLS** file.
 
 For more specification see [tols.md](tols.md)
 

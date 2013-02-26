@@ -105,6 +105,8 @@ required = true                 # default is false
     [email.length]
     max = 254                # max string length (exclusive <)
     min = 5                  # min length (exclusive >)
+    [email.range]
+    in = ["tom@github.com", "liuggio@gmail.com"]                # email could be one of
 pattern= "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"   #regular expression
 ```
 
@@ -194,7 +196,7 @@ required = true
 All the keywords
 -------
 
-TOLS schema has 7 keywords.
+TOLS schema has 12 keywords to know.
 
 - **primitive** could be: ["String", "Integer", "Float", "Boolean", "Datetime", "Array", "Hash"].
 
@@ -204,12 +206,14 @@ TOLS schema has 7 keywords.
 
 - **length** is a hash that contains two values **min** and **max**, only when primitives are [String, Array, Hash].
 
-- **range** is a hash that contains two values **min** and **max**, only when primitives are [Integer, Float, Datetime].
+- **range** is a hash that contains values **min** and **max**, only when primitives are [Integer, Float, Datetime],
+ and **in** and **notin** for all primitives.
 
 - **pattern** is a String and contains a valid Regular Expression only when primitives is a String.
 
 - **content** is a Hash and describes the behaviour of the first nested element.
 
+- **occurrence** define the number of repetition of a primitive, is a hash with two values **min** and **max**.
 
 TOLS is a valid TOML file, could I validate a TOLS file?
 -------
