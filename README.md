@@ -116,7 +116,7 @@ triple double quotes. Tabs, newlines, double quotes, and carriage returns
 do not need to be escaped inside a multi-line string primitive.
 
 ```toml
-"""
+notes = """
 I'm a multi-line string. You can
 
   * insert multiple lines and indent me if you like.
