@@ -25,6 +25,10 @@ name = "Tom Preston-Werner"
 organization = "GitHub"
 bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
 dob = 1979-05-27T07:32:00Z # First class dates? Why not?
+signature = """
+Tom Preston-Werner
+GitHub CEO
+"""
 
 [database]
 server = "192.168.1.1"
@@ -105,6 +109,19 @@ error. This means paths on Windows will always have to use double backslashes.
 ```toml
 wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
 right = "C:\\Users\\nodejs\\templates"
+```
+
+Multi-line strings may also be declared by surrounding the content with
+triple double quotes. Tabs, newlines, double quotes, and carriage returns
+do not need to be escaped inside a multi-line string primitive.
+
+```toml
+notes = """
+I'm a multi-line string. You can
+
+  * insert multiple lines and indent me if you like.
+  * add "quoted text" without worry (just don't triple it)
+"""
 ```
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
