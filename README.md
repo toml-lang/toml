@@ -5,12 +5,17 @@ Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner.
 
-TOML is like INI, only better.
-
 If it's not working for you, you're not drinking enough whisky.
 
 Be warned, this spec is still changing a lot. Until it's marked as 1.0, you
 should assume that it is unstable and act accordingly.
+
+Objectives
+----------
+
+TOML aims to be a minimal configuration file format that's easy to read due to
+obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
+should be easy to parse into data structures in a wide variety of languages.
 
 Example
 -------
@@ -44,7 +49,7 @@ enabled = true
   dc = "eqdc10"
 
 [clients]
-data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers support it
+data = [ ["gamma", "delta"], [1, 2] ]
 
 # Line breaks are OK when inside arrays
 hosts = [
@@ -56,17 +61,11 @@ hosts = [
 Spec
 ----
 
-TOML is designed to be unambiguous and as simple as possible. There should only
-be one way to do anything. TOML maps to a simple hash table. TOML is
-case-sensitive.
+* TOML is case sensitive.
+* Whitespace means tab (0x09) or space (0x20).
 
-Definitions
------------
-
-Whitespace means tab (0x09) or space (0x20).
-
-Comments
---------
+Comment
+-------
 
 Speak your mind with the hash symbol. They go from the symbol to the end of the
 line.
@@ -76,10 +75,8 @@ line.
 key = "value" # Yeah, you can do this.
 ```
 
-Primitives
-----------
-
-String, Integer, Float, Boolean, Datetime, Array.
+String
+------
 
 Strings are single-line values surrounded by double quotes encoded in UTF-8.
 Quotes and other special characters must be escaped.
@@ -107,6 +104,9 @@ wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
 right = "C:\\Users\\nodejs\\templates"
 ```
 
+Integer
+-------
+
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 64-bit minimum size expected.
 
@@ -114,6 +114,9 @@ Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 42
 -17
 ```
+
+Float
+-----
 
 Floats are like integers except they have a single dot within. There must be at
 least one number on each side of the decimal point. 64-bit (double) precision
@@ -124,6 +127,9 @@ expected.
 -0.01
 ```
 
+Boolean
+-------
+
 Booleans are just the tokens you're used to. Always lowercase.
 
 ```toml
@@ -131,11 +137,17 @@ true
 false
 ```
 
+Datetime
+--------
+
 Datetimes are ISO8601 dates, but only the full zulu form is allowed.
 
 ```toml
 1979-05-27T07:32:00Z
 ```
+
+Array
+-----
 
 Arrays are square brackets with other primitives inside. Whitespace is ignored.
 Elements are separated by commas. No, you can't mix data types, that's stupid.
@@ -162,10 +174,8 @@ key = [
 ]
 ```
 
-That's it. That's all you need, and you're gonna like it.
-
-Hash me
--------
+Hash
+----
 
 There are two ways to make keys. I call them "key groups" and "keys". Both are
 just regular keys, but key groups only ever have a single hash as their value.
@@ -247,7 +257,7 @@ Oh god, you're right
 Yuuuup. Wanna help? Send a pull request. Or write a parser. BE BRAVE.
 
 Implementations
---------
+---------------
 
 If you have an implementation, send a pull request adding to this list. Please
 note the commit SHA1 or version tag that your parser supports in your Readme.
