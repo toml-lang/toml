@@ -122,6 +122,7 @@ I'm a multi-line string. You can
   * insert multiple lines and indent me if you like.
   * add "quoted text" without worry (just don't triple it)
 """
+```
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 64-bit minimum size expected.
