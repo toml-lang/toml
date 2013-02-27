@@ -296,3 +296,8 @@ Validators
 ----------
 
 - Go (@BurntSushi) - https://github.com/BurntSushi/toml/tree/master/tomlv
+
+Editor support
+--------------
+
+- Vim (@cespare) - https://github.com/cespare/vim-toml
