@@ -311,3 +311,4 @@ Editor support
 --------------
 
 - Vim (@cespare) - https://github.com/cespare/vim-toml
+- Emacs (@dryman) - https://github.com/dryman/toml-mode
