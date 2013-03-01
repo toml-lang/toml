@@ -19,3 +19,15 @@ test_string = "You'll hate me after this - #"          # " Annoying, isn't it?
             "]",
             # ] Oh yes I did
             ]
+
+# Each of the following keygroups/key value pairs should produce an error. Uncomment to them to test
+
+#[error]   if you didn't catch this, your parser is broken
+#string = "Anything other than tabs, spaces and newline after a keygroup or key value pair has ended should produce an error unless it is a comment"   like this
+#array = [
+#         "This might most likely happen in multiline arrays",
+#         Like here,
+#         "or here,
+#         and here"
+#         ]     End of array comment, forgot the #
+#number = 3.14  pi <--again forgot the #         
