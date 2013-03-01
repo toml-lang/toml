@@ -280,7 +280,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Literate CoffeeScript (@JonathanAbrams) - https://github.com/JonAbrams/tomljs
 - node.js - https://github.com/aaronblohowiak/toml
-- node.js/browser - https://github.com/ricardobeat/toml
+- node.js/browser - https://github.com/ricardobeat/toml.js (npm install tomljs)
 - node.js - https://github.com/BinaryMuse/toml-node
 - node.js (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
 - node.js/browser (@alexanderbeletsky) - https://github.com/alexanderbeletsky/toml-js (npm browser amd)
