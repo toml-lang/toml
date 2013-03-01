@@ -46,7 +46,18 @@ enabled = true
 
   [servers.beta]
   ip = "10.0.0.2"
-  dc = "eqdc10"
+  dc = "eqdc10" 
+
+# If you add numbers in the definition, TOML assumes you are defining an array of hashes/objects
+
+[alternative_servers[0]]
+ip = "10.0.0.1"
+dc = "eqdc10"
+
+[alternative_servers[1]]
+ip = "10.0.0.2"
+dc = "eqdc10" 
+
 
 [clients]
 data = [ ["gamma", "delta"], [1, 2] ]
