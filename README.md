@@ -196,9 +196,10 @@ apart from arrays because arrays are only ever values.
 ```
 
 Under that, and until the next key or EOF are the key/values of that key group.
-keys are on the left of the equals sign and values are on the right. Keys start
+Keys are on the left of the equals sign and values are on the right. Keys start
 with the first non-whitespace character and end with the last non-whitespace
-character before the equals sign.
+character before the equals sign. Key/value pairs within key groups are
+unordered.
 
 ```toml
 [keygroup]
