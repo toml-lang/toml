@@ -318,3 +318,7 @@ Editor support
 - Emacs (@dryman) - https://github.com/dryman/toml-mode.el
 - TextMate (@infininight) - https://github.com/textmate/toml.tmbundle
 - Vim (@cespare) - https://github.com/cespare/vim-toml
+
+Encoder
+--------------
+- PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
