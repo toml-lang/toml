@@ -96,8 +96,8 @@ Here is the list of special characters.
 \xXX - byte            (0x00-0xFF)
 ```
 
-Of special note is the arbitrary byte syntax `\xXX\ where each `X` is a hex
-digit [0-9A-F]. This is useful for expressing non-UTF8 encoded strings.
+Of special note is the arbitrary byte syntax `\xXX` where each `X` is a hex
+digit `[0-9a-fA-F]`. This is useful for expressing non-UTF8 encoded strings.
 
 ```toml
 name      = "Jos\x82"             # "José" in latin1 encoding.
