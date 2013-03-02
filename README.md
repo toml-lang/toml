@@ -88,12 +88,20 @@ Quotes and other special characters must be escaped.
 Here is the list of special characters.
 
 ```
-\0 - null character  (0x00)
-\t - tab             (0x09)
-\n - newline         (0x0a)
-\r - carriage return (0x0d)
-\" - quote           (0x22)
-\\ - backslash       (0x5c)
+\t   - tab             (0x09)
+\n   - newline         (0x0a)
+\r   - carriage return (0x0d)
+\"   - quote           (0x22)
+\\   - backslash       (0x5c)
+\xXX - byte            (0x00-0xFF)
+```
+
+Of special note is the arbitrary byte syntax `\xXX\ where each `X` is a hex
+digit [0-9A-F]. This is useful for expressing non-UTF8 encoded strings.
+
+```toml
+name      = "Jos\x82"             # "José" in latin1 encoding.
+binary_ip = "\x0A\x00\x00\x01"    # 10.0.0.1 as a four byte binary.
 ```
 
 Other special characters are reserved and, if used, TOML should produce an
