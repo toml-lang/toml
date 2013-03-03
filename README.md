@@ -325,6 +325,7 @@ Editor support
 --------------
 
 - Emacs (@dryman) - https://github.com/dryman/toml-mode.el
+- Sublime Text 2 (@lmno) - https://github.com/lmno/TOML
 - TextMate (@infininight) - https://github.com/textmate/toml.tmbundle
 - Vim (@cespare) - https://github.com/cespare/vim-toml
 
