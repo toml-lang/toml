@@ -28,8 +28,13 @@ title = "TOML Example"
 [owner]
 name = "Tom Preston-Werner"
 organization = "GitHub"
-bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
+bio = "GitHub Cofounder & CEO. The 'Tom' in Tom's Obvious Minimal 
+Language. Likes tater tots and beer."
 dob = 1979-05-27T07:32:00Z # First class dates? Why not?
+signature = """
+Tom Preston-Werner
+GitHub CEO
+"""
 
 [database]
 server = "192.168.1.1"
@@ -78,11 +83,12 @@ key = "value" # Yeah, you can do this.
 String
 ------
 
-Strings are single-line values surrounded by double quotes encoded in UTF-8.
-Quotes and other special characters must be escaped.
+Strings are values surrounded by double quotes encoded in UTF-8. Quotes and 
+other special characters must be escaped.
 
 ```toml
-"I'm a string. \"You can quote me\". Tab \t newline \n you get it."
+"I'm a string. I ignore new lines, so you can wrap me as you 
+please. \"You can quote me\". Tab \t newline \n you get it."
 ```
 
 Here is the list of special characters.
@@ -110,6 +116,18 @@ error. This means paths on Windows will always have to use double backslashes.
 ```toml
 wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
 right = "C:\\Users\\nodejs\\templates"
+```
+
+Block strings can be declared with three double quotes, on their own line. Tabs,
+newlines, double quotes and carriage returns do not need to be escaped inside 
+block strings.
+
+```toml
+notes = """
+I'm a block string. You can:
+  * Insert multiple lines and indent me if you'd like.
+  * Add "quoted text" without worry (just don't triple it).
+"""
 ```
 
 Integer
