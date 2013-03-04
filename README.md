@@ -289,6 +289,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java - https://github.com/asafh/jtoml
 - Java w/ ANTLR (@MatthiasSchuetz) - https://github.com/mschuetz/toml
+- Julia (@pygy) - https://github.com/pygy/TOML.jl
 - Literate CoffeeScript (@JonathanAbrams) - https://github.com/JonAbrams/tomljs
 - node.js - https://github.com/aaronblohowiak/toml
 - node.js/browser - https://github.com/ricardobeat/toml.js (npm install tomljs)
