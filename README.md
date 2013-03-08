@@ -154,17 +154,38 @@ Datetimes are ISO8601 dates, but only the full zulu form is allowed.
 1979-05-27T07:32:00Z
 ```
 
+Tuple
+-----
+
+Tuples are ordered sets of values, often used for brevity in storing large
+amounts of structured data in arrays. They are represented by a comma separated
+list inside of parentheses.
+
+```toml
+(1, "tom", "staff")  # Perhaps some UNIX account info.
+(2.48, 9.37, 28.81)  # Or maybe x/y/z coordinates.
+```
+
 Array
 -----
 
 Arrays are square brackets with other primitives inside. Whitespace is ignored.
-Elements are separated by commas. No, you can't mix data types, that's stupid.
+Elements are separated by commas.
 
 ```toml
 [ 1, 2, 3 ]
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
-[ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
+[ (5, 3, 2), (7, 19, 8) ]
+```
+
+No, you can't mix data types, that's stupid.
+
+```toml
+# INVALID TOML FILE
+[ 1, "one" ]                  # NOPE
+[ [ 1, 2 ], ["a", "b", "c"] ] # NOPE
+[ (1, "red"), (2.1, 5.9) ]    # NOPE
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
