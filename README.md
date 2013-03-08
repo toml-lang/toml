@@ -280,6 +280,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
 - CoffeeScript (@biilmann) - https://github.com/biilmann/coffee-toml
 - Erlang - https://github.com/kalta/etoml.git
+- Erlang - https://github.com/kaos/tomle
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go (@laurent22) - https://github.com/laurent22/toml-go
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
