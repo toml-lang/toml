@@ -126,9 +126,8 @@ Integers are bare numbers, all alone. Feeling negative? Do what's natural.
 Float
 -----
 
-Floats are like integers except they have a single dot within. There must be at
-least one number on each side of the decimal point. 64-bit (double) precision
-expected.
+Floats are numbers with a single dot within. There must be at least one number
+on each side of the decimal point. 64-bit (double) precision expected.
 
 ```toml
 3.1415
@@ -165,6 +164,7 @@ Elements are separated by commas. No, you can't mix data types, that's stupid.
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
 [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
+[ 1, 2.0 ] # note: this is NOT ok
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
