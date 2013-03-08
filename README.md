@@ -93,15 +93,6 @@ Here is the list of special characters.
 \r   - carriage return (0x0d)
 \"   - quote           (0x22)
 \\   - backslash       (0x5c)
-\xXX - byte            (0x00-0xFF)
-```
-
-Of special note is the arbitrary byte syntax `\xXX` where each `X` is a hex
-digit `[0-9a-fA-F]`. This is useful for expressing non-UTF8 encoded strings.
-
-```toml
-name      = "Jos\x82"             # "José" in latin1 encoding.
-binary_ip = "\x0A\x00\x00\x01"    # 10.0.0.1 as a four byte binary.
 ```
 
 Other special characters are reserved and, if used, TOML should produce an
@@ -111,6 +102,41 @@ error. This means paths on Windows will always have to use double backslashes.
 wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
 right = "C:\\Users\\nodejs\\templates"
 ```
+
+Binary Data
+-----------
+
+Binary Data is represented as a sequence of bytes enclosed with backticks in one of two ways: escaped or encoded.  Escaped form is typically for shorter, "readable" data, such as file permissions or bitfields.  Encoded is typically used for longer, tool generated blobs of data, such as a favicon.
+
+Escaped data is formatted as a hex, octal or binary sequence of bytes wrapped in single backticks.
+No other control characters are allowed (\t, \n etc.).  These are bytes, so the binary form must have digits (0 and 1's) in groups of 8, octal digits in groups of 4 and hex digits in groups of 2.  If not parsers should produce an error.
+
+    ip = `\x0a\x00\x00\xA2` # capitalize as you will
+    perm = `\o0777`
+    binary = `\b0000111100001111`
+    mixed = `\x123456\o12345678\b01010101`
+
+Encoded is base64 encoded string with the following charcteristics:
+
+- `+` and `/` for the character index 62 and 63 respectively
+- Padding `=`'s are mandatory
+- Linebreak as you like, all whitespace is ignored.
+
+Examples:
+
+    # it is easy to paste in from MIME header or other base64 tools
+    
+    data = ```
+    TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlz
+    IHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2Yg
+    dGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGlu
+    dWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRo
+    ZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=
+    ```
+    
+    # For those times you don't want to waste vertical space
+
+    data = ```ZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=```
 
 Integer
 -------
