@@ -89,7 +89,7 @@ Here is the list of special characters.
 
 ```
 \t   - tab             (0x09)
-\n   - newline         (0x0a)
+\n   - linefeed        (0x0a)
 \r   - carriage return (0x0d)
 \"   - quote           (0x22)
 \\   - backslash       (0x5c)
