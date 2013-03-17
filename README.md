@@ -78,31 +78,33 @@ key = "value" # Yeah, you can do this.
 String
 ------
 
-Strings are single-line values surrounded by double quotes encoded in UTF-8.
-Quotes and other special characters must be escaped.
+ProTip™: You may notice that this specification is the same as JSON's string
+definition, except that TOML requires UTF-8 encoding. This is on purpose.
+
+Strings are single-line values surrounded by quotation marks. Strings must
+contain only valid UTF-8 characters. Any Unicode character maybe be used except
+those that must be escaped: quotation mark, backslash, and the control
+characters (U+0000 to U+001F).
 
 ```toml
-"I'm a string. \"You can quote me\". Tab \t newline \n you get it."
+"I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 ```
 
-Here is the list of special characters.
+For convenience, some popular characters have a compact escape sequence.
 
 ```
-\t   - tab             (0x09)
-\n   - linefeed        (0x0a)
-\r   - carriage return (0x0d)
-\"   - quote           (0x22)
-\\   - backslash       (0x5c)
-\xXX - byte            (0x00-0xFF)
+\b     - backspace       (U+0008)
+\t     - tab             (U+0009)
+\n     - linefeed        (U+000A)
+\f     - form feed       (U+000C)
+\r     - carriage return (U+000D)
+\"     - quote           (U+0022)
+\/     - slash           (U+002F)
+\\     - backslash       (U+005C)
+\uXXXX - unicode         (U+XXXX)
 ```
 
-Of special note is the arbitrary byte syntax `\xXX` where each `X` is a hex
-digit `[0-9a-fA-F]`. This is useful for expressing non-UTF8 encoded strings.
-
-```toml
-name      = "Jos\x82"             # "José" in latin1 encoding.
-binary_ip = "\x0A\x00\x00\x01"    # 10.0.0.1 as a four byte binary.
-```
+Any Unicode character may be escaped with the `\uXXXX` form.
 
 Other special characters are reserved and, if used, TOML should produce an
 error. This means paths on Windows will always have to use double backslashes.
@@ -111,6 +113,9 @@ error. This means paths on Windows will always have to use double backslashes.
 wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
 right = "C:\\Users\\nodejs\\templates"
 ```
+
+For binary data it is recommended that you use Base 64 or another suitable
+encoding. The handling of that encoding will be application specific.
 
 Integer
 -------
