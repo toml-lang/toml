@@ -242,17 +242,38 @@ to do it for you.
 When converted to a hash table, an empty key group should result in the key's
 value being an empty hash table.
 
-Be careful not to overwrite previous keys. That's dumb. And should produce an
-error.
+As long as a superkey hasn't defined a specific key, you may still write to it.
 
 ```toml
-# DO NOT WANT
-[fruit]
-type = "apple"
+[a.b]
+c = 1
 
-[fruit.type]
-apple = "yes"
+[a]
+d = 2
 ```
+
+You cannot define any key or key group more than once. Doing so is invalid.
+
+```toml
+# DO NOT DO THIS
+
+[a]
+b = 1
+
+[a]
+c = 2
+```
+
+```toml
+# DO NOT DO THIS EITHER
+
+[a]
+b = 1
+
+[a.b]
+c = 2
+```
+
 
 Seriously?
 ----------
