@@ -254,6 +254,40 @@ type = "apple"
 apple = "yes"
 ```
 
+Array of Hashes
+---------------
+
+The last type that has not yet been expressed is an array of keygroups. These
+can be expressed by using a keygroup in double brackets. Each keygroup with the
+same double bracketd name will be an element in the array. The keygroups are
+inserted in the order encountered. A double bracketed keygroup without any
+key/value pairs will be considered an empty hash table.
+
+```toml
+[[products]]
+name = "Hammer"
+sku = 738594937
+
+[[products]]
+
+[[products]]
+name = "Nail"
+sku = 284758393
+color = "gray"
+```
+
+In JSON land, that would give you the following structure.
+
+```json
+{
+  "products": [
+    { "name": "Hammer", "sku": 738594937 },
+    { },
+    { "name": "Nail", "sku": 284758393, "color": "gray" }
+  ]
+}
+```
+
 Seriously?
 ----------
 

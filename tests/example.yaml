@@ -23,3 +23,12 @@ servers:
 clients:
   data: [ ["gamma", "delta"], [1, 2] ]
   hosts: [ "alpha", "omega" ]
+
+products:
+  -
+    name: Hammer
+    sku: 738594937
+  -
+    name: Nail
+    sku: 284758393
+    color: gray
