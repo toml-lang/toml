@@ -115,7 +115,7 @@ wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
 right = "C:\\Users\\nodejs\\templates"
 ```
 
-For binary data it is recommended that you use Base 64 or another suitable
+For binary data it is recommended that you use Base64 or another suitable
 encoding. The handling of that encoding will be application specific.
 
 Integer
@@ -153,7 +153,7 @@ false
 Datetime
 --------
 
-Datetimes are ISO8601 dates, but only the full zulu form is allowed.
+Datetimes are ISO 8601 dates, but only the full zulu form is allowed.
 
 ```toml
 1979-05-27T07:32:00Z
@@ -163,7 +163,7 @@ Array
 -----
 
 Arrays are square brackets with other primitives inside. Whitespace is ignored.
-Elements are separated by commas. No, you can't mix data types, that's stupid.
+Elements are separated by commas. Data types may not be mixed.
 
 ```toml
 [ 1, 2, 3 ]
@@ -223,7 +223,7 @@ whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
 type = "pug"
 ```
 
-In JSON land, that would give you the following structure.
+In JSON land, that would give you the following structure:
 
 ```json
 { "key": { "tater": { "type": "pug" } } }
@@ -283,7 +283,7 @@ Yep.
 But why?
 --------
 
-Because we need a decent human readable format that maps to a hash and the YAML
+Because we need a decent human-readable format that maps to a hash and the YAML
 spec is like 80 pages long and gives me rage. No, JSON doesn't count. You know
 why.
 
