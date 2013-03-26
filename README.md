@@ -312,6 +312,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Go (@laurent22) - https://github.com/laurent22/toml-go
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Haskell (@seliopou) - https://github.com/seliopou/toml
+- Haxe (@raincole) - https://github.com/raincole/haxetoml
 - Java (@agrison) - https://github.com/agrison/jtoml
 - Java (@johnlcox) - https://github.com/johnlcox/toml4j
 - Java (@mwanji) - https://github.com/mwanji/toml4j
