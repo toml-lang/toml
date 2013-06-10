@@ -19,6 +19,7 @@ servers:
   beta:
     ip: 10.0.0.2
     dc: eqdc10
+    country: "中国"
 
 clients:
   data: [ ["gamma", "delta"], [1, 2] ]
