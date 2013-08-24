@@ -203,38 +203,33 @@ Array ::= '[' \
    | BOOLEAN  {',' BOOLEAN } \
    | DATETIME {',' DATETIME} \
    | Array    {',' Array   } \
-   ']' // whitespace = ARRAY_WHITESPACE
+   ']' // whitespace = .ARRAY_WHITESPACE
 
 
 Value ::= STRING | INTEGER | FLOAT | BOOLEAN | DATETIME | Array
   
-KeyValue ::= KEY '=' Value // whitespace = WHITESPACE
+KeyValue ::= KEY '=' Value // whitespace = .WHITESPACE
 
-KeyGroup ::= '[' KEYGROUPNAME ']' // whitespace = WHITESPACE
+KeyGroup ::= '[' KEYGROUPNAME ']' // whitespace = .WHITESPACE
 
-ROOT ::= (KeyGroup | KeyValue)* // whitespace = WHITESPACE
+ROOT ::= (KeyGroup | KeyValue)* // whitespace = .WHITESPACE
 
 ##### Tokens
 
-COMMENT = #.*^
-WHITESPACE = [\ \t]
-ARRAY_WHITESPACE = [\ \t\r\n]
+.COMMENT = #.*^
+.WHITESPACE = [\ \t]
+.ARRAY_WHITESPACE = [\ \t\r\n]
 
-KEY = [^\.]+
+KEY = [^\.\[\]=\ \t]+
 KEYGROUPNAME = KEY ( '.' KEY )*
-STRING = '"' ([^\"\\]|'\\'[0tnr"\\])* '"
-SIGN = [\-]
-INTEGER = '0'|(SIGN? [1-9] [0-9]*)
-# Lets have exponents, nans and infinity so we're not nonstandard douchebags
-FLOAT = (   (INTEGER '.') \
-          | (((SIGN? '0'?)| INTEGER)? '.' [0-9]+) \
-        ( 'e' INTEGER) ) \
-        |  SIGN? ( [sq]'nan' | 'inf' )
-BOOLEAN = TRUE | FALSE
-TRUE = 'true'
-FALSE = 'false'
-DATE = [0-9]{4} '-' [0-9]{2} '-' [0-9]{2}
-TIME = [0-9]{2} ':' [0-9]{2} ':' [0-9]{2}
+STRING = '"' ([^\"\\]|'\\'[0tnr"\\])* '"'
+UNSIGNED_INTEGER = '0' | ( [1-9] [0-9]* )
+INTEGER = '-'? UNSIGNED_INTEGER
+FLOAT = INTEGER '.' UNSIGNED_INTEGER // "in the next release": ....  ( [eE] INTEGER )?
+BOOLEAN = 'true' | 'false'
+NN = [0-9]{2}
+DATE = [0-9]{4} '-' NN '-' NN
+TIME = NN ':' NN ':' NN
 DATETIME = DATE 'T' TIME 'Z'
 ```
 
