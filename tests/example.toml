@@ -24,6 +24,7 @@ enabled = true
   [servers.beta]
   ip = "10.0.0.2"
   dc = "eqdc10"
+  country = "中国" # This should be parsed as UTF-8
 
 [clients]
 data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers support it
