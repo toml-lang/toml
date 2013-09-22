@@ -188,49 +188,46 @@ key = [
 ]
 ```
 
-Hash
-----
+Table
+-----
 
-There are two ways to make keys. I call them "key groups" and "keys". Both are
-just regular keys, but key groups only ever have a single hash as their value.
-
-Key groups appear in square brackets on a line by themselves. You can tell them
+Tables (also known as hash tables or dictionaries) are collections of key/value
+pairs. They appear in square brackets on a line by themselves. You can tell them
 apart from arrays because arrays are only ever values.
 
 ```toml
-[keygroup]
+[table]
 ```
 
-Under that, and until the next key or EOF are the key/values of that key group.
+Under that, and until the next table or EOF are the key/values of that table.
 Keys are on the left of the equals sign and values are on the right. Keys start
 with the first non-whitespace character and end with the last non-whitespace
-character before the equals sign. Key/value pairs within key groups are
-unordered.
+character before the equals sign. Key/value pairs within tables are unordered.
 
 ```toml
-[keygroup]
+[table]
 key = "value"
 ```
 
 You can indent keys and their values as much as you like. Tabs or spaces. Knock
-yourself out. Why, you ask? Because you can have nested hashes. Snap.
+yourself out. Why, you ask? Because you can have nested tables. Snap.
 
-Nested hashes are denoted by key groups with dots in them. Name your key groups
+Nested tables are denoted by table names with dots in them. Name your tables
 whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
 
 ```toml
-[key.tater]
+[dog.tater]
 type = "pug"
 ```
 
 In JSON land, that would give you the following structure:
 
 ```json
-{ "key": { "tater": { "type": "pug" } } }
+{ "dog": { "tater": { "type": "pug" } } }
 ```
 
-You don't need to specify all the superkeys if you don't want to. TOML knows how
-to do it for you.
+You don't need to specify all the super-tables if you don't want to. TOML knows
+how to do it for you.
 
 ```toml
 # [x] you
@@ -239,10 +236,10 @@ to do it for you.
 [x.y.z.w] # for this to work
 ```
 
-When converted to a hash table, an empty key group should result in the key's
-value being an empty hash table.
+Empty tables are allowed and simply have no key/value pairs within them.
 
-As long as a superkey hasn't defined a specific key, you may still write to it.
+As long as a super-table hasn't been directly defined and hasn't defined a
+specific key, you may still write to it.
 
 ```toml
 [a.b]
@@ -252,7 +249,7 @@ c = 1
 d = 2
 ```
 
-You cannot define any key or key group more than once. Doing so is invalid.
+You cannot define any key or table more than once. Doing so is invalid.
 
 ```toml
 # DO NOT DO THIS
@@ -274,14 +271,14 @@ b = 1
 c = 2
 ```
 
-Array of Hashes
+Array of Tables
 ---------------
 
-The last type that has not yet been expressed is an array of keygroups. These
-can be expressed by using a keygroup in double brackets. Each keygroup with the
-same double bracketed name will be an element in the array. The keygroups are
-inserted in the order encountered. A double bracketed keygroup without any
-key/value pairs will be considered an empty hash table.
+The last type that has not yet been expressed is an array of tables. These can
+be expressed by using a table name in double brackets. Each table with the same
+double bracketed name will be an element in the array. The tables are inserted
+in the order encountered. A double bracketed table without any key/value pairs
+will be considered an empty table.
 
 ```toml
 [[products]]
@@ -308,9 +305,9 @@ In JSON land, that would give you the following structure.
 }
 ```
 
-You can create nested arrays of keygroups as well. Just use the same double
-bracket syntax on sub-keygroups. Each double-bracketed sub-keygroup will
-belong to the most recently defined keygroup element above it.
+You can create nested arrays of tables as well. Just use the same double bracket
+syntax on sub-tables. Each double-bracketed sub-table will belong to the most
+recently defined table element above it.
 
 ```toml
 [[fruit]]
@@ -359,8 +356,8 @@ The above TOML maps to the following JSON.
 }
 ```
 
-Attempting to define a normal keygroup with the same name as an already
-established array must produce an error at parse time.
+Attempting to define a normal table with the same name as an already established
+array must produce an error at parse time.
 
 ```toml
 # INVALID TOML DOC
@@ -370,7 +367,7 @@ established array must produce an error at parse time.
   [[fruit.variety]]
     name = "red delicious"
 
-  # This keygroup conflicts with the previous keygroup
+  # This table conflicts with the previous table
   [fruit.variety]
     name = "granny smith"
 ```
@@ -383,9 +380,9 @@ Yep.
 But why?
 --------
 
-Because we need a decent human-readable format that maps to a hash and the YAML
-spec is like 80 pages long and gives me rage. No, JSON doesn't count. You know
-why.
+Because we need a decent human-readable format that unambiguously maps to a hash
+table and the YAML spec is like 80 pages long and gives me rage. No, JSON
+doesn't count. You know why.
 
 Oh god, you're right
 --------------------
