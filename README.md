@@ -244,7 +244,7 @@ Array of Hashes
 
 The last type that has not yet been expressed is an array of keygroups. These
 can be expressed by using a keygroup in double brackets. Each keygroup with the
-same double bracketd name will be an element in the array. The keygroups are
+same double bracketed name will be an element in the array. The keygroups are
 inserted in the order encountered. A double bracketed keygroup without any
 key/value pairs will be considered an empty hash table.
 
@@ -271,6 +271,73 @@ In JSON land, that would give you the following structure.
     { "name": "Nail", "sku": 284758393, "color": "gray" }
   ]
 }
+```
+
+You can create nested arrays of keygroups as well. Just use the same double
+bracket syntax on sub-keygroups. Each double-bracketed sub-keygroup will
+belong to the most recently defined keygroup element above it.
+
+```toml
+[[fruit]]
+  name = "apple"
+
+  [fruit.physical]
+    color = "red"
+    shape = "round"
+
+  [[fruit.variety]]
+    name = "red delicious"
+
+  [[fruit.variety]]
+    name = "granny smith"
+
+[[fruit]]
+  name = "banana"
+
+  [[fruit.variety]]
+    name = "plantain"
+```
+
+The above TOML maps to the following JSON.
+
+```json
+{
+  "fruit": [
+    {
+      "name": "apple",
+      "physical": {
+        "color": "red",
+        "shape": "round"
+      },
+      "variety": [
+        { "name": "red delicious" },
+        { "name": "granny smith" }
+      ]
+    },
+    {
+      "name": "banana",
+      "variety": [
+        { "name": "plantain" }
+      ]
+    }
+  ]
+}
+```
+
+Attempting to define a normal keygroup with the same name as an already
+established array must produce an error at parse time.
+
+```toml
+# INVALID TOML DOC
+[[fruit]]
+  name = "apple"
+
+  [[fruit.variety]]
+    name = "red delicious"
+
+  # This keygroup conflicts with the previous keygroup
+  [fruit.variety]
+    name = "granny smith"
 ```
 
 Seriously?
