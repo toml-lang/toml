@@ -1,12 +1,9 @@
-TOML
-====
+TOML v0.2.0
+===========
 
 Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner.
-
-Latest tagged version:
-[v0.2.0](https://github.com/mojombo/toml/blob/master/versions/toml-v0.2.0.md).
 
 Be warned, this spec is still changing a lot. Until it's marked as 1.0, you
 should assume that it is unstable and act accordingly.

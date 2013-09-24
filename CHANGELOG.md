@@ -1,6 +1,6 @@
 # TOML Changelog
 
-## HEAD
+## 0.2.0 / 2013-09-24
 
 * Use "table" instead of "key group" terminology.
 * Add the ability to define nestable arrays of tables.
