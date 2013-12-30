@@ -454,8 +454,8 @@ Validators
 
 - Go (@BurntSushi) - https://github.com/BurntSushi/toml/tree/master/tomlv
 
-Language agnostic test suite for TOML parsers
----------------------------------------------
+Language agnostic test suite for TOML decoders and encoders
+-----------------------------------------------------------
 
 - toml-test (@BurntSushi) - https://github.com/BurntSushi/toml-test
 
