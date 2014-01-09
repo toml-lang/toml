@@ -83,7 +83,7 @@ ProTip™: You may notice that this specification is the same as JSON's string
 definition, except that TOML requires UTF-8 encoding. This is on purpose.
 
 Strings are single-line values surrounded by quotation marks. Strings must
-contain only valid UTF-8 characters. Any Unicode character maybe be used except
+contain only valid UTF-8 characters. Any Unicode character may be used except
 those that must be escaped: quotation mark, backslash, and the control
 characters (U+0000 to U+001F).
 
