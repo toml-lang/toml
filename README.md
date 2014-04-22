@@ -470,3 +470,9 @@ Editor support
 Encoder
 --------------
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
+
+
+Translation
+-------------
+
+- Chinese (zh_CN) - http://segmentfault.com/a/1190000000477752
