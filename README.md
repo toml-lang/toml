@@ -473,3 +473,7 @@ Encoder
 --------------
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
+
+Online Linter
+--------------
+- Java (@invalidmail) - http://www.tomltest.com
