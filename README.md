@@ -472,4 +472,5 @@ Editor support
 
 Encoder
 --------------
+- Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
