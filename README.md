@@ -91,7 +91,37 @@ characters (U+0000 to U+001F).
 "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 ```
 
-For convenience, some popular characters have a compact escape sequence.
+Multi-line strings are also supported with enclosing triple quotes. If the 
+first character is a new line (`0xA`), then it is trimmed. All other whitespace 
+remains intact.
+
+```toml
+# The following strings are byte-for-byte equivalent:
+key1 = "One\nTwo"
+key2 = """One\nTwo"""
+key3 = """
+One
+Two"""
+```
+
+For writing long strings without introducing extraneous whitespace, use `\\n`.
+The `\\n` will be trimmed along with all whitespace (including new lines) up
+to the next non-whitespace character:
+
+```toml
+# The following strings are byte-for-byte equivalent:
+key1 = "The quick brown fox jumps over the lazy dog."
+key2 = """
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog."""
+```
+
+For convenience, some popular characters have a compact escape sequence. 
+Escape sequences can be used in `"single line strings"` and in `"""multi line 
+strings"""`.
 
 ```
 \b         - backspace       (U+0008)
@@ -110,11 +140,31 @@ Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
 Note that the escape codes must be valid Unicode code points.
 
 Other special characters are reserved and, if used, TOML should produce an
-error. This means paths on Windows will always have to use double backslashes.
+error.
+
+TOML also supports raw strings where there is no escaping allowed at all. Raw 
+strings are enclosed with single quotes. Like regular strings, they must appear
+on a single line:
 
 ```toml
-wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
-right = "C:\\Users\\nodejs\\templates"
+# What you see is what you get.
+winpath = 'C:\Users\nodejs\templates'
+winpath2 = '\\ServerX\qux\'
+quoted = 'Tom "Dubs" Preston-Werner'
+regex = '\d+'
+```
+
+Since there is no escaping, there is no way to write a single quote inside a 
+raw string enclosed by single quotes. So use a multi-line raw string instead:
+
+```toml
+regex2 = '''I [dw]on't need \d{2} apples'''
+lines = '''
+The first new line is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
 ```
 
 For binary data it is recommended that you use Base64 or another suitable
