@@ -94,18 +94,20 @@ characters (U+0000 to U+001F).
 For convenience, some popular characters have a compact escape sequence.
 
 ```
-\b     - backspace       (U+0008)
-\t     - tab             (U+0009)
-\n     - linefeed        (U+000A)
-\f     - form feed       (U+000C)
-\r     - carriage return (U+000D)
-\"     - quote           (U+0022)
-\/     - slash           (U+002F)
-\\     - backslash       (U+005C)
-\uXXXX - unicode         (U+XXXX)
+\b         - backspace       (U+0008)
+\t         - tab             (U+0009)
+\n         - linefeed        (U+000A)
+\f         - form feed       (U+000C)
+\r         - carriage return (U+000D)
+\"         - quote           (U+0022)
+\/         - slash           (U+002F)
+\\         - backslash       (U+005C)
+\uXXXX     - unicode         (U+XXXX)
+\UXXXXXXXX - unicode         (U+XXXXXXXX)
 ```
 
-Any Unicode character may be escaped with the `\uXXXX` form.
+Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
+Note that the escape codes must be valid Unicode code points.
 
 Other special characters are reserved and, if used, TOML should produce an
 error. This means paths on Windows will always have to use double backslashes.
