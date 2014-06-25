@@ -213,7 +213,7 @@ You can indent keys and their values as much as you like. Tabs or spaces. Knock
 yourself out. Why, you ask? Because you can have nested tables. Snap.
 
 Nested tables are denoted by table names with dots in them. Name your tables
-whatever crap you please, just don't use a dot. Dot is reserved. OBEY.
+whatever crap you please, just don't use `.`, `[` or `]`.
 
 ```toml
 [dog.tater]
