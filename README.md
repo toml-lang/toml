@@ -91,6 +91,32 @@ characters (U+0000 to U+001F).
 "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 ```
 
+Multi-line strings are also supported with enclosing triple quotes. If the 
+first character is a new line (`0xA`), then it is trimmed. All other whitespace 
+remains intact.
+
+```toml
+# The following strings are byte-for-byte equivalent:
+key1 = "One\nTwo"
+key2 = """One\nTwo"""
+key3 = """
+One
+Two"""
+```
+
+For writing long strings without introducing extraneous whitespace, use `\\n`.
+All whitespace proceding `\\n` up to the first non-whitespace or `\n` character 
+is removed:
+
+```toml
+# The following strings are byte-for-byte equivalent:
+key1 = "The quick brown fox jumps over the lazy dog."
+key2 = """
+The quick brown \
+  fox jumps over \
+    the lazy dog."""
+```
+
 For convenience, some popular characters have a compact escape sequence.
 
 ```
