@@ -273,6 +273,18 @@ b = 1
 c = 2
 ```
 
+All table names and keys must be non-empty.
+
+```toml
+# NOT VALID TOML
+[]
+[a.]
+[a..b]
+[.b]
+[.]
+ = "no key name" # not allowed
+```
+
 Array of Tables
 ---------------
 
