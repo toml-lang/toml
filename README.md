@@ -460,6 +460,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Python (@elssar) - https://github.com/elssar/tomlgun
 - Python (@marksteve) - https://github.com/marksteve/toml-ply
 - Python (@hit9) - https://github.com/hit9/toml.py
+- Racket (@greghendershott) - https://github.com/greghendershott/toml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
 - Ruby (@eMancu) - https://github.com/eMancu/toml-rb (toml-rb gem)
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
