@@ -155,10 +155,12 @@ false
 Datetime
 --------
 
-Datetimes are ISO 8601 dates, but only the full zulu form is allowed.
+Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
 
 ```toml
 1979-05-27T07:32:00Z
+1979-05-27T00:32:00-0700
+1979-05-27T00:32:00.999999-0700
 ```
 
 Array
