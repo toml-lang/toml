@@ -157,7 +157,7 @@ key3 = """\
        """
 ```
 
-Any Unicode character may be used except those that must be escaped: backslash,
+Any Unicode character may be used except those that must be escaped: backslash
 and the control characters (U+0000 to U+001F). Quotation marks need not be
 escaped unless their presence would create a premature closing delimiter.
 
