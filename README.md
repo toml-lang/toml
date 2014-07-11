@@ -79,13 +79,12 @@ key = "value" # Yeah, you can do this.
 String
 ------
 
-ProTip™: You may notice that this specification is the same as JSON's string
-definition, except that TOML requires UTF-8 encoding. This is on purpose.
+There are four ways to express strings: basic, multi-line basic, literal, and
+multi-line literal. All strings must contain only valid UTF-8 characters.
 
-Strings are single-line values surrounded by quotation marks. Strings must
-contain only valid UTF-8 characters. Any Unicode character may be used except
-those that must be escaped: quotation mark, backslash, and the control
-characters (U+0000 to U+001F).
+**Basic strings** are surrounded by quotation marks. Any Unicode character may
+be used except those that must be escaped: quotation mark, backslash, and the
+control characters (U+0000 to U+001F).
 
 ```toml
 "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
@@ -110,15 +109,92 @@ Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
 Note that the escape codes must be valid Unicode code points.
 
 Other special characters are reserved and, if used, TOML should produce an
-error. This means paths on Windows will always have to use double backslashes.
+error.
+
+ProTip™: You may notice that the above string specification is the same as
+JSON's string definition, except that TOML requires UTF-8 encoding. This is on
+purpose.
+
+Sometimes you need to express passages of text (e.g. translation files) or would
+like to break up a very long string into multiple lines. TOML makes this easy.
+**Multi-line basic strings** are surrounded by three quotation marks on each
+side and allow newlines. If the first character after the opening delimiter is a
+newline (`0x0A`), then it is trimmed. All other whitespace remains intact.
 
 ```toml
-wrong = "C:\Users\nodejs\templates" # note: doesn't produce a valid path
-right = "C:\\Users\\nodejs\\templates"
+# The following strings are byte-for-byte equivalent:
+key1 = "One\nTwo"
+key2 = """One\nTwo"""
+key3 = """
+One
+Two"""
 ```
 
-For binary data it is recommended that you use Base64 or another suitable
-encoding. The handling of that encoding will be application specific.
+For writing long strings without introducing extraneous whitespace, end a line
+with a `\`. The `\` will be trimmed along with all whitespace (including
+newlines) up to the next non-whitespace character or closing delimiter. If the
+first two characters after the opening delimiter are a backslash and a newline
+(`0x5C0A`), then they will both be trimmed along with all whitespace (including
+newlines) up to the next non-whitespace character or closing delimiter. All of
+the escape sequences that are valid for basic strings are also valid for
+multi-line basic strings.
+
+```toml
+# The following strings are byte-for-byte equivalent:
+key1 = "The quick brown fox jumps over the lazy dog."
+
+key2 = """
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog."""
+
+key3 = """\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       """
+```
+
+Any Unicode character may be used except those that must be escaped: backslash
+and the control characters (U+0000 to U+001F). Quotation marks need not be
+escaped unless their presence would create a premature closing delimiter.
+
+If you're a frequent specifier of Windows paths or regular expressions, then
+having to escape backslashes quickly becomes tedious and error prone. To help,
+TOML supports literal strings where there is no escaping allowed at all.
+**Literal strings** are surrounded by single quotes. Like basic strings, they
+must appear on a single line:
+
+```toml
+# What you see is what you get.
+winpath  = 'C:\Users\nodejs\templates'
+winpath2 = '\\ServerX\admin$\system32\'
+quoted   = 'Tom "Dubs" Preston-Werner'
+regex    = '<\i\c*\s*>'
+```
+
+Since there is no escaping, there is no way to write a single quote inside a
+literal string enclosed by single quotes. Luckily, TOML supports a multi-line
+version of literal strings that solves this problem. **Multi-line literal
+strings** are surrounded by three single quotes on each side and allow newlines.
+Like literal strings, there is no escaping whatsoever. If the first character
+after the opening delimiter is a newline (`0x0A`), then it is trimmed. All other
+content between the delimiters is interpreted as-is without modification.
+
+```toml
+regex2 = '''I [dw]on't need \d{2} apples'''
+lines  = '''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
+```
+
+For binary data it is recommended that you use Base64 or another suitable ASCII
+or UTF-8 encoding. The handling of that encoding will be application specific.
 
 Integer
 -------
