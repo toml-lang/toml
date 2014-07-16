@@ -363,6 +363,39 @@ All table names and keys must be non-empty.
  = "no key name" # not allowed
 ```
 
+Inline Table
+------------
+
+Inline tables provide a more compact syntax for expressing tables. They are
+especially useful for grouped data that can otherwise quickly become verbose.
+Inline tables are enclosed in curly braces `{` and `}`. Within the braces, zero
+or more comma separated key/value pairs may appear. Key/value pairs take the
+same form as key/value pairs in standard tables. All value types are allowed,
+including inline tables.
+
+Inline tables are intended to appear on a single line. No newlines are allowed
+between the curly braces unless they are valid within a value. Even so, it is
+strongly discouraged to break an inline table onto multiples lines. If you find
+yourself gripped with this desire, it means you should be using standard tables.
+
+```toml
+name = { first = "Tom", last = "Preston-Werner" }
+point = { x = 1, y = 2 }
+```
+
+The inline tables above are identical to the following standard table
+definitions:
+
+```toml
+[name]
+first = "Tom"
+last = "Preston-Werner"
+
+[point]
+x = 1
+y = 2
+```
+
 Array of Tables
 ---------------
 
@@ -462,6 +495,14 @@ array must produce an error at parse time.
   # This table conflicts with the previous table
   [fruit.variety]
     name = "granny smith"
+```
+
+You may also use inline tables where appropriate:
+
+```toml
+points = [ { x = 1, y = 2, z = 3 },
+           { x = 7, y = 8, z = 9 },
+           { x = 2, y = 4, z = 8 } ]
 ```
 
 Seriously?
