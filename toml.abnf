@@ -1,0 +1,175 @@
+;; This is an attempt to define TOML in ABNF according to the grammar defined
+;; in RFC 4234 (http://www.ietf.org/rfc/rfc4234.txt).
+
+;; TOML
+
+toml = expression *( newline expression )
+expression = (
+  ws /
+  ws comment /
+  ws keyval ws [ comment ] /
+  ws table ws [ comment ]
+)
+
+;; Newline
+
+newline = 1*(
+  %x0A /              ; Line feed or New line
+  %x0D                ; Carriage return
+)
+
+;; Whitespace
+
+ws = *(
+  %x20 /              ; Space
+  %x09                ; Horizontal tab
+)
+
+;; Comment
+
+comment-start-symbol = %x23 ; #
+non-eol = %x09 / %x20-10FFFF
+comment = comment-start-symbol *non-eol
+
+;; Key-Value pairs
+
+keyval-sep = ws %x3D ws ; =
+keyval = key keyval-sep val
+
+key = unquoted-key / quoted-key
+unquoted-key = 1*ALPHA
+quoted-key = quotation-mark 1*basic-char quotation-mark ; See Basic Strings
+
+val = integer / float / string / boolean / datetime / array / inline-table
+
+;; Table
+
+table = std-table / array-table
+
+;; Standard Table
+
+std-table-open  = %x5B ws     ; [ Left square bracket
+std-table-close = ws %x5D     ; ] Right square bracket
+table-key-sep   = ws %x2E ws  ; . Period
+
+std-table = std-table-open key *( table-key-sep key) std-table-close
+
+;; Array Table
+
+array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
+array-table-close = %x5D.5D ws  ; ]] Double right quare bracket
+
+array-table = array-table-open key *( table-key-sep key) array-table-close
+
+;; Integer
+
+integer = [ minus ] int
+minus = %x2D                       ; -
+int = zero / ( digit1-9 *DIGIT )
+zero = %x30                        ; 0
+digit1-9 = %x31-39                 ; 1-9
+
+;; Float
+
+float = [ minus ] int [ frac ] [ exp ]
+frac = decimal-point 1*DIGIT
+decimal-point = %x2E               ; .
+exp = e [ minus / plus ] 1*DIGIT
+e = %x65 / %x45                    ; e E
+plus = %x2B                        ; +
+
+;; String
+
+string = basic-string / ml-basic-string / literal-string / ml-literal-string
+
+;; Basic String
+
+basic-string = quotation-mark *basic-char quotation-mark
+
+quotation-mark = %x22            ; "
+
+basic-char = basic-unescaped / escaped
+escaped = escape ( %x22 /          ; "    quotation mark  U+0022
+                   %x5C /          ; \    reverse solidus U+005C
+                   %x2F /          ; /    solidus         U+002F
+                   %x62 /          ; b    backspace       U+0008
+                   %x66 /          ; f    form feed       U+000C
+                   %x6E /          ; n    line feed       U+000A
+                   %x72 /          ; r    carriage return U+000D
+                   %x74 /          ; t    tab             U+0009
+                   %x75 4HEXDIG )  ; uXXXX                U+XXXX
+
+basic-unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
+
+escape = %x5C                    ; \
+
+;; Multiline Basic String
+
+ml-basic-string-delim = quotation-mark quotation-mark quotation-mark
+ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
+ml-basic-body = *( ml-basic-char / ( escape newline ))
+
+ml-basic-char = ml-basic-unescaped / escaped
+ml-basic-unescaped = %x20-5B / %x5D-10FFFF
+
+;; Literal String
+
+literal-string = apostraphe *literal-char apostraphe
+
+apostraphe = %x27 ; ' Apostraphe
+
+literal-char = %x09 / %x20-26 / %x28-10FFFF
+
+;; Multiline Literal String
+
+ml-literal-string-delim = apostraphe apostraphe apostraphe
+ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
+
+ml-literal-body = *( ml-literal-char / newline )
+ml-literal-char = %x09 / %x20-10FFFF
+
+;; Boolean
+
+boolean = true / false
+true    = %x74.72.75.65     ; true
+false   = %x66.61.6c.73.65  ; false
+
+;; Datetime
+
+datetime = ymd tee hms zee
+ymd = 4DIGIT dash 2DIGIT dash 2DIGIT
+hms = 2DIGIT colon 2DIGIT colon 2DIGIT
+dash = %x2D  ; -
+colon = %x3A ; :
+tee = %x54   ; T
+zee = %x5A   ; Z
+
+;; Array
+
+array-open  = %x5B ws  ; [
+array-close = ws %x5D  ; ]
+
+array = array-open array-values array-close
+
+array-values = [ val [ array-sep ] [ ( comment newline) / newline ] /
+                 val array-sep [ ( comment newline) / newline ] array-values ]
+
+array-sep = ws %x2C ws  ; , Comma
+
+;; Inline Table
+
+inline-table-open  = %x7B ws     ; {
+inline-table-close = ws %x7D     ; }
+inline-table-sep   = ws %x2C ws  ; , Comma
+
+inline-table = inline-table-open inline-table-keyvals inline-table-close
+
+inline-table-keyvals = [ inline-table-keyvals-non-empty ]
+inline-table-keyvals-non-empty = key keyval-sep val /
+                                 key keyval-sep val inline-table-sep inline-table-keyvals-non-empty
+
+;; Built-in ABNF terms, reproduced here for clarity
+
+; ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
+; DIGIT = %x30-39 ; 0-9
+; HEXDIG = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
