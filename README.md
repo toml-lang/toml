@@ -548,7 +548,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 Validators
 ----------
 
-- Go (@BurntSushi) - https://github.com/BurntSushi/toml/tree/master/tomlv
+- Go (@BurntSushi) - https://github.com/BurntSushi/toml/tree/master/cmd/tomlv
 
 Language agnostic test suite for TOML decoders and encoders
 -----------------------------------------------------------
