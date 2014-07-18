@@ -57,7 +57,7 @@ std-table = std-table-open key *( table-key-sep key) std-table-close
 ;; Array Table
 
 array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
-array-table-close = %x5D.5D ws  ; ]] Double right quare bracket
+array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
 
 array-table = array-table-open key *( table-key-sep key) array-table-close
 
