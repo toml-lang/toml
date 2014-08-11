@@ -490,6 +490,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - C#/.NET - https://github.com/LBreedlove/Toml.net
 - C#/.NET - https://github.com/rossipedia/toml-net
 - C#/.NET - https://github.com/RichardVasquez/TomlDotNet
+- C#/.NET - https://github.com/azyobuzin/HyperTomlProcessor
 - C (@ajwans) - https://github.com/ajwans/libtoml
 - C (@mzgoddard) - https://github.com/mzgoddard/tomlc
 - C++ (@evilncrazy) - https://github.com/evilncrazy/ctoml
