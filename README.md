@@ -521,7 +521,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - node.js/browser (@alexanderbeletsky) - https://github.com/alexanderbeletsky/toml-js (npm browser amd)
 - Objective C (@mneorr) - https://github.com/mneorr/toml-objc.git
 - Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
-- Ocaml (@mackwic) https://github.com/mackwic/to.ml
+- OCaml (@mackwic) https://github.com/mackwic/to.ml
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
 - Perl - https://github.com/dlc/toml
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
