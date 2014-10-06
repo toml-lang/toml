@@ -279,10 +279,9 @@ apart from arrays because arrays are only ever values.
 
 Under that, and until the next table or EOF are the key/values of that table.
 Keys are on the left of the equals sign and values are on the right. Keys start
-with the first character that isn't whitespace or `[` and end with the last 
-non-whitespace character before the equals sign. Keys cannot contain a `#` 
-character.  Key/value pairs within tables are not guaranteed to be in any 
-specific order.
+with the first character that isn't whitespace or `[` and may only consist of
+non-whitespace characters excluding `=`, `#` and newlines.
+Key/value pairs within tables are not guaranteed to be in any specific order.
 
 ```toml
 [table]
@@ -293,7 +292,7 @@ You can indent keys and their values as much as you like. Tabs or spaces. Knock
 yourself out. Why, you ask? Because you can have nested tables. Snap.
 
 Nested tables are denoted by table names with dots in them. Name your tables
-whatever crap you please, just don't use `#`, `.`, `[` or `]`.
+however you please, just don't use `#`, `.`, `[`, `]`, whitespace or newlines.
 
 ```toml
 [dog.tater]
