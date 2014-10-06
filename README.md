@@ -568,3 +568,8 @@ Encoder
 --------------
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
+
+Converters
+----------
+
+- remarshal (@dbohdan) - https://github.com/dbohdan/remarshal
