@@ -200,7 +200,7 @@ Integer
 -------
 
 Integers are bare numbers, all alone. Feeling negative? Do what's natural.
-64-bit minimum size expected.
+64-bit maximum size expected.
 
 ```toml
 42
