@@ -27,10 +27,8 @@ Example
 title = "TOML Example"
 
 [owner]
-name = "Tom Preston-Werner"
-organization = "GitHub"
-bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
-dob = 1979-05-27T07:32:00Z # First class dates? Why not?
+name = "Lance Uppercut"
+dob = 1979-05-27T07:32:00-0800 # First class dates? Why not?
 
 [database]
 server = "192.168.1.1"
