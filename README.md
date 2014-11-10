@@ -199,24 +199,52 @@ or UTF-8 encoding. The handling of that encoding will be application specific.
 Integer
 -------
 
-Integers are bare numbers, all alone. Feeling negative? Do what's natural.
-64-bit minimum size expected.
+Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
+Negative numbers are prefixed with a minus sign.
 
 ```toml
++99
 42
+0
 -17
 ```
+
+Leading zeros are not allowed. Hex, octal, and binary forms are not allowed.
+Values such as "infinity" and "not a number" that cannot be expressed as a
+series of digits are not allowed.
+
+64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
+9,223,372,036,854,775,807).
 
 Float
 -----
 
-Floats are numbers with a single dot within. There must be at least one number
-on each side of the decimal point. 64-bit (double) precision expected.
+A float consists of an integer part (which may be prefixed with a plus or minus
+sign) followed by a fractional part and/or an exponent part. If both a
+fractional part and exponent part are present, the fractional part must precede
+the exponent part.
 
 ```toml
+# fractional
++1.0
 3.1415
 -0.01
+
+# exponent
+5e+22
+1e6
+-2E-2
+
+# both
+6.626e-34
 ```
+
+A fractional part is a decimal point followed by one or more digits.
+
+An exponent part is an E (upper or lower case) followed by an integer part
+(which may be prefixed with a plus or minus sign).
+
+64-bit (double) precision expected.
 
 Boolean
 -------
