@@ -220,7 +220,9 @@ Float
 -----
 
 A float consists of an integer part (which may be prefixed with a plus or minus
-sign) followed by a fractional part and/or an exponent part.
+sign) followed by a fractional part and/or an exponent part. If both a
+fractional part and exponent part are present, the fractional part must precede
+the exponent part.
 
 ```toml
 # fractional
