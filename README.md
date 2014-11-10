@@ -28,7 +28,7 @@ title = "TOML Example"
 
 [owner]
 name = "Lance Uppercut"
-dob = 1979-05-27T07:32:00-0800 # First class dates? Why not?
+dob = 1979-05-27T07:32:00-08:00 # First class dates? Why not?
 
 [database]
 server = "192.168.1.1"
@@ -261,8 +261,8 @@ Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
 
 ```toml
 1979-05-27T07:32:00Z
-1979-05-27T00:32:00-0700
-1979-05-27T00:32:00.999999-0700
+1979-05-27T00:32:00-07:00
+1979-05-27T00:32:00.999999-07:00
 ```
 
 Array
