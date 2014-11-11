@@ -1,5 +1,9 @@
 # TOML Changelog
 
+## 0.3.1 / 2014-11-11
+
+* Fix incorrect datetime examples.
+
 ## 0.3.0 / 2014-11-10
 
 * Add scientific notation for floats.
