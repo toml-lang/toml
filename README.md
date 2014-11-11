@@ -62,6 +62,7 @@ Spec
 
 * TOML is case sensitive.
 * Whitespace means tab (0x09) or space (0x20).
+* Newline means CR (0x0A) or LF (0x0D).
 
 Comment
 -------
@@ -116,14 +117,22 @@ purpose.
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
 **Multi-line basic strings** are surrounded by three quotation marks on each
-side and allow newlines. If the first character after the opening delimiter is a
-newline (`0x0A`), then it is trimmed. All other whitespace remains intact.
+side and allow newlines. Any newline characters (0x0A or 0x0D) immediately
+following the opening delimiter will be trimmed. All other whitespace and
+newline characters remain intact.
 
 ```toml
-# The following strings are byte-for-byte equivalent:
+# On a Unix system, the following strings are byte-for-byte equivalent:
 key1 = "One\nTwo"
 key2 = """One\nTwo"""
 key3 = """
+One
+Two"""
+
+# On a Windows system, the following strings are byte-for-byte equivalent:
+key4 = "One\r\nTwo"
+key5 = """One\r\nTwo"""
+key6 = """
 One
 Two"""
 ```
@@ -131,11 +140,11 @@ Two"""
 For writing long strings without introducing extraneous whitespace, end a line
 with a `\`. The `\` will be trimmed along with all whitespace (including
 newlines) up to the next non-whitespace character or closing delimiter. If the
-first two characters after the opening delimiter are a backslash and a newline
-(`0x5C0A`), then they will both be trimmed along with all whitespace (including
-newlines) up to the next non-whitespace character or closing delimiter. All of
-the escape sequences that are valid for basic strings are also valid for
-multi-line basic strings.
+first characters after the opening delimiter are a backslash and a newline
+(`0x5C0A` or `0x5C0D0A`), then they will both be trimmed along with all
+whitespace and newlines up to the next non-whitespace character or closing
+delimiter. All of the escape sequences that are valid for basic strings are also
+valid for multi-line basic strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
@@ -177,9 +186,9 @@ Since there is no escaping, there is no way to write a single quote inside a
 literal string enclosed by single quotes. Luckily, TOML supports a multi-line
 version of literal strings that solves this problem. **Multi-line literal
 strings** are surrounded by three single quotes on each side and allow newlines.
-Like literal strings, there is no escaping whatsoever. If the first character
-after the opening delimiter is a newline (`0x0A`), then it is trimmed. All other
-content between the delimiters is interpreted as-is without modification.
+Like literal strings, there is no escaping whatsoever. Any newline characters
+(0x0A or 0x0D) immediately following the opening delimiter will be trimmed. All
+other content between the delimiters is interpreted as-is without modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
@@ -306,22 +315,21 @@ apart from arrays because arrays are only ever values.
 ```
 
 Under that, and until the next table or EOF are the key/values of that table.
-Keys are on the left of the equals sign and values are on the right. Keys start
-with the first character that isn't whitespace or `[` and end with the last 
-non-whitespace character before the equals sign. Keys cannot contain a `#` 
-character.  Key/value pairs within tables are not guaranteed to be in any 
-specific order.
+Keys are on the left of the equals sign and values are on the right. Whitespace
+is ignored around key names and values.
+
+Key names may only consist of non-whitespace, non-newline characters excluding
+`=`, `#`, `.`, `[`, and `]`.
+
+Key/value pairs within tables are not guaranteed to be in any specific order.
 
 ```toml
 [table]
 key = "value"
 ```
 
-You can indent keys and their values as much as you like. Tabs or spaces. Knock
-yourself out. Why, you ask? Because you can have nested tables. Snap.
-
-Nested tables are denoted by table names with dots in them. Name your tables
-whatever crap you please, just don't use `#`, `.`, `[` or `]`.
+Dots are prohibited in key names because dots are used to signify nested tables!
+Naming rules for each dot separated part are the same as for keys (see above).
 
 ```toml
 [dog.tater]
