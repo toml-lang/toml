@@ -523,6 +523,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - C (@mzgoddard) - https://github.com/mzgoddard/tomlc
 - C++ (@evilncrazy) - https://github.com/evilncrazy/ctoml
 - C++ (@skystrife) - https://github.com/skystrife/cpptoml
+- C++ (@mayah) - https://github.com/mayah/tinytoml
 - Clojure (@lantiga) - https://github.com/lantiga/clj-toml
 - Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
 - CoffeeScript (@biilmann) - https://github.com/biilmann/coffee-toml
