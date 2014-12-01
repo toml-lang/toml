@@ -62,7 +62,7 @@ Spec
 
 * TOML is case sensitive.
 * Whitespace means tab (0x09) or space (0x20).
-* Newline means CR (0x0A) or LF (0x0D).
+* Newline means LF (0x0A) or CRLF (0x0D0A).
 
 Comment
 -------
@@ -117,34 +117,33 @@ purpose.
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
 **Multi-line basic strings** are surrounded by three quotation marks on each
-side and allow newlines. Any newline characters (0x0A or 0x0D) immediately
-following the opening delimiter will be trimmed. All other whitespace and
-newline characters remain intact.
+side and allow newlines. A newline immediately following the opening delimiter
+will be trimmed. All other whitespace and newline characters remain intact.
 
 ```toml
-# On a Unix system, the following strings are byte-for-byte equivalent:
-key1 = "One\nTwo"
-key2 = """One\nTwo"""
-key3 = """
-One
-Two"""
+key1 = """
+Roses are red
+Violets are blue"""
+```
 
-# On a Windows system, the following strings are byte-for-byte equivalent:
-key4 = "One\r\nTwo"
-key5 = """One\r\nTwo"""
-key6 = """
-One
-Two"""
+TOML parsers should feel free to normalize newline to whatever makes sense for
+their platform.
+
+```toml
+# On a Unix system, the above multi-line string will most likely be the same as:
+key2 = "Roses are red\nViolets are blue"
+
+# On a Windows system, it will most likely be equivalent to:
+key3 = "Roses are red\r\nViolets are blue"
 ```
 
 For writing long strings without introducing extraneous whitespace, end a line
 with a `\`. The `\` will be trimmed along with all whitespace (including
 newlines) up to the next non-whitespace character or closing delimiter. If the
-first characters after the opening delimiter are a backslash and a newline
-(`0x5C0A` or `0x5C0D0A`), then they will both be trimmed along with all
-whitespace and newlines up to the next non-whitespace character or closing
-delimiter. All of the escape sequences that are valid for basic strings are also
-valid for multi-line basic strings.
+first characters after the opening delimiter are a backslash and a newline, then
+they will both be trimmed along with all whitespace and newlines up to the next
+non-whitespace character or closing delimiter. All of the escape sequences that
+are valid for basic strings are also valid for multi-line basic strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
@@ -186,9 +185,9 @@ Since there is no escaping, there is no way to write a single quote inside a
 literal string enclosed by single quotes. Luckily, TOML supports a multi-line
 version of literal strings that solves this problem. **Multi-line literal
 strings** are surrounded by three single quotes on each side and allow newlines.
-Like literal strings, there is no escaping whatsoever. Any newline characters
-(0x0A or 0x0D) immediately following the opening delimiter will be trimmed. All
-other content between the delimiters is interpreted as-is without modification.
+Like literal strings, there is no escaping whatsoever. Any newlines immediately
+following the opening delimiter will be trimmed. All other content between the
+delimiters is interpreted as-is without modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
