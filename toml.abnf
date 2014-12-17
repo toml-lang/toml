@@ -13,10 +13,12 @@ expression = (
 
 ;; Newline
 
-newline = 1*(
-  %x0A /              ; Line feed or New line
-  %x0D                ; Carriage return
+newline = (
+  %x0A /              ; LF
+  %x0D.0A             ; CRLF
 )
+
+newlines = 1*( newline )
 
 ;; Whitespace
 
@@ -107,7 +109,7 @@ escape = %x5C                    ; \
 
 ml-basic-string-delim = quotation-mark quotation-mark quotation-mark
 ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
-ml-basic-body = *( ml-basic-char / ( escape newline ))
+ml-basic-body = *( ml-basic-char / newline / ( escape newline ))
 
 ml-basic-char = ml-basic-unescaped / escaped
 ml-basic-unescaped = %x20-5B / %x5D-10FFFF
@@ -159,8 +161,8 @@ array-close = ws %x5D  ; ]
 
 array = array-open array-values array-close
 
-array-values = [ val [ array-sep ] [ ( comment newline) / newline ] /
-                 val array-sep [ ( comment newline) / newline ] array-values ]
+array-values = [ val [ array-sep ] [ ( comment newlines) / newlines ] /
+                 val array-sep [ ( comment newlines) / newlines ] array-values ]
 
 array-sep = ws %x2C ws  ; , Comma
 
