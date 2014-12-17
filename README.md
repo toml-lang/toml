@@ -316,7 +316,8 @@ apart from arrays because arrays are only ever values.
 
 Under that, and until the next table or EOF are the key/values of that table.
 Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values.
+is ignored around key names and values. The key, equals sign, and value must
+be on the same line (though some values can be broken over multiple lines).
 
 Key names may only consist of non-whitespace, non-newline characters excluding
 `=`, `#`, `.`, `[`, and `]`.
