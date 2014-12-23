@@ -106,7 +106,7 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
-Note that the escape codes must be valid Unicode code points.
+The escape codes must be valid Unicode [scalar values](http://unicode.org/glossary/#unicode_scalar_value).
 
 Other special characters are reserved and, if used, TOML should produce an
 error.
