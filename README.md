@@ -598,7 +598,7 @@ Editor support
 --------------
 
 - Emacs (@dryman) - https://github.com/dryman/toml-mode.el
-- Sublime Text 2 & 3 (@Gakai) - https://github.com/Gakai/TOML
+- Sublime Text 2 & 3 (@Gakai) - https://github.com/Gakai/sublime_toml_highlighting
 - TextMate (@infininight) - https://github.com/textmate/toml.tmbundle
 - Vim (@cespare) - https://github.com/cespare/vim-toml
 - Notepad++ (@fireforge) - https://github.com/fireforge/toml-notepadplusplus
