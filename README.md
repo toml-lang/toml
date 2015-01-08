@@ -518,6 +518,14 @@ Oh god, you're right
 
 Yuuuup. Wanna help? Send a pull request. Or write a parser. BE BRAVE.
 
+Projects using TOML
+-------------------
+
+- [Cargo](http://doc.crates.io/) - The Rust langage's package manager.
+- [InfluxDB](http://influxdb.com/) - Distributed time series database.
+- [Haka](https://hekad.readthedocs.org) - Stream processing system by Mozilla.
+- [Hugo](http://gohugo.io/) - Static site generator in Go.
+
 Implementations
 ---------------
 
