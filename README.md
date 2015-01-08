@@ -266,7 +266,7 @@ false
 Datetime
 --------
 
-Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
+Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates with nanosecond precision.
 
 ```toml
 1979-05-27T07:32:00Z
