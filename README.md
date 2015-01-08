@@ -621,3 +621,4 @@ Converters
 ----------
 
 - remarshal (@dbohdan) - https://github.com/dbohdan/remarshal
+- yaml2toml (@jtyr) - https://github.com/jtyr/yaml2toml-converter
