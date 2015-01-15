@@ -108,8 +108,8 @@ For convenience, some popular characters have a compact escape sequence.
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
 The escape codes must be valid Unicode [scalar values](http://unicode.org/glossary/#unicode_scalar_value).
 
-Other special characters are reserved and, if used, TOML should produce an
-error.
+All other escape sequences not listed above are reserved and, if used, TOML
+should produce an error.
 
 ProTip™: You may notice that the above string specification is the same as
 JSON's string definition, except that TOML requires UTF-8 encoding. This is on
