@@ -6,7 +6,7 @@ Tom's Obvious, Minimal Language.
 By Tom Preston-Werner.
 
 Latest tagged version:
-[v0.3.1](https://github.com/mojombo/toml/blob/master/versions/toml-v0.3.1.md).
+[v0.3.1](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.3.1.md).
 
 Be warned, this spec is still changing a lot. Until it's marked as 1.0, you
 should assume that it is unstable and act accordingly.
