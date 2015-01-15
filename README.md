@@ -319,28 +319,46 @@ Keys are on the left of the equals sign and values are on the right. Whitespace
 is ignored around key names and values. The key, equals sign, and value must
 be on the same line (though some values can be broken over multiple lines).
 
-Key names may only consist of non-whitespace, non-newline characters excluding
-`=`, `#`, `.`, `[`, and `]`.
+Keys may be either bare or quoted. **Bare keys** may only contain letters,
+numbers, underscores, and dashes (`A-Za-z0-9_-`). **Quoted keys** follow the
+exact same rules as basic strings and allow you to use a much broader set of key
+names. Best practice is to use bare keys except when absolutely necessary.
 
 Key/value pairs within tables are not guaranteed to be in any specific order.
 
 ```toml
 [table]
 key = "value"
+bare_key = "value"
+bare-key = "value"
+
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
 ```
 
-Dots are prohibited in key names because dots are used to signify nested tables!
+Dots are prohibited in bare keys because dots are used to signify nested tables!
 Naming rules for each dot separated part are the same as for keys (see above).
 
 ```toml
-[dog.tater]
+[dog."tater.man"]
 type = "pug"
 ```
 
 In JSON land, that would give you the following structure:
 
 ```json
-{ "dog": { "tater": { "type": "pug" } } }
+{ "dog": { "tater.man": { "type": "pug" } } }
+```
+
+Whitespace around dot-separated parts is ignored, however, best practice is to
+not use any extraneous whitespace.
+
+```toml
+[a.b.c]          # this is best practice
+[ d.e.f ]        # same as [d.e.f]
+[ g .  h  . i ]  # same as [g.h.i]
+[ j . "ʞ" . l ]  # same as [j."ʞ".l]
 ```
 
 You don't need to specify all the super-tables if you don't want to. TOML knows
