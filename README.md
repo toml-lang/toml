@@ -625,10 +625,11 @@ Editor support
 --------------
 
 - Emacs (@dryman) - https://github.com/dryman/toml-mode.el
+- Notepad++ (@fireforge) - https://github.com/fireforge/toml-notepadplusplus
 - Sublime Text 2 & 3 (@Gakai) - https://github.com/Gakai/sublime_toml_highlighting
+- Synwrite - http://uvviewsoft.com/synwrite/download.html ; call Options/ Addons manager/ Install
 - TextMate (@infininight) - https://github.com/textmate/toml.tmbundle
 - Vim (@cespare) - https://github.com/cespare/vim-toml
-- Notepad++ (@fireforge) - https://github.com/fireforge/toml-notepadplusplus
 
 Encoder
 --------------
