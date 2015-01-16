@@ -415,7 +415,9 @@ All table names and keys must be non-empty.
 [a..b]
 [.b]
 [.]
+[""]
  = "no key name" # not allowed
+"" = 3           # not allowed
 ```
 
 Array of Tables
