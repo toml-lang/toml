@@ -164,9 +164,9 @@ key3 = """\
        """
 ```
 
-Any Unicode character may be used except those that must be escaped: backslash
-and the control characters (U+0000 to U+001F). Quotation marks need not be
-escaped unless their presence would create a premature closing delimiter.
+Any Unicode character or newline may be used except those that must be escaped:
+backslash and the control characters (U+0000 to U+001F). Quotation marks need
+not be escaped unless their presence would create a premature closing delimiter.
 
 If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error prone. To help,
@@ -415,7 +415,9 @@ All table names and keys must be non-empty.
 [a..b]
 [.b]
 [.]
+[""]
  = "no key name" # not allowed
+"" = 3           # not allowed
 ```
 
 Array of Tables
