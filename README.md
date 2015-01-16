@@ -99,7 +99,6 @@ For convenience, some popular characters have a compact escape sequence.
 \f         - form feed       (U+000C)
 \r         - carriage return (U+000D)
 \"         - quote           (U+0022)
-\/         - slash           (U+002F)
 \\         - backslash       (U+005C)
 \uXXXX     - unicode         (U+XXXX)
 \UXXXXXXXX - unicode         (U+XXXXXXXX)
@@ -110,10 +109,6 @@ The escape codes must be valid Unicode [scalar values](http://unicode.org/glossa
 
 All other escape sequences not listed above are reserved and, if used, TOML
 should produce an error.
-
-ProTip™: You may notice that the above string specification is the same as
-JSON's string definition, except that TOML requires UTF-8 encoding. This is on
-purpose.
 
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
