@@ -12,9 +12,9 @@ test_string = "You'll hate me after this - #"          # " Annoying, isn't it?
     another_test_string = " Same thing, but with a string #"
     harder_test_string = " And when \"'s are in the string, along with # \""   # "and comments are there too"
     # Things will get harder
-    
-        [the.hard.bit#]
-        what? = "You don't think some user won't do that?"
+
+        [the.hard."bit#"]
+        "what?" = "You don't think some user won't do that?"
         multi_line_array = [
             "]",
             # ] Oh yes I did
