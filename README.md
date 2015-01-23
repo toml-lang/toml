@@ -559,6 +559,7 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - CoffeeScript (@biilmann) - https://github.com/biilmann/coffee-toml
 - Common Lisp (@pnathan) - https://github.com/pnathan/pp-toml
 - D - https://github.com/iccodegr/toml.d
+- Dart (@just95) - https://github.com/just95/toml.dart
 - Erlang - https://github.com/kalta/etoml.git
 - Erlang - https://github.com/kaos/tomle
 - Emacs Lisp (@gongoZ) - https://github.com/gongo/emacs-toml
@@ -629,6 +630,8 @@ Editor support
 
 Encoder
 --------------
+
+- Dart (@just95) - https://github.com/just95/toml.dart
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
 
@@ -637,3 +640,4 @@ Converters
 
 - remarshal (@dbohdan) - https://github.com/dbohdan/remarshal
 - yaml2toml (@jtyr) - https://github.com/jtyr/yaml2toml-converter
+- yaml2toml.dart (@just95) - https://github.com/just95/yaml2toml.dart
