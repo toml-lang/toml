@@ -273,12 +273,14 @@ Array
 -----
 
 Arrays are square brackets with other primitives inside. Whitespace is ignored.
-Elements are separated by commas. Data types may not be mixed.
+Elements are separated by commas. Data types may not be mixed (though all string
+types should be considered the same type).
 
 ```toml
 [ 1, 2, 3 ]
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
+[ "all", 'strings', """are the same""", '''type'''] # this is ok
 [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
 [ 1, 2.0 ] # note: this is NOT ok
 ```
