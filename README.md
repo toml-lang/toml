@@ -211,6 +211,15 @@ Negative numbers are prefixed with a minus sign.
 -17
 ```
 
+For large numbers, you may use underscores to enhance readability. Each
+underscore must be surrounded by at least one digit.
+
+```toml
+1_000
+5_349_221
+1_2_3_4_5     # valid but inadvisable
+```
+
 Leading zeros are not allowed. Hex, octal, and binary forms are not allowed.
 Values such as "infinity" and "not a number" that cannot be expressed as a
 series of digits are not allowed.
@@ -245,6 +254,14 @@ A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
 (which may be prefixed with a plus or minus sign).
+
+Similar to integers, you may use underscores to enhance readability. Each
+underscore must be surrounded by at least one digit.
+
+```toml
+9_224_617.445_991_228_313
+1e4_000_000
+```
 
 64-bit (double) precision expected.
 
