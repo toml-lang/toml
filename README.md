@@ -261,13 +261,35 @@ false
 Datetime
 --------
 
-Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
+There are three ways to express a datetime. The first is simply by using the
+[RFC 3339](http://tools.ietf.org/html/rfc3339) spec.
 
 ```toml
 1979-05-27T07:32:00Z
 1979-05-27T00:32:00-07:00
 1979-05-27T00:32:00.999999-07:00
 ```
+
+You may omit the local offset and let the parser or host application decide that
+information. A good default is to use the host machine's local offset.
+
+```toml
+1979-05-27T07:32:00
+1979-05-27T00:32:00.999999
+```
+
+If you only care about the day, you can omit the local offset and the time,
+letting the parser or host application decide both. Good defaults are to use the
+host machine's local offset and 00:00:00.
+
+```toml
+1979-05-27
+```
+
+The precision of fractional seconds is implementation specific and no minimum is
+expected. If the implementation's precision is exceeded, the datetime should
+still be accepted without error (though a warning should be issued, if
+possible).
 
 Array
 -----
