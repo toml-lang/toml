@@ -68,14 +68,15 @@ array-table = array-table-open key *( table-key-sep key) array-table-close
 integer = [ minus / plus ] int
 minus = %x2D                       ; -
 plus = %x2B                        ; +
-int = zero / ( digit1-9 *DIGIT )
-zero = %x30                        ; 0
 digit1-9 = %x31-39                 ; 1-9
+underscore = %x5F                  ; _
+int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
 
 ;; Float
 
 float = integer ( frac / frac exp / exp )
-frac = decimal-point 1*DIGIT
+zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
+frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 exp = e integer
 e = %x65 / %x45                    ; e E
