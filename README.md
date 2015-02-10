@@ -260,7 +260,7 @@ underscore must be surrounded by at least one digit.
 
 ```toml
 9_224_617.445_991_228_313
-1e4_000_000
+1e1_000
 ```
 
 64-bit (double) precision expected.
