@@ -18,7 +18,7 @@ newline = (
   %x0D.0A             ; CRLF
 )
 
-newlines = 1*( newline )
+newlines = 1*newline
 
 ;; Whitespace
 
@@ -136,7 +136,7 @@ ml-literal-char = %x09 / %x20-10FFFF
 
 boolean = true / false
 true    = %x74.72.75.65     ; true
-false   = %x66.61.6c.73.65  ; false
+false   = %x66.61.6C.73.65  ; false
 
 ;; Datetime (as defined in RFC 3339)
 
