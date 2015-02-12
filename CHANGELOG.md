@@ -1,5 +1,13 @@
 # TOML Changelog
 
+## 0.4.0 / 2015-02-12
+
+* Add Inline Table syntax.
+* Allow underscores in numbers.
+* Remove forward slash as an escapable character.
+* Unicode escapes must be scalar values.
+* Newline is now defined as LF or CRLF.
+
 ## 0.3.1 / 2014-11-11
 
 * Fix incorrect datetime examples.
