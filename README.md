@@ -605,11 +605,11 @@ Implementations
 If you have an implementation, send a pull request adding to this list. Please
 note the version tag that your parser supports in your Readme.
 
-## v0.4.0 compliant
+### v0.4.0 compliant
 
 - Dart (@just95) - https://github.com/just95/toml.dart
 
-## v0.3.1 compliant
+### v0.3.1 compliant
 
 - Go (@naoina) - https://github.com/naoina/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
@@ -618,7 +618,7 @@ note the version tag that your parser supports in your Readme.
 - Python (@uiri) - https://github.com/uiri/toml
 - Ruby (@eMancu) - https://github.com/eMancu/toml-rb (toml-rb gem)
 
-## v0.2.0 compliant
+### v0.2.0 compliant
 
 - C (@ajwans) - https://github.com/ajwans/libtoml
 - C++ (@skystrife) - https://github.com/skystrife/cpptoml
@@ -634,7 +634,7 @@ note the version tag that your parser supports in your Readme.
 - PHP (@yosymfony) - https://github.com/yosymfony/toml
 - Racket (@greghendershott) - https://github.com/greghendershott/toml
 
-## v0.1.0 compliant
+### v0.1.0 compliant
 
 - Clojure (@lantiga) - https://github.com/lantiga/clj-toml
 - Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
@@ -645,7 +645,7 @@ note the version tag that your parser supports in your Readme.
 - node.js/browser (@ricardobeat) - https://github.com/ricardobeat/toml.js (npm install tomljs)
 - Python (@hit9) - https://github.com/hit9/toml.py
 
-## Unknown (or pre-v0.1.0) compliance
+### Unknown (or pre-v0.1.0) compliance
 
 - C#/.NET - https://github.com/LBreedlove/Toml.net
 - C#/.NET - https://github.com/rossipedia/toml-net
