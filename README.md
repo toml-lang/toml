@@ -87,7 +87,7 @@ be used except those that must be escaped: quotation mark, backslash, and the
 control characters (U+0000 to U+001F).
 
 ```toml
-"I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 ```
 
 For convenience, some popular characters have a compact escape sequence.
@@ -117,7 +117,7 @@ side and allow newlines. A newline immediately following the opening delimiter
 will be trimmed. All other whitespace and newline characters remain intact.
 
 ```toml
-key1 = """
+str1 = """
 Roses are red
 Violets are blue"""
 ```
@@ -127,10 +127,10 @@ their platform.
 
 ```toml
 # On a Unix system, the above multi-line string will most likely be the same as:
-key2 = "Roses are red\nViolets are blue"
+str2 = "Roses are red\nViolets are blue"
 
 # On a Windows system, it will most likely be equivalent to:
-key3 = "Roses are red\r\nViolets are blue"
+str3 = "Roses are red\r\nViolets are blue"
 ```
 
 For writing long strings without introducing extraneous whitespace, end a line
@@ -143,9 +143,9 @@ are valid for basic strings are also valid for multi-line basic strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
-key1 = "The quick brown fox jumps over the lazy dog."
+str1 = "The quick brown fox jumps over the lazy dog."
 
-key2 = """
+str2 = """
 The quick brown \
 
 
@@ -205,19 +205,19 @@ Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
 Negative numbers are prefixed with a minus sign.
 
 ```toml
-+99
-42
-0
--17
+int1 = +99
+int2 = 42
+int3 = 0
+int4 = -17
 ```
 
 For large numbers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
 
 ```toml
-1_000
-5_349_221
-1_2_3_4_5     # valid but inadvisable
+int5 = 1_000
+int6 = 5_349_221
+int7 = 1_2_3_4_5     # valid but inadvisable
 ```
 
 Leading zeros are not allowed. Hex, octal, and binary forms are not allowed.
@@ -237,19 +237,18 @@ the exponent part.
 
 ```toml
 # fractional
-+1.0
-3.1415
--0.01
+flt1 = +1.0
+flt2 = 3.1415
+flt3 = -0.01
 
 # exponent
-5e+22
-1e6
--2E-2
+flt4 = 5e+22
+flt5 = 1e6
+flt6 = -2E-2
 
 # both
-6.626e-34
+flt7 = 6.626e-34
 ```
-
 A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
@@ -259,8 +258,8 @@ Similar to integers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
 
 ```toml
-9_224_617.445_991_228_313
-1e1_000
+flt8 = 9_224_617.445_991_228_313
+flt9 = 1e1_000
 ```
 
 64-bit (double) precision expected.
@@ -271,8 +270,8 @@ Boolean
 Booleans are just the tokens you're used to. Always lowercase.
 
 ```toml
-true
-false
+bool1 = true
+bool2 = false
 ```
 
 Datetime
@@ -281,9 +280,9 @@ Datetime
 Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
 
 ```toml
-1979-05-27T07:32:00Z
-1979-05-27T00:32:00-07:00
-1979-05-27T00:32:00.999999-07:00
+date1 = 1979-05-27T07:32:00Z
+date2 = 1979-05-27T00:32:00-07:00
+date3 = 1979-05-27T00:32:00.999999-07:00
 ```
 
 Array
@@ -294,12 +293,12 @@ Elements are separated by commas. Data types may not be mixed (though all string
 types should be considered the same type).
 
 ```toml
-[ 1, 2, 3 ]
-[ "red", "yellow", "green" ]
-[ [ 1, 2 ], [3, 4, 5] ]
-[ "all", 'strings', """are the same""", '''type'''] # this is ok
-[ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
-[ 1, 2.0 ] # note: this is NOT ok
+arr1 = [ 1, 2, 3 ]
+arr2 = [ "red", "yellow", "green" ]
+arr3 = [ [ 1, 2 ], [3, 4, 5] ]
+arr4 = [ "all", 'strings', """are the same""", '''type'''] # this is ok
+arr5 = [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
+arr6 = [ 1, 2.0 ] # note: this is NOT ok
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
@@ -307,11 +306,11 @@ ignore newlines between the brackets. Terminating commas are ok before the
 closing bracket.
 
 ```toml
-key = [
+arr7 = [
   1, 2, 3
 ]
 
-key = [
+arr8 = [
   1,
   2, # this is ok
 ]
