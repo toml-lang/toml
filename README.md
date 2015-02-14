@@ -608,6 +608,7 @@ note the version tag that your parser supports in your Readme.
 ### v0.4.0 compliant
 
 - Dart (@just95) - https://github.com/just95/toml.dart
+- Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 
 ### v0.3.1 compliant
 
@@ -679,7 +680,6 @@ note the version tag that your parser supports in your Readme.
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
 - Ruby (@sandeepravi) - https://github.com/sandeepravi/tomlp (tomlp gem)
 - Rust (@mneumann) - https://github.com/mneumann/rust-toml
-- Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 - Scala - https://github.com/axelarge/tomelette
 
 Validators
