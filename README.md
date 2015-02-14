@@ -603,65 +603,79 @@ Implementations
 ---------------
 
 If you have an implementation, send a pull request adding to this list. Please
-note the commit SHA1 or version tag that your parser supports in your Readme.
+note the version tag that your parser supports in your Readme.
+
+## v0.4.0 compliant
+
+- Dart (@just95) - https://github.com/just95/toml.dart
+
+## v0.3.1 compliant
+
+- Go (@naoina) - https://github.com/naoina/toml
+- Java (@mwanji) - https://github.com/mwanji/toml4j
+- Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
+- node.js (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
+- Python (@uiri) - https://github.com/uiri/toml
+- Ruby (@eMancu) - https://github.com/eMancu/toml-rb (toml-rb gem)
+
+## v0.2.0 compliant
+
+- C (@ajwans) - https://github.com/ajwans/libtoml
+- C++ (@skystrife) - https://github.com/skystrife/cpptoml
+- C++ (@mayah) - https://github.com/mayah/tinytoml
+- Go (@thompelletier) - https://github.com/pelletier/go-toml
+- Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
+- Go (@achun) - https://github.com/achun/tom-toml
+- Julia (@pygy) - https://github.com/pygy/TOML.jl
+- node.js/browser (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
+- OCaml (@mackwic) https://github.com/mackwic/to.ml
+- PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
+- PHP (@zidizei) - https://github.com/zidizei/toml-php
+- PHP (@yosymfony) - https://github.com/yosymfony/toml
+- Racket (@greghendershott) - https://github.com/greghendershott/toml
+
+## v0.1.0 compliant
+
+- Clojure (@lantiga) - https://github.com/lantiga/clj-toml
+- Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
+- Common Lisp (@pnathan) - https://github.com/pnathan/pp-toml
+- Emacs Lisp (@gongoZ) - https://github.com/gongo/emacs-toml
+- Haxe (@raincole) - https://github.com/raincole/haxetoml
+- Java (@johnlcox) - https://github.com/johnlcox/toml4j
+- node.js/browser (@ricardobeat) - https://github.com/ricardobeat/toml.js (npm install tomljs)
+- Python (@hit9) - https://github.com/hit9/toml.py
+
+## Unknown (or pre-v0.1.0) compliance
 
 - C#/.NET - https://github.com/LBreedlove/Toml.net
 - C#/.NET - https://github.com/rossipedia/toml-net
 - C#/.NET - https://github.com/RichardVasquez/TomlDotNet
 - C#/.NET - https://github.com/azyobuzin/HyperTomlProcessor
-- C (@ajwans) - https://github.com/ajwans/libtoml
 - C (@mzgoddard) - https://github.com/mzgoddard/tomlc
 - C++ (@evilncrazy) - https://github.com/evilncrazy/ctoml
-- C++ (@skystrife) - https://github.com/skystrife/cpptoml
-- C++ (@mayah) - https://github.com/mayah/tinytoml
-- Clojure (@lantiga) - https://github.com/lantiga/clj-toml
-- Clojure (@manicolosi) - https://github.com/manicolosi/clojoml
 - CoffeeScript (@biilmann) - https://github.com/biilmann/coffee-toml
-- Common Lisp (@pnathan) - https://github.com/pnathan/pp-toml
 - D - https://github.com/iccodegr/toml.d
-- Dart (@just95) - https://github.com/just95/toml.dart
 - Erlang - https://github.com/kalta/etoml.git
 - Erlang - https://github.com/kaos/tomle
-- Emacs Lisp (@gongoZ) - https://github.com/gongo/emacs-toml
-- Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go (@laurent22) - https://github.com/laurent22/toml-go
-- Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
-- Go (@achun) - https://github.com/achun/tom-toml
-- Go (@naoina) - https://github.com/naoina/toml
 - Haskell (@seliopou) - https://github.com/seliopou/toml
-- Haxe (@raincole) - https://github.com/raincole/haxetoml
 - Java (@agrison) - https://github.com/agrison/jtoml
-- Java (@johnlcox) - https://github.com/johnlcox/toml4j
-- Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java - https://github.com/asafh/jtoml
 - Java w/ ANTLR (@MatthiasSchuetz) - https://github.com/mschuetz/toml
-- Julia (@pygy) - https://github.com/pygy/TOML.jl
 - Literate CoffeeScript (@JonathanAbrams) - https://github.com/JonAbrams/tomljs
-- Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
-- node.js/browser - https://github.com/ricardobeat/toml.js (npm install tomljs)
-- node.js - https://github.com/BinaryMuse/toml-node
-- node.js/browser (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
 - node.js/browser (@alexanderbeletsky) - https://github.com/alexanderbeletsky/toml-js (npm browser amd)
 - Objective C (@mneorr) - https://github.com/mneorr/toml-objc.git
 - Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
-- OCaml (@mackwic) https://github.com/mackwic/to.ml
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
 - Perl - https://github.com/dlc/toml
-- PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
 - PHP (@coop182) - https://github.com/coop182/toml-php
 - PHP (@checkdomain) - https://github.com/checkdomain/toml
-- PHP (@zidizei) - https://github.com/zidizei/toml-php
-- PHP (@yosymfony) - https://github.com/yosymfony/toml
 - Python (@f03lipe) - https://github.com/f03lipe/toml-python
-- Python (@uiri) - https://github.com/uiri/toml
 - Python - https://github.com/bryant/pytoml
 - Python (@elssar) - https://github.com/elssar/tomlgun
 - Python (@marksteve) - https://github.com/marksteve/toml-ply
-- Python (@hit9) - https://github.com/hit9/toml.py
-- Racket (@greghendershott) - https://github.com/greghendershott/toml
 - Ruby (@jm) - https://github.com/jm/toml (toml gem)
-- Ruby (@eMancu) - https://github.com/eMancu/toml-rb (toml-rb gem)
 - Ruby (@charliesome) - https://github.com/charliesome/toml2 (toml2 gem)
 - Ruby (@sandeepravi) - https://github.com/sandeepravi/tomlp (tomlp gem)
 - Rust (@mneumann) - https://github.com/mneumann/rust-toml
