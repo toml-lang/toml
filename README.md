@@ -608,10 +608,10 @@ note the version tag that your parser supports in your Readme.
 
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
+- Go (@naoina) - https://github.com/naoina/toml
 
 ### v0.3.1 compliant
 
-- Go (@naoina) - https://github.com/naoina/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
 - node.js (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
