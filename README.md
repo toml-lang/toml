@@ -597,6 +597,7 @@ Projects using TOML
 - [InfluxDB](http://influxdb.com/) - Distributed time series database.
 - [Heka](https://hekad.readthedocs.org) - Stream processing system by Mozilla.
 - [Hugo](http://gohugo.io/) - Static site generator in Go.
+- [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
 
 Implementations
 ---------------
