@@ -606,11 +606,11 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.4.0 compliant
 
+- Crystal (@manastech) - https://github.com/manastech/crystal-toml
 - Dart (@just95) - https://github.com/just95/toml.dart
-- Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 - Go (@naoina) - https://github.com/naoina/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
-- Crystal (@manastech) - https://github.com/manastech/crystal-toml
+- Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 
 ### v0.3.1 compliant
 
