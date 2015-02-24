@@ -613,13 +613,13 @@ note the version tag that your parser supports in your Readme.
 - Go (@naoina) - https://github.com/naoina/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
+- Ruby (@emancu) - https://github.com/emancu/toml-rb (toml-rb gem)
 
 ### v0.3.1 compliant
 
 - Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
 - node.js (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Python (@uiri) - https://github.com/uiri/toml
-- Ruby (@eMancu) - https://github.com/eMancu/toml-rb (toml-rb gem)
 
 ### v0.2.0 compliant
 
