@@ -598,6 +598,7 @@ Projects using TOML
 - [Heka](https://hekad.readthedocs.org) - Stream processing system by Mozilla.
 - [Hugo](http://gohugo.io/) - Static site generator in Go.
 - [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
+- [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
 
 Implementations
 ---------------
