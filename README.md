@@ -615,11 +615,11 @@ note the version tag that your parser supports in your Readme.
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 - Ruby (@emancu) - https://github.com/emancu/toml-rb (toml-rb gem)
+- Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 
 ### v0.3.1 compliant
 
 - Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
-- node.js (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Python (@uiri) - https://github.com/uiri/toml
 
 ### v0.2.0 compliant
