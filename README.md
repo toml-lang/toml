@@ -613,6 +613,7 @@ note the version tag that your parser supports in your Readme.
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go (@naoina) - https://github.com/naoina/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
+- PHP (@yosymfony) - https://github.com/yosymfony/toml
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 - Ruby (@emancu) - https://github.com/emancu/toml-rb (toml-rb gem)
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
@@ -634,7 +635,6 @@ note the version tag that your parser supports in your Readme.
 - OCaml (@mackwic) https://github.com/mackwic/to.ml
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - PHP (@zidizei) - https://github.com/zidizei/toml-php
-- PHP (@yosymfony) - https://github.com/yosymfony/toml
 - Racket (@greghendershott) - https://github.com/greghendershott/toml
 
 ### v0.1.0 compliant
