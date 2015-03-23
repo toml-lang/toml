@@ -572,17 +572,25 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 2, y = 4, z = 8 } ]
 ```
 
-Seriously?
-----------
+Comparison with Other Formats
+-----------------------------
 
-Yep.
+In some ways TOML is very similar to JSON: simple, well-specified, and
+maps easily to ubiquitous data types. JSON is great for serializing
+data that will mostly be read and written by computer programs. Where
+TOML differs from JSON is its emphasis on being easy for humans to
+read and write. Comments are a good example: they serve no purpose
+when data is being sent from one program to another, but are very
+helpful in a configuration file that may be edited by hand.
 
-But why?
---------
+The YAML format is oriented towards configuration files just like
+TOML. For many purposes, however, YAML is an overly complex
+solution. TOML aims for simplicity, a goal which is not apparent in
+the YAML specification: http://www.yaml.org/spec/1.2/spec.html
 
-Because we need a decent human-readable format that unambiguously maps to a hash
-table and the YAML spec is like 80 pages long and gives me rage. No, JSON
-doesn't count. You know why.
+The INI format is also frequently used for configuration files. The
+format is not standardized, however, and usually does not handle more
+than one or two levels of nesting.
 
 Get Involved
 ------------
