@@ -584,10 +584,11 @@ Because we need a decent human-readable format that unambiguously maps to a hash
 table and the YAML spec is like 80 pages long and gives me rage. No, JSON
 doesn't count. You know why.
 
-Oh god, you're right
---------------------
+Get Involved
+------------
 
-Yuuuup. Wanna help? Send a pull request. Or write a parser. BE BRAVE.
+Documentation, bug reports, pull requests, and all other contributions
+are welcome!
 
 Projects using TOML
 -------------------
