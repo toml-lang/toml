@@ -22,13 +22,13 @@ Example
 -------
 
 ```toml
-# This is a TOML document. Boom.
+# This is a TOML document.
 
 title = "TOML Example"
 
 [owner]
-name = "Lance Uppercut"
-dob = 1979-05-27T07:32:00-08:00 # First class dates? Why not?
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00 # First class dates
 
 [database]
 server = "192.168.1.1"
@@ -38,7 +38,7 @@ enabled = true
 
 [servers]
 
-  # You can indent as you please. Tabs or spaces. TOML don't care.
+  # Indentation (tabs and/or spaces) is allowed but not required
   [servers.alpha]
   ip = "10.0.0.1"
   dc = "eqdc10"
@@ -68,12 +68,11 @@ Spec
 Comment
 -------
 
-Speak your mind with the hash symbol. They go from the symbol to the end of the
-line.
+A hash symbol marks the rest of the line as a comment.
 
 ```toml
-# I am a comment. Hear me roar. Roar.
-key = "value" # Yeah, you can do this.
+# This is a full-line comment
+key = "value" # This is a comment at the end of a line
 ```
 
 String
@@ -596,7 +595,8 @@ than one or two levels of nesting.
 Get Involved
 ------------
 
-Yuuuup. Wanna help? Send a pull request. Or write a parser. BE BRAVE.
+Documentation, bug reports, pull requests, and all other contributions
+are welcome!
 
 Projects using TOML
 -------------------
