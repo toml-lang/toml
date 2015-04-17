@@ -622,6 +622,7 @@ note the version tag that your parser supports in your Readme.
 - Go (@naoina) - https://github.com/naoina/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
+- Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
 - PHP (@yosymfony) - https://github.com/yosymfony/toml
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - Python (@avakar) - https://github.com/avakar/pytoml
