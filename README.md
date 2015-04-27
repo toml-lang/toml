@@ -626,6 +626,7 @@ note the version tag that your parser supports in your Readme.
 - PHP (@yosymfony) - https://github.com/yosymfony/toml
 - PHP (@leonelquinteros) - https://github.com/leonelquinteros/php-toml.git
 - Python (@avakar) - https://github.com/avakar/pytoml
+- R (@eddelbuettel) - http://github.com/eddelbuettel/rcpptoml
 - Ruby (@emancu) - https://github.com/emancu/toml-rb (toml-rb gem)
 - Ruby (@fbernier) - https://github.com/fbernier/tomlrb (tomlrb gem)
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
