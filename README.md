@@ -630,6 +630,7 @@ note the version tag that your parser supports in your Readme.
 - Ruby (@emancu) - https://github.com/emancu/toml-rb (toml-rb gem)
 - Ruby (@fbernier) - https://github.com/fbernier/tomlrb (tomlrb gem)
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
+- CHICKEN Scheme (@caolan) - https://github.com/caolan/chicken-toml
 
 ### v0.3.1 compliant
 
