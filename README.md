@@ -635,6 +635,7 @@ note the version tag that your parser supports in your Readme.
 
 - Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
 - Python (@uiri) - https://github.com/uiri/toml
+- Haskell (@cies) - https://github.com/cies/htoml
 
 ### v0.2.0 compliant
 
