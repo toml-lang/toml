@@ -18,6 +18,31 @@ TOML aims to be a minimal configuration file format that's easy to read due to
 obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
+Table of contents
+-------
+
+- [Example](#user-content-example)
+- [Spec](#user-content-spec)
+- [Comment](#user-content-comment)
+- [String](#user-content-string)
+- [Integer](#user-content-integer)
+- [Float](#user-content-float)
+- [Boolean](#user-content-boolean)
+- [Datetime](#user-content-datetime)
+- [Array](#user-content-array)
+- [Table](#user-content-table)
+- [Inline Table](#user-content-inline-table)
+- [Array of Tables](#user-content-array-of-tables)
+- [Comparison with Other Formats](#user-content-comparison-with-other-formats)
+- [Get Involved](#user-content-get-involved)
+- [Projects using TOML](#user-content-projects-using-toml)
+- [Implementations](#user-content-implementations)
+- [Validators](#user-content-validators)
+- [Language agnostic test suite for TOML decoders and encoders](#user-content-language-agnostic-test-suite-for-toml-decoders-and-encoders)
+- [Editor support](#user-content-editor-support)
+- [Encoder](#user-content-encoder)
+- [Converters](#user-content-converters)
+
 Example
 -------
 
