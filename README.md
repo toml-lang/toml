@@ -357,7 +357,8 @@ is ignored around key names and values. The key, equals sign, and value must
 be on the same line (though some values can be broken over multiple lines).
 
 Keys may be either bare or quoted. **Bare keys** may only contain letters,
-numbers, underscores, and dashes (`A-Za-z0-9_-`). **Quoted keys** follow the
+numbers, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
+allowed to be composed of only digits, e.g. `1234`. **Quoted keys** follow the
 exact same rules as basic strings and allow you to use a much broader set of key
 names. Best practice is to use bare keys except when absolutely necessary.
 
@@ -368,6 +369,7 @@ Key/value pairs within tables are not guaranteed to be in any specific order.
 key = "value"
 bare_key = "value"
 bare-key = "value"
+1234 = "bare integer"
 
 "127.0.0.1" = "value"
 "character encoding" = "value"
