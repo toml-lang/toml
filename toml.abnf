@@ -3,21 +3,17 @@
 
 ;; TOML
 
-toml = expression *( newline expression )
-expression = (
-  ws /
-  ws comment /
-  ws keyval ws [ comment ] /
-  ws table ws [ comment ]
-)
+toml = ews expression *( newlines ws expression ) ews [ comment ]
+expression = keyval / table
 
 ;; Newline
 
-newline = (
+nl = (
   %x0A /              ; LF
   %x0D.0A             ; CRLF
 )
 
+newline = ws [ comment ] nl
 newlines = 1*newline
 
 ;; Whitespace
@@ -26,6 +22,9 @@ ws = *(
   %x20 /              ; Space
   %x09                ; Horizontal tab
 )
+
+;; Extended whitespace, this is where newlines are not significant
+ews = [ newlines ] ws
 
 ;; Comment
 
@@ -111,7 +110,7 @@ escape = %x5C                    ; \
 
 ml-basic-string-delim = quotation-mark quotation-mark quotation-mark
 ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
-ml-basic-body = *( ml-basic-char / newline / ( escape newline ))
+ml-basic-body = *( ml-basic-char / nl / ( escape nl ))
 
 ml-basic-char = ml-basic-unescaped / escaped
 ml-basic-unescaped = %x20-5B / %x5D-10FFFF
@@ -129,7 +128,7 @@ literal-char = %x09 / %x20-26 / %x28-10FFFF
 ml-literal-string-delim = apostraphe apostraphe apostraphe
 ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
 
-ml-literal-body = *( ml-literal-char / newline )
+ml-literal-body = *( ml-literal-char / nl )
 ml-literal-char = %x09 / %x20-10FFFF
 
 ;; Boolean
@@ -158,15 +157,14 @@ date-time      = full-date "T" full-time
 
 ;; Array
 
-array-open  = %x5B ws  ; [
-array-close = ws %x5D  ; ]
+array-open  = %x5B ews  ; [
+array-close = ews %x5D  ; ]
 
 array = array-open array-values array-close
 
-array-values = [ val [ array-sep ] [ ( comment newlines) / newlines ] /
-                 val array-sep [ ( comment newlines) / newlines ] array-values ]
+array-values = [ val / val array-sep array-values ]
 
-array-sep = ws %x2C ws  ; , Comma
+array-sep = ews %x2C ews  ; , Comma
 
 ;; Inline Table
 
