@@ -1,0 +1,321 @@
+;; The specification of TOML v0.4.x format in ABNF.
+;; The ABNF grammar is defined in RFC 5234 (http://www.ietf.org/rfc/rfc5234.txt)
+
+
+TOML = Expressions;
+
+Expressions
+  = *( Whitespace / Newline / Comment )
+    [ Expression *( Whitespace / Comment )
+      [ Newline Expressions ]  ; Multiple expressions stay in different lines.
+    ]
+
+Expression
+  = KeyValue
+  / TableHeader
+  / TableArrayHeader
+
+Newline
+  = %x0A     ; LF
+  / %x0D.0A  ; CRLF
+
+Whitespace
+  = %x09  ; Horizontal Tab "	"
+  / %x20  ; Space " "
+
+Comment
+  = CommentStarter *CommentCharacter
+
+CommentStarter
+  = %x23  ; Number sign #
+
+; Control-characters except horizontal tab, are not allowed.
+CommentCharacter
+  = %x09  ; Horizontal Tab "	"
+  / %x20-10FFFF
+
+KeyValue
+  = Key *Whitespace KeyValueSeparator *Whitespace Value
+
+KeyValueSeparator
+  = %x3D  ; Equal sign =
+
+Key
+  = BareKey
+  / QuotedKey
+
+BareKey
+  = 1*BareKeyCharacter
+
+BareKeyCharacter
+  = Letter
+  / Digit
+  / %x2D   ; Hyphen -
+  / %x5F   ; Underscore _
+
+QuotedKey
+  = DoubleQuote 1*BasicCharacter DoubleQuote
+
+Value
+  = String
+  / Boolean
+  / Integer
+  / Float
+  / DateTime
+  / Array
+  / InlineTable
+
+String
+  = BasicString
+  / LiteralString
+  / MultilineBasicString
+  / MultilineLiteralString
+
+BasicString
+  = DoubleQuote *BasicCharacter DoubleQuote
+
+BasicCharacter
+  = NormalCharacter
+  / EscapedCharacter
+
+NormalCharacter
+  = %x20-21
+  ; Skip DoubleQuote "
+  / %x23-5B
+  ; Skip Backslash \
+  / %x5D-10FFFF
+
+EscapedCharacter
+  = Backslash
+    ( ControlCharacter
+    / DoubleQuote
+    / Backslash
+    / uXXXX
+    / UXXXXXXXX
+    )
+
+ControlCharacter
+  = %x62  ; "b", Backspace \b
+  / %x66  ; "f", Form feed \f
+  / %x6E  ; "n", Line feed \n
+  / %x72  ; "r", Carriage return \r
+  / %x74  ; "t", Horizontal tab \t
+
+uXXXX
+  = %x75  ; "u"
+    4HexDigit
+
+UXXXXXXXX
+  = %x55  ; "U"
+    8HexDigit
+
+LiteralString
+  = SingleQuote *LiteralCharacter SingleQuote
+
+LiteralCharacter
+  = %x09  ; Horizontal Tab "	"
+  / %x20-26
+  ; Skip SingleQuote '
+  / %x28-10FFFF
+
+; The string should close immediately after the next three double quotes.
+MultilineBasicString
+  = 3DoubleQuote
+    [ Newline ]  ; This optional newline is not added to the string.
+    *( MultilineBasicCharacter
+     / [ Backslash ] Newline  ; Use "\" to trim whitespace after the newline.
+     )
+    3DoubleQuote
+
+; Control-characters are not allowed.
+MultilineBasicCharacter
+  = %x20-5B
+  ; Skip Backslash \
+  / %x5D-10FFFF
+  / EscapedCharacter
+
+; The string should close immediately after the next three single quotes.
+MultilineLiteralString
+  = 3SingleQuote
+    [ Newline ]  ; This optional newline is not added to the string.
+    *( MultilineLiteralCharacter
+     / Newline
+     )
+    3SingleQuote
+
+; Control-characters except HTAB, are not allowed.
+MultilineLiteralCharacter
+  = %x09  ; Horizontal tab "	"
+  / %x20-10FFFF
+
+Boolean
+  = True
+  / False
+
+True
+  = %x74.72.75.65     ; "true"
+
+False
+  = %x66.61.6C.73.65  ; "false"
+
+; A 64-bit signed integer.
+Integer
+  = [ Plus / Minus ] IntegerDigits
+
+Plus
+  = %x2B  ; Plus sign +
+
+Minus
+  = %x2D  ; Minus sign -
+
+IntegerDigits
+  = Digit
+  / Digit1to9  ; Decimal numbers except 0 should not start with "0".
+    1*( [ Underscore ] Digit )  ; Use "_" as delimiters.
+
+ZeroPrefixableInteger
+  = Digit
+    *( [ Underscore ] Digit )
+
+; A double-precision 64-bit floating-point number in IEEE 754 standard.
+Float
+  = Integer
+    ( Fraction [ Exponent ]
+    / Exponent
+    )
+
+Fraction
+  = DecimalPoint ZeroPrefixableInteger
+
+DecimalPoint
+  = %x2E  ; .
+
+Exponent
+  = E Integer
+
+E
+  = %x65  ; e
+  / %x45  ; E
+
+; It should conform to RFC 3339? Really?
+; RFC 3339: http://www.ietf.org/rfc/rfc3339.txt
+DateTime
+  = FullDate T FullTime
+
+T
+  = %x54  ; T, stands for "time"
+  ; The lower case "t" is not allowed?
+
+FullDate
+  = Year "-" Month "-" MDay
+
+Year
+  = 4Digit  ; Unix time? 1970-????
+
+Month
+  = 2Digit  ; 01-12
+
+MDay
+  = 2Digit  ; 01-31, based on the year and the month
+
+FullTime
+  = Time TimeOffset
+
+Time
+  = Hour ":" Minute ":" Second [ SecondFraction ]
+
+Hour
+  = 2Digit  ; 00-23
+
+Minute
+  = 2Digit  ; 00-59
+
+Second
+  = 2Digit  ; 00-59, even 00-58 or 00-60, based on leap second rules?
+
+SecondFraction
+  = "." 1*Digit
+
+TimeOffset
+  = Z
+  / ( "+" / "-" ) Hour ":" Minute
+
+Z
+  = %x5A  ; Z, stands for "UTC time"
+  ; The lower case "z" is not allowed?
+
+Array
+  = LeftBracket *ArraySpace
+    [ ArrayValue *ArraySpace
+      [ Comma *ArraySpace ]  ; Allow one extra comma before the right bracket.
+    ]
+    RightBracket
+
+LeftBracket
+  = %x5B  ; [
+
+RightBracket
+  = %x5D  ; ]
+
+ArraySpace
+  = Whitespace
+  / Newline
+  / Comment
+
+; Values in the same array should be of the same type.
+; For simplicity, I don't further specify it here. Sorry.
+ArrayValue
+  = Value
+    [ *ArraySpace Comma *ArraySpace ArrayValue ]
+
+InlineTable
+  = LeftBrace *Whitespace
+    [ KeyValue
+      *( *Whitespace Comma *Whitespace KeyValue )
+      *Whitespace
+    ]
+    RightBrace
+
+LeftBrace
+  = %x7B  ; {
+
+RightBrace
+  = %x7D  ; }
+
+TableHeader
+  = LeftBracket *Whitespace
+    Key *( *Whitespace "." *Whitespace Key )
+    *Whitespace RightBracket
+
+TableArrayHeader
+  = LeftBracket TableHeader RightBracket
+
+DoubleQuote
+  = %x22  ; "
+
+SingleQuote
+  = %x27  ; '
+
+Backslash
+  = %x5C  ; \
+
+Comma
+  = %x2C  ; ,
+
+Underscore
+  = %x5F  ; _
+
+Letter
+  = %x41-5A  ; "A" to "Z"
+  / %x61-7A  ; "a" to "z"
+
+Digit
+  = %x30-39  ; "0" to "9"
+
+Digit1to9
+  = %x31-39  ; "1" to "9"
+
+HexDigit
+  = Digit
+  / %x41-46  ; "A", "B", "C", "D", "E", "F"
+  / %x61-66  ; "a", "b", "c", "d", "e", "f"
