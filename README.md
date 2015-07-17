@@ -326,8 +326,8 @@ arr6 = [ 1, 2.0 ] # note: this is NOT ok
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
-ignore newlines between the brackets. Terminating commas are ok before the
-closing bracket.
+ignore newlines, and comments before those newlines, between the brackets.
+Terminating commas are ok before the closing bracket.
 
 ```toml
 arr7 = [
