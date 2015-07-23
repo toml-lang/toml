@@ -740,6 +740,7 @@ Editor support
 
 - Atom - https://github.com/atom/language-toml
 - Emacs (@dryman) - https://github.com/dryman/toml-mode.el
+- GEdit (GtkSourceView) - https://github.com/liv-dumea/toml.lang
 - Notepad++ (@fireforge) - https://github.com/fireforge/toml-notepadplusplus
 - Sublime Text 2 & 3 (@Gakai) - https://github.com/Gakai/sublime_toml_highlighting
 - Synwrite - http://uvviewsoft.com/synwrite/download.html ; call Options/ Addons manager/ Install
