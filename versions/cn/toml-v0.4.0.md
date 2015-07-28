@@ -98,7 +98,7 @@ key = "value" # Yeah, you can do this.
 所有未出现在上面名单中的转义序列必须保留，如果使用，TOML应该会产生错误。
 
 有时你需要表达一段文本（比如，翻译文件），或者是将很长的字符串分成多行。TOML很容易处理这种情况。
-**多行基本字符串** 是被三引号括起来的字符串，并且允许换行。紧跟分隔符后面的换行符会被删除，而其他的所有空格和换行字符仍然被保留。
+**多行基本字符串** 是被三引号括起来的字符串，并且允许换行。紧跟起始界定符后面的换行符会被剪掉，而其他的所有空格和换行字符仍然被保留。
 
 ```toml
 key1 = """
@@ -118,7 +118,7 @@ key3 = "Roses are red\r\nViolets are blue"
 
 在行尾使用`\`，可以避免在写长字符串的时候引入多余的空格。
 `\`将会删除当前位置到下个非空字符或结束界定符之间的所有空格（包括换行符）。
-如果在起始分隔符之后的第一个字符是反斜杠和一个换行符，那么从此位置到下个非空白字符或结束界定符之间的所有空格和换行符都会被删除。
+如果在起始界定符之后的第一个字符是反斜杠和一个换行符，那么从此位置到下个非空白字符或结束界定符之间的所有空格和换行符都会被剪掉。
 所有的转义序列对基本字符串都有效，也对多行基本字符串有效。
 
 ```toml
@@ -139,31 +139,26 @@ key3 = """\
        """
 ```
 
-Any Unicode character may be used except those that must be escaped: backslash
-and the control characters (U+0000 to U+001F). Quotation marks need not be
-escaped unless their presence would create a premature closing delimiter.
+任何Unicode字符都可能被用到，除了那些可能需要转义的字符：反斜杠和控制字符(U+0000 到 U+001F)。
+引号不需要转义，除非它们的存在可能会造成提前关闭界定符。
 
-If you're a frequent specifier of Windows paths or regular expressions, then
-having to escape backslashes quickly becomes tedious and error prone. To help,
-TOML supports literal strings where there is no escaping allowed at all.
-**Literal strings** are surrounded by single quotes. Like basic strings, they
-must appear on a single line:
+如果你需要频繁的指定Windows的路径或正则表达式，那么不得不添加转义符就会变的繁琐和容易出错。
+TOML支持完全不允许转义的字面量字符串来帮助你解决此类问题。
+**字面量字符串** 是被单引号包含的字符串，跟基本字符串一样，它们一定是以单行出现:
 
 ```toml
-# What you see is what you get.
+# 所见即所得.
 winpath  = 'C:\Users\nodejs\templates'
 winpath2 = '\\ServerX\admin$\system32\'
 quoted   = 'Tom "Dubs" Preston-Werner'
 regex    = '<\i\c*\s*>'
 ```
 
-Since there is no escaping, there is no way to write a single quote inside a
-literal string enclosed by single quotes. Luckily, TOML supports a multi-line
-version of literal strings that solves this problem. **Multi-line literal
-strings** are surrounded by three single quotes on each side and allow newlines.
-Like literal strings, there is no escaping whatsoever. A newline immediately
-following the opening delimiter will be trimmed. All other content between the
-delimiters is interpreted as-is without modification.
+因为没有转义，所以在一个被单引号封闭的字面量字符串里面没有办法写单引号。
+幸运的是，TOML支持多行版本的字面量字符串来解决这个问题。
+**多行字面量字符串** 是被三个单引号括起来的字符串，并且允许换行。
+跟字面量字符串一样，这也没有任何转义。
+紧跟起始界定符的换行符会被剪掉。界定符之间的所有其他内容都会被按照原样解释而无需修改。
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
@@ -175,10 +170,9 @@ trimmed in raw strings.
 '''
 ```
 
-For binary data it is recommended that you use Base64 or another suitable ASCII
-or UTF-8 encoding. The handling of that encoding will be application specific.
+对于二进制数据，建议你使用Base64或其他适合的编码，比如ASCII或UTF-8编码。具体的处理取决于特定的应用。
 
-Integer
+整数
 -------
 
 Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
