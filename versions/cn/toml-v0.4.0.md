@@ -175,8 +175,7 @@ trimmed in raw strings.
 整数
 -------
 
-Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
-Negative numbers are prefixed with a minus sign.
+整数就是没有小数点的数字。正数前面也可以用加号，负数需要用负号前缀表示。
 
 ```toml
 +99
@@ -185,74 +184,69 @@ Negative numbers are prefixed with a minus sign.
 -17
 ```
 
-For large numbers, you may use underscores to enhance readability. Each
-underscore must be surrounded by at least one digit.
+对于大整数，你可以用下划线提高可读性。每个下划线两边至少包含一个数字。
 
 ```toml
 1_000
 5_349_221
-1_2_3_4_5     # valid but inadvisable
+1_2_3_4_5     # 有效，但不建议这样写
 ```
 
-Leading zeros are not allowed. Hex, octal, and binary forms are not allowed.
-Values such as "infinity" and "not a number" that cannot be expressed as a
-series of digits are not allowed.
+前导零是不允许的。也不允许十六进制（Hex）、八进制（octal）和二进制形式。
+诸如“无穷”和“非数字”这样的不能用一串数字表示的值都不被允许。
 
-64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
+预期的范围是64位 (signed long)(−9,223,372,036,854,775,808 到
 9,223,372,036,854,775,807).
 
-Float
+浮点数
 -----
 
-A float consists of an integer part (which may be prefixed with a plus or minus
-sign) followed by a fractional part and/or an exponent part. If both a
-fractional part and exponent part are present, the fractional part must precede
-the exponent part.
+一个浮点数由整数部分（可能是带有加号或减号前缀的）和小数部分和（或）指数部分组成的数。
+如果只有小数部分和指数部分，那么小数部分必须放在指数部分前面。
 
 ```toml
-# fractional
+# 小数
 +1.0
 3.1415
 -0.01
 
-# exponent
+# 指数
 5e+22
 1e6
 -2E-2
 
-# both
+# 小数和指数同时存在
 6.626e-34
 ```
 
-A fractional part is a decimal point followed by one or more digits.
+小数部分是指在小数点后面的一个或多个数字。
 
-An exponent part is an E (upper or lower case) followed by an integer part
-(which may be prefixed with a plus or minus sign).
+指数部分是指E（大写或小写）后面的整数部分（可能用加号或减号为前缀）
 
-Similar to integers, you may use underscores to enhance readability. Each
-underscore must be surrounded by at least one digit.
+和整数类似，你可以用下划线来提高可读性。每个下划线两边至少包含一个数字。
+
 
 ```toml
 9_224_617.445_991_228_313
 1e1_000
 ```
 
-64-bit (double) precision expected.
+预期精度为64位 (double)。
 
-Boolean
+布尔值
 -------
 
-Booleans are just the tokens you're used to. Always lowercase.
+布尔值是小写的true和false。
 
 ```toml
 true
 false
 ```
 
-Datetime
+时间日期
 --------
 
-Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
+时间日期是[RFC 3339](http://tools.ietf.org/html/rfc3339)中的时间格式。
 
 ```toml
 1979-05-27T07:32:00Z
@@ -260,25 +254,23 @@ Datetimes are [RFC 3339](http://tools.ietf.org/html/rfc3339) dates.
 1979-05-27T00:32:00.999999-07:00
 ```
 
-Array
+数组
 -----
 
-Arrays are square brackets with other primitives inside. Whitespace is ignored.
-Elements are separated by commas. Data types may not be mixed (though all string
-types should be considered the same type).
+数组是由方括号包括的基本单元。空格会被忽略。
+数组中的元素由逗号分隔。数据类型不能混用（所有的字符串均为同一类型）。
 
 ```toml
 [ 1, 2, 3 ]
 [ "red", "yellow", "green" ]
 [ [ 1, 2 ], [3, 4, 5] ]
-[ "all", 'strings', """are the same""", '''type'''] # this is ok
-[ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
-[ 1, 2.0 ] # note: this is NOT ok
+[ "all", 'strings', """are the same""", '''type'''] # 这样可以
+[ [ 1, 2 ], ["a", "b", "c"] ] # 这样可以
+[ 1, 2.0 ] # 注: 这样不行
 ```
 
-Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
-ignore newlines between the brackets. Terminating commas are ok before the
-closing bracket.
+数组也可以多行。所以，除了忽略空格之外，数组也忽略了括号之间的换行符。
+在结束括号之前存在逗号是可以的。
 
 ```toml
 key = [
@@ -287,32 +279,30 @@ key = [
 
 key = [
   1,
-  2, # this is ok
+  2, # 这样可以
 ]
 ```
 
-Table
+表
 -----
 
-Tables (also known as hash tables or dictionaries) are collections of key/value
-pairs. They appear in square brackets on a line by themselves. You can tell them
-apart from arrays because arrays are only ever values.
+表（也被称为哈希表或字典）是键值对集合。表格名由方括号包裹，自成一行。
+注意和数组相区分，数组里只有值。
 
 ```toml
 [table]
 ```
 
-Under that, and until the next table or EOF are the key/values of that table.
-Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values. The key, equals sign, and value must
-be on the same line (though some values can be broken over multiple lines).
+在表名之下，直到下一个表或文件尾（EOF）之间都是该表的键值对。
+键是等号符左边的值，值是等号符右边的值。
+键名和值周围的空格都将被忽略。
+键、等号和值，一定要在同一行（有些值可以多行表示）
 
-Keys may be either bare or quoted. **Bare keys** may only contain letters,
-numbers, underscores, and dashes (`A-Za-z0-9_-`). **Quoted keys** follow the
-exact same rules as basic strings and allow you to use a much broader set of key
-names. Best practice is to use bare keys except when absolutely necessary.
+键可以是裸的或由引号包括的。**裸键** 可能仅包含字母、数字、下划线和破折号。
+**引号键** 遵循基本字符串的规则，允许你使用更广泛的键名。
+除非有绝对的必要，否则最好是用裸键。
 
-Key/value pairs within tables are not guaranteed to be in any specific order.
+表中的键值对是无序的。
 
 ```toml
 [table]
@@ -325,22 +315,21 @@ bare-key = "value"
 "ʎǝʞ" = "value"
 ```
 
-Dots are prohibited in bare keys because dots are used to signify nested tables!
-Naming rules for each dot separated part are the same as for keys (see above).
+点（.）严禁在裸键中使用，因为它被用来表示嵌套表！
+命名规则为被点分隔的部分应该属于同一个键。（见上文）。
 
 ```toml
 [dog."tater.man"]
 type = "pug"
 ```
 
-In JSON land, that would give you the following structure:
+等价于如下JSON格式：
 
 ```json
 { "dog": { "tater.man": { "type": "pug" } } }
 ```
 
-Whitespace around dot-separated parts is ignored, however, best practice is to
-not use any extraneous whitespace.
+被点分隔部分周围的空格都会被忽略，但是最好不要使用任何多余的空格。
 
 ```toml
 [a.b.c]          # this is best practice
@@ -349,20 +338,18 @@ not use any extraneous whitespace.
 [ j . "ʞ" . l ]  # same as [j."ʞ".l]
 ```
 
-You don't need to specify all the super-tables if you don't want to. TOML knows
-how to do it for you.
+如果你不想，你可以完全不去指定父表（super-tables）。TOML知道该如何处理。
 
 ```toml
-# [x] you
-# [x.y] don't
-# [x.y.z] need these
-[x.y.z.w] # for this to work
+# [x] 你
+# [x.y] 不
+# [x.y.z] 需要这些
+[x.y.z.w] # 去处理这种情况
 ```
 
-Empty tables are allowed and simply have no key/value pairs within them.
+空表是允许的，其中没有键值对。
 
-As long as a super-table hasn't been directly defined and hasn't defined a
-specific key, you may still write to it.
+只要父表没有被直接定义，而且没有定义特定的键，你可以继续写入。
 
 ```toml
 [a.b]
@@ -372,10 +359,10 @@ c = 1
 d = 2
 ```
 
-You cannot define any key or table more than once. Doing so is invalid.
+你不能多次定义键或表。这样做是无效的。
 
 ```toml
-# DO NOT DO THIS
+# 不要这么做
 
 [a]
 b = 1
@@ -385,7 +372,7 @@ c = 2
 ```
 
 ```toml
-# DO NOT DO THIS EITHER
+# 也不要这样做
 
 [a]
 b = 1
@@ -394,40 +381,35 @@ b = 1
 c = 2
 ```
 
+所有的表名和键一定不能为空。
 All table names and keys must be non-empty.
 
 ```toml
-# NOT VALID TOML
+# 无效TOML
 []
 [a.]
 [a..b]
 [.b]
 [.]
- = "no key name" # not allowed
+ = "no key name" # 不允许
 ```
 
-Inline Table
+内联表
 ------------
 
-Inline tables provide a more compact syntax for expressing tables. They are
-especially useful for grouped data that can otherwise quickly become verbose.
-Inline tables are enclosed in curly braces `{` and `}`. Within the braces, zero
-or more comma separated key/value pairs may appear. Key/value pairs take the
-same form as key/value pairs in standard tables. All value types are allowed,
-including inline tables.
+内联表提供一种更紧凑的语法来表示表。它们可以把数据分组，避免这些数据很快变得冗长。
+内联表是由大括号`{` 和 `}`括起来的。在大括号内可以存在零个或多个逗号分隔的键值对。
+内联表里的键值对跟标准表里的键值对形式是一样的。允许所有的值类型，包括内联表。
 
-Inline tables are intended to appear on a single line. No newlines are allowed
-between the curly braces unless they are valid within a value. Even so, it is
-strongly discouraged to break an inline table onto multiples lines. If you find
-yourself gripped with this desire, it means you should be using standard tables.
+内联表一般以单行出现。不允许换行符出现在大括号之间，除非是包含在值中的有效字符。
+即便如此，也强烈建议不要在把内联表分成多行。如果你有这种需求，那么你应该去用标准表。
 
 ```toml
 name = { first = "Tom", last = "Preston-Werner" }
 point = { x = 1, y = 2 }
 ```
 
-The inline tables above are identical to the following standard table
-definitions:
+上面的内联表完全等同于下面的标准表定义：
 
 ```toml
 [name]
@@ -439,14 +421,12 @@ x = 1
 y = 2
 ```
 
-Array of Tables
+表数组
 ---------------
 
-The last type that has not yet been expressed is an array of tables. These can
-be expressed by using a table name in double brackets. Each table with the same
-double bracketed name will be an element in the array. The tables are inserted
-in the order encountered. A double bracketed table without any key/value pairs
-will be considered an empty table.
+最后要介绍的类型是表数组。表数组可以通过包括在双括号内表格名来表达。
+使用相同双括号名的每个表都是数组中的元素。表的顺序跟书写顺序一致。
+没有键值对的双括号表会被当作空表。
 
 ```toml
 [[products]]
@@ -461,7 +441,7 @@ sku = 284758393
 color = "gray"
 ```
 
-In JSON land, that would give you the following structure.
+等价于如下JSON格式：
 
 ```json
 {
@@ -473,9 +453,7 @@ In JSON land, that would give you the following structure.
 }
 ```
 
-You can create nested arrays of tables as well. Just use the same double bracket
-syntax on sub-tables. Each double-bracketed sub-table will belong to the most
-recently defined table element above it.
+你也能创建内嵌的表数组。只需要对子表使用相同的双括号语法就可以。每个双括号子表将属于其上面最近定义的那个表。
 
 ```toml
 [[fruit]]
@@ -498,7 +476,7 @@ recently defined table element above it.
     name = "plantain"
 ```
 
-The above TOML maps to the following JSON.
+上面的TOML对应于下面的JSON格式：
 
 ```json
 {
@@ -524,8 +502,7 @@ The above TOML maps to the following JSON.
 }
 ```
 
-Attempting to define a normal table with the same name as an already established
-array must produce an error at parse time.
+试图用已经定义的数组的名称来定义的正常表，在解析的时候一定会抛出错误。
 
 ```toml
 # INVALID TOML DOC
@@ -540,7 +517,7 @@ array must produce an error at parse time.
     name = "granny smith"
 ```
 
-You may also use inline tables where appropriate:
+你也可以在适合的地方使用内联表。
 
 ```toml
 points = [ { x = 1, y = 2, z = 3 },
@@ -548,36 +525,36 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 2, y = 4, z = 8 } ]
 ```
 
-Seriously?
+这份规范是认真的吗？
 ----------
 
-Yep.
+当然。
 
-But why?
+但是为什么我要用它呢？
 --------
 
-Because we need a decent human-readable format that unambiguously maps to a hash
-table and the YAML spec is like 80 pages long and gives me rage. No, JSON
-doesn't count. You know why.
+因为我们需要一个像样的人类可读的格式，同时能无歧义地映射到哈希表。
+而且YAML的规范有80页那么长，真是令人发指！
+不，不考虑JSON 。你知道为什么。
 
-Oh god, you're right
+天哪，你说的好有道理
 --------------------
 
-Yuuuup. Wanna help? Send a pull request. Or write a parser. BE BRAVE.
+哈哈！想帮忙么？发pull request过来。或者编写一个解析器。你可以勇敢一点。
 
-Projects using TOML
+使用TOML的项目
 -------------------
 
-- [Cargo](http://doc.crates.io/) - The Rust language's package manager.
-- [InfluxDB](http://influxdb.com/) - Distributed time series database.
-- [Heka](https://hekad.readthedocs.org) - Stream processing system by Mozilla.
-- [Hugo](http://gohugo.io/) - Static site generator in Go.
+- [Cargo](http://doc.crates.io/) - Rust语言的包管理器。
+- [InfluxDB](http://influxdb.com/) - 分布式时间序列数据库。
+- [Heka](https://hekad.readthedocs.org) - Mozilla的流处理系统。
+- [Hugo](http://gohugo.io/) - Go的静态站点生成器。
 
-Implementations
+实现
 ---------------
 
-If you have an implementation, send a pull request adding to this list. Please
-note the commit SHA1 or version tag that your parser supports in your Readme.
+如果你有一个实现，请发一个合并请求，把你的实现加入到这个列表中。
+请在你实现的解析器README中标记你的解析器支持的提交SHA1或版本号。
 
 - C#/.NET - https://github.com/LBreedlove/Toml.net
 - C#/.NET - https://github.com/rossipedia/toml-net
@@ -642,17 +619,17 @@ note the commit SHA1 or version tag that your parser supports in your Readme.
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 - Scala - https://github.com/axelarge/tomelette
 
-Validators
+校验
 ----------
 
 - Go (@BurntSushi) - https://github.com/BurntSushi/toml/tree/master/cmd/tomlv
 
-Language agnostic test suite for TOML decoders and encoders
+TOML解码器和编码器测试套件（语言无关）
 -----------------------------------------------------------
 
 - toml-test (@BurntSushi) - https://github.com/BurntSushi/toml-test
 
-Editor support
+支持的编辑器
 --------------
 
 - Atom - https://github.com/atom/language-toml
@@ -663,14 +640,14 @@ Editor support
 - TextMate (@infininight) - https://github.com/textmate/toml.tmbundle
 - Vim (@cespare) - https://github.com/cespare/vim-toml
 
-Encoder
+编码器
 --------------
 
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
 
-Converters
+转换器
 ----------
 
 - remarshal (@dbohdan) - https://github.com/dbohdan/remarshal
