@@ -665,6 +665,7 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.4.0 compliant
 
+- C++ (@andrusha97) - https://github.com/andrusha97/loltoml
 - C++ (@skystrife) - https://github.com/skystrife/cpptoml
 - Crystal (@manastech) - https://github.com/manastech/crystal-toml
 - Dart (@just95) - https://github.com/just95/toml.dart
