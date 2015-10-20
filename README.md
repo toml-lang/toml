@@ -326,10 +326,8 @@ host machine's local offset and 00:00:00.
 1979-05-27
 ```
 
-The precision of fractional seconds is implementation specific and no minimum is
-expected. If the implementation's precision is exceeded, the datetime should
-still be accepted without error (though a warning should be issued, if
-possible).
+The precision of fractional seconds is implementation specific, but at least
+millisecond precision is expected.
 
 Array
 -----
