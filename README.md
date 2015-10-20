@@ -320,7 +320,7 @@ information. A good default is to use the host machine's local offset.
 
 If you only care about the day, you can omit the local offset and the time,
 letting the parser or host application decide both. Good defaults are to use the
-host machine's local offset and 00:00:00.
+host machine's local offset and 12:00:00.
 
 ```toml
 1979-05-27
