@@ -667,6 +667,7 @@ note the version tag that your parser supports in your Readme.
 
 - C++ (@andrusha97) - https://github.com/andrusha97/loltoml
 - C++ (@skystrife) - https://github.com/skystrife/cpptoml
+- C++ (@mayah) - https://github.com/mayah/tinytoml
 - Crystal (@manastech) - https://github.com/manastech/crystal-toml
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go (@naoina) - https://github.com/naoina/toml
@@ -692,7 +693,6 @@ note the version tag that your parser supports in your Readme.
 ### v0.2.0 compliant
 
 - C (@ajwans) - https://github.com/ajwans/libtoml
-- C++ (@mayah) - https://github.com/mayah/tinytoml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Go (@achun) - https://github.com/achun/tom-toml
