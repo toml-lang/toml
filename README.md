@@ -670,6 +670,7 @@ note the version tag that your parser supports in your Readme.
 - Crystal (@manastech) - https://github.com/manastech/crystal-toml
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go (@naoina) - https://github.com/naoina/toml
+- Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
@@ -693,7 +694,6 @@ note the version tag that your parser supports in your Readme.
 
 - C (@ajwans) - https://github.com/ajwans/libtoml
 - C++ (@mayah) - https://github.com/mayah/tinytoml
-- Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Go (@achun) - https://github.com/achun/tom-toml
 - Julia (@pygy) - https://github.com/pygy/TOML.jl
