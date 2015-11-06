@@ -335,8 +335,9 @@ Array
 -----
 
 Arrays are square brackets with other primitives inside. Whitespace is ignored.
-Elements are separated by commas. Data types may not be mixed (though all string
-types should be considered the same type).
+Elements are separated by commas. Data types may not be mixed (different ways to
+define strings should be considered the same type, and so should arrays with
+different element types).
 
 ```toml
 arr1 = [ 1, 2, 3 ]
