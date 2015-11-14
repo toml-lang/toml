@@ -666,6 +666,7 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.4.0 compliant
 
+- C#/.NET (@azyobuzin) - https://github.com/azyobuzin/HyperTomlProcessor
 - C++ (@andrusha97) - https://github.com/andrusha97/loltoml
 - C++ (@skystrife) - https://github.com/skystrife/cpptoml
 - C++ (@mayah) - https://github.com/mayah/tinytoml
@@ -719,7 +720,6 @@ note the version tag that your parser supports in your Readme.
 - C#/.NET - https://github.com/LBreedlove/Toml.net
 - C#/.NET - https://github.com/rossipedia/toml-net
 - C#/.NET - https://github.com/RichardVasquez/TomlDotNet
-- C#/.NET - https://github.com/azyobuzin/HyperTomlProcessor
 - C (@mzgoddard) - https://github.com/mzgoddard/tomlc
 - C++ (@evilncrazy) - https://github.com/evilncrazy/ctoml
 - CoffeeScript (@biilmann) - https://github.com/biilmann/coffee-toml
