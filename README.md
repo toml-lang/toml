@@ -666,6 +666,7 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.4.0 compliant
 
+- C#/.NET (@paiden) - https://github.com/paiden/Nett
 - C++ (@andrusha97) - https://github.com/andrusha97/loltoml
 - C++ (@skystrife) - https://github.com/skystrife/cpptoml
 - C++ (@mayah) - https://github.com/mayah/tinytoml
