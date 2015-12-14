@@ -33,6 +33,7 @@ Table of contents
 - [Table](#user-content-table)
 - [Inline Table](#user-content-inline-table)
 - [Array of Tables](#user-content-array-of-tables)
+- [Filename Extension](#user-content-filename-extension)
 - [Comparison with Other Formats](#user-content-comparison-with-other-formats)
 - [Get Involved](#user-content-get-involved)
 - [Projects using TOML](#user-content-projects-using-toml)
@@ -621,6 +622,11 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 7, y = 8, z = 9 },
            { x = 2, y = 4, z = 8 } ]
 ```
+
+Filename Extension
+------------------
+
+TOML files should use the extension `.toml`.
 
 Comparison with Other Formats
 -----------------------------
