@@ -6,9 +6,9 @@
 toml = expression *( newline expression )
 expression = (
   ws /
-  ws comment /
-  ws keyval ws [ comment ] /
-  ws table ws [ comment ]
+  ( ws comment ) /
+  ( ws keyval ws [ comment ] ) /
+  ( ws table ws [ comment ] )
 )
 
 ;; Newline
@@ -163,8 +163,8 @@ array-close = ws %x5D  ; ]
 
 array = array-open array-values array-close
 
-array-values = [ val [ array-sep ] [ ( comment newlines) / newlines ] /
-                 val array-sep [ ( comment newlines) / newlines ] array-values ]
+array-values = ( [ val [ array-sep ] [ ( comment newlines) / newlines ] ) /
+                 ( val array-sep [ ( comment newlines) / newlines ] array-values ] )
 
 array-sep = ws %x2C ws  ; , Comma
 
@@ -177,8 +177,8 @@ inline-table-sep   = ws %x2C ws  ; , Comma
 inline-table = inline-table-open inline-table-keyvals inline-table-close
 
 inline-table-keyvals = [ inline-table-keyvals-non-empty ]
-inline-table-keyvals-non-empty = key keyval-sep val /
-                                 key keyval-sep val inline-table-sep inline-table-keyvals-non-empty
+inline-table-keyvals-non-empty = ( key keyval-sep val ) /
+                                 ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty )
 
 ;; Built-in ABNF terms, reproduced here for clarity
 
