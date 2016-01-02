@@ -161,7 +161,7 @@ date-time      = full-date "T" full-time
 ws-newline       = *(ws / newline)
 
 array-open  = %x5B ws-newline  ; [
-array-close = ws-newline %x5D  ; ]
+array-close = ws %x5D  ; ]
 
 array = array-open array-values array-close
 
