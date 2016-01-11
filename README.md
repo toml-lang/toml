@@ -786,6 +786,7 @@ Encoder
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/tomlify-j0.4
+- Node.js/io.js/browser (@KenanY) - https://github.com/KenanY/json2toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
 
 Converters
