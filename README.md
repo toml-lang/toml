@@ -380,8 +380,9 @@ be on the same line (though some values can be broken over multiple lines).
 Keys may be either bare or quoted. **Bare keys** may only contain letters,
 numbers, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
 allowed to be composed of only digits, e.g. `1234`. **Quoted keys** follow the
-exact same rules as basic strings and allow you to use a much broader set of key
-names. Best practice is to use bare keys except when absolutely necessary.
+exact same rules as either basic strings or literal strings and allow you to use
+a much broader set of key names. Best practice is to use bare keys except when
+absolutely necessary.
 
 Key/value pairs within tables are not guaranteed to be in any specific order.
 
@@ -395,6 +396,8 @@ bare-key = "value"
 "127.0.0.1" = "value"
 "character encoding" = "value"
 "ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
 ```
 
 Dots are prohibited in bare keys because dots are used to signify nested tables!
@@ -415,10 +418,10 @@ Whitespace around dot-separated parts is ignored, however, best practice is to
 not use any extraneous whitespace.
 
 ```toml
-[a.b.c]          # this is best practice
-[ d.e.f ]        # same as [d.e.f]
-[ g .  h  . i ]  # same as [g.h.i]
-[ j . "ʞ" . l ]  # same as [j."ʞ".l]
+[a.b.c]            # this is best practice
+[ d.e.f ]          # same as [d.e.f]
+[ g .  h  . i ]    # same as [g.h.i]
+[ j . "ʞ" . 'l' ]  # same as [j."ʞ".'l']
 ```
 
 You don't need to specify all the super-tables if you don't want to. TOML knows
