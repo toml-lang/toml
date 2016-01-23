@@ -681,6 +681,7 @@ note the version tag that your parser supports in your Readme.
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go (@naoina) - https://github.com/naoina/toml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
+- Go (@kezhuw) - https://github.com/kezhuw/toml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
