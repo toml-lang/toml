@@ -24,6 +24,7 @@ Table of contents
 - [Example](#user-content-example)
 - [Spec](#user-content-spec)
 - [Comment](#user-content-comment)
+- [Key/Value Pair](#user-content-key-value-pairs)
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
@@ -99,6 +100,48 @@ A hash symbol marks the rest of the line as a comment.
 ```toml
 # This is a full-line comment
 key = "value" # This is a comment at the end of a line
+```
+
+Key/Value Pair
+--------------
+
+The primary building block of a TOML document is the key/value pair.
+
+Keys are on the left of the equals sign and values are on the right. Whitespace
+is ignored around key names and values. The key, equals sign, and value must
+be on the same line (though some values can be broken over multiple lines).
+
+```toml
+key = "value"
+```
+
+Keys may be either bare or quoted. **Bare keys** may only contain letters,
+numbers, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
+allowed to be composed of only digits, e.g. `1234`. **Quoted keys** follow the
+exact same rules as either basic strings or literal strings and allow you to use
+a much broader set of key names. Best practice is to use bare keys except when
+absolutely necessary.
+
+```toml
+key = "value"
+bare_key = "value"
+bare-key = "value"
+1234 = "value"
+
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
+```
+
+A bare key must be non-empty, but an empty quoted key is allowed (though
+discouraged).
+
+```toml
+= "no key name"  # INVALID
+"" = "blank"     # VALID but discouraged
+'' = 'blank'     # VALID but discouraged
 ```
 
 String
@@ -373,35 +416,21 @@ apart from arrays because arrays are only ever values.
 ```
 
 Under that, and until the next table or EOF are the key/values of that table.
-Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values. The key, equals sign, and value must
-be on the same line (though some values can be broken over multiple lines).
-
-Keys may be either bare or quoted. **Bare keys** may only contain letters,
-numbers, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
-allowed to be composed of only digits, e.g. `1234`. **Quoted keys** follow the
-exact same rules as either basic strings or literal strings and allow you to use
-a much broader set of key names. Best practice is to use bare keys except when
-absolutely necessary.
-
 Key/value pairs within tables are not guaranteed to be in any specific order.
 
 ```toml
-[table]
-key = "value"
-bare_key = "value"
-bare-key = "value"
-1234 = "bare integer"
+[table-1]
+key1 = "some string"
+key2 = 123
 
-"127.0.0.1" = "value"
-"character encoding" = "value"
-"ʎǝʞ" = "value"
-'key2' = "value"
-'quoted "value"' = "value"
+[table-2]
+key1 = "another string"
+key2 = 456
 ```
 
-Dots are prohibited in bare keys because dots are used to signify nested tables!
-Naming rules for each dot separated part are the same as for keys (see above).
+Dots are prohibited in bare keys because dots are used to signify nested tables.
+Naming rules for each dot separated part are the same as for keys (see
+definition of Key/Value Pairs).
 
 ```toml
 [dog."tater.man"]
@@ -449,7 +478,7 @@ d = 2
 
 You cannot define any key or table more than once. Doing so is invalid.
 
-```toml
+```
 # DO NOT DO THIS
 
 [a]
@@ -459,7 +488,7 @@ b = 1
 c = 2
 ```
 
-```toml
+```
 # DO NOT DO THIS EITHER
 
 [a]
@@ -469,16 +498,14 @@ b = 1
 c = 2
 ```
 
-All table names and keys must be non-empty.
+All table names must be non-empty.
 
-```toml
-# NOT VALID TOML
-[]
-[a.]
-[a..b]
-[.b]
-[.]
- = "no key name" # not allowed
+```
+[]     # INVALID
+[a.]   # INVALID
+[a..b] # INVALID
+[.b]   # INVALID
+[.]    # INVALID
 ```
 
 Inline Table
@@ -602,7 +629,7 @@ The above TOML maps to the following JSON.
 Attempting to define a normal table with the same name as an already established
 array must produce an error at parse time.
 
-```toml
+```
 # INVALID TOML DOC
 [[fruit]]
   name = "apple"
