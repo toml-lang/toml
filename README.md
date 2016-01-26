@@ -24,7 +24,7 @@ Table of contents
 - [Example](#user-content-example)
 - [Spec](#user-content-spec)
 - [Comment](#user-content-comment)
-- [Key/Value Pair](#user-content-key-value-pairs)
+- [Key/Value Pair](#user-content-keyvalue-pair)
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
