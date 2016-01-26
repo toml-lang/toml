@@ -108,8 +108,8 @@ Key/Value Pair
 The primary building block of a TOML document is the key/value pair.
 
 Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values. The key, equals sign, and value must
-be on the same line (though some values can be broken over multiple lines).
+is ignored around key names and values. The key, equals sign, and value must be
+on the same line (though some values can be broken over multiple lines).
 
 ```toml
 key = "value"
@@ -143,6 +143,9 @@ discouraged).
 "" = "blank"     # VALID but discouraged
 '' = 'blank'     # VALID but discouraged
 ```
+
+Values may be of the following types: String, Integer, Float, Boolean, Datetime,
+Array, or Inline Table.
 
 String
 ------
@@ -375,18 +378,19 @@ millisecond precision is expected.
 Array
 -----
 
-Arrays are square brackets with other primitives inside. Whitespace is ignored.
-Elements are separated by commas. Data types may not be mixed (different ways to
-define strings should be considered the same type, and so should arrays with
-different element types).
+Arrays are square brackets with values inside. Whitespace is ignored. Elements
+are separated by commas. Data types may not be mixed (different ways to define
+strings should be considered the same type, and so should arrays with different
+element types).
 
 ```toml
 arr1 = [ 1, 2, 3 ]
 arr2 = [ "red", "yellow", "green" ]
 arr3 = [ [ 1, 2 ], [3, 4, 5] ]
-arr4 = [ "all", 'strings', """are the same""", '''type'''] # this is ok
-arr5 = [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
-arr6 = [ 1, 2.0 ] # note: this is NOT ok
+arr4 = [ "all", 'strings', """are the same""", '''type''']
+arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
+
+arr6 = [ 1, 2.0 ] # INVALID
 ```
 
 Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
