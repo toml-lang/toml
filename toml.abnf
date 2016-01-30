@@ -162,11 +162,11 @@ ws-newline       = *( ws / newline )
 ws-newlines      = newline *( ws / newline )
 
 array-open  = %x5B ws-newline  ; [
-array-close = ws %x5D  ; ]
+array-close = ws-newline %x5D  ; ]
 
 array = array-open array-values array-close
 
-array-values = ( [ val [ array-sep ] [ ( ws-newline comment ws-newlines) / ws-newlines ] ) /
+array-values = ( [ val [ array-sep ] [ ( ws-newline comment ws-newlines ) ] ) /
                  ( val array-sep [ ( ws-newline comment ws-newlines) / ws-newlines ] array-values ] )
 
 array-sep = ws %x2C ws  ; , Comma
