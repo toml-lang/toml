@@ -812,6 +812,7 @@ Editor support
 - Synwrite - http://uvviewsoft.com/synwrite/download.html ; call Options/ Addons manager/ Install
 - TextMate (@infininight) - https://github.com/textmate/toml.tmbundle
 - Vim (@cespare) - https://github.com/cespare/vim-toml
+- Visual Studio Code - https://marketplace.visualstudio.com/items?itemName=be5invis.toml
 
 Encoder
 --------------
