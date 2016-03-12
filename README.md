@@ -193,7 +193,7 @@ Roses are red
 Violets are blue"""
 ```
 
-TOML parsers should feel free to normalize newline to whatever makes sense for
+TOML parsers should feel free to normalize newlines to whatever makes sense for
 their platform.
 
 ```toml
@@ -433,7 +433,7 @@ key2 = 456
 ```
 
 Dots are prohibited in bare keys because dots are used to signify nested tables.
-Naming rules for each dot separated part are the same as for keys (see
+Naming rules for each dot-separated part are the same as for keys (see
 definition of Key/Value Pairs).
 
 ```toml
@@ -518,7 +518,7 @@ Inline Table
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
 Inline tables are enclosed in curly braces `{` and `}`. Within the braces, zero
-or more comma separated key/value pairs may appear. Key/value pairs take the
+or more comma-separated key/value pairs may appear. Key/value pairs take the
 same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
 
@@ -550,8 +550,8 @@ Array of Tables
 
 The last type that has not yet been expressed is an array of tables. These can
 be expressed by using a table name in double brackets. Each table with the same
-double bracketed name will be an element in the array. The tables are inserted
-in the order encountered. A double bracketed table without any key/value pairs
+double-bracketed name will be an element in the array. The tables are inserted
+in the order encountered. A double-bracketed table without any key/value pairs
 will be considered an empty table.
 
 ```toml
@@ -567,7 +567,7 @@ sku = 284758393
 color = "gray"
 ```
 
-In JSON land, that would give you the following structure.
+In JSON land, that would give you the following structure:
 
 ```json
 {
@@ -579,7 +579,7 @@ In JSON land, that would give you the following structure.
 }
 ```
 
-You can create nested arrays of tables as well. Just use the same double bracket
+You can create nested arrays of tables as well. Just use the same double-bracket
 syntax on sub-tables. Each double-bracketed sub-table will belong to the most
 recently defined table element above it.
 
@@ -604,7 +604,7 @@ recently defined table element above it.
     name = "plantain"
 ```
 
-The above TOML maps to the following JSON.
+The above TOML maps to the following JSON:
 
 ```json
 {
