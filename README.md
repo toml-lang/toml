@@ -703,6 +703,7 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.4.0 compliant
 
+- C (@ajwans) - https://github.com/ajwans/libtoml
 - C#/.NET (@paiden) - https://github.com/paiden/Nett
 - C#/.NET (@azyobuzin) - https://github.com/azyobuzin/HyperTomlProcessor
 - C++ (@andrusha97) - https://github.com/andrusha97/loltoml
@@ -738,7 +739,6 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.2.0 compliant
 
-- C (@ajwans) - https://github.com/ajwans/libtoml
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Go (@achun) - https://github.com/achun/tom-toml
 - Julia (@pygy) - https://github.com/pygy/TOML.jl
