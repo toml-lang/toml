@@ -694,6 +694,7 @@ Projects using TOML
 - [Hugo](http://gohugo.io/) - Static site generator in Go.
 - [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
 - [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
+- [CUAUV](http://cuauv.org) - Cornell University Autonomous Underwater Vehicle
 
 Implementations
 ---------------
