@@ -1,3 +1,5 @@
+![TOML Logo](logos/toml-200.png)
+
 TOML
 ====
 
