@@ -715,6 +715,7 @@ note the version tag that your parser supports in your Readme.
 - Go (@naoina) - https://github.com/naoina/toml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go (@kezhuw) - https://github.com/kezhuw/toml
+- Haskell (@cies) - https://github.com/cies/htoml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/TOML-javalib
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
@@ -736,7 +737,6 @@ note the version tag that your parser supports in your Readme.
 ### v0.3.1 compliant
 
 - Nim (@ziotom78) - https://github.com/ziotom78/parsetoml
-- Haskell (@cies) - https://github.com/cies/htoml
 
 ### v0.2.0 compliant
 
