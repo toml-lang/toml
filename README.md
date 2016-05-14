@@ -695,6 +695,7 @@ Projects using TOML
 - [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
 - [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
 - [CUAUV](http://cuauv.org) - Cornell University Autonomous Underwater Vehicle
+- [MCPhoton](http://mcphoton.org/) - Multi-threaded Java minecraft server.
 
 Implementations
 ---------------
