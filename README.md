@@ -351,45 +351,63 @@ To unambiguously represent a specific instant in time, you may use an
 [RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
 
 ```toml
-date1 = 1979-05-27T07:32:00Z
-date2 = 1979-05-27T00:32:00-07:00
-date3 = 1979-05-27T00:32:00.999999-07:00
+odt1 = 1979-05-27T07:32:00Z
+odt2 = 1979-05-27T00:32:00-07:00
+odt3 = 1979-05-27T00:32:00.999999-07:00
 ```
 
 The precision of fractional seconds is implementation specific, but at least
-millisecond precision is expected.
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
 
 Local Date-Time
 --------------
 
 If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
-formatted date-time, it will be interpreted with the local timezone.
+formatted date-time, it will represent the given date-time without any relation
+to an offset or timezone. It cannot be converted to an instant in time without
+additional information. Conversion to an instant is implementation specific.
 
 ```toml
-1979-05-27T07:32:00
-1979-05-27T00:32:00.999999
+ldt1 = 1979-05-27T07:32:00
+ldt2 = 1979-05-27T00:32:00.999999
 ```
 
-If the given date-time, once converted to an instant using the local timezone,
-does not exist, or is ambiguous (e.g. because of daylight savings time
-boundaries), then it should be adjusted to a single existing instant. At a
-parser's discretion, the "local timezone" may be configurable.
-
 The precision of fractional seconds is implementation specific, but at least
-millisecond precision is expected.
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
 
 Local Date
 ----------
 
 If you include only the date portion of an
 [RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will
-represent that entire day, interpreted with the local timezone.
+represent that entire day without any relation to an offset or timezone.
 
 ```toml
-1979-05-27
+ld1 = 1979-05-27
 ```
 
-At a parser's discretion, the "local timezone" may be configurable.
+Local Time
+----------
+
+If you include only the time portion of an [RFC
+3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
+that time of day without any relation to a specific day or any offset or
+timezone.
+
+```toml
+lt1 = 07:32:00
+lt2 = 00:32:00.999999
+
+```
+
+The precision of fractional seconds is implementation specific, but at least
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
 
 Array
 -----
