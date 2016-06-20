@@ -288,7 +288,7 @@ underscore must be surrounded by at least one digit.
 ```toml
 int5 = 1_000
 int6 = 5_349_221
-int7 = 1_2_3_4_5     # valid but inadvisable
+int7 = 1_2_3_4_5     # VALID but discouraged
 ```
 
 Leading zeros are not allowed. Hex, octal, and binary forms are not allowed.
