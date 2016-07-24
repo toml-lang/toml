@@ -719,6 +719,7 @@ note the version tag that your parser supports in your Readme.
 - Haskell (@cies) - https://github.com/cies/htoml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/TOML-javalib
+- Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
 - OCaml (@mackwic) https://github.com/mackwic/to.ml
@@ -823,6 +824,7 @@ Encoder
 
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
+- Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/tomlify-j0.4
 - Node.js/io.js/browser (@KenanY) - https://github.com/KenanY/json2toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
