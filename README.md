@@ -696,6 +696,7 @@ Projects using TOML
 - [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
 - [CUAUV](http://cuauv.org) - Cornell University Autonomous Underwater Vehicle
 - [MCPhoton](http://mcphoton.org/) - Multi-threaded Java minecraft server.
+- [GitLab CI (Runner)](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/) - The GitLab CI Multi Runner, written in Go.
 
 Implementations
 ---------------
