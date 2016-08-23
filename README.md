@@ -796,6 +796,7 @@ note the version tag that your parser supports in your Readme.
 - Rust (@mneumann) - https://github.com/mneumann/rust-toml
 - Scala - https://github.com/axelarge/tomelette
 - Scala - https://github.com/loop-less-code/toml-parser
+- PHP7 extension - https://github.com/shukean/php-toml
 
 Validators
 ----------
