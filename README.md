@@ -688,15 +688,17 @@ are welcome!
 Projects using TOML
 -------------------
 
+- [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
 - [Cargo](http://doc.crates.io/) - The Rust language's package manager.
-- [InfluxDB](http://influxdb.com/) - Distributed time series database.
+- [CUAUV](http://cuauv.org) - Cornell University Autonomous Underwater Vehicle
+- [GitLab CI (Runner)](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/) - The GitLab CI Multi Runner, written in Go.
+- [habitat](https://www.habitat.sh/) - Modern applications with built-in automation.
 - [Heka](https://hekad.readthedocs.org) - Stream processing system by Mozilla.
 - [Hugo](http://gohugo.io/) - Static site generator in Go.
-- [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
-- [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
-- [CUAUV](http://cuauv.org) - Cornell University Autonomous Underwater Vehicle
+- [InfluxDB](http://influxdb.com/) - Distributed time series database.
 - [MCPhoton](http://mcphoton.org/) - Multi-threaded Java minecraft server.
-- [GitLab CI (Runner)](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/) - The GitLab CI Multi Runner, written in Go.
+- [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
+
 
 Implementations
 ---------------
