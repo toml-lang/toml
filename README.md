@@ -122,7 +122,7 @@ exact same rules as either basic strings or literal strings and allow you to use
 a much broader set of key names. Best practice is to use bare keys except when
 absolutely necessary.
 
-```toml
+```
 key = "value"
 bare_key = "value"
 bare-key = "value"
@@ -138,7 +138,7 @@ bare-key = "value"
 A bare key must be non-empty, but an empty quoted key is allowed (though
 discouraged).
 
-```toml
+```
 = "no key name"  # INVALID
 "" = "blank"     # VALID but discouraged
 '' = 'blank'     # VALID but discouraged
@@ -157,7 +157,7 @@ multi-line literal. All strings must contain only valid UTF-8 characters.
 be used except those that must be escaped: quotation mark, backslash, and the
 control characters (U+0000 to U+001F).
 
-```toml
+```
 str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 ```
 
@@ -359,7 +359,7 @@ date3 = 1979-05-27T00:32:00.999999-07:00
 You may omit the local offset and let the parser or host application decide that
 information. A good default is to use the host machine's local offset.
 
-```toml
+```
 1979-05-27T07:32:00
 1979-05-27T00:32:00.999999
 ```
@@ -368,7 +368,7 @@ If you only care about the day, you can omit the local offset and the time,
 letting the parser or host application decide both. Good defaults are to use the
 host machine's local offset and 00:00:00.
 
-```toml
+```
 1979-05-27
 ```
 
