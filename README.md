@@ -88,7 +88,7 @@ Spec
 ----
 
 * TOML is case sensitive.
-* A TOML file must contain only UTF-8 encoded Unicode characters.
+* A TOML file must be a valid UTF-8 encoded Unicode document.
 * Whitespace means tab (0x09) or space (0x20).
 * Newline means LF (0x0A) or CRLF (0x0D0A).
 
