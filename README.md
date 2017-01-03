@@ -367,7 +367,8 @@ Local Date-Time
 If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
 to an offset or timezone. It cannot be converted to an instant in time without
-additional information. Conversion to an instant is implementation specific.
+additional information. Conversion to an instant, if required, is implementation
+specific.
 
 ```toml
 ldt1 = 1979-05-27T07:32:00
