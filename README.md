@@ -668,6 +668,16 @@ The above TOML maps to the following JSON.
 }
 ```
 
+Attempting to append to a statically defined array, even if that array is empty
+or of compatible type, must produce an error at parse time.
+
+```toml
+# INVALID TOML DOC
+fruit = []
+
+[[fruit]] # Not allowed
+```
+
 Attempting to define a normal table with the same name as an already established
 array must produce an error at parse time.
 
