@@ -825,6 +825,7 @@ note the version tag that your parser supports in your Readme.
 - PHP (@jimbomoss) - https://github.com/jamesmoss/toml
 - PHP (@coop182) - https://github.com/coop182/toml-php
 - PHP (@checkdomain) - https://github.com/checkdomain/toml
+- PHP php7 extension (@shukean) - https://github.com/shukean/php-toml
 - Python (@f03lipe) - https://github.com/f03lipe/toml-python
 - Python - https://github.com/bryant/pytoml
 - Python (@elssar) - https://github.com/elssar/tomlgun
