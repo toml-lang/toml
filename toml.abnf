@@ -1,6 +1,9 @@
 ;; This is an attempt to define TOML in ABNF according to the grammar defined
 ;; in RFC 4234 (http://www.ietf.org/rfc/rfc4234.txt).
 
+;; WARNING: This document is a work-in-progress and should not be considered
+;; authoritative until further notice.
+
 ;; TOML
 
 toml = expression *( newline expression )
