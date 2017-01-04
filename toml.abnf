@@ -26,8 +26,6 @@ expression = ( ( ws comment ) /
 newline = ( %x0A /              ; LF
             %x0D.0A )           ; CRLF
 
-newlines = 1*newline
-
 ;; Whitespace
 
 ws = *wschar
