@@ -1,34 +1,38 @@
+;; WARNING: This document is a work-in-progress and should not be considered
+;; authoritative until further notice.
+
 ;; This is an attempt to define TOML in ABNF according to the grammar defined
 ;; in RFC 5234 (http://www.ietf.org/rfc/rfc5234.txt).
 
-;; WARNING: This document is a work-in-progress and should not be considered
-;; authoritative until further notice.
+;; You can try out this grammar interactively via the online ABNF tool at
+;; http://www.coasttocoastresearch.com/interactiveapg
+;; Note that due to the limitations of ABNF parsers, in order for multi-line
+;; strings to work in that tool, the following rules must be ammended to
+;; disallow the use of unescaped double- or single-quotes:
+;; ml-basic-unescaped = basic-unescaped
+;; ml-literal-char = literal-char
 
 ;; TOML
 
 toml = expression *( newline expression )
-expression = (
-  ws /
-  ( ws comment ) /
-  ( ws keyval ws [ comment ] ) /
-  ( ws table ws [ comment ] )
-)
+expression = ( ( ws comment ) /
+               ( ws keyval ws [ comment ] ) /
+               ( ws table ws [ comment ] ) /
+                 ws )
 
 ;; Newline
 
-newline = (
-  %x0A /              ; LF
-  %x0D.0A             ; CRLF
-)
+newline = ( %x0A /              ; LF
+            %x0D.0A )           ; CRLF
 
 newlines = 1*newline
 
 ;; Whitespace
 
-ws = *(
-  %x20 /              ; Space
-  %x09                ; Horizontal tab
-)
+wschar = ( %x20 /              ; Space
+           %x09 )              ; Horizontal tab
+
+ws = *wschar
 
 ;; Comment
 
@@ -45,7 +49,7 @@ key = unquoted-key / quoted-key
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
 quoted-key = quotation-mark 1*basic-char quotation-mark ; See Basic Strings
 
-val = integer / float / string / boolean / date-time / array / inline-table
+val = string / boolean / array / inline-table / date-time / float / integer
 
 ;; Table
 
@@ -77,7 +81,7 @@ int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
 
 ;; Float
 
-float = integer ( frac / frac exp / exp )
+float = integer ( frac / ( frac exp ) / exp )
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
@@ -86,7 +90,7 @@ e = %x65 / %x45                    ; e E
 
 ;; String
 
-string = basic-string / ml-basic-string / literal-string / ml-literal-string
+string = ml-basic-string / basic-string / ml-literal-string / literal-string
 
 ;; Basic String
 
@@ -112,7 +116,7 @@ escape = %x5C                    ; \
 
 ;; Multiline Basic String
 
-ml-basic-string-delim = quotation-mark quotation-mark quotation-mark
+ml-basic-string-delim = 3quotation-mark
 ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
 ml-basic-body = *( ml-basic-char / newline / ( escape newline ))
 
@@ -121,15 +125,15 @@ ml-basic-unescaped = %x20-5B / %x5D-10FFFF
 
 ;; Literal String
 
-literal-string = apostraphe *literal-char apostraphe
+literal-string = apostrophe *literal-char apostrophe
 
-apostraphe = %x27 ; ' Apostraphe
+apostrophe = %x27 ; ' apostrophe
 
 literal-char = %x09 / %x20-26 / %x28-10FFFF
 
 ;; Multiline Literal String
 
-ml-literal-string-delim = apostraphe apostraphe apostraphe
+ml-literal-string-delim = 3apostrophe
 ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
 
 ml-literal-body = *( ml-literal-char / newline )
@@ -177,16 +181,16 @@ local-time = partial-time
 
 ;; Array
 
-ws-newline       = *( ws / newline )
-ws-newlines      = newline *( ws / newline )
+ws-newline       = *( wschar / newline )
+ws-newlines      = newline *( wschar / newline )
 
 array-open  = %x5B ws-newline  ; [
 array-close = ws-newline %x5D  ; ]
 
 array = array-open array-values array-close
 
-array-values = [ ( val [ array-sep ] [ ( ws-newline comment ws-newlines ) ] ) /
-                 ( val array-sep [ ( ws-newline comment ws-newlines) / ws-newlines ] array-values ) ]
+array-values = [ ( val array-sep [ ( ws-newline comment ws-newlines) / ws-newlines ] array-values ) /
+                 ( val [ array-sep ] [ ( ws-newline comment ws-newlines ) ] ) ]
 
 array-sep = ws %x2C ws  ; , Comma
 
@@ -199,11 +203,11 @@ inline-table-sep   = ws %x2C ws  ; , Comma
 inline-table = inline-table-open inline-table-keyvals inline-table-close
 
 inline-table-keyvals = [ inline-table-keyvals-non-empty ]
-inline-table-keyvals-non-empty = ( key keyval-sep val ) /
-                                 ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty )
+inline-table-keyvals-non-empty = ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty ) /
+                                 ( key keyval-sep val )
 
 ;; Built-in ABNF terms, reproduced here for clarity
 
-; ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
-; DIGIT = %x30-39 ; 0-9
-; HEXDIG = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
+ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
+DIGIT = %x30-39 ; 0-9
+HEXDIG = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
