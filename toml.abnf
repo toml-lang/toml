@@ -141,7 +141,7 @@ boolean = true / false
 true    = %x74.72.75.65     ; true
 false   = %x66.61.6C.73.65  ; false
 
-;; Datetime (as defined in RFC 3339)
+;; Date and Time (as defined in RFC 3339)
 
 date-fullyear  = 4DIGIT
 date-month     = 2DIGIT  ; 01-12
@@ -157,7 +157,23 @@ partial-time   = time-hour ":" time-minute ":" time-second [time-secfrac]
 full-date      = date-fullyear "-" date-month "-" date-mday
 full-time      = partial-time time-offset
 
-date-time      = full-date "T" full-time
+date-time      = offset-date-time / local-date-time / local-date / local-time
+
+;; Offset Date-Time
+
+offset-date-time = full-date "T" full-time
+
+;; Local Date-Time
+
+local-date-time = full-date "T" partial-time
+
+;; Local Date
+
+local-date = full-date
+
+;; Local Time
+
+local-time = partial-time
 
 ;; Array
 
