@@ -15,6 +15,7 @@
 ;; TOML
 
 toml = expression *( newline expression )
+
 expression = ( ( ws comment ) /
                ( ws keyval ws [ comment ] ) /
                ( ws table ws [ comment ] ) /
@@ -29,10 +30,10 @@ newlines = 1*newline
 
 ;; Whitespace
 
+ws = *wschar
+
 wschar = ( %x20 /              ; Space
            %x09 )              ; Horizontal tab
-
-ws = *wschar
 
 ;; Comment
 
@@ -42,12 +43,13 @@ comment = comment-start-symbol *non-eol
 
 ;; Key-Value pairs
 
-keyval-sep = ws %x3D ws ; =
 keyval = key keyval-sep val
 
 key = unquoted-key / quoted-key
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
 quoted-key = quotation-mark 1*basic-char quotation-mark ; See Basic Strings
+
+keyval-sep = ws %x3D ws ; =
 
 val = string / boolean / array / inline-table / date-time / float / integer
 
@@ -57,34 +59,38 @@ table = std-table / array-table
 
 ;; Standard Table
 
+std-table = std-table-open key *( table-key-sep key) std-table-close
+
 std-table-open  = %x5B ws     ; [ Left square bracket
 std-table-close = ws %x5D     ; ] Right square bracket
 table-key-sep   = ws %x2E ws  ; . Period
 
-std-table = std-table-open key *( table-key-sep key) std-table-close
-
 ;; Array Table
+
+array-table = array-table-open key *( table-key-sep key) array-table-close
 
 array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
 array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
 
-array-table = array-table-open key *( table-key-sep key) array-table-close
-
 ;; Integer
 
 integer = [ minus / plus ] int
+
 minus = %x2D                       ; -
 plus = %x2B                        ; +
+
+int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
 digit1-9 = %x31-39                 ; 1-9
 underscore = %x5F                  ; _
-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
 
 ;; Float
 
 float = integer ( frac / ( frac exp ) / exp )
-zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
+
 frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
+zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
+
 exp = e integer
 e = %x65 / %x45                    ; e E
 
@@ -99,6 +105,7 @@ basic-string = quotation-mark *basic-char quotation-mark
 quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
+basic-unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
 escaped = escape ( %x22 /          ; "    quotation mark  U+0022
                    %x5C /          ; \    reverse solidus U+005C
                    %x2F /          ; /    solidus         U+002F
@@ -110,16 +117,15 @@ escaped = escape ( %x22 /          ; "    quotation mark  U+0022
                    %x75 4HEXDIG /  ; uXXXX                U+XXXX
                    %x55 8HEXDIG )  ; UXXXXXXXX            U+XXXXXXXX
 
-basic-unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
-
 escape = %x5C                    ; \
 
 ;; Multiline Basic String
 
-ml-basic-string-delim = 3quotation-mark
 ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
-ml-basic-body = *( ml-basic-char / newline / ( escape newline ))
 
+ml-basic-string-delim = 3quotation-mark
+
+ml-basic-body = *( ml-basic-char / newline / ( escape newline ))
 ml-basic-char = ml-basic-unescaped / escaped
 ml-basic-unescaped = %x20-5B / %x5D-10FFFF
 
@@ -133,8 +139,9 @@ literal-char = %x09 / %x20-26 / %x28-10FFFF
 
 ;; Multiline Literal String
 
-ml-literal-string-delim = 3apostrophe
 ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
+
+ml-literal-string-delim = 3apostrophe
 
 ml-literal-body = *( ml-literal-char / newline )
 ml-literal-char = %x09 / %x20-10FFFF
@@ -142,10 +149,13 @@ ml-literal-char = %x09 / %x20-10FFFF
 ;; Boolean
 
 boolean = true / false
+
 true    = %x74.72.75.65     ; true
 false   = %x66.61.6C.73.65  ; false
 
 ;; Date and Time (as defined in RFC 3339)
+
+date-time      = offset-date-time / local-date-time / local-date / local-time
 
 date-fullyear  = 4DIGIT
 date-month     = 2DIGIT  ; 01-12
@@ -160,8 +170,6 @@ time-offset    = "Z" / time-numoffset
 partial-time   = time-hour ":" time-minute ":" time-second [time-secfrac]
 full-date      = date-fullyear "-" date-month "-" date-mday
 full-time      = partial-time time-offset
-
-date-time      = offset-date-time / local-date-time / local-date / local-time
 
 ;; Offset Date-Time
 
@@ -181,26 +189,26 @@ local-time = partial-time
 
 ;; Array
 
-ws-newline       = *( wschar / newline )
-ws-newlines      = newline *( wschar / newline )
+array = array-open array-values array-close
 
 array-open  = %x5B ws-newline  ; [
 array-close = ws-newline %x5D  ; ]
-
-array = array-open array-values array-close
 
 array-values = [ ( val array-sep [ ( ws-newline comment ws-newlines) / ws-newlines ] array-values ) /
                  ( val [ array-sep ] [ ( ws-newline comment ws-newlines ) ] ) ]
 
 array-sep = ws %x2C ws  ; , Comma
 
+ws-newline       = *( wschar / newline )
+ws-newlines      = newline *( wschar / newline )
+
 ;; Inline Table
+
+inline-table = inline-table-open inline-table-keyvals inline-table-close
 
 inline-table-open  = %x7B ws     ; {
 inline-table-close = ws %x7D     ; }
 inline-table-sep   = ws %x2C ws  ; , Comma
-
-inline-table = inline-table-open inline-table-keyvals inline-table-close
 
 inline-table-keyvals = [ inline-table-keyvals-non-empty ]
 inline-table-keyvals-non-empty = ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty ) /
