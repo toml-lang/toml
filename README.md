@@ -207,13 +207,11 @@ str2 = "Roses are red\nViolets are blue"
 str3 = "Roses are red\r\nViolets are blue"
 ```
 
-For writing long strings without introducing extraneous whitespace, end a line
-with a `\`.  The `\` will be trimmed along with all whitespace (including
-newlines) up to the next non-whitespace character or closing delimiter.
-Accidental whitespace between the backslash and newline is allowed (even though
-it will create an otherwise invalid backslash-space or backslash-tab) and will
-be trimmed. All of the escape sequences that are valid for basic strings are
-also valid for multi-line basic strings.
+For writing long strings without introducing extraneous whitespace, use a "line
+ending backslash". When the last non-whitespace character on a line is a `\`, it
+will be trimmed along with all whitespace (including newlines) up to the next
+non-whitespace character or closing delimiter. All of the escape sequences that
+are valid for basic strings are also valid for multi-line basic strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
