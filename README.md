@@ -207,11 +207,9 @@ str2 = "Roses are red\nViolets are blue"
 str3 = "Roses are red\r\nViolets are blue"
 ```
 
-For writing long strings without introducing extraneous whitespace, end a line
-with a `\`. The `\` will be trimmed along with all whitespace (including
-newlines) up to the next non-whitespace character or closing delimiter. If the
-first characters after the opening delimiter are a backslash and a newline, then
-they will both be trimmed along with all whitespace and newlines up to the next
+For writing long strings without introducing extraneous whitespace, use a "line
+ending backslash". When the last non-whitespace character on a line is a `\`, it
+will be trimmed along with all whitespace (including newlines) up to the next
 non-whitespace character or closing delimiter. All of the escape sequences that
 are valid for basic strings are also valid for multi-line basic strings.
 
