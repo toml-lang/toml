@@ -250,13 +250,18 @@ regex    = '<\i\c*\s*>'
 regex2   = 'I [dw]on't need \d{2} apples'
 ```
 
-Since there is no escaping, there is no way to write a single quote inside a
-literal string enclosed by single quotes. Luckily, TOML supports a multi-line
-version of literal strings that solves this problem. **Multi-line literal
-strings** are surrounded by three single quotes on each side and allow newlines.
-Like literal strings, there is no escaping whatsoever. A newline immediately
-following the opening delimiter will be trimmed. All other content between the
-delimiters is interpreted as-is without modification.
+While there is no escaping, it is still possible to include single quotes
+by typing them twice:
+
+```toml
+quotetoml = 'Tom''s Obvious, Minimal Language'
+```
+
+**Multi-line literal strings** begin with three single quotes, optional
+whitespace, and newline. Optional whitespace and newline is trimmed by the
+parser. End of multi-line literal string is marked by a line containing only
+three single quotes. All other content between the delimiters is interpreted
+as-is without modification.
 
 ```toml
 lines  = '''
@@ -264,6 +269,21 @@ The first newline is
 trimmed in literal strings.
    All other whitespace
    is preserved.
+Single quotes are preserved:
+   Multi-line literal strings begin with ''' and end with '''
+Here is the end:
+'''
+```
+
+As multi-line literal strings always span at least two lines, it is
+impossible to confuse them with single-line literal strings:
+
+```toml
+# The following three strings are byte-for-byte equivalent:
+quote1 = "'single quotes all the way down'"
+quote2 = '''single quotes all the way down'''
+quote3 = '''
+'single quotes all the way down'
 '''
 ```
 
