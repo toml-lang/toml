@@ -261,7 +261,7 @@ delimiters is interpreted as-is without modification.
 regex2 = '''I [dw]on't need \d{2} apples'''
 lines  = '''
 The first newline is
-trimmed in raw strings.
+trimmed in literal strings.
    All other whitespace
    is preserved.
 '''
