@@ -247,6 +247,7 @@ winpath  = 'C:\Users\nodejs\templates'
 winpath2 = '\\ServerX\admin$\system32\'
 quoted   = 'Tom "Dubs" Preston-Werner'
 regex    = '<\i\c*\s*>'
+regex2   = 'I [dw]on't need \d{2} apples'
 ```
 
 Since there is no escaping, there is no way to write a single quote inside a
@@ -258,7 +259,6 @@ following the opening delimiter will be trimmed. All other content between the
 delimiters is interpreted as-is without modification.
 
 ```toml
-regex2 = '''I [dw]on't need \d{2} apples'''
 lines  = '''
 The first newline is
 trimmed in literal strings.
