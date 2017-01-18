@@ -16,7 +16,7 @@ enabled = true
 
 [servers]
 
-  # You can indent as you please. Tabs or spaces. TOML don't care.
+  # You can indent as you please. Tabs or spaces. TOML parser doesn't care.
   [servers.alpha]
   ip = "10.0.0.1"
   dc = "eqdc10"
