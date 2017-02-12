@@ -224,7 +224,7 @@ The quick brown \
   fox jumps over \
     the lazy dog."""
 
-key3 = """\
+str3 = """\
        The quick brown \
        fox jumps over \
        the lazy dog.\
