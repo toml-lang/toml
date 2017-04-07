@@ -767,6 +767,7 @@ note the version tag that your parser supports in your Readme.
 - Common Lisp (@sgarciac) - https://github.com/sgarciac/sawyer
 - Crystal (@manastech) - https://github.com/manastech/crystal-toml
 - Dart (@just95) - https://github.com/just95/toml.dart
+- Erlang - https://github.com/dozzie/toml
 - Go (@naoina) - https://github.com/naoina/toml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go (@kezhuw) - https://github.com/kezhuw/toml
