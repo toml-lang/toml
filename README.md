@@ -773,6 +773,7 @@ note the version tag that your parser supports in your Readme.
 - Go (@kezhuw) - https://github.com/kezhuw/toml
 - Haskell (@cies) - https://github.com/cies/htoml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
+- Java (@TheElectronWill) - https://github.com/TheElectronWill/Night-Config
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/TOML-javalib
 - Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
