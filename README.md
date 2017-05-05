@@ -791,6 +791,7 @@ note the version tag that your parser supports in your Readme.
 - Rust (@alexcrichton) - https://github.com/alexcrichton/toml-rs
 - CHICKEN Scheme (@caolan) - https://github.com/caolan/chicken-toml
 - Scala (@jvican) - https://github.com/jvican/stoml
+- Smalltalk (@DraagrenKirneh) - https://github.com/DraagrenKirneh/TOML
 - Swift (@jdfergason) - https://github.com/jdfergason/swift-toml
 
 ### v0.3.1 compliant
