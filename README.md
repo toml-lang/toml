@@ -779,6 +779,7 @@ note the version tag that your parser supports in your Readme.
 - Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
+- Node.js/io.js/browser (@sgarciac) - https://github.com/sgarciac/bombadil
 - OCaml (@mackwic) https://github.com/mackwic/to.ml
 - Perl 5 (@karupanerura)- https://github.com/karupanerura/TOML-Parser
 - Perl 6 (@atweiden) - https://github.com/atweiden/config-toml
