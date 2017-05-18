@@ -771,6 +771,7 @@ note the version tag that your parser supports in your Readme.
 - Go (@naoina) - https://github.com/naoina/toml
 - Go (@thompelletier) - https://github.com/pelletier/go-toml
 - Go (@kezhuw) - https://github.com/kezhuw/toml
+- Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Haskell (@cies) - https://github.com/cies/htoml
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/Night-Config
@@ -799,7 +800,6 @@ note the version tag that your parser supports in your Readme.
 
 ### v0.2.0 compliant
 
-- Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
 - Go (@achun) - https://github.com/achun/tom-toml
 - Julia (@pygy) - https://github.com/pygy/TOML.jl
 - node.js/browser (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
