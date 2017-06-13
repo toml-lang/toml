@@ -776,6 +776,7 @@ note the version tag that your parser supports in your Readme.
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/Night-Config
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/TOML-javalib
+- LabVIEW (@dbtaylor) - https://github.com/erdosmiller/lv-toml
 - Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
 - Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
 - Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
