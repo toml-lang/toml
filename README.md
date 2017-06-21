@@ -746,6 +746,7 @@ Projects using TOML
 - [InfluxDB](http://influxdb.com/) - Distributed time series database.
 - [MCPhoton](http://mcphoton.org/) - Multi-threaded Java minecraft server.
 - [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
+- [Traefik](https://traefik.io/) - Modern HTTP reverse proxy.
 
 
 Implementations
