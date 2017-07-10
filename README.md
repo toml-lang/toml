@@ -776,11 +776,11 @@ note the version tag that your parser supports in your Readme.
 - Java (@mwanji) - https://github.com/mwanji/toml4j
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/Night-Config
 - Java (@TheElectronWill) - https://github.com/TheElectronWill/TOML-javalib
+- JavaScript: Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
+- JavaScript: Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
+- JavaScript/TypeScript: Node.js/io.js/browser (@sgarciac) - https://github.com/sgarciac/bombadil
 - LabVIEW (@dbtaylor) - https://github.com/erdosmiller/lv-toml
 - Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
-- Node.js/io.js/browser (@BinaryMuse) - https://github.com/BinaryMuse/toml-node
-- Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/toml-j0.4
-- Node.js/io.js/browser (@sgarciac) - https://github.com/sgarciac/bombadil
 - OCaml (@mackwic) https://github.com/mackwic/to.ml
 - Perl 5 (@karupanerura)- https://github.com/karupanerura/TOML-Parser
 - Perl 6 (@atweiden) - https://github.com/atweiden/config-toml
@@ -804,8 +804,8 @@ note the version tag that your parser supports in your Readme.
 ### v0.2.0 compliant
 
 - Go (@achun) - https://github.com/achun/tom-toml
+- JavaScript/CoffeeScript: node.js/browser (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
 - Julia (@pygy) - https://github.com/pygy/TOML.jl
-- node.js/browser (@redhotvengeance) - https://github.com/redhotvengeance/topl (topl npm package)
 - PHP (@zidizei) - https://github.com/zidizei/toml-php
 - Racket (@greghendershott) - https://github.com/greghendershott/toml
 
@@ -817,7 +817,7 @@ note the version tag that your parser supports in your Readme.
 - Emacs Lisp (@gongoZ) - https://github.com/gongo/emacs-toml
 - Haxe (@raincole) - https://github.com/raincole/haxetoml
 - Java (@johnlcox) - https://github.com/johnlcox/toml4j
-- node.js/browser (@ricardobeat) - https://github.com/ricardobeat/toml.js (npm install tomljs)
+- JavaScript/CoffeeScript: node.js/browser (@ricardobeat) - https://github.com/ricardobeat/toml.js (npm install tomljs)
 - Python (@hit9) - https://github.com/hit9/toml.py
 
 ### Unknown (or pre-v0.1.0) compliance
@@ -836,8 +836,8 @@ note the version tag that your parser supports in your Readme.
 - Java (@agrison) - https://github.com/agrison/jtoml
 - Java - https://github.com/asafh/jtoml
 - Java w/ ANTLR (@MatthiasSchuetz) - https://github.com/mschuetz/toml
+- JavaScript: node.js/browser (@alexanderbeletsky) - https://github.com/alexanderbeletsky/toml-js (npm browser amd)
 - Literate CoffeeScript (@JonathanAbrams) - https://github.com/JonAbrams/tomljs
-- node.js/browser (@alexanderbeletsky) - https://github.com/alexanderbeletsky/toml-js (npm browser amd)
 - Objective C (@mneorr) - https://github.com/mneorr/toml-objc.git
 - Objective-C (@SteveStreza) - https://github.com/amazingsyco/TOML
 - Perl (@alexkalderimis) - https://github.com/alexkalderimis/config-toml.pl
@@ -885,9 +885,9 @@ Encoder
 
 - Dart (@just95) - https://github.com/just95/toml.dart
 - Go w/ Reflection (@BurntSushi) - https://github.com/BurntSushi/toml
+- JavaScript: Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/tomlify-j0.4
+- JavaScript: Node.js/io.js/browser (@KenanY) - https://github.com/KenanY/json2toml
 - Lua (@jonstoler) - https://github.com/jonstoler/lua-toml
-- Node.js/io.js/browser (@jakwings) - https://github.com/jakwings/tomlify-j0.4
-- Node.js/io.js/browser (@KenanY) - https://github.com/KenanY/json2toml
 - PHP (@ayushchd) - https://github.com/ayushchd/php-toml-encoder
 
 Converters
