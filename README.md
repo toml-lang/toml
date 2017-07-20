@@ -550,6 +550,15 @@ All table names must be non-empty.
 [.]    # INVALID
 ```
 
+But an empty quoted name is allowed (though discouraged).
+
+```toml
+
+[a.""]   # VALID but discouraged
+[a.''.c] # VALID but discouraged
+[""]     # VALID but discouraged
+```
+
 Inline Table
 ------------
 
