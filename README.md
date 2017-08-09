@@ -739,6 +739,7 @@ Projects using TOML
 - [bloom.api](https://github.com/untoldone/bloomapi) - Create APIs out of public datasources.
 - [Cargo](http://doc.crates.io/) - The Rust language's package manager.
 - [CUAUV](http://cuauv.org) - Cornell University Autonomous Underwater Vehicle
+- [dep](https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md) - Golang's soon-to-be official dependency management tool
 - [GitLab CI (Runner)](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/) - The GitLab CI Multi Runner, written in Go.
 - [habitat](https://www.habitat.sh/) - Modern applications with built-in automation.
 - [Heka](https://hekad.readthedocs.org) - Stream processing system by Mozilla.
