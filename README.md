@@ -149,8 +149,12 @@ discouraged).
 '' = 'blank'     # VALID but discouraged
 ```
 
-Values may be of the following types: String, Integer, Float, Boolean, Datetime,
-Array, or Inline Table.
+Values must be of the following types: String, Integer, Float, Boolean, Datetime,
+Array, or Inline Table. Unspecified values are invalid.
+
+```toml
+key = # INVALID
+```
 
 String
 ------
