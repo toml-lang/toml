@@ -45,7 +45,8 @@ keyval = key keyval-sep val
 
 key = unquoted-key / quoted-key
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
-quoted-key = quotation-mark 1*basic-char quotation-mark ; See Basic Strings
+quoted-key = ( ( quotation-mark 1*basic-char quotation-mark ) /
+               ( apostrophe *literal-char apostrophe ) ) ; Same as Bare/Literal Strings
 
 keyval-sep = ws %x3D ws ; =
 
