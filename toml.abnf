@@ -123,8 +123,7 @@ frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
-exp = e integer
-e = %x65 / %x45                    ; e E
+exp = "e" integer
 
 ;; Boolean
 
