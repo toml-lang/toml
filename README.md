@@ -118,12 +118,12 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Keys may be either bare or quoted. **Bare keys** may only contain letters,
-numbers, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
-allowed to be composed of only digits, e.g. `1234`, but are always interpreted
-as strings. **Quoted keys** follow the exact same rules as either basic strings
-or literal strings and allow you to use a much broader set of key names. Best
-practice is to use bare keys except when absolutely necessary.
+Keys may be either bare or quoted. **Bare keys** may only contain ASCII letters,
+ASCII digits, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
+allowed to be composed of only ASCII digits, e.g. `1234`, but are always
+interpreted as strings. **Quoted keys** follow the exact same rules as either
+basic strings or literal strings and allow you to use a much broader set of key
+names. Best practice is to use bare keys except when absolutely necessary.
 
 ```toml
 key = "value"
