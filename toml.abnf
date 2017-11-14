@@ -12,7 +12,7 @@
 ;; ml-basic-unescaped = basic-unescaped
 ;; ml-literal-char = literal-char
 
-;; TOML
+;; Overall Structure
 
 toml = expression *( newline expression )
 
@@ -21,17 +21,17 @@ expression = ( ( ws comment ) /
                ( ws table ws [ comment ] ) /
                  ws )
 
-;; Newline
-
-newline = ( %x0A /              ; LF
-            %x0D.0A )           ; CRLF
-
 ;; Whitespace
 
 ws = *wschar
 
 wschar = ( %x20 /              ; Space
            %x09 )              ; Horizontal tab
+
+;; Newline
+
+newline = ( %x0A /              ; LF
+            %x0D.0A )           ; CRLF
 
 ;; Comment
 
@@ -50,47 +50,6 @@ quoted-key = quotation-mark 1*basic-char quotation-mark ; See Basic Strings
 keyval-sep = ws %x3D ws ; =
 
 val = string / boolean / array / inline-table / date-time / float / integer
-
-;; Table
-
-table = std-table / array-table
-
-;; Standard Table
-
-std-table = std-table-open key *( table-key-sep key ) std-table-close
-
-std-table-open  = %x5B ws     ; [ Left square bracket
-std-table-close = ws %x5D     ; ] Right square bracket
-table-key-sep   = ws %x2E ws  ; . Period
-
-;; Array Table
-
-array-table = array-table-open key *( table-key-sep key ) array-table-close
-
-array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
-array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
-
-;; Integer
-
-integer = [ minus / plus ] int
-
-minus = %x2D                       ; -
-plus = %x2B                        ; +
-
-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
-digit1-9 = %x31-39                 ; 1-9
-underscore = %x5F                  ; _
-
-;; Float
-
-float = integer ( frac / ( frac exp ) / exp )
-
-frac = decimal-point zero-prefixable-int
-decimal-point = %x2E               ; .
-zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
-
-exp = e integer
-e = %x65 / %x45                    ; e E
 
 ;; String
 
@@ -143,6 +102,28 @@ ml-literal-string-delim = 3apostrophe
 
 ml-literal-body = *( ml-literal-char / newline )
 ml-literal-char = %x09 / %x20-10FFFF
+
+;; Integer
+
+integer = [ minus / plus ] int
+
+minus = %x2D                       ; -
+plus = %x2B                        ; +
+
+int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+digit1-9 = %x31-39                 ; 1-9
+underscore = %x5F                  ; _
+
+;; Float
+
+float = integer ( frac / ( frac exp ) / exp )
+
+frac = decimal-point zero-prefixable-int
+decimal-point = %x2E               ; .
+zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
+
+exp = e integer
+e = %x65 / %x45                    ; e E
 
 ;; Boolean
 
@@ -200,6 +181,18 @@ array-sep = ws %x2C ws  ; , Comma
 ws-newline       = *( wschar / newline )
 ws-newlines      = newline *( wschar / newline )
 
+;; Table
+
+table = std-table / array-table
+
+;; Standard Table
+
+std-table = std-table-open key *( table-key-sep key ) std-table-close
+
+std-table-open  = %x5B ws     ; [ Left square bracket
+std-table-close = ws %x5D     ; ] Right square bracket
+table-key-sep   = ws %x2E ws  ; . Period
+
 ;; Inline Table
 
 inline-table = inline-table-open inline-table-keyvals inline-table-close
@@ -211,6 +204,13 @@ inline-table-sep   = ws %x2C ws  ; , Comma
 inline-table-keyvals = [ inline-table-keyvals-non-empty ]
 inline-table-keyvals-non-empty = ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty ) /
                                  ( key keyval-sep val )
+
+;; Array Table
+
+array-table = array-table-open key *( table-key-sep key ) array-table-close
+
+array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
+array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
 
 ;; Built-in ABNF terms, reproduced here for clarity
 
