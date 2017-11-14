@@ -63,18 +63,19 @@ quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
 basic-unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
-escaped = escape ( %x22 /          ; "    quotation mark  U+0022
-                   %x5C /          ; \    reverse solidus U+005C
-                   %x2F /          ; /    solidus         U+002F
-                   %x62 /          ; b    backspace       U+0008
-                   %x66 /          ; f    form feed       U+000C
-                   %x6E /          ; n    line feed       U+000A
-                   %x72 /          ; r    carriage return U+000D
-                   %x74 /          ; t    tab             U+0009
-                   %x75 4HEXDIG /  ; uXXXX                U+XXXX
-                   %x55 8HEXDIG )  ; UXXXXXXXX            U+XXXXXXXX
+escaped = escape escape-seq-char
 
-escape = %x5C                    ; \
+escape = %x5C                          ; \
+escape-seq-char =  escape %x22         ; "    quotation mark  U+0022
+escape-seq-char =/ escape %x5C         ; \    reverse solidus U+005C
+escape-seq-char =/ escape %x2F         ; /    solidus         U+002F
+escape-seq-char =/ escape %x62         ; b    backspace       U+0008
+escape-seq-char =/ escape %x66         ; f    form feed       U+000C
+escape-seq-char =/ escape %x6E         ; n    line feed       U+000A
+escape-seq-char =/ escape %x72         ; r    carriage return U+000D
+escape-seq-char =/ escape %x74         ; t    tab             U+0009
+escape-seq-char =/ escape %x75 4HEXDIG ; uXXXX                U+XXXX
+escape-seq-char =/ escape %x55 8HEXDIG ; UXXXXXXXX            U+XXXXXXXX
 
 ;; Multiline Basic String
 
