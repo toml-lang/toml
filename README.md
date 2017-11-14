@@ -125,8 +125,6 @@ as strings. **Quoted keys** follow the exact same rules as either basic strings
 or literal strings and allow you to use a much broader set of key names. Best
 practice is to use bare keys except when absolutely necessary.
 
-
-
 ```toml
 key = "value"
 bare_key = "value"
@@ -149,8 +147,8 @@ discouraged).
 '' = 'blank'     # VALID but discouraged
 ```
 
-Values must be of the following types: String, Integer, Float, Boolean, Datetime,
-Array, or Inline Table. Unspecified values are invalid.
+Values must be of the following types: String, Integer, Float, Boolean, 
+Datetime, Array, or Inline Table. Unspecified values are invalid.
 
 ```toml
 key = # INVALID
@@ -327,6 +325,7 @@ flt6 = -2E-2
 # both
 flt7 = 6.626e-34
 ```
+
 A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
@@ -409,7 +408,6 @@ timezone.
 ```toml
 lt1 = 07:32:00
 lt2 = 00:32:00.999999
-
 ```
 
 The precision of fractional seconds is implementation specific, but at least
