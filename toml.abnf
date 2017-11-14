@@ -203,8 +203,7 @@ inline-table-close = ws %x7D     ; }
 inline-table-sep   = ws %x2C ws  ; , Comma
 
 inline-table-keyvals = [ inline-table-keyvals-non-empty ]
-inline-table-keyvals-non-empty = ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty ) /
-                                 ( key keyval-sep val )
+inline-table-keyvals-non-empty = key keyval-sep val [ inline-table-sep inline-table-keyvals-non-empty ]
 
 ;; Array Table
 
