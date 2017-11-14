@@ -162,7 +162,7 @@ multi-line literal. All strings must contain only valid UTF-8 characters.
 
 **Basic strings** are surrounded by quotation marks. Any Unicode character may
 be used except those that must be escaped: quotation mark, backslash, and the
-control characters (U+0000 to U+001F).
+control characters (U+0000 to U+001F, U+007F).
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
