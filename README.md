@@ -287,8 +287,8 @@ int3 = 0
 int4 = -17
 ```
 
-For large numbers, you may use underscores to enhance readability. Each
-underscore must be surrounded by at least one digit.
+For large numbers, you may use underscores between digits to enhance
+readability. Each underscore must be surrounded by at least one digit.
 
 ```toml
 int5 = 1_000
