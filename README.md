@@ -435,9 +435,10 @@ arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
 arr6 = [ 1, 2.0 ] # INVALID
 ```
 
-Arrays can also be multiline. So in addition to ignoring whitespace, arrays also
-ignore newlines, and comments before those newlines, between the brackets.
-Terminating commas (also called trailing commas) are ok before the closing bracket.
+Arrays can also be multiline. Terminating commas (also called trailing commas)
+are ok after the last value of the array. Multiline arrays ignore whitespace
+everywhere between the brackets. There can be an arbitary number of newlines and
+comments before a value and before the closing bracket.
 
 ```toml
 arr7 = [

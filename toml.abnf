@@ -187,18 +187,17 @@ local-time = partial-time
 
 ;; Array
 
-array = array-open array-values array-close
+array = array-open ws-comment-newline [ array-values ] array-close
 
-array-open  = %x5B ws-newline  ; [
-array-close = ws-newline %x5D  ; ]
+array-open =  %x5B ; [
+array-close = %x5D ; ]
 
-array-values = [ ( val array-sep [ ( ws-newline comment ws-newlines) / ws-newlines ] array-values ) /
-                 ( val [ array-sep ] [ ( ws-newline comment ws-newlines ) ] ) ]
+array-values =  val ws array-sep ws-comment-newline array-values
+array-values =/ val ws [ array-sep ] ws-comment-newline
 
-array-sep = ws %x2C ws  ; , Comma
+array-sep = %x2C  ; , Comma
 
-ws-newline       = *( wschar / newline )
-ws-newlines      = newline *( wschar / newline )
+ws-comment-newline = *( wschar / [ comment ] newline )
 
 ;; Inline Table
 
