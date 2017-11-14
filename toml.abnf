@@ -4,8 +4,8 @@
 ;; This is an attempt to define TOML in ABNF according to the grammar defined
 ;; in RFC 5234 (http://www.ietf.org/rfc/rfc5234.txt).
 
-;; You can try out this grammar interactively via the online ABNF tool at
-;; http://www.coasttocoastresearch.com/interactiveapg
+;; You can try out this grammar using https://www.npmjs.com/package/apg-html
+
 ;; Note that due to the limitations of ABNF parsers, in order for multi-line
 ;; strings to work in that tool, the following rules must be ammended to
 ;; disallow the use of unescaped double- or single-quotes:
