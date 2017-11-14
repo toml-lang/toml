@@ -16,27 +16,27 @@
 
 toml = expression *( newline expression )
 
-expression = ( ( ws comment ) /
-               ( ws keyval ws [ comment ] ) /
-               ( ws table ws [ comment ] ) /
-                 ws )
+expression =  ws [ comment ]
+expression =/ ws keyval ws [ comment ]
+expression =/ ws table ws [ comment ]
 
 ;; Whitespace
 
 ws = *wschar
-
-wschar = ( %x20 /              ; Space
-           %x09 )              ; Horizontal tab
+wschar =  %x20  ; Space
+wschar =/ %x09  ; Horizontal tab
 
 ;; Newline
 
-newline = ( %x0A /              ; LF
-            %x0D.0A )           ; CRLF
+newline =  %x0A     ; LF
+newline =/ %x0D.0A  ; CRLF
 
 ;; Comment
 
 comment-start-symbol = %x23 ; #
-non-eol = %x09 / %x20-10FFFF
+non-eol =  %x09
+non-eol =/ %x20-10FFFF
+
 comment = comment-start-symbol *non-eol
 
 ;; Key-Value pairs
