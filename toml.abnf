@@ -62,7 +62,7 @@ basic-string = quotation-mark *basic-char quotation-mark
 quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
-basic-unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
+basic-unescaped = %x20-21 / %x23-5B / %x5D-7E / %x80-10FFFF
 escaped = escape escape-seq-char
 
 escape = %x5C                          ; \
