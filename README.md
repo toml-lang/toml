@@ -257,11 +257,12 @@ regex    = '<\i\c*\s*>'
 
 Since there is no escaping, there is no way to write a single quote inside a
 literal string enclosed by single quotes. Luckily, TOML supports a multi-line
-version of literal strings that solves this problem. **Multi-line literal
-strings** are surrounded by three single quotes on each side and allow newlines.
-Like literal strings, there is no escaping whatsoever. A newline immediately
-following the opening delimiter will be trimmed. All other content between the
-delimiters is interpreted as-is without modification.
+version of literal strings that solves this problem.
+
+**Multi-line literal strings** are surrounded by three single quotes on each
+side and allow newlines. Like literal strings, there is no escaping whatsoever.
+A newline immediately following the opening delimiter will be trimmed. All
+other content between the delimiters is interpreted as-is without modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
