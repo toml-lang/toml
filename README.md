@@ -274,7 +274,8 @@ trimmed in raw strings.
 '''
 ```
 
-For binary data it is recommended that you use Base64 or another suitable ASCII
+Control characters other than tab are not permitted in a literal string. Thus,
+for binary data it is recommended that you use Base64 or another suitable ASCII
 or UTF-8 encoding. The handling of that encoding will be application specific.
 
 Integer
