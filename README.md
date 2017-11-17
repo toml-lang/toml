@@ -243,7 +243,8 @@ escaped unless their presence would create a premature closing delimiter.
 
 If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error prone. To help,
-TOML supports literal strings where there is no escaping allowed at all.
+TOML supports literal strings which do not allow escaping at all.
+
 **Literal strings** are surrounded by single quotes. Like basic strings, they
 must appear on a single line:
 
