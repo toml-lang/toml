@@ -72,12 +72,14 @@ array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
 
 ;; Integer
 
-integer = [ minus / plus ] int
+integer =  [ minus / plus ] int
+integer =/ digit0
 
 minus = %x2D                       ; -
 plus = %x2B                        ; +
 
-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+int = digit1-9 *( DIGIT / underscore DIGIT )
+digit0   = %x30                    ; 0
 digit1-9 = %x31-39                 ; 1-9
 underscore = %x5F                  ; _
 

@@ -280,7 +280,7 @@ Integer
 -------
 
 Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
-Negative numbers are prefixed with a minus sign.
+Negative numbers are prefixed with a minus sign. Zeros can not be signed.
 
 ```toml
 int1 = +99
