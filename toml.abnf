@@ -4,39 +4,39 @@
 ;; This is an attempt to define TOML in ABNF according to the grammar defined
 ;; in RFC 5234 (http://www.ietf.org/rfc/rfc5234.txt).
 
-;; You can try out this grammar interactively via the online ABNF tool at
-;; http://www.coasttocoastresearch.com/interactiveapg
+;; You can try out this grammar using https://www.npmjs.com/package/apg-html
+
 ;; Note that due to the limitations of ABNF parsers, in order for multi-line
 ;; strings to work in that tool, the following rules must be ammended to
 ;; disallow the use of unescaped double- or single-quotes:
 ;; ml-basic-unescaped = basic-unescaped
 ;; ml-literal-char = literal-char
 
-;; TOML
+;; Overall Structure
 
 toml = expression *( newline expression )
 
-expression = ( ( ws comment ) /
-               ( ws keyval ws [ comment ] ) /
-               ( ws table ws [ comment ] ) /
-                 ws )
-
-;; Newline
-
-newline = ( %x0A /              ; LF
-            %x0D.0A )           ; CRLF
+expression =  ws [ comment ]
+expression =/ ws keyval ws [ comment ]
+expression =/ ws table ws [ comment ]
 
 ;; Whitespace
 
 ws = *wschar
+wschar =  %x20  ; Space
+wschar =/ %x09  ; Horizontal tab
 
-wschar = ( %x20 /              ; Space
-           %x09 )              ; Horizontal tab
+;; Newline
+
+newline =  %x0A     ; LF
+newline =/ %x0D.0A  ; CRLF
 
 ;; Comment
 
 comment-start-symbol = %x23 ; #
-non-eol = %x09 / %x20-10FFFF
+non-eol =  %x09
+non-eol =/ %x20-10FFFF
+
 comment = comment-start-symbol *non-eol
 
 ;; Key-Value pairs
@@ -45,30 +45,64 @@ keyval = key keyval-sep val
 
 key = unquoted-key / quoted-key
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
-quoted-key = quotation-mark 1*basic-char quotation-mark ; See Basic Strings
+quoted-key = basic-string / literal-string
 
 keyval-sep = ws %x3D ws ; =
 
 val = string / boolean / array / inline-table / date-time / float / integer
 
-;; Table
+;; String
 
-table = std-table / array-table
+string = ml-basic-string / basic-string / ml-literal-string / literal-string
 
-;; Standard Table
+;; Basic String
 
-std-table = std-table-open key *( table-key-sep key) std-table-close
+basic-string = quotation-mark *basic-char quotation-mark
 
-std-table-open  = %x5B ws     ; [ Left square bracket
-std-table-close = ws %x5D     ; ] Right square bracket
-table-key-sep   = ws %x2E ws  ; . Period
+quotation-mark = %x22            ; "
 
-;; Array Table
+basic-char = basic-unescaped / escaped
+basic-unescaped = %x20-21 / %x23-5B / %x5D-7E / %x80-10FFFF
+escaped = escape escape-seq-char
 
-array-table = array-table-open key *( table-key-sep key) array-table-close
+escape = %x5C                          ; \
+escape-seq-char =  escape %x22         ; "    quotation mark  U+0022
+escape-seq-char =/ escape %x5C         ; \    reverse solidus U+005C
+escape-seq-char =/ escape %x2F         ; /    solidus         U+002F
+escape-seq-char =/ escape %x62         ; b    backspace       U+0008
+escape-seq-char =/ escape %x66         ; f    form feed       U+000C
+escape-seq-char =/ escape %x6E         ; n    line feed       U+000A
+escape-seq-char =/ escape %x72         ; r    carriage return U+000D
+escape-seq-char =/ escape %x74         ; t    tab             U+0009
+escape-seq-char =/ escape %x75 4HEXDIG ; uXXXX                U+XXXX
+escape-seq-char =/ escape %x55 8HEXDIG ; UXXXXXXXX            U+XXXXXXXX
 
-array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
-array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
+;; Multiline Basic String
+
+ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
+
+ml-basic-string-delim = 3quotation-mark
+
+ml-basic-body = *( ml-basic-char / newline / ( escape ws newline ) )
+ml-basic-char = ml-basic-unescaped / escaped
+ml-basic-unescaped = %x20-5B / %x5D-10FFFF
+
+;; Literal String
+
+literal-string = apostrophe *literal-char apostrophe
+
+apostrophe = %x27 ; ' apostrophe
+
+literal-char = %x09 / %x20-26 / %x28-10FFFF
+
+;; Multiline Literal String
+
+ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
+
+ml-literal-string-delim = 3apostrophe
+
+ml-literal-body = *( ml-literal-char / newline )
+ml-literal-char = %x09 / %x20-10FFFF
 
 ;; Integer
 
@@ -89,60 +123,7 @@ frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
-exp = e integer
-e = %x65 / %x45                    ; e E
-
-;; String
-
-string = ml-basic-string / basic-string / ml-literal-string / literal-string
-
-;; Basic String
-
-basic-string = quotation-mark *basic-char quotation-mark
-
-quotation-mark = %x22            ; "
-
-basic-char = basic-unescaped / escaped
-basic-unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
-escaped = escape ( %x22 /          ; "    quotation mark  U+0022
-                   %x5C /          ; \    reverse solidus U+005C
-                   %x2F /          ; /    solidus         U+002F
-                   %x62 /          ; b    backspace       U+0008
-                   %x66 /          ; f    form feed       U+000C
-                   %x6E /          ; n    line feed       U+000A
-                   %x72 /          ; r    carriage return U+000D
-                   %x74 /          ; t    tab             U+0009
-                   %x75 4HEXDIG /  ; uXXXX                U+XXXX
-                   %x55 8HEXDIG )  ; UXXXXXXXX            U+XXXXXXXX
-
-escape = %x5C                    ; \
-
-;; Multiline Basic String
-
-ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
-
-ml-basic-string-delim = 3quotation-mark
-
-ml-basic-body = *( ml-basic-char / newline / ( escape ws newline ))
-ml-basic-char = ml-basic-unescaped / escaped
-ml-basic-unescaped = %x20-5B / %x5D-10FFFF
-
-;; Literal String
-
-literal-string = apostrophe *literal-char apostrophe
-
-apostrophe = %x27 ; ' apostrophe
-
-literal-char = %x09 / %x20-26 / %x28-10FFFF
-
-;; Multiline Literal String
-
-ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
-
-ml-literal-string-delim = 3apostrophe
-
-ml-literal-body = *( ml-literal-char / newline )
-ml-literal-char = %x09 / %x20-10FFFF
+exp = "e" integer
 
 ;; Boolean
 
@@ -165,7 +146,7 @@ time-secfrac   = "." 1*DIGIT
 time-numoffset = ( "+" / "-" ) time-hour ":" time-minute
 time-offset    = "Z" / time-numoffset
 
-partial-time   = time-hour ":" time-minute ":" time-second [time-secfrac]
+partial-time   = time-hour ":" time-minute ":" time-second [ time-secfrac ]
 full-date      = date-fullyear "-" date-month "-" date-mday
 full-time      = partial-time time-offset
 
@@ -187,18 +168,29 @@ local-time = partial-time
 
 ;; Array
 
-array = array-open array-values array-close
+array = array-open [ array-values ] ws-comment-newline array-close
 
-array-open  = %x5B ws-newline  ; [
-array-close = ws-newline %x5D  ; ]
+array-open =  %x5B ; [
+array-close = %x5D ; ]
 
-array-values = [ ( val array-sep [ ( ws-newline comment ws-newlines) / ws-newlines ] array-values ) /
-                 ( val [ array-sep ] [ ( ws-newline comment ws-newlines ) ] ) ]
+array-values =  ws-comment-newline val ws array-sep array-values
+array-values =/ ws-comment-newline val ws [ array-sep ]
 
-array-sep = ws %x2C ws  ; , Comma
+array-sep = %x2C  ; , Comma
 
-ws-newline       = *( wschar / newline )
-ws-newlines      = newline *( wschar / newline )
+ws-comment-newline = *( wschar / [ comment ] newline )
+
+;; Table
+
+table = std-table / array-table
+
+;; Standard Table
+
+std-table = std-table-open key *( table-key-sep key ) std-table-close
+
+std-table-open  = %x5B ws     ; [ Left square bracket
+std-table-close = ws %x5D     ; ] Right square bracket
+table-key-sep   = ws %x2E ws  ; . Period
 
 ;; Inline Table
 
@@ -209,8 +201,14 @@ inline-table-close = ws %x7D     ; }
 inline-table-sep   = ws %x2C ws  ; , Comma
 
 inline-table-keyvals = [ inline-table-keyvals-non-empty ]
-inline-table-keyvals-non-empty = ( key keyval-sep val inline-table-sep inline-table-keyvals-non-empty ) /
-                                 ( key keyval-sep val )
+inline-table-keyvals-non-empty = key keyval-sep val [ inline-table-sep inline-table-keyvals-non-empty ]
+
+;; Array Table
+
+array-table = array-table-open key *( table-key-sep key ) array-table-close
+
+array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
+array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
 
 ;; Built-in ABNF terms, reproduced here for clarity
 
