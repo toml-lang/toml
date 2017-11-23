@@ -118,14 +118,12 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Keys may be either bare or quoted. **Bare keys** may only contain letters,
-numbers, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
-allowed to be composed of only digits, e.g. `1234`, but are always interpreted
-as strings. **Quoted keys** follow the exact same rules as either basic strings
-or literal strings and allow you to use a much broader set of key names. Best
-practice is to use bare keys except when absolutely necessary.
-
-
+Keys may be either bare or quoted. **Bare keys** may only contain ASCII letters,
+ASCII digits, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
+allowed to be composed of only ASCII digits, e.g. `1234`, but are always
+interpreted as strings. **Quoted keys** follow the exact same rules as either
+basic strings or literal strings and allow you to use a much broader set of key
+names. Best practice is to use bare keys except when absolutely necessary.
 
 ```toml
 key = "value"
@@ -149,8 +147,8 @@ discouraged).
 '' = 'blank'     # VALID but discouraged
 ```
 
-Values must be of the following types: String, Integer, Float, Boolean, Datetime,
-Array, or Inline Table. Unspecified values are invalid.
+Values must be of the following types: String, Integer, Float, Boolean, 
+Datetime, Array, or Inline Table. Unspecified values are invalid.
 
 ```toml
 key = # INVALID
@@ -164,7 +162,7 @@ multi-line literal. All strings must contain only valid UTF-8 characters.
 
 **Basic strings** are surrounded by quotation marks. Any Unicode character may
 be used except those that must be escaped: quotation mark, backslash, and the
-control characters (U+0000 to U+001F).
+control characters (U+0000 to U+001F, U+007F).
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
@@ -289,8 +287,8 @@ int3 = 0
 int4 = -17
 ```
 
-For large numbers, you may use underscores to enhance readability. Each
-underscore must be surrounded by at least one digit.
+For large numbers, you may use underscores between digits to enhance
+readability. Each underscore must be surrounded by at least one digit.
 
 ```toml
 int5 = 1_000
@@ -327,6 +325,7 @@ flt6 = -2E-2
 # both
 flt7 = 6.626e-34
 ```
+
 A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
@@ -409,7 +408,6 @@ timezone.
 ```toml
 lt1 = 07:32:00
 lt2 = 00:32:00.999999
-
 ```
 
 The precision of fractional seconds is implementation specific, but at least
