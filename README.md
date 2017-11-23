@@ -756,6 +756,7 @@ Projects using TOML
 - [MCPhoton](http://mcphoton.org/) - Multi-threaded Java minecraft server.
 - [MeTA](https://github.com/meta-toolkit/meta) - Modern C++ data science toolkit.
 - [Traefik](https://traefik.io/) - Modern HTTP reverse proxy.
+- [Pipenv](https://github.com/kennethreitz/pipenv) — the officially recommended Python packaging tool from Python.org
 
 
 Implementations
