@@ -192,6 +192,7 @@ should produce an error.
 
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
+
 **Multi-line basic strings** are surrounded by three quotation marks on each
 side and allow newlines. A newline immediately following the opening delimiter
 will be trimmed. All other whitespace and newline characters remain intact.
