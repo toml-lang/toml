@@ -1,9 +1,11 @@
-![TOML Logo](logos/toml-200.png)
+<p align="center">
+  <img alt="TOML Logo" src="logos/toml-200.png">
+</p>
+<h1 align="center">TOML</h1>
 
-TOML
-====
-
-Tom's Obvious, Minimal Language.
+<p align="center">
+  Tom's Obvious, Minimal Language.
+</p>
 
 By Tom Preston-Werner.
 
