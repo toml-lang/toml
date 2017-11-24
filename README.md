@@ -114,19 +114,34 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Keys may be either bare or quoted. **Bare keys** may only contain ASCII letters,
-ASCII digits, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
-allowed to be composed of only ASCII digits, e.g. `1234`, but are always
-interpreted as strings. **Quoted keys** follow the exact same rules as either
-basic strings or literal strings and allow you to use a much broader set of key
-names. Best practice is to use bare keys except when absolutely necessary.
+Values must be of the following types: String, Integer, Float, Boolean,
+Datetime, Array, or Inline Table. Unspecified values are invalid.
+
+```toml
+key = # INVALID
+```
+
+Key
+---
+
+A Key may be either bare, quoted or dotted.
+
+**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
+dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
+ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```toml
 key = "value"
 bare_key = "value"
 bare-key = "value"
 1234 = "value"
+```
 
+**Quoted keys** follow the exact same rules as either basic strings or literal
+strings and allow you to use a much broader set of key names. Best practice is
+to use bare keys except when absolutely necessary.
+
+```toml
 "127.0.0.1" = "value"
 "character encoding" = "value"
 "ʎǝʞ" = "value"
@@ -143,11 +158,25 @@ discouraged).
 '' = 'blank'     # VALID but discouraged
 ```
 
-Values must be of the following types: String, Integer, Float, Boolean,
-Datetime, Array, or Inline Table. Unspecified values are invalid.
+**Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
+allows for grouping similar properties together:
 
 ```toml
-key = # INVALID
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+```
+
+In JSON land, that would give you the following structure:
+
+```json
+{
+  "name": "Orange",
+  "physical": {
+    "color": "orange",
+    "shape": "round"
+  }
+}
 ```
 
 String
@@ -473,22 +502,21 @@ key2 = 456
 ```
 
 Dots are prohibited in bare keys because dots are used to signify nested tables.
-Naming rules for each dot separated part are the same as for keys (see
-definition of Key/Value Pairs).
+Naming rules for tables are the same as for keys (see definition of Keys above).
 
 ```toml
 [dog."tater.man"]
-type = "pug"
+type.name = "pug"
 ```
 
 In JSON land, that would give you the following structure:
 
 ```json
-{ "dog": { "tater.man": { "type": "pug" } } }
+{ "dog": { "tater.man": { "type": { "name": "pug" } } } }
 ```
 
-Whitespace around dot-separated parts is ignored, however, best practice is to
-not use any extraneous whitespace.
+Whitespace around the key is ignored, however, best practice is to not use any
+extraneous whitespace.
 
 ```toml
 [a.b.c]            # this is best practice
