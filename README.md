@@ -27,6 +27,7 @@ Table of contents
 - [Spec](#user-content-spec)
 - [Comment](#user-content-comment)
 - [Key/Value Pair](#user-content-keyvalue-pair)
+- [Keys](#user-content-keys)
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
@@ -120,19 +121,34 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Keys may be either bare or quoted. **Bare keys** may only contain ASCII letters,
-ASCII digits, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
-allowed to be composed of only ASCII digits, e.g. `1234`, but are always
-interpreted as strings. **Quoted keys** follow the exact same rules as either
-basic strings or literal strings and allow you to use a much broader set of key
-names. Best practice is to use bare keys except when absolutely necessary.
+Values must be of the following types: String, Integer, Float, Boolean,
+Datetime, Array, or Inline Table. Unspecified values are invalid.
+
+```toml
+key = # INVALID
+```
+
+Keys
+----
+
+Keys may be either bare or quoted.
+
+**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and 
+dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only 
+ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```toml
 key = "value"
 bare_key = "value"
 bare-key = "value"
 1234 = "value"
+```
 
+**Quoted keys** follow the exact same rules as either basic strings or literal 
+strings and allow you to use a much broader set of key names. Best practice is 
+to use bare keys except when absolutely necessary.
+
+```toml
 "127.0.0.1" = "value"
 "character encoding" = "value"
 "ʎǝʞ" = "value"
@@ -147,13 +163,6 @@ discouraged).
 = "no key name"  # INVALID
 "" = "blank"     # VALID but discouraged
 '' = 'blank'     # VALID but discouraged
-```
-
-Values must be of the following types: String, Integer, Float, Boolean,
-Datetime, Array, or Inline Table. Unspecified values are invalid.
-
-```toml
-key = # INVALID
 ```
 
 String
