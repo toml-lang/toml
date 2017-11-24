@@ -42,13 +42,7 @@ Table of contents
 - [Filename Extension](#user-content-filename-extension)
 - [Comparison with Other Formats](#user-content-comparison-with-other-formats)
 - [Get Involved](#user-content-get-involved)
-- [Projects using TOML](#user-content-projects-using-toml)
-- [Implementations](#user-content-implementations)
-- [Validators](#user-content-validators)
-- [Language agnostic test suite for TOML decoders and encoders](#user-content-language-agnostic-test-suite-for-toml-decoders-and-encoders)
-- [Editor support](#user-content-editor-support)
-- [Encoder](#user-content-encoder)
-- [Converters](#user-content-converters)
+- [Wiki](#user-content-wiki)
 
 Example
 -------
