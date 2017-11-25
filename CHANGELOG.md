@@ -7,6 +7,7 @@
 * Add Local Date.
 * Add Local Time.
 * Add ABNF specification.
+* Allow space (instead of T) to separate date and time in Date-Time.
 * Allow accidental whitespace between backslash and newline in the line
   continuation operator in multi-line basic strings.
 * Specify that .toml is the standard file extension.
