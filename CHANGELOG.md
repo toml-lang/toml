@@ -1,5 +1,25 @@
 # TOML Changelog
 
+## HEAD
+
+* Rename Datetime to Offset Date-Time.
+* Add Local Date-Time.
+* Add Local Date.
+* Add Local Time.
+* Add ABNF specification.
+* Allow accidental whitespace between backslash and newline in the line
+  continuation operator in multi-line basic strings.
+* Specify that .toml is the standard file extension.
+* Clarify that U+007F is an escape character.
+* Clarify that keys are always strings.
+* Clarify that you cannot use array-of-table to append to a static array.
+* Clarify that a TOML file must be a valid UTF-8 document.
+* Clarify valid Array values.
+* Clarify that literal strings can be table keys.
+* Clarify that at least millisecond precision expected for Date-Time and Time.
+* Clarify that comments are OK in multiline arrays.
+* TOML has a logo!
+
 ## 0.4.0 / 2015-02-12
 
 * Add Inline Table syntax.
