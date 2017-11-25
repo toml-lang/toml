@@ -27,6 +27,7 @@ Table of contents
 - [Spec](#user-content-spec)
 - [Comment](#user-content-comment)
 - [Key/Value Pair](#user-content-keyvalue-pair)
+- [Keys](#user-content-keys)
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
@@ -121,10 +122,10 @@ Datetime, Array, or Inline Table. Unspecified values are invalid.
 key = # INVALID
 ```
 
-Key
----
+Keys
+----
 
-A Key may be either bare, quoted or dotted.
+A key may be either bare, quoted or dotted.
 
 **Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
 dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
