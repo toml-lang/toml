@@ -278,7 +278,7 @@ Integer
 -------
 
 Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
-Negative numbers are prefixed with a minus sign.
+Negative numbers are prefixed with a minus sign. Zeros cannot have a sign.
 
 ```toml
 int1 = +99
@@ -309,7 +309,7 @@ Float
 A float consists of an integer part (which follows the same rules as integer
 values) followed by a fractional part and/or an exponent part. If both a
 fractional part and exponent part are present, the fractional part must precede
-the exponent part.
+the exponent part. Zeros cannot have a sign.
 
 ```toml
 # fractional
