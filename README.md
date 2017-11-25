@@ -21,12 +21,14 @@ obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
 Table of contents
--------
+-----------------
 
 - [Example](#user-content-example)
 - [Spec](#user-content-spec)
+- [Overall Structure](#user-content-overall-structure)
 - [Comment](#user-content-comment)
 - [Key/Value Pair](#user-content-keyvalue-pair)
+- [Keys](#user-content-keys)
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
@@ -91,6 +93,39 @@ Spec
 * Whitespace means tab (0x09) or space (0x20).
 * Newline means LF (0x0A) or CRLF (0x0D0A).
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+ws = *wschar
+wschar =  %x20  ; Space
+wschar =/ %x09  ; Horizontal tab
+
+newline =  %x0A     ; LF
+newline =/ %x0D.0A  ; CRLF
+```
+
+</details>
+
+Overall Structure
+-----------------
+
+A TOML file consists of a sequence of key-value pairs or table declarations, 
+separated by arbitrary number of comments and/or whitespace.
+
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+toml = expression *( newline expression )
+
+expression =  ws [ comment ]
+expression =/ ws keyval ws [ comment ]
+expression =/ ws ( std-table / array-table ) ws [ comment ]
+```
+
+</details>
+
 Comment
 -------
 
@@ -100,6 +135,19 @@ A hash symbol marks the rest of the line as a comment.
 # This is a full-line comment
 key = "value" # This is a comment at the end of a line
 ```
+
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+comment-start-symbol = %x23 ; #
+non-eol =  %x09
+non-eol =/ %x20-10FFFF
+
+comment = comment-start-symbol *non-eol
+```
+
+</details>
 
 Key/Value Pair
 --------------
@@ -114,19 +162,43 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Keys may be either bare or quoted. **Bare keys** may only contain ASCII letters,
-ASCII digits, underscores, and dashes (`A-Za-z0-9_-`). Note that bare keys are
-allowed to be composed of only ASCII digits, e.g. `1234`, but are always
-interpreted as strings. **Quoted keys** follow the exact same rules as either
-basic strings or literal strings and allow you to use a much broader set of key
-names. Best practice is to use bare keys except when absolutely necessary.
+Values must be of the following types: String, Integer, Float, Boolean,
+Datetime, Array, or Inline Table. Unspecified values are invalid.
+
+```toml
+key = # INVALID
+```
+
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+keyval = key keyval-sep val
+```
+
+</details>
+
+Keys
+----
+
+Keys may be either bare or quoted.
+
+**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and 
+dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only 
+ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```toml
 key = "value"
 bare_key = "value"
 bare-key = "value"
 1234 = "value"
+```
 
+**Quoted keys** follow the exact same rules as either basic strings or literal 
+strings and allow you to use a much broader set of key names. Best practice is 
+to use bare keys except when absolutely necessary.
+
+```toml
 "127.0.0.1" = "value"
 "character encoding" = "value"
 "ʎǝʞ" = "value"
@@ -143,12 +215,16 @@ discouraged).
 '' = 'blank'     # VALID but discouraged
 ```
 
-Values must be of the following types: String, Integer, Float, Boolean,
-Datetime, Array, or Inline Table. Unspecified values are invalid.
+<details>
+  <summary>ABNF</summary>
 
-```toml
-key = # INVALID
+```abnf
+key = unquoted-key / quoted-key
+unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
+quoted-key = basic-string / literal-string
 ```
+
+</details>
 
 String
 ------
@@ -274,6 +350,60 @@ Control characters other than tab are not permitted in a literal string. Thus,
 for binary data it is recommended that you use Base64 or another suitable ASCII
 or UTF-8 encoding. The handling of that encoding will be application specific.
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+string = ml-basic-string / basic-string / ml-literal-string / literal-string
+
+quotation-mark = %x22            ; "
+
+;; Basic String
+
+basic-string = quotation-mark *basic-char quotation-mark
+
+basic-char = basic-unescaped / escaped
+basic-unescaped = %x20-21 / %x23-5B / %x5D-7E / %x80-10FFFF
+escaped = escape escape-seq-char
+
+escape = %x5C                          ; \
+escape-seq-char =  escape %x22         ; "    quotation mark  U+0022
+escape-seq-char =/ escape %x5C         ; \    reverse solidus U+005C
+escape-seq-char =/ escape %x2F         ; /    solidus         U+002F
+escape-seq-char =/ escape %x62         ; b    backspace       U+0008
+escape-seq-char =/ escape %x66         ; f    form feed       U+000C
+escape-seq-char =/ escape %x6E         ; n    line feed       U+000A
+escape-seq-char =/ escape %x72         ; r    carriage return U+000D
+escape-seq-char =/ escape %x74         ; t    tab             U+0009
+escape-seq-char =/ escape %x75 4HEXDIG ; uXXXX                U+XXXX
+escape-seq-char =/ escape %x55 8HEXDIG ; UXXXXXXXX            U+XXXXXXXX
+
+ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
+
+ml-basic-string-delim = 3quotation-mark
+
+ml-basic-body = *( ml-basic-char / newline / ( escape ws newline ) )
+ml-basic-char = ml-basic-unescaped / escaped
+ml-basic-unescaped = %x20-5B / %x5D-10FFFF
+
+;; Literal String
+
+apostrophe = %x27 ; ' apostrophe
+
+literal-string = apostrophe *literal-char apostrophe
+
+literal-char = %x09 / %x20-26 / %x28-10FFFF
+
+ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
+
+ml-literal-string-delim = 3apostrophe
+
+ml-literal-body = *( ml-literal-char / newline )
+ml-literal-char = %x09 / %x20-10FFFF
+```
+
+</details>
+
 Integer
 -------
 
@@ -302,6 +432,22 @@ series of digits are not allowed.
 
 64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
 9,223,372,036,854,775,807).
+
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+integer = [ minus / plus ] int
+
+minus = %x2D                       ; -
+plus = %x2B                        ; +
+
+int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+digit1-9 = %x31-39                 ; 1-9
+underscore = %x5F                  ; _
+```
+
+</details>
 
 Float
 -----
@@ -340,6 +486,23 @@ flt8 = 9_224_617.445_991_228_313
 
 64-bit (double) precision expected.
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+float = integer ( frac / ( frac exp ) / exp )
+
+frac = decimal-point zero-prefixable-int
+decimal-point = %x2E ; .
+zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
+
+; note that "e" matches lowercase e and uppercase E
+exp = "e" integer
+```
+
+</details>
+
+
 Boolean
 -------
 
@@ -350,8 +513,20 @@ bool1 = true
 bool2 = false
 ```
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+boolean = true / false
+
+true    = %x74.72.75.65     ; true
+false   = %x66.61.6C.73.65  ; false
+```
+
+</details>
+
 Offset Date-Time
----------------
+----------------
 
 To unambiguously represent a specific instant in time, you may use an
 [RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
@@ -368,7 +543,7 @@ the implementation can support, the additional precision must be truncated, not
 rounded.
 
 Local Date-Time
---------------
+---------------
 
 If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
@@ -415,6 +590,36 @@ millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
 rounded.
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+;; Date and Time (as defined in RFC 3339)
+
+date-time      = offset-date-time / local-date-time / local-date / local-time
+
+date-fullyear  = 4DIGIT
+date-month     = 2DIGIT  ; 01-12
+date-mday      = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
+time-hour      = 2DIGIT  ; 00-23
+time-minute    = 2DIGIT  ; 00-59
+time-second    = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap second rules
+time-secfrac   = "." 1*DIGIT
+time-numoffset = ( "+" / "-" ) time-hour ":" time-minute
+time-offset    = "Z" / time-numoffset
+
+partial-time   = time-hour ":" time-minute ":" time-second [ time-secfrac ]
+full-date      = date-fullyear "-" date-month "-" date-mday
+full-time      = partial-time time-offset
+
+offset-date-time = full-date "T" full-time
+local-date-time = full-date "T" partial-time
+local-date = full-date
+local-time = partial-time
+```
+
+</details>
+
 Array
 -----
 
@@ -434,7 +639,7 @@ arr6 = [ 1, 2.0 ] # INVALID
 ```
 
 Arrays can also be multiline. Terminating commas (also called trailing commas)
-are ok after the last value of the array. There can be an arbitary number of
+are ok after the last value of the array. There can be an arbitrary number of
 newlines and comments before a value and before the closing bracket.
 
 ```toml
@@ -447,6 +652,25 @@ arr8 = [
   2, # this is ok
 ]
 ```
+
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+ws-comment-newline = *( wschar / [ comment ] newline )
+
+array = array-open [ array-values ] ws-comment-newline array-close
+
+array-open =  %x5B ; [
+array-close = %x5D ; ]
+
+array-values =  ws-comment-newline val ws array-sep array-values
+array-values =/ ws-comment-newline val ws [ array-sep ]
+
+array-sep = %x2C  ; , Comma
+```
+
+</details>
 
 Table
 -----
@@ -552,6 +776,21 @@ All table names must be non-empty.
 [.]    # INVALID
 ```
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+;; Standard Table
+
+std-table = std-table-open key *( table-key-sep key ) std-table-close
+
+std-table-open  = %x5B ws     ; [ Left square bracket
+std-table-close = ws %x5D     ; ] Right square bracket
+table-key-sep   = ws %x2E ws  ; . Period
+```
+
+</details>
+
 Inline Table
 ------------
 
@@ -584,6 +823,22 @@ last = "Preston-Werner"
 x = 1
 y = 2
 ```
+
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+inline-table = inline-table-open inline-table-keyvals inline-table-close
+
+inline-table-open  = %x7B ws     ; {
+inline-table-close = ws %x7D     ; }
+inline-table-sep   = ws %x2C ws  ; , Comma
+
+inline-table-keyvals = [ inline-table-keyvals-non-empty ]
+inline-table-keyvals-non-empty = key keyval-sep val [ inline-table-sep inline-table-keyvals-non-empty ]
+```
+
+</details>
 
 Array of Tables
 ---------------
@@ -704,6 +959,18 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 2, y = 4, z = 8 } ]
 ```
 
+<details>
+  <summary>ABNF</summary>
+
+```abnf
+array-table = array-table-open key *( table-key-sep key ) array-table-close
+
+array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
+array-table-close = ws %x5D.5D  ; ]] Double right square bracket
+```
+
+</details>
+
 Filename Extension
 ------------------
 
@@ -736,7 +1003,7 @@ Documentation, bug reports, pull requests, and all other contributions
 are welcome!
 
 Wiki
-----------------------------------------------------------------------
+----
 
 We have an [Official TOML Wiki](https://github.com/toml-lang/toml/wiki) that
 catalogs the following:
