@@ -2,6 +2,7 @@
 
 ## HEAD
 
+* Specify that zeros (Integer 0 and float 0.0) cannot have a sign (+ or -).
 * Rename Datetime to Offset Date-Time.
 * Add Local Date-Time.
 * Add Local Date.
@@ -14,7 +15,7 @@
 * Clarify that keys are always strings.
 * Clarify that you cannot use array-of-table to append to a static array.
 * Clarify that a TOML file must be a valid UTF-8 document.
-* Clarify valid Array values.
+* Clarify what are valid Array values.
 * Clarify that literal strings can be table keys.
 * Clarify that at least millisecond precision expected for Date-Time and Time.
 * Clarify that comments are OK in multiline arrays.
