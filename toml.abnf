@@ -117,7 +117,7 @@ underscore = %x5F                  ; _
 
 ;; Float
 
-float =  integer ( frac / ( frac exp ) / exp )
+float = integer ( exp / frac [ exp ] )
 float =/ non-finite
 
 frac = decimal-point zero-prefixable-int

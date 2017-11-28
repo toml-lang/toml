@@ -305,7 +305,7 @@ identical to an unprefixed zero. Hex, octal, and binary forms are not allowed.
 Float
 -----
 
-Floats should be implemented as 64-bit IEEE 754 values.
+Floats should be implemented as IEEE 754 binary64 values.
 
 A float consists of an integer part (which follows the same rules as integer
 values) followed by a fractional part and/or an exponent part. If both a
@@ -347,7 +347,7 @@ Non-finite float values can also be expressed. They are always lowercase.
 nf1 = +inf # positive infinity
 nf2 = inf  # positive infinity
 nf3 = -inf # negative infinity
-nf4 = nan  # not a number
+nf4 = nan  # not a number; actual sNaN/qNaN value is implementation specific
 ```
 
 Boolean
