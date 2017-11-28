@@ -341,7 +341,7 @@ flt8 = 9_224_617.445_991_228_313
 
 Float values `-0.0` and `+0.0` are valid and should map according to IEEE 754.
 
-Non-finite float values can also be expressed. They are always lowercase.
+Special float values can also be expressed. They are always lowercase.
 
 ```toml
 nf1 = +inf # positive infinity
