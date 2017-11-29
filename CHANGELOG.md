@@ -2,6 +2,7 @@
 
 ## HEAD
 
+* Add hex, octal, and binary integer formats.
 * Add special float values (inf, nan)
 * Rename Datetime to Offset Date-Time.
 * Add Local Date-Time.
