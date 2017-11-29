@@ -362,6 +362,13 @@ odt2 = 1979-05-27T00:32:00-07:00
 odt3 = 1979-05-27T00:32:00.999999-07:00
 ```
 
+For the sake of readability, you may replace the T delimeter between date and
+time with a space (as permitted by RFC 3339 section 5.6).
+
+```toml
+odt4 = 1979-05-27 07:32:00Z
+```
+
 The precision of fractional seconds is implementation specific, but at least
 millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
