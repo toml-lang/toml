@@ -2,7 +2,7 @@
 
 ## HEAD
 
-* Add non-finite float values (+inf, inf, -inf, nan)
+* Add special float values (inf, nan)
 * Rename Datetime to Offset Date-Time.
 * Add Local Date-Time.
 * Add Local Date.

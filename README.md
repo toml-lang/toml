@@ -344,10 +344,15 @@ Float values `-0.0` and `+0.0` are valid and should map according to IEEE 754.
 Special float values can also be expressed. They are always lowercase.
 
 ```toml
-nf1 = +inf # positive infinity
-nf2 = inf  # positive infinity
-nf3 = -inf # negative infinity
-nf4 = nan  # not a number; actual sNaN/qNaN value is implementation specific
+# infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation specific
 ```
 
 Boolean

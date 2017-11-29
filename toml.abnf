@@ -126,7 +126,7 @@ zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
 exp = "e" integer
 
-special-float = ( [ minus / plus ] inf ) / nan
+special-float = [ minus / plus ] ( inf / nan )
 inf = %x69.6e.66  ; inf
 nan = %x6e.61.6e  ; nan
 
