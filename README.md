@@ -296,15 +296,16 @@ int6 = 5_349_221
 int7 = 1_2_3_4_5     # VALID but discouraged
 ```
 
-Leading zeros are not allowed. Hex, octal, and binary forms are not allowed.
-Values such as "infinity" and "not a number" that cannot be expressed as a
-series of digits are not allowed.
+Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
+identical to an unprefixed zero. Hex, octal, and binary forms are not allowed.
 
 64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
 9,223,372,036,854,775,807).
 
 Float
 -----
+
+Floats should be implemented as IEEE 754 binary64 values.
 
 A float consists of an integer part (which follows the same rules as integer
 values) followed by a fractional part and/or an exponent part. If both a
@@ -338,7 +339,21 @@ underscore must be surrounded by at least one digit.
 flt8 = 9_224_617.445_991_228_313
 ```
 
-64-bit (double) precision expected.
+Float values `-0.0` and `+0.0` are valid and should map according to IEEE 754.
+
+Special float values can also be expressed. They are always lowercase.
+
+```toml
+# infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation specific
+```
 
 Boolean
 -------

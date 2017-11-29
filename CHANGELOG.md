@@ -2,6 +2,7 @@
 
 ## HEAD
 
+* Add special float values (inf, nan)
 * Rename Datetime to Offset Date-Time.
 * Add Local Date-Time.
 * Add Local Date.
@@ -19,6 +20,7 @@
 * Clarify that literal strings can be table keys.
 * Clarify that at least millisecond precision expected for Date-Time and Time.
 * Clarify that comments are OK in multiline arrays.
+* Clarify that +0, -0, +0.0, and -0.0 are valid and what they mean.
 * TOML has a logo!
 
 ## 0.4.0 / 2015-02-12

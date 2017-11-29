@@ -117,13 +117,18 @@ underscore = %x5F                  ; _
 
 ;; Float
 
-float = integer ( frac / ( frac exp ) / exp )
+float = integer ( exp / frac [ exp ] )
+float =/ special-float
 
 frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
 exp = "e" integer
+
+special-float = [ minus / plus ] ( inf / nan )
+inf = %x69.6e.66  ; inf
+nan = %x6e.61.6e  ; nan
 
 ;; Boolean
 
