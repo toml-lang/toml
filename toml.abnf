@@ -7,7 +7,7 @@
 ;; You can try out this grammar using https://www.npmjs.com/package/apg-html
 
 ;; Note that due to the limitations of ABNF parsers, in order for multi-line
-;; strings to work in that tool, the following rules must be ammended to
+;; strings to work in that tool, the following rules must be amended to
 ;; disallow the use of unescaped double- or single-quotes:
 ;; ml-basic-unescaped = basic-unescaped
 ;; ml-literal-char = literal-char
