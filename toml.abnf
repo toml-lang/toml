@@ -106,7 +106,7 @@ ml-literal-char = %x09 / %x20-10FFFF
 
 ;; Integer
 
-integer = [ minus / plus ] ( dec-int / hex-int / oct-int / bin-int )
+integer = dec-int / hex-int / oct-int / bin-int
 
 minus = %x2D                       ; -
 plus = %x2B                        ; +
@@ -119,7 +119,9 @@ hex-prefix = %x30.78               ; 0x
 oct-prefix = %x30.6f               ; 0o
 bin-prefix = %x30.62               ; 0b
 
-dec-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+dec-int = [ minus / plus ] unsigned-dec-int
+unsigned-dec-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+
 hex-int = hex-prefix HEXDIG *( HEXDIG / underscore HEXDIG )
 oct-int = oct-prefix digit0-7 *( digit0-7 / underscore digit0-7 )
 bin-int = bin-prefix digit0-1 *( digit0-1 / underscore digit0-1 )
@@ -129,7 +131,7 @@ bin-int = bin-prefix digit0-1 *( digit0-1 / underscore digit0-1 )
 float = float-int-part ( exp / frac [ exp ] )
 float =/ special-float
 
-float-int-part = [ minus / plus ] dec-int
+float-int-part = dec-int
 frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )

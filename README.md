@@ -299,17 +299,16 @@ int7 = 1_2_3_4_5     # VALID but discouraged
 Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
 identical to an unprefixed zero.
 
-Integer values may also be expressed in hexadecimal, octal, or binary. Hex
-values are case insensitive. Leading zeros are allowed. Underscores are allowed
-between digits (but not between the prefix and the value).
+Non-negative integer values may also be expressed in hexadecimal, octal, or
+binary. In these formats, leading zeros are allowed (after the prefix). Hex
+values are case insensitive. Underscores are allowed between digits (but not
+between the prefix and the value).
 
 ```toml
 # hexadecimal with prefix `0x`
 hex1 = 0xDEADBEEF
 hex2 = 0xdeadbeef
 hex3 = 0xdead_beef
-hex4 = +0xDEADBEEF # same as above
-hex5 = -0xDEADBEEF # negative of above
 
 # octal with prefix `0o`
 oct1 = 0o01234567
