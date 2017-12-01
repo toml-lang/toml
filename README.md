@@ -377,7 +377,7 @@ odt2 = 1979-05-27T00:32:00-07:00
 odt3 = 1979-05-27T00:32:00.999999-07:00
 ```
 
-For the sake of readability, you may replace the T delimeter between date and
+For the sake of readability, you may replace the T delimiter between date and
 time with a space (as permitted by RFC 3339 section 5.6).
 
 ```toml
@@ -456,7 +456,7 @@ arr6 = [ 1, 2.0 ] # INVALID
 ```
 
 Arrays can also be multiline. Terminating commas (also called trailing commas)
-are ok after the last value of the array. There can be an arbitary number of
+are ok after the last value of the array. There can be an arbitrary number of
 newlines and comments before a value and before the closing bracket.
 
 ```toml
