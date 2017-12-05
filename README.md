@@ -297,7 +297,26 @@ int7 = 1_2_3_4_5     # VALID but discouraged
 ```
 
 Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
-identical to an unprefixed zero. Hex, octal, and binary forms are not allowed.
+identical to an unprefixed zero.
+
+Non-negative integer values may also be expressed in hexadecimal, octal, or
+binary. In these formats, leading zeros are allowed (after the prefix). Hex
+values are case insensitive. Underscores are allowed between digits (but not
+between the prefix and the value).
+
+```toml
+# hexadecimal with prefix `0x`
+hex1 = 0xDEADBEEF
+hex2 = 0xdeadbeef
+hex3 = 0xdead_beef
+
+# octal with prefix `0o`
+oct1 = 0o01234567
+oct2 = 0o755 # useful for Unix file permissions
+
+# binary with prefix `0b`
+bin1 = 0b11010110
+```
 
 64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
 9,223,372,036,854,775,807).
