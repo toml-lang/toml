@@ -166,6 +166,7 @@ allows for grouping similar properties together:
 name = "Orange"
 physical.color = "orange"
 physical.shape = "round"
+site."google.com" = true
 ```
 
 In JSON land, that would give you the following structure:
@@ -176,9 +177,15 @@ In JSON land, that would give you the following structure:
   "physical": {
     "color": "orange",
     "shape": "round"
+  },
+  "site": {
+    "google.com": true
   }
 }
 ```
+
+Whitespace around dot-separated parts is ignored, however, best practice is to
+not use any extraneous whitespace.
 
 String
 ------
