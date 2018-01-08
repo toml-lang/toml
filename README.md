@@ -668,7 +668,7 @@ recently defined table element above it.
 [[fruit]]
   name = "apple"
 
-  [fruit.physical]
+  [[fruit.physical]]
     color = "red"
     shape = "round"
 

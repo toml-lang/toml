@@ -432,7 +432,7 @@ JSON로는 아래와 같이 나옵니다.
 [[fruit]]
   name = "apple"
 
-  [fruit.physical]
+  [[fruit.physical]]
     color = "red"
     shape = "round"
 

@@ -439,7 +439,7 @@ color = "gray"
 [[fruit]]
 name = "apple"
 
-[fruit.physical]
+[[fruit.physical]]
 color = "red"
 shape = "round"
 
