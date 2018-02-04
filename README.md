@@ -10,8 +10,12 @@ By Tom Preston-Werner.
 Latest tagged version:
 [v0.4.0](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.4.0.md).
 
-Be warned, this spec is still changing a lot. Until it's marked as 1.0, you
-should assume that it is unstable and act accordingly.
+NOTE: The `master` branch of this repository tracks the very latest development
+and may contain features and changes that do not exist on any released version.
+To find the spec for a specific version, look in the `versions` subdirectory.
+
+The next planned release is v1.0.0. The intention is for this release to be
+fully backwards compatible with v0.4.0.
 
 Objectives
 ----------
