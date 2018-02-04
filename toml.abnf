@@ -43,10 +43,14 @@ comment = comment-start-symbol *non-eol
 
 keyval = key keyval-sep val
 
-key = unquoted-key / quoted-key
+key = simple-key / dotted-key
+simple-key = quoted-key / unquoted-key
+
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
 quoted-key = basic-string / literal-string
+dotted-key = simple-key 1*( dot-sep simple-key )
 
+dot-sep   = ws %x2E ws  ; . Period
 keyval-sep = ws %x3D ws ; =
 
 val = string / boolean / array / inline-table / date-time / float / integer
@@ -204,11 +208,10 @@ table = std-table / array-table
 
 ;; Standard Table
 
-std-table = std-table-open key *( table-key-sep key ) std-table-close
+std-table = std-table-open key std-table-close
 
 std-table-open  = %x5B ws     ; [ Left square bracket
 std-table-close = ws %x5D     ; ] Right square bracket
-table-key-sep   = ws %x2E ws  ; . Period
 
 ;; Inline Table
 
