@@ -4,13 +4,11 @@
 ;; This is an attempt to define TOML in ABNF according to the grammar defined
 ;; in RFC 5234 (http://www.ietf.org/rfc/rfc5234.txt).
 
-;; You can try out this grammar using https://www.npmjs.com/package/apg-html
-
-;; Note that due to the limitations of ABNF parsers, in order for multi-line
-;; strings to work in that tool, the following rules must be amended to
-;; disallow the use of unescaped double- or single-quotes:
-;; ml-basic-unescaped = basic-unescaped
-;; ml-literal-char = literal-char
+;; You can try out this grammar using http://instaparse.mojombo.com/
+;; To do so, in the lower right, click on Options and change `:input-format` to
+;; ':abnf'. Then paste this entire ABNF document into the grammar entry box
+;; (above the options). Then you can type or paste a sample TOML document into
+;; the beige box on the left. Tada!
 
 ;; Overall Structure
 
