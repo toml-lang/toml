@@ -791,6 +791,12 @@ Filename Extension
 
 TOML files should use the extension `.toml`.
 
+MIME Type
+---------
+
+When transferring TOML files over the internet, the appropriate MIME type is
+`application/toml`.
+
 Comparison with Other Formats
 -----------------------------
 

@@ -13,7 +13,8 @@
 * Allow space (instead of T) to separate date and time in Date-Time.
 * Allow accidental whitespace between backslash and newline in the line
   continuation operator in multi-line basic strings.
-* Specify that .toml is the standard file extension.
+* Specify that the standard file extension is `.toml`.
+* Specify that MIME type is `application/toml`
 * Clarify that U+007F is an escape character.
 * Clarify that keys are always strings.
 * Clarify that you cannot use array-of-table to append to a static array.
