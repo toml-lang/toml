@@ -666,6 +666,10 @@ last = "Preston-Werner"
 [point]
 x = 1
 y = 2
+
+[animal]
+type.name = "pug"
+
 ```
 
 Array of Tables
