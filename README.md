@@ -652,6 +652,7 @@ yourself gripped with this desire, it means you should be using standard tables.
 ```toml
 name = { first = "Tom", last = "Preston-Werner" }
 point = { x = 1, y = 2 }
+animal = { type.name = "pug" } 
 ```
 
 The inline tables above are identical to the following standard table
@@ -665,6 +666,10 @@ last = "Preston-Werner"
 [point]
 x = 1
 y = 2
+
+[animal]
+type.name = "pug"
+
 ```
 
 Array of Tables
