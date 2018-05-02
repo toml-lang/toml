@@ -95,7 +95,7 @@ literal-string = apostrophe *literal-char apostrophe
 
 apostrophe = %x27 ; ' apostrophe
 
-literal-char = %x09 / %x20-26 / %x28-10FFFF
+literal-char = %x09 / %x20-26 / %x28-7E / %x80-10FFFF
 
 ;; Multiline Literal String
 
@@ -104,7 +104,7 @@ ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-de
 ml-literal-string-delim = 3apostrophe
 
 ml-literal-body = *( ml-literal-char / newline )
-ml-literal-char = %x09 / %x20-10FFFF
+ml-literal-char = %x09 / %x20-7E / %x80-10FFFF
 
 ;; Integer
 
