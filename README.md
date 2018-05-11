@@ -555,7 +555,6 @@ key1 = "another string"
 key2 = 456
 ```
 
-Dots are prohibited in bare keys because dots are used to signify nested tables.
 Naming rules for tables are the same as for keys (see definition of Keys above).
 
 ```toml
@@ -622,16 +621,6 @@ b = 1
 
 [a.b]
 c = 2
-```
-
-All table names must be non-empty.
-
-```
-[]     # INVALID
-[a.]   # INVALID
-[a..b] # INVALID
-[.b]   # INVALID
-[.]    # INVALID
 ```
 
 Inline Table
