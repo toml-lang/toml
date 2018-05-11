@@ -191,6 +191,28 @@ In JSON land, that would give you the following structure:
 Whitespace around dot-separated parts is ignored, however, best practice is to
 not use any extraneous whitespace.
 
+Defining a key multiple times is invalid.
+
+```
+# DO NOT DO THIS
+name = "Tom"
+name = "Pradyun"
+```
+
+As long as a key hasn't been directly defined, you may still write to it and to
+to names within it.
+
+```
+a.b.c = 1
+a.d = 2
+```
+
+```
+# THIS IS INVALID
+a.b = 1
+a.b.c = 2
+```
+
 String
 ------
 
@@ -591,18 +613,7 @@ how to do it for you.
 
 Empty tables are allowed and simply have no key/value pairs within them.
 
-As long as a super-table hasn't been directly defined and hasn't defined a
-specific key, you may still write to it.
-
-```toml
-[a.b]
-c = 1
-
-[a]
-d = 2
-```
-
-You cannot define any key or table more than once. Doing so is invalid.
+Like keys, you cannot define any table more than once. Doing so is invalid.
 
 ```
 # DO NOT DO THIS
