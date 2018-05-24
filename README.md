@@ -794,13 +794,15 @@ points = [ { x = 1, y = 2, z = 3 },
 Version Pragma
 --------------
 
-The version pragma is an optional comment that specifies which version of TOML the document is known to be compatible with. It should occur at the start of the document before any keys are specified. It takes the form:
+The version pragma is an optional comment that specifies which version of TOML
+the document is known to be compatible with. It takes the form:
 
 ```
 # TOML v1.0
 ```
 
-The version in this comment should be the major and minor version numbers.
+The version pragma should occur at the start of the document before any keys are specified. The version should be the major and minor version numbers.
+
 
 Filename Extension
 ------------------
