@@ -803,6 +803,7 @@ the document is known to be compatible with. It takes the form:
 
 The version pragma should occur at the start of the document before any keys are specified. The version should be the major and minor version numbers.
 
+The expectation is that an implementation capable of parsing a version pragma only accepts such a document if it has a matching major version and equal or greater minor version.
 
 Filename Extension
 ------------------
