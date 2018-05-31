@@ -122,7 +122,7 @@ oct-prefix = %x30.6f               ; 0o
 bin-prefix = %x30.62               ; 0b
 
 dec-int = [ minus / plus ] unsigned-dec-int
-unsigned-dec-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+unsigned-dec-int = DIGIT / digit1-9 *( DIGIT / underscore DIGIT )
 
 hex-int = hex-prefix HEXDIG *( HEXDIG / underscore HEXDIG )
 oct-int = oct-prefix digit0-7 *( digit0-7 / underscore digit0-7 )
