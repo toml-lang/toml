@@ -199,7 +199,7 @@ name = "Tom"
 name = "Pradyun"
 ```
 
-As long as a key hasn't been directly defined, you may still write to it and to
+As long as a key hasn't been directly defined, you may still write to it and
 to names within it.
 
 ```
