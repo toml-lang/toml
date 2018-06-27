@@ -227,7 +227,7 @@ inline-table-keyvals-non-empty = key keyval-sep val [ inline-table-sep inline-ta
 array-table = array-table-open key array-table-close
 
 array-table-open  = %x5B.5B ws  ; [[ Double left square bracket
-array-table-close = ws %x5D.5D  ; ]] Double right quare bracket
+array-table-close = ws %x5D.5D  ; ]] Double right square bracket
 
 ;; Built-in ABNF terms, reproduced here for clarity
 
