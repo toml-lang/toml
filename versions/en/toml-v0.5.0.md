@@ -1,4 +1,4 @@
-![TOML Logo](logos/toml-200.png)
+![TOML Logo](../../logos/toml-200.png)
 
 TOML v0.5.0
 ===========
