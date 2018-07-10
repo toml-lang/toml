@@ -1,18 +1,11 @@
 ![TOML Logo](logos/toml-200.png)
 
-TOML
-====
+TOML v0.5.0
+===========
 
 Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner.
-
-Latest tagged version:
-[v0.5.0](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.5.0.md).
-
-NOTE: The `master` branch of this repository tracks the very latest development
-and may contain features and changes that do not exist on any released version.
-To find the spec for a specific version, look in the `versions` subdirectory.
 
 As of version 0.5.0, TOML should be considered extremely stable. The goal is for
 version 1.0.0 to be backwards compatible (as much as humanly possible) with

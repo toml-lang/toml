@@ -1,6 +1,6 @@
 # TOML Changelog
 
-## HEAD
+## 0.5.0 / 2018-07-11
 
 * Add dotted keys.
 * Add hex, octal, and binary integer formats.
