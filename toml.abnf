@@ -51,7 +51,8 @@ dotted-key = simple-key 1*( dot-sep simple-key )
 dot-sep   = ws %x2E ws  ; . Period
 keyval-sep = ws %x3D ws ; =
 
-val = string / boolean / array / inline-table / date-time / float / integer
+val = string / boolean / array / table-val / date-time / float / integer
+table-val = inline-table / inner-table
 
 ;; String
 
@@ -210,6 +211,17 @@ std-table = std-table-open key std-table-close
 
 std-table-open  = %x5B ws     ; [ Left square bracket
 std-table-close = ws %x5D     ; ] Right square bracket
+
+;; Newline-Delimited Inner Table
+
+inner-table = inner-table-open inner-table-keyvals inner-table-close
+
+inner-table-open  = %x7B ws [comment] newline    ; { at end of line
+inner-table-close = ws %x7D                      ; } at start of line
+
+inner-table-keyvals = *( inner-table-keyval newline )
+inner-table-keyval  =  ws [ comment ]
+inner-table-keyval  =/ ws keyval ws [ comment ]
 
 ;; Inline Table
 
