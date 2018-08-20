@@ -212,14 +212,13 @@ std-table-close = ws %x5D     ; ] Right square bracket
 
 ;; Inline Table
 
-inline-table = inline-table-open inline-table-keyvals inline-table-close
+inline-table = inline-table-open [ inline-table-keyvals ] inline-table-close
 
 inline-table-open  = %x7B ws     ; {
 inline-table-close = ws %x7D     ; }
 inline-table-sep   = ws %x2C ws  ; , Comma
 
-inline-table-keyvals = [ inline-table-keyvals-non-empty ]
-inline-table-keyvals-non-empty = key keyval-sep val [ inline-table-sep inline-table-keyvals-non-empty ]
+inline-table-keyvals = key keyval-sep val [ inline-table-sep inline-table-keyvals ]
 
 ;; Array Table
 
