@@ -137,7 +137,8 @@ frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
-exp = "e" float-int-part
+exp = exp-char float-int-part
+exp-char = "E" / "e"
 
 special-float = [ minus / plus ] ( inf / nan )
 inf = %x69.6e.66  ; inf
@@ -157,7 +158,7 @@ date-time      = offset-date-time / local-date-time / local-date / local-time
 date-fullyear  = 4DIGIT
 date-month     = 2DIGIT  ; 01-12
 date-mday      = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
-time-delim     = "T" / %x20 ; T, t, or space
+time-delim     = "T" / %x20 ; T or space
 time-hour      = 2DIGIT  ; 00-23
 time-minute    = 2DIGIT  ; 00-59
 time-second    = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap second rules
