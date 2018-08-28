@@ -421,7 +421,7 @@ Similar to integers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
 
 ```toml
-flt8 = 9_224_617.445_991_228_313
+flt8 = 224_617.445_991_228
 ```
 
 Float values `-0.0` and `+0.0` are valid and should map according to IEEE 754.
