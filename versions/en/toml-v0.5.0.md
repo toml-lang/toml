@@ -701,6 +701,32 @@ In JSON land, that would give you the following structure.
 }
 ```
 
+Newlines do **not** end the scope of an array of tables. Key/value pairs belong
+to the most recent double bracketed name. For example:
+
+```toml
+[[song]]
+name = "Thunder Road"
+duration = "4m49s"
+
+[[song]]
+name = "Stairway to Heaven"
+duration = "8m03s"
+
+another = "value"
+```
+
+The above parses to this JSON (note the position of the `"another"` key):
+
+```json
+{ 
+  "song": [
+    { "name": "Thunder Road", "duration": "4m49s" },
+    { "name": "Stairway to Heaven", "duration": "8m03s", "another": "value" }
+  ],
+}
+```
+
 You can create nested arrays of tables as well. Just use the same double bracket
 syntax on sub-tables. Each double-bracketed sub-table will belong to the most
 recently defined table element above it.
