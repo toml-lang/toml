@@ -415,7 +415,7 @@ flt7 = 6.626e-34
 A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
-(which follows the same rules as integer values).
+(which follows the same rules as decimal integer values).
 
 Similar to integers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
