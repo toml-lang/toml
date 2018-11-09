@@ -541,8 +541,8 @@ arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
 arr6 = [ 1, 2.0 ] # INVALID
 ```
 
-Arrays can also be multiline. Terminating commas (also called trailing commas)
-are ok after the last value of the array. There can be an arbitrary number of
+Arrays can also be multiline. A terminating comma (also called trailing comma)
+is ok after the last value of the array. There can be an arbitrary number of
 newlines and comments before a value and before the closing bracket.
 
 ```toml
