@@ -428,7 +428,7 @@ bool1 = true
 bool2 = false
 ```
 
-<a id="user-content-offset-date-time" href="#user-content-offset-date-time">世界日期时刻</a>
+<a id="user-content-offset-date-time" href="#user-content-offset-date-time">坐标日期时刻</a>
 --------------------------------------------------------------------------------------------
 
 要明确无误地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。
