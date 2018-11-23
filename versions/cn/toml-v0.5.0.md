@@ -31,9 +31,9 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 - [浮点数](#user-content-float)
 - [布尔值](#user-content-boolean)
 - [坐标日期时刻](#user-content-offset-date-time)
-- [单纯日期时刻](#user-content-local-date-time)
-- [单纯日期](#user-content-local-date)
-- [单纯时刻](#user-content-local-time)
+- [各地日期时刻](#user-content-local-date-time)
+- [各地日期](#user-content-local-date)
+- [各地时刻](#user-content-local-time)
 - [数组](#user-content-array)
 - [表](#user-content-table)
 - [行内表](#user-content-inline-table)
@@ -448,7 +448,7 @@ odt4 = 1979-05-27 07:32:00Z
 小数秒的精度取决于实现，但至少应当能够精确到毫秒。  
 如果它的值超出了实现所支持的精度，那多余的部分必须被舍弃，而不能四舍五入。
 
-<a id="user-content-local-date-time" href="#user-content-local-date-time">单纯日期时刻</a>
+<a id="user-content-local-date-time" href="#user-content-local-date-time">各地日期时刻</a>
 ------------------------------------------------------------------------------------------
 
 如果你省略了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的时区偏移量，这表示该日期时刻的使用并不涉及时区偏移。
@@ -463,7 +463,7 @@ ldt2 = 1979-05-27T00:32:00.999999
 小数秒的精度取决于实现，但至少应当能够精确到毫秒。  
 如果它的值超出了实现所支持的精度，那多余的部分必须被舍弃，而不能四舍五入。
 
-<a id="user-content-local-date" href="#user-content-local-date">单纯日期</a>
+<a id="user-content-local-date" href="#user-content-local-date">各地日期</a>
 ----------------------------------------------------------------------------
 
 如果你只写了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的日期部分，那它表示一整天，同时也不涉及时区偏移。
@@ -472,7 +472,7 @@ ldt2 = 1979-05-27T00:32:00.999999
 ld1 = 1979-05-27
 ```
 
-<a id="user-content-local-time" href="#user-content-local-time">单纯时刻</a>
+<a id="user-content-local-time" href="#user-content-local-time">各地时刻</a>
 ----------------------------------------------------------------------------
 
 如果你只写了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的时刻部分，它将只表示一天之中的那个时刻，而与任何特定的日期无关、亦不涉及时区偏移。
