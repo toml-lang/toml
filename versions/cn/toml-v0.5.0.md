@@ -44,8 +44,8 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 - [参与](#user-content-get-involved)
 - [百科](#user-content-wiki)
 
-<a id="user-content-example" href="#user-content-example">示例</a>
-------------------------------------------------------------------
+[示例](#user-content-example)<a id="user-content-example">&nbsp;</a>
+------
 
 ```toml
 # 这是一个 TOML 文档。
@@ -83,16 +83,16 @@ hosts = [
 ]
 ```
 
-<a id="user-content-spec" href="#user-content-spec">规定</a>
-------------------------------------------------------------
+[规定](#user-content-spec)<a id="user-content-spec">&nbsp;</a>
+------
 
 * TOML 是大小写敏感的。
 * TOML 文件必须是合法的 UTF-8 编码的 Unicode 文档。
 * 空白的意思是 Tab（0x09）或空格（0x20）。
 * 换行的意思是 LF（0x0A）或 CRLF（0x0D0A）。
 
-<a id="user-content-comment" href="#user-content-comment">注释</a>
-------------------------------------------------------------------
+[注释](#user-content-comment)<a id="user-content-comment">&nbsp;</a>
+------
 
 井号将此行剩下的部分标记为注释。
 
@@ -101,8 +101,8 @@ hosts = [
 key = "value" # 这是一个行末注释
 ```
 
-<a id="user-content-keyvalue-pair" href="#user-content-keyvalue-pair">键值对</a>
---------------------------------------------------------------------------------
+[键值对](#user-content-keyvalue-pair)<a id="user-content-keyvalue-pair">&nbsp;</a>
+--------
 
 TOML 文档最基本的构成区块是键/值对。
 
@@ -121,8 +121,8 @@ key = "value"
 key = # 有误
 ```
 
-<a id="user-content-keys" href="#user-content-keys">键名</a>
-------------------------------------------------------------
+[键名](#user-content-keys)<a id="user-content-keys">&nbsp;</a>
+------
 
 键名可以是裸露的，引号引起来的，或点分隔的。
 
@@ -203,8 +203,8 @@ a.b = 1
 a.b.c = 2
 ```
 
-<a id="user-content-string" href="#user-content-string">字符串</a>
-------------------------------------------------------------------
+[字符串](#user-content-string)<a id="user-content-string">&nbsp;</a>
+--------
 
 共有四种方式来表示字符串：基础式的，多行基础式的，字面量式的，和多行字面量式的。  
 所有字符串都只能包含有效的 UTF-8 字符。
@@ -319,8 +319,8 @@ lines  = '''
 因此，对于二进制数据，建议你使用 Base64 或其它合适的 ASCII 或 UTF-8 编码。  
 对那些编码的处理方式，将交由应用程序自己来确定。
 
-<a id="user-content-integer" href="#user-content-integer">整数</a>
-------------------------------------------------------------------
+[整数](#user-content-integer)<a id="user-content-integer">&nbsp;</a>
+------
 
 整数是纯数字。  
 正数可以有加号前缀。  
@@ -366,8 +366,8 @@ bin1 = 0b11010110
 
 可接受范围为 64 位（记作长整型）（−9,223,372,036,854,775,808 至 9,223,372,036,854,775,807）。
 
-<a id="user-content-float" href="#user-content-float">浮点数</a>
-----------------------------------------------------------------
+[浮点数](#user-content-float)<a id="user-content-float">&nbsp;</a>
+--------
 
 浮点数应当被实现为 IEEE 754 64 位双精度值。
 
@@ -417,8 +417,8 @@ sf5 = +nan # 等同于 `nan`
 sf6 = -nan # 有效，实际码取决于实现
 ```
 
-<a id="user-content-boolean" href="#user-content-boolean">布尔值</a>
---------------------------------------------------------------------
+[布尔值](#user-content-boolean)<a id="user-content-boolean">&nbsp;</a>
+--------
 
 布尔值就是你所惯用的那样。  
 要小写。
@@ -428,8 +428,8 @@ bool1 = true
 bool2 = false
 ```
 
-<a id="user-content-offset-date-time" href="#user-content-offset-date-time">坐标日期时刻</a>
---------------------------------------------------------------------------------------------
+[坐标日期时刻](#user-content-offset-date-time)<a id="user-content-offset-date-time">&nbsp;</a>
+--------------
 
 要明确无误地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。
 
@@ -448,8 +448,8 @@ odt4 = 1979-05-27 07:32:00Z
 小数秒的精度取决于实现，但至少应当能够精确到毫秒。  
 如果它的值超出了实现所支持的精度，那多余的部分必须被舍弃，而不能四舍五入。
 
-<a id="user-content-local-date-time" href="#user-content-local-date-time">各地日期时刻</a>
-------------------------------------------------------------------------------------------
+[各地日期时刻](#user-content-local-date-time)
+--------------
 
 如果你省略了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的时区偏移量，这表示该日期时刻的使用并不涉及时区偏移。
 在没有其它信息的情况下，并不知道它究竟该被转化成世上的哪一刻。  
@@ -463,8 +463,8 @@ ldt2 = 1979-05-27T00:32:00.999999
 小数秒的精度取决于实现，但至少应当能够精确到毫秒。  
 如果它的值超出了实现所支持的精度，那多余的部分必须被舍弃，而不能四舍五入。
 
-<a id="user-content-local-date" href="#user-content-local-date">各地日期</a>
-----------------------------------------------------------------------------
+[各地日期](#user-content-local-date)<a id="user-content-local-date">&nbsp;</a>
+----------
 
 如果你只写了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的日期部分，那它表示一整天，同时也不涉及时区偏移。
 
@@ -472,8 +472,8 @@ ldt2 = 1979-05-27T00:32:00.999999
 ld1 = 1979-05-27
 ```
 
-<a id="user-content-local-time" href="#user-content-local-time">各地时刻</a>
-----------------------------------------------------------------------------
+[各地时刻](#user-content-local-time)<a id="user-content-local-time">&nbsp;</a>
+----------
 
 如果你只写了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的时刻部分，它将只表示一天之中的那个时刻，而与任何特定的日期无关、亦不涉及时区偏移。
 
@@ -485,8 +485,8 @@ lt2 = 00:32:00.999999
 小数秒的精度取决于实现，但至少应当能够精确到毫秒。  
 如果它的值超出了实现所支持的精度，那多余的部分必须被舍弃，而不能四舍五入。
 
-<a id="user-content-array" href="#user-content-array">数组</a>
---------------------------------------------------------------
+[数组](#user-content-array)<a id="user-content-array">&nbsp;</a>
+------
 
 数组是内含值的方括号。  
 空白会被忽略。  
@@ -518,8 +518,8 @@ arr8 = [
 ]
 ```
 
-<a id="user-content-table" href="#user-content-table">表</a>
-------------------------------------------------------------
+[表](#user-content-table)<a id="user-content-table">&nbsp;</a>
+----
 
 表（也被称为哈希表或字典）是键值对的集合。  
 它们在方括号里，并作为单独的行出现。  
@@ -599,8 +599,8 @@ b = 1
 c = 2
 ```
 
-<a id="user-content-inline-table" href="#user-content-inline-table">行内表</a>
-------------------------------------------------------------------------------
+[行内表](#user-content-inline-table)<a id="user-content-inline-table">&nbsp;</a>
+--------
 
 行内表提供了一种更为紧凑的语法来表示表。  
 对于否则就很啰嗦的成组数据，这尤其有用。  
@@ -636,8 +636,8 @@ type.name = "哈巴狗"
 
 ```
 
-<a id="user-content-array-of-tables" href="#user-content-array-of-tables">表数组</a>
-------------------------------------------------------------------------------------
+[表数组](#user-content-array-of-tables)<a id="user-content-array-of-tables">&nbsp;</a>
+--------
 
 最后剩下一个还没办法表示的是表数组。  
 这可以通过双方括号表明来表示。  
@@ -753,18 +753,18 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 2, y = 4, z = 8 } ]
 ```
 
-<a id="user-content-filename-extension" href="#user-content-filename-extension">文件扩展名</a>
-----------------------------------------------------------------------------------------------
+[文件扩展名](#user-content-filename-extension)<a id="user-content-filename-extension">&nbsp;</a>
+------------
 
 TOML 文件应当使用 `.toml` 扩展名。
 
-<a id="user-content-mime-type" href="#user-content-mime-type">MIME 类型</a>
----------------------------------------------------------------------------
+[MIME 类型](#user-content-mime-type)<a id="user-content-mime-type">&nbsp;</a>
+-----------
 
 在互联网上传输 TOML 文件时，恰当的 MIME 类型是 `application/toml`。
 
-<a id="user-content-comparison-with-other-formats" href="#user-content-comparison-with-other-formats">与其它格式的比较</a>
---------------------------------------------------------------------------------------------------------------------------
+[与其它格式的比较](#user-content-comparison-with-other-formats)<a id="user-content-comparison-with-other-formats">&nbsp;</a>
+------------------
 
 某种程度上讲 TOML 与 JSON 非常相似：简单，规定明确，并且宜于转化成普适的数据类型。  
 JSON 适合序列化由计算机程序读写的数据。  
@@ -778,13 +778,13 @@ TOML 致力于简单，这是一个在 YAML 的规范于中肉眼不可见的目
 INI 格式也常见于配置文件。  
 然而……这个格式并无统一标准，并且通常不料理超过一或两层的嵌套。
 
-<a id="user-content-get-involved" href="#user-content-get-involved">参与</a>
-----------------------------------------------------------------------------
+[参与](#user-content-get-involved)<a id="user-content-get-involved">&nbsp;</a>
+------
 
 欢迎帮助文档、问题反馈、修缮合并，以及其它一切形式的贡献！
 
-<a id="user-content-wiki" href="#user-content-wiki">百科</a>
-------------------------------------------------------------
+[百科](#user-content-wiki)<a id="user-content-wiki">&nbsp;</a>
+------
 
 我们有一个[官方 TOML 百科](https://github.com/toml-lang/toml/wiki)收录了以下内容：
 
