@@ -772,7 +772,7 @@ TOML 与 JSON 的不同之处是它的重点在于宜于人类读写。
 
 YAML 格式就像 TOML 一样，是以配置文件为导向的。  
 然而……因为种种原因，YAML 是一种过于复杂的解决方案。  
-TOML 致力于简单，这个目标在 YAML 的规范并不明显：http://www.yaml.org/spec/1.2/spec.html
+TOML 旨在简易，这个目标在 YAML 的规范当中不那么明显：http://www.yaml.org/spec/1.2/spec.html
 
 INI 格式也常见于配置文件。  
 然而……这个格式并无统一标准，并且通常不料理超过一或两层的嵌套。
