@@ -3,9 +3,8 @@
 TOML v0.5.0
 ===========
 
-汤小明的小巧明晰语言。
-
-汤姆·普雷斯顿—维尔纳所创。
+全称：Tom 的（语义）明显、（配置）最小化的语言。  
+（Tom's Obvious, Minimal Language. By Tom Preston-Werner.）
 
 自版本 0.5.0 起，TOML 可以说是非常稳定了。  
 我们的目标是将来正式的 1.0.0 版能够向下兼容到 0.5.0 版（尽人事之可能吧）。  
@@ -14,15 +13,15 @@ TOML v0.5.0
 宗旨
 ----
 
-TOML 旨在成为一个语义显著而易于阅读的最低限度的配置文件格式。  
-TOML 被设计地能够无歧义地转化为哈希表。  
-TOML 应当能简单地解析成形形色色的语言中的数据结构。
+TOML 旨在成为一个语义明显且易于阅读的最小化配置文件格式。  
+TOML 被设计成可以无歧义地映射为哈希表。  
+TOML 应该能很容易地被解析成各种语言中的数据结构。
 
 目录
 ----
 
 - [示例](#user-content-example)
-- [规定](#user-content-spec)
+- [规格](#user-content-spec)
 - [注释](#user-content-comment)
 - [键/值对](#user-content-keyvalue-pair)
 - [键名](#user-content-keys)
@@ -42,7 +41,7 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 - [MIME 类型](#user-content-mime-type)
 - [与其它格式的比较](#user-content-comparison-with-other-formats)
 - [参与](#user-content-get-involved)
-- [百科](#user-content-wiki)
+- [Wiki](#user-content-wiki)
 
 [示例](#user-content-example)<a id="user-content-example">&nbsp;</a>
 ------
@@ -53,7 +52,7 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 title = "TOML 示例"
 
 [owner]
-name = "汤姆·普雷斯顿—维尔纳"
+name = "Tom Preston-Werner"
 dob = 1979-05-27T07:32:00-08:00 # 第一类日期时刻
 
 [database]
@@ -64,7 +63,7 @@ enabled = true
 
 [servers]
 
-  # 允许缩进（Tab 和/或空格），不过不是必要的
+  # 允许缩进（制表符和/或空格），不过不是必要的
   [servers.alpha]
   ip = "10.0.0.1"
   dc = "eqdc10"
@@ -83,18 +82,18 @@ hosts = [
 ]
 ```
 
-[规定](#user-content-spec)<a id="user-content-spec">&nbsp;</a>
+[规格](#user-content-spec)<a id="user-content-spec">&nbsp;</a>
 ------
 
 * TOML 是大小写敏感的。
 * TOML 文件必须是合法的 UTF-8 编码的 Unicode 文档。
-* 空白的意思是 Tab（0x09）或空格（0x20）。
-* 换行的意思是 LF（0x0A）或 CRLF（0x0D0A）。
+* 空白是指制表符（0x09）或空格（0x20）。
+* 换行是指 LF（0x0A）或 CRLF（0x0D0A）。
 
 [注释](#user-content-comment)<a id="user-content-comment">&nbsp;</a>
 ------
 
-井号将此行剩下的部分标记为注释。
+井字符（Hash Symbol）将该行余下的部分标记为注释。
 
 ```toml
 # 这是一个全行注释
@@ -115,10 +114,10 @@ key = "value"
 ```
 
 值必须是这些类型：字符串，整数，浮点数，布尔值，日期时刻，数组，或行内表。  
-不指定值是有误的。
+不指定值是非法的。
 
 ```toml
-key = # 有误
+key = # 非法
 ```
 
 [键名](#user-content-keys)<a id="user-content-keys">&nbsp;</a>
@@ -126,7 +125,7 @@ key = # 有误
 
 键名可以是裸露的，引号引起来的，或点分隔的。
 
-**裸键**只能包含 ASCII 字母，ASCII 数字，下划线和短横线（`A-Za-z0-9_-`）。  
+**裸键**（Bare keys）只能包含 ASCII 字母，ASCII 数字，下划线和短横线（`A-Za-z0-9_-`）。  
 注意裸键允许仅由纯 ASCII 数字构成，例如 `1234`，但是是被理解为字符串的。
 
 ```toml
@@ -136,7 +135,7 @@ bare-key = "value"
 1234 = "value"
 ```
 
-**引号键**遵循与基础字符串或字面量字符串相同的规则并允许你使用更为广泛的键名。  
+**引号键**（Quoted keys）遵循与基本字符串或字面量字符串相同的规则并允许你使用更为广泛的键名。  
 除非明显必要，使用裸键方为最佳实践。
 
 ```toml
@@ -150,29 +149,29 @@ bare-key = "value"
 裸键中不能为空，但空引号键是允许的（虽然不建议如此）。
 
 ```toml
-= "no key name"  # 有误
-"" = "blank"     # 有效但不建议
-'' = 'blank'     # 有效但不建议
+= "no key name"  # 非法
+"" = "blank"     # 合法但不建议
+'' = 'blank'     # 合法但不建议
 ```
 
-**点分隔键**是一系列通过点相连的裸键或引号键。  
+**点分隔键**（Dotted keys）是一系列通过点相连的裸键或引号键。  
 这允许了你将相近属性放在一起：
 
 ```toml
-"名称" = "橙子"
-"物性"."颜色" = "橙色"
-"物性"."形状" = "圆形"
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
 site."google.com" = true
 ```
 
-这在 JSON 那儿，是以下结构：
+等价于 JSON 的如下结构：
 
 ```json
 {
-  "名称": "橙子",
-  "物性": {
-    "颜色": "橙色",
-    "形状": "圆形"
+  "name": "Orange",
+  "physical": {
+    "color": "orange",
+    "shape": "round"
   },
   "site": {
     "google.com": true
@@ -198,7 +197,7 @@ a.d = 2
 ```
 
 ```
-# 这就不行了
+# 这是非法的
 a.b = 1
 a.b.c = 2
 ```
@@ -206,14 +205,14 @@ a.b.c = 2
 [字符串](#user-content-string)<a id="user-content-string">&nbsp;</a>
 --------
 
-共有四种方式来表示字符串：基础式的，多行基础式的，字面量式的，和多行字面量式的。  
+共有四种方式来表示字符串：基本字符串、多行基本字符串、字面量和多行字面量。  
 所有字符串都只能包含有效的 UTF-8 字符。
 
-**基础字符串**由引号包裹。  
+**基本字符串**（Basic strings）由引号包裹。  
 任何 Unicode 字符都可以使用，除了那些必须转义的：引号，反斜杠，以及控制字符（U+0000 至 U+001F，U+007F）。
 
 ```toml
-str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str = "我是一个字符串。\"你可以把我引起来\"。姓名\tJos\u00E9\n位置\t旧金山。"
 ```
 
 为了方便，一些流行的字符有其简便转义写法。
@@ -238,45 +237,45 @@ str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 有时你需要表示一小篇文本（例如译文）或者想要对非常长的字符串进行折行。  
 TOML 对此进行了简化。
 
-**多行基础字符串**由三个引号包裹，允许折行。  
+**多行基本字符串**（Multi-line basic strings）由三个引号包裹，允许折行。  
 紧随开头引号的那个换行会被去除。  
 其它空白和换行符会被原样保留。
 
 ```toml
 str1 = """
-玫瑰是红色的
-紫罗兰是蓝色的"""
+Roses are red
+Violets are blue"""
 ```
 
 TOML 解析器可以相对灵活地解析成对所在平台有效的换行字符。
 
 ```toml
 # 在 Unix 系统，上面的多行字符串可能等同于：
-str2 = "玫瑰是红色的\n紫罗兰是蓝色的"
+str2 = "Roses are red\nViolets are blue"
 
 # 在 Windows 系统，它可能等价于：
-str3 = "玫瑰是红色的\r\n紫罗兰是蓝色的"
+str3 = "Roses are red\r\nViolets are blue"
 ```
 
 想书写长字符串却不想引入无关空白，可以用“行末反斜杠”。  
 当一行的最后一个非空白字符是 `\` 时，它会连同它后面的所有空白（包括换行）一起被去除，直到下一个非空白字符或结束引号为止。  
-所有对基础字符串有效的转义序列，对多行基础字符串也同样适用。
+所有对基本字符串有效的转义序列，对多行基本字符串也同样适用。
 
 ```toml
 # 下列字符串的每一个字节都完全相同：
-str1 = "那只 敏捷的 棕 狐狸 跳 过了 那只 懒 狗。"
+str1 = "The quick brown fox jumps over the lazy dog."
 
 str2 = """
-那只 敏捷的 棕 \
+The quick brown \
 
 
-  狐狸 跳 过了 \
-    那只 懒 狗。"""
+  fox jumps over \
+    the lazy dog."""
 
 str3 = """\
-       那只 敏捷的 棕 \
-       狐狸 跳 过了 \
-       那只 懒 狗。\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
        """
 ```
 
@@ -286,21 +285,21 @@ str3 = """\
 如果你常常要指定 Windows 路径或正则表达式，那么必须转义反斜杠就马上成为啰嗦而易错的了。  
 为了帮助搞定这点，TOML 支持字面量字符串，它完全不允许转义。
 
-**字面量字符串**由单引号包裹。  
-类似于基础字符串，他们只能表现为单行：
+**字面量字符串**（Literal strings）由单引号包裹。  
+类似于基本字符串，他们只能表现为单行：
 
 ```toml
 # 所见即所得。
 winpath  = 'C:\Users\nodejs\templates'
 winpath2 = '\\ServerX\admin$\system32\'
-quoted   = '汤姆·"达布斯"·普雷斯顿—维尔纳'
+quoted   = 'Tom "Dubs" Preston-Werner'
 regex    = '<\i\c*\s*>'
 ```
 
 由于没有转义，无法在由单引号包裹的字面量字符串中写入单引号。  
 万幸，TOML 支持一种多行版本的字面量字符串来解决这个问题。
 
-**多行字面量字符串**两侧各有三个单引号来包裹，允许换行。  
+**多行字面量字符串**（Multi-line literal strings）两侧各有三个单引号来包裹，允许换行。  
 类似于字面量字符串，无论任何转义都不存在。  
 紧随开始标记的那个换行会被剔除。  
 开始结束标记之间的所有其它内容会原样对待。
@@ -339,7 +338,7 @@ int4 = -17
 ```toml
 int5 = 1_000
 int6 = 5_349_221
-int7 = 1_2_3_4_5     # 无误但不鼓励
+int7 = 1_2_3_4_5     # 合法但不鼓励
 ```
 
 前导零是不允许的。  
@@ -431,7 +430,7 @@ bool2 = false
 [坐标日期时刻](#user-content-offset-date-time)<a id="user-content-offset-date-time">&nbsp;</a>
 --------------
 
-要明确无误地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。
+要准确地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -491,16 +490,16 @@ lt2 = 00:32:00.999999
 数组是内含值的方括号。  
 空白会被忽略。  
 子元素由逗号分隔。  
-子元素的数据类型必须一致（不同定义字符串的方式应当被认为是相同的类型，不同元素类型的数组也同是数组类型）。
+子元素的数据类型必须一致（不同写法的字符串应当被认为是相同的类型，不同元素类型的数组也同是数组类型）。
 
 ```toml
 arr1 = [ 1, 2, 3 ]
 arr2 = [ "red", "yellow", "green" ]
 arr3 = [ [ 1, 2 ], [3, 4, 5] ]
-arr4 = [ "all", 'strings', """are the same""", '''type''']
+arr4 = [ "所有（写法的）", '字符串', """都是一样的""", '''类型''']
 arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
 
-arr6 = [ 1, 2.0 ] # 有误
+arr6 = [ 1, 2.0 ] # 非法
 ```
 
 数组也可以跨多行。  
@@ -549,7 +548,7 @@ key2 = 456
 type.name = "pug"
 ```
 
-这在 JSON 那儿，是以下结构：
+等价于 JSON 的如下结构：
 
 ```json
 { "dog": { "tater.man": { "type": { "name": "pug" } } } }
@@ -577,7 +576,7 @@ TOML 知道该怎么办。
 空表是允许的，只要里面没有键值对就行了。
 
 类似于键名，你不能重复定义任何表。  
-这样做是错误的。
+这样做是非法的。
 
 ```
 # 不要这样做
@@ -612,35 +611,35 @@ c = 2
 行内表得出现在同一行内。  
 不允许花括号中出现换行，除非它们存在于正确的值当中。  
 即便如此，也强烈不建议把一个行内表搞成纵跨多行的样子。  
-如果你发现自己贼想如此，那意味着你应该使用标准表。
+如果你发现自己真的需要，那意味着你应该使用标准表。
 
 ```toml
-name = { first = "汤姆", last = "普雷斯顿—维尔纳" }
+name = { first = "Tom", last = "Preston-Werner" }
 point = { x = 1, y = 2 }
-animal = { type.name = "哈巴狗" }
+animal = { type.name = "pug" }
 ```
 
 上述行内表等同于下面的标准表定义：
 
 ```toml
 [name]
-first = "汤姆"
-last = "普雷斯顿—维尔纳"
+first = "Tom"
+last = "Preston-Werner"
 
 [point]
 x = 1
 y = 2
 
 [animal]
-type.name = "哈巴狗"
+type.name = "pug"
 
 ```
 
 [表数组](#user-content-array-of-tables)<a id="user-content-array-of-tables">&nbsp;</a>
 --------
 
-最后剩下一个还没办法表示的是表数组。  
-这可以通过双方括号表明来表示。  
+最后还剩下一个没法表示的是表数组。  
+这可以通过双方括号来表示。  
 各个具有相同方括号名的表将会成为该数组内的一员。  
 这些表的出现顺序就是它们的插入顺序。  
 一个没有任何键值对的双方括号表将为视为一个空表。
@@ -658,7 +657,7 @@ sku = 284758393
 color = "gray"
 ```
 
-这在 JSON 那儿，是以下结构。
+等价于 JSON 的如下结构。
 
 ```json
 {
@@ -695,7 +694,7 @@ color = "gray"
     name = "plantain"
 ```
 
-上述 TOML 对应下面的 JSON。
+上述 TOML 等价于 JSON 的如下结构。
 
 ```json
 {
@@ -766,10 +765,10 @@ TOML 文件应当使用 `.toml` 扩展名。
 [与其它格式的比较](#user-content-comparison-with-other-formats)<a id="user-content-comparison-with-other-formats">&nbsp;</a>
 ------------------
 
-某种程度上讲 TOML 与 JSON 非常相似：简单，规定明确，并且宜于转化成普适的数据类型。  
+某种程度上讲 TOML 与 JSON 非常相似：简单，规格明确，并且宜于转化成普适的数据类型。  
 JSON 适合序列化由计算机程序读写的数据。  
 TOML 与 JSON 的不同之处是它的重点在于宜于人类读写。  
-注释就是一个好例子：当数据在程序之间传送时，它们并无卵用，但是在手工编辑的配置文件中非常有帮助。
+注释就是一个好例子：当数据在程序之间传送时，它们有些多余，但是在手工编辑的配置文件中非常有帮助。
 
 YAML 格式就像 TOML 一样，是以配置文件为导向的。  
 然而……因为种种原因，YAML 是一种过于复杂的解决方案。  
@@ -783,10 +782,10 @@ INI 格式也常见于配置文件。
 
 欢迎帮助文档、问题反馈、修缮合并，以及其它一切形式的贡献！
 
-[百科](#user-content-wiki)<a id="user-content-wiki">&nbsp;</a>
+[Wiki](#user-content-wiki)<a id="user-content-wiki">&nbsp;</a>
 ------
 
-我们有一个[官方 TOML 百科](https://github.com/toml-lang/toml/wiki)收录了以下内容：
+我们有一个[官方 TOML Wiki](https://github.com/toml-lang/toml/wiki)收录了以下内容：
 
 * 使用了 TOML 的项目
 * 可用实现清单
@@ -799,4 +798,4 @@ INI 格式也常见于配置文件。
 请点进去看一下，如果你想要阅览或加入其中。
 感谢你成为 TOML 社区的一员！
 
-——[龙腾道](http://www.LongTengDao.com/) 译
+——龙腾道 译，张汉东 校
