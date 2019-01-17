@@ -785,7 +785,7 @@ INI 格式也常见于配置文件。
 [Wiki](#user-content-wiki)<a id="user-content-wiki">&nbsp;</a>
 ------
 
-我们有一个[官方 TOML Wiki](https://github.com/toml-lang/toml/wiki)收录了以下内容：
+我们有一个[官方 TOML Wiki](https://github.com/toml-lang/toml/wiki) 收录了以下内容：
 
 * 使用了 TOML 的项目
 * 可用实现清单
