@@ -102,11 +102,12 @@ Spec
 Comment
 -------
 
-A hash symbol marks the rest of the line as a comment.
+A hash symbol marks the rest of the line as a comment, except when inside a string.
 
 ```toml
 # This is a full-line comment
-key = "value" # This is a comment at the end of a line
+key1 = "value" # This is a comment at the end of a line
+key2 = "#this is not a comment"
 ```
 
 Key/Value Pair
