@@ -60,4 +60,4 @@
 * 第一次较好的发布。
 * TOML 版本号采取 SemVer 标准。
 
-[Twitter rage]: https://www.urbandictionary.com/define.php?term=Twitter%20Rage "Urban Dictionary: At least 5 consecutive angry tweets about something. Usually results in a drop in followers and/or more people twitter raging.&#10;都市词典：至少连续 5 条关于某事愤怒的推文。通常会导致他人取关和/或更多的人被传染。"
+[Twitter rage]: https://www.urbandictionary.com/define.php?term=Twitter%20Rage "Urban Dictionary: At least 5 consecutive angry tweets about something. Usually results in a drop in followers and/or more people twitter raging.&#10;都市词典：至少 5 条连续的关于某事愤怒的推文。通常会导致他人取关和/或更多的人被传染。"
