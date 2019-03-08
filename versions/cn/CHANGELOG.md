@@ -56,6 +56,6 @@
 
 ## 0.1.0 / 2013-03-17
 
-* 从<a id="user-content-twitter-rage" href="#user-content-twitter-rage" title="Twitter rage (Urban Dictionary):&#10;At least 5 consecutive angry tweets about something. Usually results in a drop in followers and/or more people twitter raging.&#10;至少连续 5 条关于某事愤怒的推文。通常会导致他人取关和/或更多的人被传染。&#10;https://www.urbandictionary.com/define.php?term=Twitter%20Rage">推特刷屏</a>到现实；TOML 现在成形问世了。
+* 从<a id="user-content-twitter-rage" href="#user-content-twitter-rage" title="Twitter rage (Urban Dictionary):&#10;至少连续 5 条关于某事愤怒的推文。通常会导致他人取关和/或更多的人被传染。&#10;At least 5 consecutive angry tweets about something. Usually results in a drop in followers and/or more people twitter raging.&#10;https://www.urbandictionary.com/define.php?term=Twitter%20Rage">推特刷屏</a>到现实；TOML 现在成形问世了。
 * 第一次较好的发布。
 * TOML 版本号采取 SemVer 标准。
