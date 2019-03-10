@@ -35,7 +35,7 @@ TOML 应该能很容易地被解析成各种语言中的数据结构。
 - [各地时刻](#user-content-local-time)
 - [数组](#user-content-array)
 - [表](#user-content-table)
-- [行内表](#user-content-inline-table)
+- [内联表](#user-content-inline-table)
 - [表数组](#user-content-array-of-tables)
 - [文件扩展名](#user-content-filename-extension)
 - [MIME 类型](#user-content-mime-type)
@@ -113,7 +113,7 @@ TOML 文档最基本的构成区块是键/值对。
 key = "value"
 ```
 
-值必须是这些类型：字符串，整数，浮点数，布尔值，日期时刻，数组，或行内表。  
+值必须是这些类型：字符串，整数，浮点数，布尔值，日期时刻，数组，或内联表。  
 不指定值是非法的。
 
 ```toml
@@ -598,19 +598,19 @@ b = 1
 c = 2
 ```
 
-[行内表](#user-content-inline-table)<a id="user-content-inline-table">&nbsp;</a>
+[内联表](#user-content-inline-table)<a id="user-content-inline-table">&nbsp;</a>
 --------
 
-行内表提供了一种更为紧凑的语法来表示表。  
+内联表提供了一种更为紧凑的语法来表示表。  
 对于否则就很啰嗦的成组数据，这尤其有用。  
-行内表由花括号 `{` 和 `}` 包裹。  
+内联表由花括号 `{` 和 `}` 包裹。  
 在括号中，可以出现零个或更多逗号分隔的键值对。  
 键值对采取与标准表中的键值对相同的形式。  
-什么类型的值都可以，包括行内表。
+什么类型的值都可以，包括内联表。
 
-行内表得出现在同一行内。  
+内联表得出现在同一行内。  
 不允许花括号中出现换行，除非它们存在于正确的值当中。  
-即便如此，也强烈不建议把一个行内表搞成纵跨多行的样子。  
+即便如此，也强烈不建议把一个内联表搞成纵跨多行的样子。  
 如果你发现自己真的需要，那意味着你应该使用标准表。
 
 ```toml
@@ -619,7 +619,7 @@ point = { x = 1, y = 2 }
 animal = { type.name = "pug" }
 ```
 
-上述行内表等同于下面的标准表定义：
+上述内联表等同于下面的标准表定义：
 
 ```toml
 [name]
@@ -744,7 +744,7 @@ fruit = []
     name = "granny smith"
 ```
 
-你也可以适当使用行内表：
+你也可以适当使用内联表：
 
 ```toml
 points = [ { x = 1, y = 2, z = 3 },
