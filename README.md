@@ -367,9 +367,9 @@ Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
 identical to an unprefixed zero.
 
 Non-negative integer values may also be expressed in hexadecimal, octal, or
-binary. In these formats, leading zeros are allowed (after the prefix). Hex
-values are case insensitive. Underscores are allowed between digits (but not
-between the prefix and the value). Leading `+` is not allowed.
+binary. In these formats, leading `+` is not allowed and leading zeros are
+allowed (after the prefix). Hex values are case insensitive. Underscores are
+allowed between digits (but not between the prefix and the value).
 
 ```toml
 # hexadecimal with prefix `0x`
