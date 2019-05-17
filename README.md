@@ -805,6 +805,19 @@ MIME Type
 When transferring TOML files over the internet, the appropriate MIME type is
 `application/toml`.
 
+EditorConfig
+------------
+
+To avoid line end whitespaces in multi-line string being auto trimmed
+accidentally by "smart" editors, we may resort to `.editorconfig`:
+
+```editorconfig
+# http://editorconfig.org
+
+[*.toml]
+trim_trailing_whitespace = false
+```
+
 Comparison with Other Formats
 -----------------------------
 
