@@ -1,0 +1,4 @@
+# http://editorconfig.org
+
+[*.toml]
+trim_trailing_whitespace = false
