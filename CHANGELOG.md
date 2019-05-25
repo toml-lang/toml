@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* None.
+* Disallow UTF-16 surrogate code points in grammar (U+D800 - U+DFFF).
 
 ## 0.5.0 / 2018-07-11
 
