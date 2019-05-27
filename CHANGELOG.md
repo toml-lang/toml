@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-* None.
+* Clarify in ABNF that UTF-16 surrogate code points (U+D800 - U+DFFF) are not
+  allowed in strings or comments.
 
 ## 0.5.0 / 2018-07-11
 
