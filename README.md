@@ -174,6 +174,8 @@ name = "Orange"
 physical.color = "orange"
 physical.shape = "round"
 site."google.com" = true
+3.141592 = "pi"
+"3.141592" = "pi"
 ```
 
 In JSON land, that would give you the following structure:
@@ -187,7 +189,11 @@ In JSON land, that would give you the following structure:
   },
   "site": {
     "google.com": true
-  }
+  },
+  "3": {
+    "141592": "pi"
+  },
+  "3.141592": "pi"
 }
 ```
 
