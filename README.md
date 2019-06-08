@@ -106,8 +106,8 @@ A hash symbol marks the rest of the line as a comment, except when inside a stri
 
 ```toml
 # This is a full-line comment
-key1 = "value" # This is a comment at the end of a line
-key2 = "#this is not a comment"
+key = "value"  # This is a comment at the end of a line
+another = "# This is not a comment"
 ```
 
 Key/Value Pair
