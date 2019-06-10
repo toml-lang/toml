@@ -64,7 +64,7 @@ basic-string = quotation-mark *basic-char quotation-mark
 quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
-basic-unescaped = %x20-21 / %x23-5B / %x5D-7E / non-ascii
+basic-unescaped = %x09 / %x20-21 / %x23-5B / %x5D-7E / non-ascii
 escaped = escape escape-seq-char
 
 escape = %x5C                   ; \
@@ -86,7 +86,7 @@ ml-basic-string-delim = 3quotation-mark
 
 ml-basic-body = *( ml-basic-char / newline / ( escape ws newline ) )
 ml-basic-char = ml-basic-unescaped / escaped
-ml-basic-unescaped = %x20-5B / %x5D-7E / non-ascii
+ml-basic-unescaped = %x09 / %x20-5B / %x5D-7E / non-ascii
 
 ;; Literal String
 
