@@ -828,8 +828,7 @@ and data serialization, such as YAML and JSON. TOML and JSON both are simple and
 use ubiquitous data types, making them easy to code for or parse with machines.
 TOML and YAML both emphasize human readability features, like comments that make
 it easier to understand the purpose of a given line. TOML differs in combining
-these, rather than permitting the much more complex syntax available in YAML or
-the rat's nests of curly braces that can happen in JSON.
+these, allowing comments (unlike JSON) but preserving simplicity (unlike YAML).
 
 Because TOML is explicitly intended as a configuration file format, parsing it
 is easy, but it is not intended for serializing arbitrary data structures. TOML
