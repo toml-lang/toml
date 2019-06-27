@@ -823,22 +823,29 @@ When transferring TOML files over the internet, the appropriate MIME type is
 Comparison with Other Formats
 -----------------------------
 
-In some ways TOML is very similar to JSON: simple, well-specified, and
-maps easily to ubiquitous data types. JSON is great for serializing
-data that will mostly be read and written by computer programs. Where
-TOML differs from JSON is its emphasis on being easy for humans to
-read and write. Comments are a good example: they serve no purpose
-when data is being sent from one program to another, but are very
-helpful in a configuration file that may be edited by hand.
+TOML shares traits with other file formats used for application configuration
+and data serialization, such as YAML and JSON. TOML and JSON both are simple and
+use ubiquitous data types, making them easy to code for or parse with machines.
+TOML and YAML both emphasize human readability features, like comments that make
+it easier to understand the purpose of a given line. TOML differs in combining
+these, allowing comments (unlike JSON) but preserving simplicity (unlike YAML).
 
-The YAML format is oriented towards configuration files just like
-TOML. For many purposes, however, YAML is an overly complex
-solution. TOML aims for simplicity, a goal which is not apparent in
-the YAML specification: http://www.yaml.org/spec/1.2/spec.html
+Because TOML is explicitly intended as a configuration file format, parsing it
+is easy, but it is not intended for serializing arbitrary data structures. TOML
+always has a hash table at the top level of the file, which can easily have data
+nested inside its keys, but it doesn't permit top-level arrays or floats, so it
+cannot directly serialize some data. There is also no standard identifying the
+start or end of a TOML file, which can complicate sending it through a stream.
+These details must be negotiated on the application layer.
 
-The INI format is also frequently used for configuration files. The
-format is not standardized, however, and usually does not handle more
-than one or two levels of nesting.
+INI files are frequently compared to TOML for their similarities in syntax and
+use as configuration files. However, there is no standardized format for INI
+and they do not gracefully handle more than one or two levels of nesting.
+
+Further reading:
+ * YAML spec: https://yaml.org/spec/1.2/spec.html
+ * JSON spec: https://tools.ietf.org/html/rfc8259
+ * Wikipedia on INI files: https://en.wikipedia.org/wiki/INI_file
 
 Get Involved
 ------------
