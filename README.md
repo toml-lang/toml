@@ -130,6 +130,13 @@ Datetime, Array, or Inline Table. Unspecified values are invalid.
 key = # INVALID
 ```
 
+There must be a newline after a key/value pair.
+(See [Inline Table](#user-content-inline-table) for exceptions.)
+
+```
+first = "Tom" last = "Preston-Werner" # INVALID
+```
+
 Keys
 ----
 
