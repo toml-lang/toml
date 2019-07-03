@@ -626,6 +626,8 @@ how to do it for you.
 # [x.y] don't
 # [x.y.z] need these
 [x.y.z.w] # for this to work
+
+[x] # defining a super-table afterwards is ok
 ```
 
 Empty tables are allowed and simply have no key/value pairs within them.
