@@ -246,7 +246,7 @@ multi-line literal. All strings must contain only valid UTF-8 characters.
 
 **Basic strings** are surrounded by quotation marks. Any Unicode character may
 be used except those that must be escaped: quotation mark, backslash, and the
-control characters (U+0000 to U+001F, U+007F).
+control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
@@ -321,8 +321,10 @@ str3 = """\
 ```
 
 Any Unicode character may be used except those that must be escaped: backslash
-and the control characters (U+0000 to U+001F, U+007F). Quotation marks need not
-be escaped unless their presence would create a premature closing delimiter.
+and the control characters other than tab, line feed, and carriage return
+(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Quotation marks
+need not be escaped unless their presence would create a premature closing
+delimiter.
 
 If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error prone. To help,
