@@ -238,6 +238,15 @@ a.b = 1
 a.b.c = 2
 ```
 
+Defining dotted keys out-of-order is valid but discouraged:
+
+```
+o.1.1 = 1.1
+o.2.1 = 2.1
+o.1.2 = 1.2
+o.2.2 = 2.2
+```
+
 String
 ------
 
