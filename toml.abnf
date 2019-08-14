@@ -81,12 +81,13 @@ escape-seq-char =/ %x55 8HEXDIG ; UXXXXXXXX            U+XXXXXXXX
 ;; Multiline Basic String
 
 ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
-
 ml-basic-string-delim = 3quotation-mark
+ml-basic-body = *mlb-content *( mlb-quotes 1*mlb-content ) [ mlb-quotes ]
 
-ml-basic-body = *( ml-basic-char / newline / ( escape ws newline ) )
-ml-basic-char = ml-basic-unescaped / escaped
-ml-basic-unescaped = wschar / %x21-5B / %x5D-7E / non-ascii
+mlb-content = mlb-char / newline / ( escape ws newline )
+mlb-char = mlb-unescaped / escaped
+mlb-quotes = 1*2quotation-mark
+mlb-unescaped = wschar / %x21 / %x23-5B / %x5D-7E / non-ascii
 
 ;; Literal String
 
