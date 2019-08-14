@@ -701,6 +701,15 @@ type.name = "pug"
 
 ```
 
+Once inline tables are defined, their values are fully set, and new elements and
+subtables cannot be added to them.
+
+```toml
+a = {}
+#a.b = 1  # INVALID
+#[a.b]  # INVALID
+```
+
 Array of Tables
 ---------------
 

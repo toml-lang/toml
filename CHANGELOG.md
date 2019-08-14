@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Clarify that inline tables cannot have keys or subtables injected into them.
 * Clarify in ABNF that UTF-16 surrogate code points (U+D800 - U+DFFF) are not
   allowed in strings or comments.
 * Allow raw tab characters in basic strings and multi-line basic strings.
