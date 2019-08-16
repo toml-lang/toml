@@ -643,24 +643,29 @@ Empty tables are allowed and simply have no key/value pairs within them.
 
 Like keys, you cannot define any table more than once. Doing so is invalid.
 
-```
-# DO NOT DO THIS
-
+```toml
 [a]
 b = 1
 
-[a]
+[a] # This is invalid, it redefines a table.
 c = 2
+
+[a.b] # This would also be invalid, it redefines a key.
+d = 3
 ```
 
-```
-# DO NOT DO THIS EITHER
+This applies to dotted keys as well. Their super-tables may still be defined.
+Nothing is allowed to redefine previously declared dotted keys, however.
 
-[a]
-b = 1
+```toml
+a.b = 1
+a.c = 2
 
-[a.b]
-c = 2
+[a] # This is valid.
+d = 3
+c = 4 # This is invalid.
+
+[a] # A second definition of a table is still invalid.
 ```
 
 Inline Table
