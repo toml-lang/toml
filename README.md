@@ -701,7 +701,7 @@ type.name = "pug"
 
 ```
 
-Once inline tables are defined, their values are fully set, and new elements and
+Once inline tables are defined, their values are fully set, and new keys and
 subtables cannot be added to them.
 
 ```toml
