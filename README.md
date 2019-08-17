@@ -241,10 +241,28 @@ a.b.c = 2
 Defining dotted keys out-of-order is valid but discouraged:
 
 ```
-o.1.1 = 1.1
-o.2.1 = 2.1
-o.1.2 = 1.2
-o.2.2 = 2.2
+# VALID BUT DISCOURAGED:
+
+a.type = ''
+b.type = ''
+
+a.name = ''
+b.name = ''
+
+a.data = ''
+b.data = ''
+```
+
+```
+# RECOMMENDED:
+
+a.type = ''
+a.name = ''
+a.data = ''
+
+b.type = ''
+b.name = ''
+b.data = ''
 ```
 
 String
@@ -670,6 +688,22 @@ b = 1
 
 [a.b]
 c = 2
+```
+
+And defining table out-of-order is valid but discouraged too:
+
+```
+# VALID BUT DISCOURAGED:
+[a.x]
+[b]
+[a.y]
+```
+
+```
+# RECOMMENDED:
+[a.x]
+[a.y]
+[b]
 ```
 
 Inline Table
