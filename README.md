@@ -238,7 +238,7 @@ a.b = 1
 a.b.c = 2
 ```
 
-Defining dotted keys out-of-order is valid currenctly, but discouraged:
+Defining dotted keys out-of-order is discouraged:
 
 ```
 # VALID BUT DISCOURAGED:
@@ -690,7 +690,7 @@ b = 1
 c = 2
 ```
 
-And defining table out-of-order is valid currenctly but discouraged too:
+And defining tables out-of-order is discouraged too:
 
 ```
 # VALID BUT DISCOURAGED:
