@@ -238,6 +238,33 @@ a.b = 1
 a.b.c = 2
 ```
 
+Defining dotted keys out-of-order is discouraged.
+
+```toml
+# VALID BUT DISCOURAGED
+
+a.type = ''
+b.type = ''
+
+a.name = ''
+b.name = ''
+
+a.data = ''
+b.data = ''
+```
+
+```toml
+# RECOMMENDED
+
+a.type = ''
+a.name = ''
+a.data = ''
+
+b.type = ''
+b.name = ''
+b.data = ''
+```
+
 String
 ------
 
@@ -661,6 +688,22 @@ b = 1
 
 [a.b]
 c = 2
+```
+
+Similarly, defining tables out-of-order is discouraged as well.
+
+```toml
+# VALID BUT DISCOURAGED
+[a.x]
+[b]
+[a.y]
+```
+
+```toml
+# RECOMMENDED
+[a.x]
+[a.y]
+[b]
 ```
 
 Inline Table
