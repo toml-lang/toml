@@ -701,6 +701,24 @@ type.name = "pug"
 
 ```
 
+Inline tables fully define the keys and sub-tables within them. New keys and
+sub-tables cannot be added to them.
+
+```toml
+[product]
+type = { name = "Nail" }
+# type.edible = false  # INVALID
+```
+
+Similarly, inline tables can not be used to add keys or sub-tables to an 
+already-defined table.
+
+```toml
+[product]
+type.name = "Nail"
+# type = { edible = false }  # INVALID
+```
+
 Array of Tables
 ---------------
 
