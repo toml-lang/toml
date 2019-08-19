@@ -238,10 +238,10 @@ a.b = 1
 a.b.c = 2
 ```
 
-Defining dotted keys out-of-order is discouraged:
+Defining dotted keys out-of-order is discouraged.
 
-```
-# VALID BUT DISCOURAGED:
+```toml
+# VALID BUT DISCOURAGED
 
 a.type = ''
 b.type = ''
@@ -253,8 +253,8 @@ a.data = ''
 b.data = ''
 ```
 
-```
-# RECOMMENDED:
+```toml
+# RECOMMENDED
 
 a.type = ''
 a.name = ''
@@ -690,17 +690,17 @@ b = 1
 c = 2
 ```
 
-And defining tables out-of-order is discouraged too:
+Similarly, defining tables out-of-order is discouraged as well.
 
-```
-# VALID BUT DISCOURAGED:
+```toml
+# VALID BUT DISCOURAGED
 [a.x]
 [b]
 [a.y]
 ```
 
-```
-# RECOMMENDED:
+```toml
+# RECOMMENDED
 [a.x]
 [a.y]
 [b]
