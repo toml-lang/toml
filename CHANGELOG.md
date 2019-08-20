@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Clarify that dot-keys define tables and when they stop accepting new keys.
 * Clarify that inline tables are immutable.
 * Clarify in ABNF that UTF-16 surrogate code points (U+D800 - U+DFFF) are not
   allowed in strings or comments.

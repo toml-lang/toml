@@ -174,8 +174,9 @@ discouraged).
 '' = 'blank'     # VALID but discouraged
 ```
 
-**Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
-allows for grouping similar properties together:
+**Dotted keys** are sequences of bare or quoted keys joined with a dot, which
+imply a table for each key except the final key. This allows for grouping
+similar properties together:
 
 ```toml
 name = "Orange"
@@ -670,7 +671,7 @@ Empty tables are allowed and simply have no key/value pairs within them.
 
 Like keys, you cannot define any table more than once. Doing so is invalid.
 
-```
+```toml
 # DO NOT DO THIS
 
 [a]
@@ -680,7 +681,7 @@ b = 1
 c = 2
 ```
 
-```
+```toml
 # DO NOT DO THIS EITHER
 
 [a]
@@ -704,6 +705,40 @@ Similarly, defining tables out-of-order is discouraged as well.
 [a.x]
 [a.y]
 [b]
+```
+
+Likewise, a table implied by a dot-key chain finishes being defined at the
+same moment as the table it is inside. After that, it cannot be redefined.
+
+```toml
+[public-domain]
+authors.'Mary Shelley'."Frankenstein; or, the Modern Prometheus" = true
+authors.'紫式部'."The Tale of Genji" = true
+authors.'Mary Shelley'."The Last Man" = true # VALID, but bad form.
+
+# After those dotted keys, any of these table definitions are equally
+[public-domain.authors] # INVALID
+[public-domain.authors.'紫式部'] # INVALID
+[public-domain.authors.'Mary Shelley'] # INVALID
+```
+
+You may still add subtables to defined tables.
+
+```toml
+[public-domain]
+authors.'E. E. Cummings'."Summer Silence" = true
+authors.'紫式部'."The Tale of Genji" = true
+
+[public-domain.musicians]
+'Chevalier de Saint-Georges'."Op. V No. 2" = true
+
+[public-domain.authors.'紫式部'.translations] # VALID, you can add subtables
+'Edward Seidensticker'."The Tale of Genji" = false
+
+# Caution: Adding this subtable is valid because TOML is case sensitive:
+[public-domain.authors.'e. e. cummings']
+"but the other" = true
+"l(a" = false
 ```
 
 Inline Table
