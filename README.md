@@ -706,6 +706,21 @@ Similarly, defining tables out-of-order is discouraged as well.
 [b]
 ```
 
+Dotted keys imply the creation of tables. Once created, the `[table]` form can
+only be used to define sub-tables within such tables.
+
+```toml
+[fruit]
+apple.color = "red"
+apple.taste.sweet = true
+
+# [fruit.apple]  # INVALID
+# [fruit.apple.taste]  # INVALID
+
+[fruit.apple.texture]  # you can add sub-tables
+smooth = true
+```
+
 Inline Table
 ------------
 
