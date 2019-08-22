@@ -137,7 +137,8 @@ frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
-exp = "e" float-int-part
+exp = "e" float-exp-part
+float-exp-part = [ minus / plus ] zero-prefixable-int
 
 special-float = [ minus / plus ] ( inf / nan )
 inf = %x69.6e.66  ; inf
