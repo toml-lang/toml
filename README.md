@@ -707,6 +707,26 @@ Similarly, defining tables out-of-order is discouraged as well.
 [b]
 ```
 
+Dotted keys define everything to the left of each dot as a table. Since tables
+cannot be defined more than once, redefining such tables using a `[table]`
+header is not allowed. Likewise, using dotted keys to redefine tables already
+defined in `[table]` form is not allowed.
+
+The `[table]` form can, however, be used to define sub-tables within tables
+defined via dotted keys.
+
+```toml
+[fruit]
+apple.color = "red"
+apple.taste.sweet = true
+
+# [fruit.apple]  # INVALID
+# [fruit.apple.taste]  # INVALID
+
+[fruit.apple.texture]  # you can add sub-tables
+smooth = true
+```
+
 Inline Table
 ------------
 

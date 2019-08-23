@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Leading zeroes in exponent parts of floats are permitted.
+* Clarify behavior of tables defined implicitly by dotted keys.
 * Clarify that inline tables are immutable.
 * Clarify in ABNF that UTF-16 surrogate code points (U+D800 - U+DFFF) are not
   allowed in strings or comments.
