@@ -457,7 +457,7 @@ flt3 = -0.01
 
 # exponent
 flt4 = 5e+22
-flt5 = 1e6
+flt5 = 1e06
 flt6 = -2E-2
 
 # both
@@ -467,7 +467,8 @@ flt7 = 6.626e-34
 A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
-(which follows the same rules as decimal integer values).
+(which follows the same rules as decimal integer values but may include leading
+zeros).
 
 Similar to integers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
@@ -773,7 +774,7 @@ type = { name = "Nail" }
 # type.edible = false  # INVALID
 ```
 
-Similarly, inline tables can not be used to add keys or sub-tables to an 
+Similarly, inline tables can not be used to add keys or sub-tables to an
 already-defined table.
 
 ```toml
