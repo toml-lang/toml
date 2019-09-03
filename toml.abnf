@@ -193,8 +193,34 @@ array = array-open [ array-values ] ws-comment-newline array-close
 array-open =  %x5B ; [
 array-close = %x5D ; ]
 
-array-values =  ws-comment-newline val ws array-sep array-values
-array-values =/ ws-comment-newline val ws [ array-sep ]
+array-values =  array-strings
+array-values =/ array-booleans
+array-values =/ array-arrays
+array-values =/ array-inline-tables
+array-values =/ array-date-times
+array-values =/ array-floats
+array-values =/ array-integers
+
+array-strings =  ws-comment-newline string ws array-sep array-strings
+array-strings =/ ws-comment-newline string ws [ array-sep ]
+
+array-booleans =  ws-comment-newline boolean ws array-sep array-booleans
+array-booleans =/ ws-comment-newline boolean ws [ array-sep ]
+
+array-arrays =  ws-comment-newline array ws array-sep array-arrays
+array-arrays =/ ws-comment-newline array ws [ array-sep ]
+
+array-inline-tables =  ws-comment-newline inline-table ws array-sep array-inline-tables
+array-inline-tables =/ ws-comment-newline inline-table ws [ array-sep ]
+
+array-date-times =  ws-comment-newline date-time ws array-sep array-date-times
+array-date-times =/ ws-comment-newline date-time ws [ array-sep ]
+
+array-floats =  ws-comment-newline float ws array-sep array-floats
+array-floats =/ ws-comment-newline float ws [ array-sep ]
+
+array-integers =  ws-comment-newline integer ws array-sep array-integers
+array-integers =/ ws-comment-newline integer ws [ array-sep ]
 
 array-sep = %x2C  ; , Comma
 
