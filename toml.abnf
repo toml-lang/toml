@@ -197,7 +197,10 @@ array-values =  array-strings
 array-values =/ array-booleans
 array-values =/ array-arrays
 array-values =/ array-inline-tables
-array-values =/ array-date-times
+array-values =/ array-offset-dts
+array-values =/ array-local-dts
+array-values =/ array-local-dates
+array-values =/ array-local-times
 array-values =/ array-floats
 array-values =/ array-integers
 
@@ -213,8 +216,17 @@ array-arrays =/ ws-comment-newline array ws [ array-sep ]
 array-inline-tables =  ws-comment-newline inline-table ws array-sep array-inline-tables
 array-inline-tables =/ ws-comment-newline inline-table ws [ array-sep ]
 
-array-date-times =  ws-comment-newline date-time ws array-sep array-date-times
-array-date-times =/ ws-comment-newline date-time ws [ array-sep ]
+array-offset-dts =  ws-comment-newline offset-date-time ws array-sep array-offset-dts
+array-offset-dts =/ ws-comment-newline offset-date-time ws [ array-sep ]
+
+array-local-dts =  ws-comment-newline local-date-time ws array-sep array-local-dts
+array-local-dts =/ ws-comment-newline local-date-time ws [ array-sep ]
+
+array-local-dates =  ws-comment-newline local-date ws array-sep array-local-dates
+array-local-dates =/ ws-comment-newline local-date ws [ array-sep ]
+
+array-local-times =  ws-comment-newline local-time ws array-sep array-local-times
+array-local-times =/ ws-comment-newline local-time ws [ array-sep ]
 
 array-floats =  ws-comment-newline float ws array-sep array-floats
 array-floats =/ ws-comment-newline float ws [ array-sep ]
