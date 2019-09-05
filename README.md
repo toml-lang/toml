@@ -123,8 +123,19 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Values must be of the following types: String, Integer, Float, Boolean,
-Datetime, Array, or Inline Table. Unspecified values are invalid.
+Values must be one of the following types.
+- [String](#user-content-string)
+- [Integer](#user-content-integer)
+- [Float](#user-content-float)
+- [Boolean](#user-content-boolean)
+- [Offset Date-Time](#user-content-offset-date-time)
+- [Local Date-Time](#user-content-local-date-time)
+- [Local Date](#user-content-local-date)
+- [Local Time](#user-content-local-time)
+- [Array](#user-content-array)
+- [Inline Table](#user-content-inline-table)
+
+Unspecified values are invalid.
 
 ```toml
 key = # INVALID
