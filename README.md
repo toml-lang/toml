@@ -123,7 +123,7 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Values must be one of the following types.
+Values must have one of the following types.
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
@@ -590,9 +590,13 @@ Array
 -----
 
 Arrays are square brackets with values inside. Whitespace is ignored. Elements
-are separated by commas. Data types may not be mixed (different ways to define
-strings should be considered the same type, and so should arrays with different
-element types).
+are separated by commas.
+
+All values that are allowed in [key/value pairs](#user-content-keyvalue-pair)
+are also allowed in arrays, but all values within an array must have the same
+data type. Different ways to define strings are considered the same type, and so
+are arrays with different element types, and inline tables regardless of their
+contents.
 
 ```toml
 arr1 = [ 1, 2, 3 ]
