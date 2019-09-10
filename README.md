@@ -706,7 +706,7 @@ b = 1
 c = 2
 ```
 
-Similarly, defining tables out-of-order is discouraged as well.
+Defining tables out-of-order is discouraged.
 
 ```toml
 # VALID BUT DISCOURAGED
