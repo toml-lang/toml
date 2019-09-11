@@ -124,6 +124,7 @@ key = "value"
 ```
 
 Values must have one of the following types.
+
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)

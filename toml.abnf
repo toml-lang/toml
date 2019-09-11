@@ -188,7 +188,7 @@ local-time = partial-time
 
 ;; Array
 
-array = array-open [ array-values ] ws-comment-newline array-close
+array = array-open ws-comment-newline [ array-values ] ws-comment-newline array-close
 
 array-open =  %x5B ; [
 array-close = %x5D ; ]
@@ -204,35 +204,35 @@ array-values =/ array-local-times
 array-values =/ array-floats
 array-values =/ array-integers
 
-array-strings =  ws-comment-newline string ws array-sep array-strings
-array-strings =/ ws-comment-newline string ws [ array-sep ]
+array-strings =  string ws array-sep ws-comment-newline array-strings
+array-strings =/ string ws [ array-sep ]
 
-array-booleans =  ws-comment-newline boolean ws array-sep array-booleans
-array-booleans =/ ws-comment-newline boolean ws [ array-sep ]
+array-booleans =  boolean ws array-sep ws-comment-newline array-booleans
+array-booleans =/ boolean ws [ array-sep ]
 
-array-arrays =  ws-comment-newline array ws array-sep array-arrays
-array-arrays =/ ws-comment-newline array ws [ array-sep ]
+array-arrays =  array ws array-sep ws-comment-newline array-arrays
+array-arrays =/ array ws [ array-sep ]
 
-array-inline-tables =  ws-comment-newline inline-table ws array-sep array-inline-tables
-array-inline-tables =/ ws-comment-newline inline-table ws [ array-sep ]
+array-inline-tables =  inline-table ws array-sep ws-comment-newline array-inline-tables
+array-inline-tables =/ inline-table ws [ array-sep ]
 
-array-offset-dts =  ws-comment-newline offset-date-time ws array-sep array-offset-dts
-array-offset-dts =/ ws-comment-newline offset-date-time ws [ array-sep ]
+array-offset-dts =  offset-date-time ws array-sep ws-comment-newline array-offset-dts
+array-offset-dts =/ offset-date-time ws [ array-sep ]
 
-array-local-dts =  ws-comment-newline local-date-time ws array-sep array-local-dts
-array-local-dts =/ ws-comment-newline local-date-time ws [ array-sep ]
+array-local-dts =  local-date-time ws array-sep ws-comment-newline array-local-dts
+array-local-dts =/ local-date-time ws [ array-sep ]
 
-array-local-dates =  ws-comment-newline local-date ws array-sep array-local-dates
-array-local-dates =/ ws-comment-newline local-date ws [ array-sep ]
+array-local-dates =  local-date ws array-sep ws-comment-newline array-local-dates
+array-local-dates =/ local-date ws [ array-sep ]
 
-array-local-times =  ws-comment-newline local-time ws array-sep array-local-times
-array-local-times =/ ws-comment-newline local-time ws [ array-sep ]
+array-local-times =  local-time ws array-sep ws-comment-newline array-local-times
+array-local-times =/ local-time ws [ array-sep ]
 
-array-floats =  ws-comment-newline float ws array-sep array-floats
-array-floats =/ ws-comment-newline float ws [ array-sep ]
+array-floats =  float ws array-sep ws-comment-newline array-floats
+array-floats =/ float ws [ array-sep ]
 
-array-integers =  ws-comment-newline integer ws array-sep array-integers
-array-integers =/ ws-comment-newline integer ws [ array-sep ]
+array-integers =  integer ws array-sep ws-comment-newline array-integers
+array-integers =/ integer ws [ array-sep ]
 
 array-sep = %x2C  ; , Comma
 
