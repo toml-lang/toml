@@ -906,7 +906,7 @@ as an array must likewise produce a parse-time error.
   [[fruit.variety]]
     name = "red delicious"
 
-  # Not allowed: This table conflicts with the previous array of tables
+  # INVALID: This table conflicts with the previous array of tables
   [fruit.variety]
     name = "granny smith"
 
@@ -914,7 +914,7 @@ as an array must likewise produce a parse-time error.
     color = "red"
     shape = "round"
 
-  # Not allowed: This array of tables conflicts with the previous table
+  # INVALID: This array of tables conflicts with the previous table
   [[fruit.physical]]
     color = "green"
 ```
