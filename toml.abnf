@@ -219,7 +219,7 @@ inline-table-open  = %x7B ws     ; {
 inline-table-close = ws %x7D     ; }
 inline-table-sep   = ws %x2C ws  ; , Comma
 
-inline-table-keyvals = key keyval-sep val [ inline-table-sep inline-table-keyvals ]
+inline-table-keyvals = keyval [ inline-table-sep inline-table-keyvals ]
 
 ;; Array Table
 
