@@ -868,10 +868,25 @@ The above TOML maps to the following JSON.
 }
 ```
 
+If the parent of a table or array of tables is an array element, that element
+must already have been defined before the child can be defined. Attempts to
+reverse that ordering must produce an error at parse time.
+
+```
+# INVALID TOML DOC
+[fruit.physical]  # subtable, but to which parent element should it belong?
+  color = "red"
+  shape = "round"
+
+[[fruit]]  # parser must throw an error upon discovering that "fruit" is
+           # an array rather than a table
+  name = "apple"
+```
+
 Attempting to append to a statically defined array, even if that array is empty
 or of compatible type, must produce an error at parse time.
 
-```toml
+```
 # INVALID TOML DOC
 fruit = []
 
@@ -879,7 +894,8 @@ fruit = []
 ```
 
 Attempting to define a normal table with the same name as an already established
-array must produce an error at parse time.
+array must produce an error at parse time. Attempting to redefine a normal table
+as an array must likewise produce a parse-time error.
 
 ```
 # INVALID TOML DOC
@@ -889,9 +905,17 @@ array must produce an error at parse time.
   [[fruit.variety]]
     name = "red delicious"
 
-  # This table conflicts with the previous table
+  # INVALID: This table conflicts with the previous array of tables
   [fruit.variety]
     name = "granny smith"
+
+  [fruit.physical]
+    color = "red"
+    shape = "round"
+
+  # INVALID: This array of tables conflicts with the previous table
+  [[fruit.physical]]
+    color = "green"
 ```
 
 You may also use inline tables where appropriate:
