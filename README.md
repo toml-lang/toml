@@ -593,7 +593,7 @@ string_array = [ "all", 'strings', """are the same""", '''type''']
 numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
 contributors = [
   "Foo bar <foo@bar.com>",
-  { name = "Baz Qux", email = "baz@qux.com", url = "baz.qux.com"}
+  { name = "Baz Qux", email = "baz@qux.com", url = "baz.qux.com" }
 ]
 ```
 
