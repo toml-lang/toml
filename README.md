@@ -592,7 +592,7 @@ string_array = [ "all", 'strings', """are the same""", '''type''' ]
 # Mixed-type arrays are allowed
 numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
 contributors = [
-  "Foo bar <foo@example.com>",
+  "Foo Bar <foo@example.com>",
   { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
 ]
 ```
