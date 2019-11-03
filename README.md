@@ -597,7 +597,7 @@ contributors = [
 ]
 ```
 
-Arrays can also be multiline. A terminating comma (also called trailing comma)
+Arrays can span multiple lines. A terminating comma (also called trailing comma)
 is ok after the last value of the array. There can be an arbitrary number of
 newlines and comments before a value and before the closing bracket.
 
