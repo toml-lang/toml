@@ -228,14 +228,14 @@ As long as a key hasn't been directly defined, you may still write to it and
 to names within it.
 
 ```
-a.b.c = 1
-a.d = 2
+fruit.apple.smooth = true
+fruit.orange = 2
 ```
 
 ```
 # THIS IS INVALID
-a.b = 1
-a.b.c = 2
+fruit.apple = 1
+fruit.apple.smooth = true
 ```
 
 Defining dotted keys out-of-order is discouraged.
@@ -243,26 +243,26 @@ Defining dotted keys out-of-order is discouraged.
 ```toml
 # VALID BUT DISCOURAGED
 
-a.type = ''
-b.type = ''
+apple.type = "fruit"
+orange.type = "fruit"
 
-a.name = ''
-b.name = ''
+apple.skin = "thin"
+orange.skin = "thick"
 
-a.data = ''
-b.data = ''
+apple.color = "red"
+orange.color = "orange"
 ```
 
 ```toml
 # RECOMMENDED
 
-a.type = ''
-a.name = ''
-a.data = ''
+apple.type = "fruit"
+apple.skin = "thin"
+apple.color = "red"
 
-b.type = ''
-b.name = ''
-b.data = ''
+orange.type = "fruit"
+orange.skin = "thick"
+orange.color = "orange"
 ```
 
 String
@@ -678,37 +678,37 @@ Like keys, you cannot define any table more than once. Doing so is invalid.
 ```
 # DO NOT DO THIS
 
-[a]
-b = 1
+[fruit]
+apple = "red"
 
-[a]
-c = 2
+[fruit]
+orange = "orange"
 ```
 
 ```
 # DO NOT DO THIS EITHER
 
-[a]
-b = 1
+[fruit]
+apple = "red"
 
-[a.b]
-c = 2
+[fruit.apple]
+texture = "smooth"
 ```
 
 Defining tables out-of-order is discouraged.
 
 ```toml
 # VALID BUT DISCOURAGED
-[a.x]
-[b]
-[a.y]
+[fruit.apple]
+[animal]
+[fruit.orange]
 ```
 
 ```toml
 # RECOMMENDED
-[a.x]
-[a.y]
-[b]
+[fruit.apple]
+[fruit.orange]
+[animal]
 ```
 
 Dotted keys define everything to the left of each dot as a table. Since tables
