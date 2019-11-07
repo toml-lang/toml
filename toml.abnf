@@ -84,9 +84,10 @@ ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
 
 ml-basic-string-delim = 3quotation-mark
 
-ml-basic-body = *( ml-basic-char / newline / ( escape ws newline ) )
+ml-basic-body = *( ml-basic-char / newline / ml-basic-escaped-nl )
 ml-basic-char = ml-basic-unescaped / escaped
 ml-basic-unescaped = wschar / %x21-5B / %x5D-7E / non-ascii
+ml-basic-escaped-nl = escape ws newline *( wschar / newline )
 
 ;; Literal String
 
