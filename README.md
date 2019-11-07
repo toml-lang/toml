@@ -823,8 +823,8 @@ In JSON land, that would give you the following structure.
 
 You can create nested arrays of tables as well. Just use the same double bracket
 syntax on sub-tables. Each double-bracketed sub-table will belong to the most
-recently defined table element above it. Normal sub-tables (not arrays) likewise
-belong to the most recently defined table element above them.
+recently defined table element. Normal sub-tables (not arrays) likewise belong
+to the most recently defined table element.
 
 ```toml
 [[fruit]]
