@@ -803,11 +803,11 @@ Array of Tables
 ---------------
 
 The last type that has not yet been expressed is an array of tables. These can
-be expressed by using a table name in double brackets. Each table with the same
-double bracketed name will be an element in the array. The tables are inserted
-in the order encountered. A double bracketed table without any key/value pairs
-will be considered an empty table. Under that, and until the next table or EOF
-are the key/values of that table.
+be expressed by using a table name in double brackets. Under that, and until the
+next table or EOF are the key/values of that table. Each table with the same
+double bracketed name will be an element in the array of tables. The tables are
+inserted in the order encountered. A double bracketed table without any
+key/value pairs will be considered an empty table.
 
 ```toml
 [[products]]
