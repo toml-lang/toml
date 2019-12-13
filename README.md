@@ -123,8 +123,20 @@ on the same line (though some values can be broken over multiple lines).
 key = "value"
 ```
 
-Values must be of the following types: String, Integer, Float, Boolean,
-Datetime, Array, or Inline Table. Unspecified values are invalid.
+Values must have one of the following types.
+
+- [String](#user-content-string)
+- [Integer](#user-content-integer)
+- [Float](#user-content-float)
+- [Boolean](#user-content-boolean)
+- [Offset Date-Time](#user-content-offset-date-time)
+- [Local Date-Time](#user-content-local-date-time)
+- [Local Date](#user-content-local-date)
+- [Local Time](#user-content-local-time)
+- [Array](#user-content-array)
+- [Inline Table](#user-content-inline-table)
+
+Unspecified values are invalid.
 
 ```toml
 key = # INVALID
@@ -228,14 +240,41 @@ As long as a key hasn't been directly defined, you may still write to it and
 to names within it.
 
 ```
-a.b.c = 1
-a.d = 2
+fruit.apple.smooth = true
+fruit.orange = 2
 ```
 
 ```
 # THIS IS INVALID
-a.b = 1
-a.b.c = 2
+fruit.apple = 1
+fruit.apple.smooth = true
+```
+
+Defining dotted keys out-of-order is discouraged.
+
+```toml
+# VALID BUT DISCOURAGED
+
+apple.type = "fruit"
+orange.type = "fruit"
+
+apple.skin = "thin"
+orange.skin = "thick"
+
+apple.color = "red"
+orange.color = "orange"
+```
+
+```toml
+# RECOMMENDED
+
+apple.type = "fruit"
+apple.skin = "thin"
+apple.color = "red"
+
+orange.type = "fruit"
+orange.skin = "thick"
+orange.color = "orange"
 ```
 
 String
@@ -430,7 +469,7 @@ flt3 = -0.01
 
 # exponent
 flt4 = 5e+22
-flt5 = 1e6
+flt5 = 1e06
 flt6 = -2E-2
 
 # both
@@ -440,7 +479,8 @@ flt7 = 6.626e-34
 A fractional part is a decimal point followed by one or more digits.
 
 An exponent part is an E (upper or lower case) followed by an integer part
-(which follows the same rules as decimal integer values).
+(which follows the same rules as decimal integer values but may include leading
+zeros).
 
 Similar to integers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
@@ -551,30 +591,34 @@ Array
 -----
 
 Arrays are square brackets with values inside. Whitespace is ignored. Elements
-are separated by commas. Data types may not be mixed (different ways to define
-strings should be considered the same type, and so should arrays with different
-element types).
+are separated by commas. Arrays can contain values of the same data types as
+allowed in key/value pairs. Values of different types may be mixed.
 
 ```toml
-arr1 = [ 1, 2, 3 ]
-arr2 = [ "red", "yellow", "green" ]
-arr3 = [ [ 1, 2 ], [3, 4, 5] ]
-arr4 = [ "all", 'strings', """are the same""", '''type''']
-arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
+integers = [ 1, 2, 3 ]
+colors = [ "red", "yellow", "green" ]
+nested_array_of_int = [ [ 1, 2 ], [3, 4, 5] ]
+nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
+string_array = [ "all", 'strings', """are the same""", '''type''' ]
 
-arr6 = [ 1, 2.0 ] # INVALID
+# Mixed-type arrays are allowed
+numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+contributors = [
+  "Foo Bar <foo@example.com>",
+  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+]
 ```
 
-Arrays can also be multiline. A terminating comma (also called trailing comma)
+Arrays can span multiple lines. A terminating comma (also called trailing comma)
 is ok after the last value of the array. There can be an arbitrary number of
 newlines and comments before a value and before the closing bracket.
 
 ```toml
-arr7 = [
+integers2 = [
   1, 2, 3
 ]
 
-arr8 = [
+integers3 = [
   1,
   2, # this is ok
 ]
@@ -646,21 +690,57 @@ Like keys, you cannot define any table more than once. Doing so is invalid.
 ```
 # DO NOT DO THIS
 
-[a]
-b = 1
+[fruit]
+apple = "red"
 
-[a]
-c = 2
+[fruit]
+orange = "orange"
 ```
 
 ```
 # DO NOT DO THIS EITHER
 
-[a]
-b = 1
+[fruit]
+apple = "red"
 
-[a.b]
-c = 2
+[fruit.apple]
+texture = "smooth"
+```
+
+Defining tables out-of-order is discouraged.
+
+```toml
+# VALID BUT DISCOURAGED
+[fruit.apple]
+[animal]
+[fruit.orange]
+```
+
+```toml
+# RECOMMENDED
+[fruit.apple]
+[fruit.orange]
+[animal]
+```
+
+Dotted keys define everything to the left of each dot as a table. Since tables
+cannot be defined more than once, redefining such tables using a `[table]`
+header is not allowed. Likewise, using dotted keys to redefine tables already
+defined in `[table]` form is not allowed.
+
+The `[table]` form can, however, be used to define sub-tables within tables
+defined via dotted keys.
+
+```toml
+[fruit]
+apple.color = "red"
+apple.taste.sweet = true
+
+# [fruit.apple]  # INVALID
+# [fruit.apple.taste]  # INVALID
+
+[fruit.apple.texture]  # you can add sub-tables
+smooth = true
 ```
 
 Inline Table
@@ -701,14 +781,33 @@ type.name = "pug"
 
 ```
 
+Inline tables fully define the keys and sub-tables within them. New keys and
+sub-tables cannot be added to them.
+
+```toml
+[product]
+type = { name = "Nail" }
+# type.edible = false  # INVALID
+```
+
+Similarly, inline tables can not be used to add keys or sub-tables to an
+already-defined table.
+
+```toml
+[product]
+type.name = "Nail"
+# type = { edible = false }  # INVALID
+```
+
 Array of Tables
 ---------------
 
 The last type that has not yet been expressed is an array of tables. These can
-be expressed by using a table name in double brackets. Each table with the same
-double bracketed name will be an element in the array. The tables are inserted
-in the order encountered. A double bracketed table without any key/value pairs
-will be considered an empty table.
+be expressed by using a table name in double brackets. Under that, and until the
+next table or EOF are the key/values of that table. Each table with the same
+double bracketed name will be an element in the array of tables. The tables are
+inserted in the order encountered. A double bracketed table without any
+key/value pairs will be considered an empty table.
 
 ```toml
 [[products]]
@@ -720,6 +819,7 @@ sku = 738594937
 [[products]]
 name = "Nail"
 sku = 284758393
+
 color = "gray"
 ```
 
@@ -737,17 +837,18 @@ In JSON land, that would give you the following structure.
 
 You can create nested arrays of tables as well. Just use the same double bracket
 syntax on sub-tables. Each double-bracketed sub-table will belong to the most
-recently defined table element above it.
+recently defined table element. Normal sub-tables (not arrays) likewise belong
+to the most recently defined table element.
 
 ```toml
 [[fruit]]
   name = "apple"
 
-  [fruit.physical]
+  [fruit.physical]  # subtable
     color = "red"
     shape = "round"
 
-  [[fruit.variety]]
+  [[fruit.variety]]  # nested array of tables
     name = "red delicious"
 
   [[fruit.variety]]
@@ -786,10 +887,25 @@ The above TOML maps to the following JSON.
 }
 ```
 
+If the parent of a table or array of tables is an array element, that element
+must already have been defined before the child can be defined. Attempts to
+reverse that ordering must produce an error at parse time.
+
+```
+# INVALID TOML DOC
+[fruit.physical]  # subtable, but to which parent element should it belong?
+  color = "red"
+  shape = "round"
+
+[[fruit]]  # parser must throw an error upon discovering that "fruit" is
+           # an array rather than a table
+  name = "apple"
+```
+
 Attempting to append to a statically defined array, even if that array is empty
 or of compatible type, must produce an error at parse time.
 
-```toml
+```
 # INVALID TOML DOC
 fruit = []
 
@@ -797,7 +913,8 @@ fruit = []
 ```
 
 Attempting to define a normal table with the same name as an already established
-array must produce an error at parse time.
+array must produce an error at parse time. Attempting to redefine a normal table
+as an array must likewise produce a parse-time error.
 
 ```
 # INVALID TOML DOC
@@ -807,9 +924,17 @@ array must produce an error at parse time.
   [[fruit.variety]]
     name = "red delicious"
 
-  # This table conflicts with the previous table
+  # INVALID: This table conflicts with the previous array of tables
   [fruit.variety]
     name = "granny smith"
+
+  [fruit.physical]
+    color = "red"
+    shape = "round"
+
+  # INVALID: This array of tables conflicts with the previous table
+  [[fruit.physical]]
+    color = "green"
 ```
 
 You may also use inline tables where appropriate:

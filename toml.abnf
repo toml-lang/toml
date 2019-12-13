@@ -84,10 +84,11 @@ ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
 ml-basic-string-delim = 3quotation-mark
 ml-basic-body = *mlb-content *( mlb-quotes 1*mlb-content ) [ mlb-quotes ]
 
-mlb-content = mlb-char / newline / ( escape ws newline )
+mlb-content = mlb-char / newline / mlb-escaped-nl
 mlb-char = mlb-unescaped / escaped
 mlb-quotes = 1*2quotation-mark
 mlb-unescaped = wschar / %x21 / %x23-5B / %x5D-7E / non-ascii
+mlb-escaped-nl = escape ws newline *( wschar / newline )
 
 ;; Literal String
 
@@ -139,7 +140,8 @@ frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )
 
-exp = "e" float-int-part
+exp = "e" float-exp-part
+float-exp-part = [ minus / plus ] zero-prefixable-int
 
 special-float = [ minus / plus ] ( inf / nan )
 inf = %x69.6e.66  ; inf
@@ -220,7 +222,7 @@ inline-table-open  = %x7B ws     ; {
 inline-table-close = ws %x7D     ; }
 inline-table-sep   = ws %x2C ws  ; , Comma
 
-inline-table-keyvals = key keyval-sep val [ inline-table-sep inline-table-keyvals ]
+inline-table-keyvals = keyval [ inline-table-sep inline-table-keyvals ]
 
 ;; Array Table
 
