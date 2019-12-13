@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Clarify in ABNF how quotes in multi-line basic and multi-line literal strings
+  are allowed to be used.
 * Leading zeroes in exponent parts of floats are permitted.
 * Clarify behavior of tables defined implicitly by dotted keys.
 * Clarify that inline tables are immutable.
