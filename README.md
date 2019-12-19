@@ -364,13 +364,13 @@ and the control characters other than tab, line feed, and carriage return
 (U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
 
 You can write a quotation mark, or two adjacent quotation marks, anywhere
-inside a multi-line basic string without escaping them, as long as they're not
-confused with the closing delimiter. They can also be written just inside the
+inside a multi-line basic string. They can also be written just inside the
 delimiters.
 
 ```toml
 str4 = """Here are two quotation marks: "". Simple enough."""
-str5 = """Here are three quotation marks: ""\". Still possible."""
+#str5 = """Here are three quotation marks: """."""  # INVALID
+str5 = """Here are three quotation marks: ""\"."""
 str6 = """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
 
 # "This," she said, "is just a pointless statement."
