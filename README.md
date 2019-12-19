@@ -361,9 +361,21 @@ str3 = """\
 
 Any Unicode character may be used except those that must be escaped: backslash
 and the control characters other than tab, line feed, and carriage return
-(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Quotation marks
-need not be escaped unless their presence would create a premature closing
-delimiter.
+(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
+
+You can write a quotation mark, or two adjacent quotation marks, anywhere
+inside a multi-line basic string without escaping them, as long as they're not
+confused with the closing delimiter. They can also be written just inside the
+delimiters.
+
+```toml
+str4 = """Here are two quotation marks: "". Simple enough."""
+str5 = """Here are three quotation marks: ""\". Still possible."""
+str6 = """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
+
+# "This", she said, "is just a pointless statement."
+str7 = """"This", she said, "is just a pointless statement.""""
+```
 
 If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error prone. To help,
@@ -397,6 +409,17 @@ trimmed in raw strings.
    All other whitespace
    is preserved.
 '''
+```
+
+You can write 1 or 2 single quotes anywhere within a multi-line literal string,
+but sequences of three or more single quotes within a multi-line literal string
+are not permitted.
+
+```toml
+quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
+
+#apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
+apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
