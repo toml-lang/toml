@@ -373,8 +373,8 @@ str4 = """Here are two quotation marks: "". Simple enough."""
 str5 = """Here are three quotation marks: ""\". Still possible."""
 str6 = """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
 
-# "This", she said, "is just a pointless statement."
-str7 = """"This", she said, "is just a pointless statement.""""
+# "This," she said, "is just a pointless statement."
+str7 = """"This," she said, "is just a pointless statement.""""
 ```
 
 If you're a frequent specifier of Windows paths or regular expressions, then
