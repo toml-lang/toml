@@ -369,7 +369,7 @@ delimiters.
 
 ```toml
 str4 = """Here are two quotation marks: "". Simple enough."""
-#str5 = """Here are three quotation marks: """."""  # INVALID
+# str5 = """Here are three quotation marks: """."""  # INVALID
 str5 = """Here are three quotation marks: ""\"."""
 str6 = """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
 
@@ -418,7 +418,7 @@ are not permitted.
 ```toml
 quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
 
-#apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
+# apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
 apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 
 # 'That's still pointless', she said.
