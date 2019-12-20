@@ -412,8 +412,7 @@ trimmed in raw strings.
 ```
 
 You can write 1 or 2 single quotes anywhere within a multi-line literal string,
-but sequences of three or more single quotes within a multi-line literal string
-are not permitted.
+but sequences of three or more single quotes are not permitted.
 
 ```toml
 quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
