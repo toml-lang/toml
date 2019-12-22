@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Leading zeroes in exponent parts of floats are permitted.
+* Clarify that control characters are not permitted in comments.
 * Clarify behavior of tables defined implicitly by dotted keys.
 * Clarify that inline tables are immutable.
 * Clarify that trailing commas are not allowed in inline tables.
