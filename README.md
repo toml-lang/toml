@@ -753,10 +753,12 @@ or more comma separated key/value pairs may appear. Key/value pairs take the
 same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
 
-Inline tables are intended to appear on a single line. No newlines are allowed
-between the curly braces unless they are valid within a value. Even so, it is
-strongly discouraged to break an inline table onto multiples lines. If you find
-yourself gripped with this desire, it means you should be using standard tables.
+Inline tables are intended to appear on a single line. A terminating comma (also
+called trailing comma) is not permitted after the last key/value pair in an
+inline table.  No newlines are allowed between the curly braces unless they are
+valid within a value. Even so, it is strongly discouraged to break an inline
+table onto multiples lines. If you find yourself gripped with this desire, it
+means you should be using standard tables.
 
 ```toml
 name = { first = "Tom", last = "Preston-Werner" }
