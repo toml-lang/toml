@@ -5,7 +5,7 @@ TOML
 
 Tom's Obvious, Minimal Language.
 
-By Tom Preston-Werner.
+By Tom Preston-Werner, Pradyun Gedam, et al.
 
 Latest tagged version:
 [v0.5.0](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.5.0.md).
