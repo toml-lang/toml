@@ -562,6 +562,15 @@ time with a space (as permitted by RFC 3339 section 5.6).
 odt4 = 1979-05-27 07:32:00Z
 ```
 
+One exception to RFC 3339 is permitted: seconds may be omitted if the instant
+occurs at a zero-second mark. In such a case, the offset immediately follows
+the minutes.
+
+```toml
+odt5 = 1979-05-27 07:32Z
+odt6 = 1979-05-27 07:32-07:00
+```
+
 The precision of fractional seconds is implementation specific, but at least
 millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
@@ -579,6 +588,13 @@ specific.
 ```toml
 ldt1 = 1979-05-27T07:32:00
 ldt2 = 1979-05-27T00:32:00.999999
+```
+
+Seconds may be omitted if the local instant is at a zero-second mark. In such a
+case, the colon and digits following the minutes is removed.
+
+```toml
+ldt3 = 1979-05-27T07:32
 ```
 
 The precision of fractional seconds is implementation specific, but at least
@@ -608,6 +624,13 @@ timezone.
 ```toml
 lt1 = 07:32:00
 lt2 = 00:32:00.999999
+```
+
+Seconds may be omitted if the local time is at a zero-second mark. In such a
+case, the colon and digits following the minutes is removed.
+
+```toml
+lt3 = 07:32
 ```
 
 The precision of fractional seconds is implementation specific, but at least
