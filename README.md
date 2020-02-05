@@ -591,7 +591,7 @@ ldt2 = 1979-05-27T00:32:00.999999
 ```
 
 Seconds may be omitted if the local instant is at a zero-second mark. In such a
-case, the colon and digits following the minutes is removed.
+case, the colon and digits following the minutes are removed.
 
 ```toml
 ldt3 = 1979-05-27T07:32
@@ -627,7 +627,7 @@ lt2 = 00:32:00.999999
 ```
 
 Seconds may be omitted if the local time is at a zero-second mark. In such a
-case, the colon and digits following the minutes is removed.
+case, the colon and digits following the minutes are removed.
 
 ```toml
 lt3 = 07:32
