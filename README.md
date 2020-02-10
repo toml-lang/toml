@@ -242,13 +242,23 @@ The above TOML maps to the following JSON.
 As long as a key hasn't been directly defined, you may still write to it and
 to names within it.
 
+Following JSON analogy, you should note that dotted keys creates nested Hash 
+Tables (see Table section). So you may define nested structures in a flat way 
+as long as all types is compatible.
+
+
 ```
+# THIS IS VALID: 
+#    fruit is Table with apple and orange, 
+#    apple is Table, and orange is Integer - there is no conflicts
 fruit.apple.smooth = true
 fruit.orange = 2
 ```
 
 ```
 # THIS IS INVALID
+# fruit is Table with apple,
+# but apple CAN NOT be an Integer and a Table at the same time
 fruit.apple = 1
 fruit.apple.smooth = true
 ```
