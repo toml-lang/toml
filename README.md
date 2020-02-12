@@ -1,11 +1,4 @@
-![TOML Logo](logos/toml-200.png)
-
-TOML
-====
-
-Tom's Obvious, Minimal Language.
-
-By Tom Preston-Werner, Pradyun Gedam, et al.
+## Preface
 
 Latest tagged version:
 [v0.5.0](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.5.0.md).
@@ -19,41 +12,15 @@ version 1.0.0 to be backwards compatible (as much as humanly possible) with
 version 0.5.0. All implementations are strongly encouraged to become 0.5.0
 compatible so that the transition to 1.0.0 will be simple when that happens.
 
-Objectives
-----------
+## Objectives
 
 TOML aims to be a minimal configuration file format that's easy to read due to
 obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
-Table of contents
--------
+\tableofcontents
 
-- [Example](#user-content-example)
-- [Spec](#user-content-spec)
-- [Comment](#user-content-comment)
-- [Key/Value Pair](#user-content-keyvalue-pair)
-- [Keys](#user-content-keys)
-- [String](#user-content-string)
-- [Integer](#user-content-integer)
-- [Float](#user-content-float)
-- [Boolean](#user-content-boolean)
-- [Offset Date-Time](#user-content-offset-date-time)
-- [Local Date-Time](#user-content-local-date-time)
-- [Local Date](#user-content-local-date)
-- [Local Time](#user-content-local-time)
-- [Array](#user-content-array)
-- [Table](#user-content-table)
-- [Inline Table](#user-content-inline-table)
-- [Array of Tables](#user-content-array-of-tables)
-- [Filename Extension](#user-content-filename-extension)
-- [MIME Type](#user-content-mime-type)
-- [Comparison with Other Formats](#user-content-comparison-with-other-formats)
-- [Get Involved](#user-content-get-involved)
-- [Wiki](#user-content-wiki)
-
-Example
--------
+# Example
 
 ```toml
 # This is a TOML document.
@@ -91,16 +58,14 @@ hosts = [
 ]
 ```
 
-Spec
-----
+# Spec
 
 * TOML is case sensitive.
 * A TOML file must be a valid UTF-8 encoded Unicode document.
 * Whitespace means tab (0x09) or space (0x20).
 * Newline means LF (0x0A) or CRLF (0x0D 0x0A).
 
-Comment
--------
+## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a string.
 
@@ -113,178 +78,123 @@ another = "# This is not a comment"
 Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F)
 are not permitted in comments.
 
-Key/Value Pair
---------------
+## Basic Types
 
-The primary building block of a TOML document is the key/value pair.
+### Boolean
 
-Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values. The key, equals sign, and value must be
-on the same line (though some values can be broken over multiple lines).
+Booleans are just the tokens you're used to. Always lowercase.
 
 ```toml
-key = "value"
+bool1 = true
+bool2 = false
 ```
 
-Values must have one of the following types.
+### Integer
 
-- [String](#user-content-string)
-- [Integer](#user-content-integer)
-- [Float](#user-content-float)
-- [Boolean](#user-content-boolean)
-- [Offset Date-Time](#user-content-offset-date-time)
-- [Local Date-Time](#user-content-local-date-time)
-- [Local Date](#user-content-local-date)
-- [Local Time](#user-content-local-time)
-- [Array](#user-content-array)
-- [Inline Table](#user-content-inline-table)
-
-Unspecified values are invalid.
+Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
+Negative numbers are prefixed with a minus sign.
 
 ```toml
-key = # INVALID
+int1 = +99
+int2 = 42
+int3 = 0
+int4 = -17
 ```
 
-There must be a newline after a key/value pair.
-(See [Inline Table](#user-content-inline-table) for exceptions.)
-
-```
-first = "Tom" last = "Preston-Werner" # INVALID
-```
-
-Keys
-----
-
-A key may be either bare, quoted or dotted.
-
-**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
-dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
-ASCII digits, e.g. `1234`, but are always interpreted as strings.
+For large numbers, you may use underscores between digits to enhance
+readability. Each underscore must be surrounded by at least one digit on each
+side.
 
 ```toml
-key = "value"
-bare_key = "value"
-bare-key = "value"
-1234 = "value"
+int5 = 1_000
+int6 = 5_349_221
+int7 = 1_2_3_4_5     # VALID but discouraged
 ```
 
-**Quoted keys** follow the exact same rules as either basic strings or literal
-strings and allow you to use a much broader set of key names. Best practice is
-to use bare keys except when absolutely necessary.
+Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
+identical to an unprefixed zero.
+
+Non-negative integer values may also be expressed in hexadecimal, octal, or
+binary. In these formats, leading `+` is not allowed and leading zeros are
+allowed (after the prefix). Hex values are case insensitive. Underscores are
+allowed between digits (but not between the prefix and the value).
 
 ```toml
-"127.0.0.1" = "value"
-"character encoding" = "value"
-"ʎǝʞ" = "value"
-'key2' = "value"
-'quoted "value"' = "value"
+# hexadecimal with prefix `0x`
+hex1 = 0xDEADBEEF
+hex2 = 0xdeadbeef
+hex3 = 0xdead_beef
+
+# octal with prefix `0o`
+oct1 = 0o01234567
+oct2 = 0o755 # useful for Unix file permissions
+
+# binary with prefix `0b`
+bin1 = 0b11010110
 ```
 
-A bare key must be non-empty, but an empty quoted key is allowed (though
-discouraged).
+64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
+9,223,372,036,854,775,807).
+
+### Float
+
+Floats should be implemented as IEEE 754 binary64 values.
+
+A float consists of an integer part (which follows the same rules as decimal
+integer values) followed by a fractional part and/or an exponent part. If both a
+fractional part and exponent part are present, the fractional part must precede
+the exponent part.
 
 ```toml
-= "no key name"  # INVALID
-"" = "blank"     # VALID but discouraged
-'' = 'blank'     # VALID but discouraged
+# fractional
+flt1 = +1.0
+flt2 = 3.1415
+flt3 = -0.01
+
+# exponent
+flt4 = 5e+22
+flt5 = 1e06
+flt6 = -2E-2
+
+# both
+flt7 = 6.626e-34
 ```
 
-**Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
-allows for grouping similar properties together:
+A fractional part is a decimal point followed by one or more digits.
+
+An exponent part is an E (upper or lower case) followed by an integer part
+(which follows the same rules as decimal integer values but may include leading
+zeros).
+
+Similar to integers, you may use underscores to enhance readability. Each
+underscore must be surrounded by at least one digit.
 
 ```toml
-name = "Orange"
-physical.color = "orange"
-physical.shape = "round"
-site."google.com" = true
+flt8 = 224_617.445_991_228
 ```
 
-In JSON land, that would give you the following structure:
+Float values `-0.0` and `+0.0` are valid and should map according to IEEE 754.
 
-```json
-{
-  "name": "Orange",
-  "physical": {
-    "color": "orange",
-    "shape": "round"
-  },
-  "site": {
-    "google.com": true
-  }
-}
-```
-
-Whitespace around dot-separated parts is ignored, however, best practice is to
-not use any extraneous whitespace.
-
-Defining a key multiple times is invalid.
-
-```
-# DO NOT DO THIS
-name = "Tom"
-name = "Pradyun"
-```
-
-Since bare keys are allowed to compose of only ASCII integers, it is possible
-to write dotted keys that look like floats but are 2-part dotted keys. Don't do
-this unless you have a good reason to (you probably don't).
+Special float values can also be expressed. They are always lowercase.
 
 ```toml
-3.14159 = "pi"
+# infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation specific
 ```
 
-The above TOML maps to the following JSON.
-
-```json
-{ "3": { "14159": "pi" } }
-```
-
-As long as a key hasn't been directly defined, you may still write to it and
-to names within it.
-
-```
-fruit.apple.smooth = true
-fruit.orange = 2
-```
-
-```
-# THIS IS INVALID
-fruit.apple = 1
-fruit.apple.smooth = true
-```
-
-Defining dotted keys out-of-order is discouraged.
-
-```toml
-# VALID BUT DISCOURAGED
-
-apple.type = "fruit"
-orange.type = "fruit"
-
-apple.skin = "thin"
-orange.skin = "thick"
-
-apple.color = "red"
-orange.color = "orange"
-```
-
-```toml
-# RECOMMENDED
-
-apple.type = "fruit"
-apple.skin = "thin"
-apple.color = "red"
-
-orange.type = "fruit"
-orange.skin = "thick"
-orange.color = "orange"
-```
-
-String
-------
+### String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
 multi-line literal. All strings must contain only valid UTF-8 characters.
+
+#### Basic strings
 
 **Basic strings** are surrounded by quotation marks. Any Unicode character may
 be used except those that must be escaped: quotation mark, backslash, and the
@@ -316,6 +226,8 @@ should produce an error.
 
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
+
+#### Multi-line basic strings
 
 **Multi-line basic strings** are surrounded by three quotation marks on each
 side and allow newlines. A newline immediately following the opening delimiter
@@ -384,6 +296,8 @@ If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error prone. To help,
 TOML supports literal strings which do not allow escaping at all.
 
+#### Literal strings
+
 **Literal strings** are surrounded by single quotes. Like basic strings, they
 must appear on a single line:
 
@@ -398,6 +312,8 @@ regex    = '<\i\c*\s*>'
 Since there is no escaping, there is no way to write a single quote inside a
 literal string enclosed by single quotes. Luckily, TOML supports a multi-line
 version of literal strings that solves this problem.
+
+#### Multi-line literal strings
 
 **Multi-line literal strings** are surrounded by three single quotes on each
 side and allow newlines. Like literal strings, there is no escaping whatsoever.
@@ -431,229 +347,182 @@ Control characters other than tab are not permitted in a literal string. Thus,
 for binary data it is recommended that you use Base64 or another suitable ASCII
 or UTF-8 encoding. The handling of that encoding will be application specific.
 
-Integer
--------
 
-Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
-Negative numbers are prefixed with a minus sign.
+## Table
 
-```toml
-int1 = +99
-int2 = 42
-int3 = 0
-int4 = -17
-```
+### Key/Value Pair
 
-For large numbers, you may use underscores between digits to enhance
-readability. Each underscore must be surrounded by at least one digit on each
-side.
+The primary building block of a TOML document is the key/value pair.
+
+Keys are on the left of the equals sign and values are on the right. Whitespace
+is ignored around key names and values. The key, equals sign, and value must be
+on the same line (though some values can be broken over multiple lines).
 
 ```toml
-int5 = 1_000
-int6 = 5_349_221
-int7 = 1_2_3_4_5     # VALID but discouraged
+key = "value"
 ```
 
-Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
-identical to an unprefixed zero.
+Values must have one of the following types.
 
-Non-negative integer values may also be expressed in hexadecimal, octal, or
-binary. In these formats, leading `+` is not allowed and leading zeros are
-allowed (after the prefix). Hex values are case insensitive. Underscores are
-allowed between digits (but not between the prefix and the value).
+- [String](#user-content-string)
+- [Integer](#user-content-integer)
+- [Float](#user-content-float)
+- [Boolean](#user-content-boolean)
+- [Offset Date-Time](#user-content-offset-date-time)
+- [Local Date-Time](#user-content-local-date-time)
+- [Local Date](#user-content-local-date)
+- [Local Time](#user-content-local-time)
+- [Array](#user-content-array)
+- [Inline Table](#user-content-inline-table)
+
+Unspecified values are invalid.
 
 ```toml
-# hexadecimal with prefix `0x`
-hex1 = 0xDEADBEEF
-hex2 = 0xdeadbeef
-hex3 = 0xdead_beef
-
-# octal with prefix `0o`
-oct1 = 0o01234567
-oct2 = 0o755 # useful for Unix file permissions
-
-# binary with prefix `0b`
-bin1 = 0b11010110
+key = # INVALID
 ```
 
-64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
-9,223,372,036,854,775,807).
+There must be a newline after a key/value pair.
+(See [Inline Table](#user-content-inline-table) for exceptions.)
 
-Float
------
+```
+first = "Tom" last = "Preston-Werner" # INVALID
+```
 
-Floats should be implemented as IEEE 754 binary64 values.
+### Keys
 
-A float consists of an integer part (which follows the same rules as decimal
-integer values) followed by a fractional part and/or an exponent part. If both a
-fractional part and exponent part are present, the fractional part must precede
-the exponent part.
+A key may be either bare, quoted or dotted.
+
+#### Bare keys
+
+**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
+dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
+ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```toml
-# fractional
-flt1 = +1.0
-flt2 = 3.1415
-flt3 = -0.01
-
-# exponent
-flt4 = 5e+22
-flt5 = 1e06
-flt6 = -2E-2
-
-# both
-flt7 = 6.626e-34
+key = "value"
+bare_key = "value"
+bare-key = "value"
+1234 = "value"
 ```
 
-A fractional part is a decimal point followed by one or more digits.
+#### Quoted keys
 
-An exponent part is an E (upper or lower case) followed by an integer part
-(which follows the same rules as decimal integer values but may include leading
-zeros).
-
-Similar to integers, you may use underscores to enhance readability. Each
-underscore must be surrounded by at least one digit.
+**Quoted keys** follow the exact same rules as either basic strings or literal
+strings and allow you to use a much broader set of key names. Best practice is
+to use bare keys except when absolutely necessary.
 
 ```toml
-flt8 = 224_617.445_991_228
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
 ```
 
-Float values `-0.0` and `+0.0` are valid and should map according to IEEE 754.
-
-Special float values can also be expressed. They are always lowercase.
+A bare key must be non-empty, but an empty quoted key is allowed (though
+discouraged).
 
 ```toml
-# infinity
-sf1 = inf  # positive infinity
-sf2 = +inf # positive infinity
-sf3 = -inf # negative infinity
-
-# not a number
-sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
-sf5 = +nan # same as `nan`
-sf6 = -nan # valid, actual encoding is implementation specific
+= "no key name"  # INVALID
+"" = "blank"     # VALID but discouraged
+'' = 'blank'     # VALID but discouraged
 ```
 
-Boolean
--------
+#### Dotted keys
 
-Booleans are just the tokens you're used to. Always lowercase.
+**Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
+allows for grouping similar properties together:
 
 ```toml
-bool1 = true
-bool2 = false
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+site."google.com" = true
 ```
 
-Offset Date-Time
----------------
+In JSON land, that would give you the following structure:
 
-To unambiguously represent a specific instant in time, you may use an
-[RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
+```json
+{
+  "name": "Orange",
+  "physical": {
+    "color": "orange",
+    "shape": "round"
+  },
+  "site": {
+    "google.com": true
+  }
+}
+```
+
+Whitespace around dot-separated parts is ignored, however, best practice is to
+not use any extraneous whitespace.
+
+Defining a key multiple times is invalid.
+
+```
+# DO NOT DO THIS
+name = "Tom"
+name = "Pradyun"
+```
+
+Since bare keys are allowed to compose of only ASCII integers, it is possible
+to write dotted keys that look like floats but are 2-part dotted keys. Don't do
+this unless you have a good reason to (you probably don't).
 
 ```toml
-odt1 = 1979-05-27T07:32:00Z
-odt2 = 1979-05-27T00:32:00-07:00
-odt3 = 1979-05-27T00:32:00.999999-07:00
+3.14159 = "pi"
 ```
 
-For the sake of readability, you may replace the T delimiter between date and
-time with a space (as permitted by RFC 3339 section 5.6).
+The above TOML maps to the following JSON.
+
+```json
+{ "3": { "14159": "pi" } }
+```
+
+As long as a key hasn't been directly defined, you may still write to it and
+to names within it.
+
+```
+# THIS IS VALID
+fruit.apple.smooth = true
+fruit.orange = 2
+```
+
+```
+# THIS IS INVALID
+fruit.apple = 1
+fruit.apple.smooth = true
+```
+
+Defining dotted keys out-of-order is discouraged.
 
 ```toml
-odt4 = 1979-05-27 07:32:00Z
+# VALID BUT DISCOURAGED
+
+apple.type = "fruit"
+orange.type = "fruit"
+
+apple.skin = "thin"
+orange.skin = "thick"
+
+apple.color = "red"
+orange.color = "orange"
 ```
-
-The precision of fractional seconds is implementation specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
-rounded.
-
-Local Date-Time
---------------
-
-If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
-formatted date-time, it will represent the given date-time without any relation
-to an offset or timezone. It cannot be converted to an instant in time without
-additional information. Conversion to an instant, if required, is implementation
-specific.
 
 ```toml
-ldt1 = 1979-05-27T07:32:00
-ldt2 = 1979-05-27T00:32:00.999999
+# RECOMMENDED
+
+apple.type = "fruit"
+apple.skin = "thin"
+apple.color = "red"
+
+orange.type = "fruit"
+orange.skin = "thick"
+orange.color = "orange"
 ```
 
-The precision of fractional seconds is implementation specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
-rounded.
-
-Local Date
-----------
-
-If you include only the date portion of an
-[RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will
-represent that entire day without any relation to an offset or timezone.
-
-```toml
-ld1 = 1979-05-27
-```
-
-Local Time
-----------
-
-If you include only the time portion of an [RFC
-3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
-that time of day without any relation to a specific day or any offset or
-timezone.
-
-```toml
-lt1 = 07:32:00
-lt2 = 00:32:00.999999
-```
-
-The precision of fractional seconds is implementation specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
-rounded.
-
-Array
------
-
-Arrays are square brackets with values inside. Whitespace is ignored. Elements
-are separated by commas. Arrays can contain values of the same data types as
-allowed in key/value pairs. Values of different types may be mixed.
-
-```toml
-integers = [ 1, 2, 3 ]
-colors = [ "red", "yellow", "green" ]
-nested_array_of_int = [ [ 1, 2 ], [3, 4, 5] ]
-nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
-string_array = [ "all", 'strings', """are the same""", '''type''' ]
-
-# Mixed-type arrays are allowed
-numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
-contributors = [
-  "Foo Bar <foo@example.com>",
-  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
-]
-```
-
-Arrays can span multiple lines. A terminating comma (also called trailing comma)
-is ok after the last value of the array. There can be an arbitrary number of
-newlines and comments before a value and before the closing bracket.
-
-```toml
-integers2 = [
-  1, 2, 3
-]
-
-integers3 = [
-  1,
-  2, # this is ok
-]
-```
-
-Table
------
+### Table definition (continue)
 
 Tables (also known as hash tables or dictionaries) are collections of key/value
 pairs. They appear in square brackets on a line by themselves. You can tell them
@@ -771,8 +640,7 @@ apple.taste.sweet = true
 smooth = true
 ```
 
-Inline Table
-------------
+### Inline Table (special syntax)
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
@@ -829,8 +697,113 @@ type.name = "Nail"
 # type = { edible = false }  # INVALID
 ```
 
-Array of Tables
----------------
+## Date and Time
+
+### Offset Date-Time
+
+To unambiguously represent a specific instant in time, you may use an
+[RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
+
+```toml
+odt1 = 1979-05-27T07:32:00Z
+odt2 = 1979-05-27T00:32:00-07:00
+odt3 = 1979-05-27T00:32:00.999999-07:00
+```
+
+For the sake of readability, you may replace the T delimiter between date and
+time with a space (as permitted by RFC 3339 section 5.6).
+
+```toml
+odt4 = 1979-05-27 07:32:00Z
+```
+
+The precision of fractional seconds is implementation specific, but at least
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
+
+### Local Date-Time
+
+If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
+formatted date-time, it will represent the given date-time without any relation
+to an offset or timezone. It cannot be converted to an instant in time without
+additional information. Conversion to an instant, if required, is implementation
+specific.
+
+```toml
+ldt1 = 1979-05-27T07:32:00
+ldt2 = 1979-05-27T00:32:00.999999
+```
+
+The precision of fractional seconds is implementation specific, but at least
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
+
+### Local Date
+
+If you include only the date portion of an
+[RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will
+represent that entire day without any relation to an offset or timezone.
+
+```toml
+ld1 = 1979-05-27
+```
+
+### Local Time
+
+If you include only the time portion of an [RFC
+3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
+that time of day without any relation to a specific day or any offset or
+timezone.
+
+```toml
+lt1 = 07:32:00
+lt2 = 00:32:00.999999
+```
+
+The precision of fractional seconds is implementation specific, but at least
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
+
+## Array
+
+Arrays are square brackets with values inside. Whitespace is ignored. Elements
+are separated by commas. Arrays can contain values of the same data types as
+allowed in key/value pairs. Values of different types may be mixed.
+
+```toml
+integers = [ 1, 2, 3 ]
+colors = [ "red", "yellow", "green" ]
+nested_array_of_int = [ [ 1, 2 ], [3, 4, 5] ]
+nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
+string_array = [ "all", 'strings', """are the same""", '''type''' ]
+
+# Mixed-type arrays are allowed
+numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+contributors = [
+  "Foo Bar <foo@example.com>",
+  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+]
+```
+
+Arrays can span multiple lines. A terminating comma (also called trailing comma)
+is ok after the last value of the array. There can be an arbitrary number of
+newlines and comments before a value and before the closing bracket.
+
+```toml
+integers2 = [
+  1, 2, 3
+]
+
+integers3 = [
+  1,
+  2, # this is ok
+]
+```
+
+### Array of Tables (special syntax)
 
 The last type that has not yet been expressed is an array of tables. These can
 be expressed by using a table name in double brackets. Under that, and until the
@@ -975,19 +948,18 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 2, y = 4, z = 8 } ]
 ```
 
-Filename Extension
-------------------
+# Environment related points
+
+## Filename Extension
 
 TOML files should use the extension `.toml`.
 
-MIME Type
----------
+## MIME Type
 
 When transferring TOML files over the internet, the appropriate MIME type is
 `application/toml`.
 
-Comparison with Other Formats
------------------------------
+# Comparison with Other Formats
 
 TOML shares traits with other file formats used for application configuration
 and data serialization, such as YAML and JSON. TOML and JSON both are simple and
@@ -1009,18 +981,19 @@ use as configuration files. However, there is no standardized format for INI
 and they do not gracefully handle more than one or two levels of nesting.
 
 Further reading:
+
  * YAML spec: https://yaml.org/spec/1.2/spec.html
  * JSON spec: https://tools.ietf.org/html/rfc8259
  * Wikipedia on INI files: https://en.wikipedia.org/wiki/INI_file
 
-Get Involved
-------------
+# Community
+
+## Get Involved
 
 Documentation, bug reports, pull requests, and all other contributions
 are welcome!
 
-Wiki
-----------------------------------------------------------------------
+## Wiki
 
 We have an [Official TOML Wiki](https://github.com/toml-lang/toml/wiki) that
 catalogs the following:
