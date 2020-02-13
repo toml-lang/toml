@@ -118,9 +118,12 @@ Key/Value Pair
 
 The primary building block of a TOML document is the key/value pair.
 
-Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values. The key, equals sign, and value must be
+The key/value pair combines from the key, equals sign, and value, which must be
 on the same line (though some values can be broken over multiple lines).
+
+Keys are on the left of the equals sign and values are on the right. 
+
+Whitespace is ignored around key names and values. 
 
 ```toml
 key = "value"
@@ -286,9 +289,11 @@ String
 There are four ways to express strings: basic, multi-line basic, literal, and
 multi-line literal. All strings must contain only valid UTF-8 characters.
 
-**Basic strings** are surrounded by quotation marks. Any Unicode character may
-be used except those that must be escaped: quotation mark, backslash, and the
-control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
+**Basic strings** are surrounded by quotation marks. 
+
+Any Unicode character may be used except those that must be escaped: 
+quotation mark, backslash, and the control characters other than tab 
+(`U+0000` to `U+0008`, `U+000A` to `U+001F`, `U+007F`).
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
@@ -318,8 +323,11 @@ Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
 
 **Multi-line basic strings** are surrounded by three quotation marks on each
-side and allow newlines. A newline immediately following the opening delimiter
-will be trimmed. All other whitespace and newline characters remain intact.
+side and allow newlines. 
+
+A newline immediately following the opening delimiter will be trimmed.
+
+All other whitespace and newline characters remain intact.
 
 ```toml
 str1 = """
@@ -384,8 +392,9 @@ If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error prone. To help,
 TOML supports literal strings which do not allow escaping at all.
 
-**Literal strings** are surrounded by single quotes. Like basic strings, they
-must appear on a single line:
+**Literal strings** are surrounded by single quotes. 
+
+Like basic strings, they must appear on a single line:
 
 ```toml
 # What you see is what you get.
@@ -401,8 +410,10 @@ version of literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each
 side and allow newlines. Like literal strings, there is no escaping whatsoever.
-A newline immediately following the opening delimiter will be trimmed. All
-other content between the delimiters is interpreted as-is without modification.
+
+A newline immediately following the opening delimiter will be trimmed. 
+
+All other content between the delimiters is interpreted as-is without modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
@@ -433,6 +444,9 @@ or UTF-8 encoding. The handling of that encoding will be application specific.
 
 Integer
 -------
+
+Integers should be implemented as 64 bit (signed long) 
+range expected (−9,223,372,036,854,775,808 to 9,223,372,036,854,775,807).
 
 Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
 Negative numbers are prefixed with a minus sign.
@@ -475,9 +489,6 @@ oct2 = 0o755 # useful for Unix file permissions
 # binary with prefix `0b`
 bin1 = 0b11010110
 ```
-
-64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
-9,223,372,036,854,775,807).
 
 Float
 -----
