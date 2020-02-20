@@ -243,13 +243,21 @@ As long as a key hasn't been directly defined, you may still write to it and
 to names within it.
 
 ```
+# This makes the key "fruit" into a table.
 fruit.apple.smooth = true
+
+# So then you can add to the table "fruit" like so:
 fruit.orange = 2
 ```
 
 ```
-# THIS IS INVALID
+# THE FOLLOWING IS INVALID
+
+# This defines the value of fruit.apple to be an integer.
 fruit.apple = 1
+
+# But then this treats fruit.apple like it's a table.
+# You can't turn an integer into a table.
 fruit.apple.smooth = true
 ```
 
