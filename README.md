@@ -312,12 +312,12 @@ For convenience, some popular characters have a compact escape sequence.
 \r         - carriage return (U+000D)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
-\xXX       - unicode         (U+00XX)
-\uXXXX     - unicode         (U+XXXX)
-\UXXXXXXXX - unicode         (U+XXXXXXXX)
+\xHH       - unicode         (U+00HH)
+\uHHHH     - unicode         (U+HHHH)
+\UHHHHHHHH - unicode         (U+HHHHHHHH)
 ```
 
-Any Unicode character may be escaped with the `\xXX`, `\uXXXX`, or `\UXXXXXXXX`
+Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
 forms. The escape codes must be valid Unicode [scalar
 values](http://unicode.org/glossary/#unicode_scalar_value).
 
