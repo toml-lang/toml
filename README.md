@@ -299,7 +299,7 @@ be used except those that must be escaped: quotation mark, backslash, and the
 control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
 ```toml
-str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str = "I'm a string. \"You can quote me\". Name\tJos\xE9\nLocation\tSF."
 ```
 
 For convenience, some popular characters have a compact escape sequence.
@@ -312,12 +312,14 @@ For convenience, some popular characters have a compact escape sequence.
 \r         - carriage return (U+000D)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
+\xXX       - unicode         (U+00XX)
 \uXXXX     - unicode         (U+XXXX)
 \UXXXXXXXX - unicode         (U+XXXXXXXX)
 ```
 
-Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
-The escape codes must be valid Unicode [scalar values](http://unicode.org/glossary/#unicode_scalar_value).
+Any Unicode character may be escaped with the `\xXX`, `\uXXXX`, or `\UXXXXXXXX`
+forms. The escape codes must be valid Unicode [scalar
+values](http://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved and, if used, TOML
 should produce an error.
