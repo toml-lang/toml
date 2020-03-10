@@ -8,16 +8,17 @@ Tom's Obvious, Minimal Language.
 By Tom Preston-Werner, Pradyun Gedam, et al.
 
 Latest tagged version:
-[v0.5.0](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.5.0.md).
+[v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-1.0.0-rc.1.md).
 
 NOTE: The `master` branch of this repository tracks the very latest development
 and may contain features and changes that do not exist on any released version.
 To find the spec for a specific version, look in the `versions` subdirectory.
 
-As of version 0.5.0, TOML should be considered extremely stable. The goal is for
-version 1.0.0 to be backwards compatible (as much as humanly possible) with
-version 0.5.0. All implementations are strongly encouraged to become 0.5.0
-compatible so that the transition to 1.0.0 will be simple when that happens.
+TOML 1.0.0-rc.1 has been released. TOML should be considered extremely stable
+now, and TOML 1.0.0 will not contain any non-critical changes. All
+implementations are strongly encouraged to become compatible with TOML 1.0.0
+release candidates and provide feedback, to ease the transition to 1.0.0, when
+it is released.
 
 Objectives
 ----------
