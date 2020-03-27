@@ -637,10 +637,6 @@ d1 = 10mins
 d2 = -59secs
 ```
 
-The precision of fractional seconds is implementation specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
-rounded.
 Array
 -----
 
