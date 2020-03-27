@@ -42,6 +42,7 @@ Table of contents
 - [Local Date-Time](#user-content-local-date-time)
 - [Local Date](#user-content-local-date)
 - [Local Time](#user-content-local-time)
+- [Duration](#user-content-duration)
 - [Array](#user-content-array)
 - [Table](#user-content-table)
 - [Inline Table](#user-content-inline-table)
@@ -136,6 +137,7 @@ Values must have one of the following types.
 - [Local Date-Time](#user-content-local-date-time)
 - [Local Date](#user-content-local-date)
 - [Local Time](#user-content-local-time)
+- [Duration](#user-content-duration)
 - [Array](#user-content-array)
 - [Inline Table](#user-content-inline-table)
 
@@ -623,6 +625,22 @@ millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
 rounded.
 
+Duration
+----------
+
+A duration represents a signed interval of time in a specified unit. Units include:
+hours, mins, secs, millisecs, microsecs and nanosecs. The numeric portion of a duration 
+must be a integer. 
+
+```toml
+d1 = 10mins
+d2 = -59secs
+```
+
+The precision of fractional seconds is implementation specific, but at least
+millisecond precision is expected. If the value contains greater precision than
+the implementation can support, the additional precision must be truncated, not
+rounded.
 Array
 -----
 
