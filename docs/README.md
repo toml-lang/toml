@@ -11,14 +11,23 @@ improving the automation and setting up workflows.
 
 ## Release Process
 
-1. Checkout the latest `master` branch.
-2. Update the notice on README.md (if any) to reflect the current state
-   of the project; because... we don't have a better mechanism for
-   communicating state-of-affairs right now.
-3. Create a copy of README.md at `versions/en/toml-v{version}.md`.
-4. Update the top-level heading to clearly include the version like
-  `TOML v{version}` and remove the note about tracking `master`.
-5. Commit all these changes.
-6. Make a PR with these changes, and merge it.
-7. Publish a GitHub release, containing CHANGELOG, and pointing at
-   the current master (i.e. post merge).
+- Checkout the latest `master` branch.
+- Update the existing files:
+  - `README.md`: Update the notice on top of the file, to reflect the
+    current state of the project; because... we don't have a better
+    mechanism for communicating state-of-affairs right now.
+  - `CHANGELOG.md`: Update the top level heading, to reflect the new
+    version and date.
+- Create the new "release version" of the specification:
+  - Copy `README.md` to `versions/en/toml-v{version}.md`.
+  - Update the top-level heading, to clearly include the version
+    like `TOML v{version}`.
+  - Remove the note about tracking `master`.
+- Commit all these changes.
+- Make a PR with these changes, and squash-merge it.
+- Go to https://github.com/toml-lang/toml/releases/new and create a new release:
+  - Tag version: `v{version}` like `v1.0.0-rc.1`
+  - Target: master
+  - Title: same as "Tag Version"
+  - Description: Notes for this release, copied from CHANGELOG.md
+  - Pre-release: make sure to check/not check this box
