@@ -1,24 +1,11 @@
-![TOML Logo](logos/toml-200.png)
+![TOML Logo](../../logos/toml-200.png)
 
-TOML
-====
+TOML v1.0.0-rc.1
+================
 
 Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner, Pradyun Gedam, et al.
-
-Latest tagged version:
-[v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-1.0.0-rc.1.md).
-
-NOTE: The `master` branch of this repository tracks the very latest development
-and may contain features and changes that do not exist on any released version.
-To find the spec for a specific version, look in the `versions` subdirectory.
-
-TOML 1.0.0-rc.1 has been released. TOML should be considered extremely stable
-now, and TOML 1.0.0 will not contain any non-critical changes. All
-implementations are strongly encouraged to become compatible with TOML 1.0.0
-release candidates and provide feedback, to ease the transition to 1.0.0, when
-it is released.
 
 Objectives
 ----------

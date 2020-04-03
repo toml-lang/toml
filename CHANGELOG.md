@@ -1,6 +1,6 @@
 # TOML Changelog
 
-## Unreleased
+## 1.0.0-rc.1 / 2020-04-01
 
 * Clarify in ABNF how quotes in multi-line basic and multi-line literal strings
   are allowed to be used.
