@@ -8,7 +8,7 @@ Tom's Obvious, Minimal Language.
 By Tom Preston-Werner, Pradyun Gedam, et al.
 
 Latest tagged version:
-[v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-1.0.0-rc.1.md).
+[v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v1.0.0-rc.1.md).
 
 NOTE: The `master` branch of this repository tracks the very latest development
 and may contain features and changes that do not exist on any released version.
