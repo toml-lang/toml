@@ -1,15 +1,11 @@
 ![TOML Logo](../../logos/toml-200.png)
 
-TOML v0.5.0
-===========
+TOML v1.0.0-rc.1
+================
 
 汤小明的小巧明晰语言。
 
-汤姆·普雷斯顿—维尔纳所创。
-
-自版本 0.5.0 起，TOML 可以说是非常稳定了。  
-我们的目标是将来正式的 1.0.0 版能够向下兼容到 0.5.0 版（尽人事之可能吧）。  
-强烈建议所有的实现都着手兼容 0.5.0，以便于到时转化成 1.0.0 能简单一些。
+作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。
 
 宗旨
 ----
@@ -39,6 +35,7 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 - [行内表](#user-content-inline-table)
 - [表数组](#user-content-array-of-tables)
 - [文件扩展名](#user-content-filename-extension)
+- [MIME 类型](#user-content-mime-type)
 - [与其它格式的比较](#user-content-comparison-with-other-formats)
 - [参与](#user-content-get-involved)
 - [百科](#user-content-wiki)
@@ -88,17 +85,20 @@ hosts = [
 * TOML 是大小写敏感的。
 * TOML 文件必须是合法的 UTF-8 编码的 Unicode 文档。
 * 空白的意思是 Tab（0x09）或空格（0x20）。
-* 换行的意思是 LF（0x0A）或 CRLF（0x0D0A）。
+* 换行的意思是 LF（0x0A）或 CRLF（0x0D 0x0A）。
 
 [注释](#user-content-comment)<a id="user-content-comment">&nbsp;</a>
 ------
 
-井号将此行剩下的部分标记为注释。
+井号将此行剩下的部分标记为注释，除非它在字符串中。
 
 ```toml
 # 这是一个全行注释
-key = "value" # 这是一个行末注释
+key = "value"  # 这是一个行末注释
+another = "# 这不是一个注释"
 ```
+
+除 tab 以外的控制字符（U+0000 至 U+0008，U+000A 至 U+001F，U+007F）不允许出现在注释中。
 
 [键值对](#user-content-keyvalue-pair)<a id="user-content-keyvalue-pair">&nbsp;</a>
 --------
@@ -113,11 +113,30 @@ TOML 文档最基本的构成区块是键/值对。
 key = "value"
 ```
 
-值必须是这些类型：字符串，整数，浮点数，布尔值，日期时刻，数组，或行内表。  
-不指定值是有误的。
+值必须是下述类型之一。
+
+- [字符串](#user-content-string)
+- [整数](#user-content-integer)
+- [浮点数](#user-content-float)
+- [布尔值](#user-content-boolean)
+- [坐标日期时刻](#user-content-offset-date-time)
+- [各地日期时刻](#user-content-local-date-time)
+- [各地日期](#user-content-local-date)
+- [各地时刻](#user-content-local-time)
+- [数组](#user-content-array)
+- [行内表](#user-content-inline-table)
+
+不指定值是错误的。
 
 ```toml
-key = # 有误
+key = # 错误
+```
+
+键值对后必须换行。  
+（例外见 [行内表](#user-content-inline-table)）
+
+```
+first = "汤姆" last = "普雷斯顿—维尔纳" # 错误
 ```
 
 [键名](#user-content-keys)<a id="user-content-keys">&nbsp;</a>
@@ -149,9 +168,9 @@ bare-key = "value"
 裸键中不能为空，但空引号键是允许的（虽然不建议如此）。
 
 ```toml
-= "no key name"  # 有误
-"" = "blank"     # 有效但不建议
-'' = 'blank'     # 有效但不建议
+= "no key name"  # 错误
+"" = "blank"     # 正确但不鼓励
+'' = 'blank'     # 正确但不鼓励
 ```
 
 **点分隔键**是一系列通过点相连的裸键或引号键。  
@@ -189,17 +208,65 @@ name = "汤姆"
 name = "Pradyun"
 ```
 
+由于裸键只允许由 ASCII 整数组成，所以可能写出看起来像浮点数、但实际上是两部分的点分隔键。  
+除非你有充分的理由（基本不太会），否则不要这样做。
+
+```toml
+3.14159 = "派"
+```
+
+上面的 TOML 对应以下 JSON。
+
+```json
+{ "3": { "14159": "派" } }
+```
+
 只要一个键还没有被直接定义过，你就仍可以对它和它下属的键名赋值。
 
 ```
-a.b.c = 1
-a.d = 2
+# 这使“fruit”键作为表存在。
+fruit.apple.smooth = true
+
+# 所以接下来你可以像中这样对“fruit”表添加内容：
+fruit.orange = 2
 ```
 
 ```
-# 这就不行了
-a.b = 1
-a.b.c = 2
+# 以下是错误的
+
+# 这将 fruit.apple 的值定义为一个整数。
+fruit.apple = 1
+
+# 但接下来这将 fruit.apple 像表一样对待了。
+# 整数不能变成表。
+fruit.apple.smooth = true
+```
+
+不鼓励跳跃式地定义点分隔键。
+
+```toml
+# 合法但不鼓励
+
+apple.type = "水果"
+orange.type = "水果"
+
+apple.skin = "薄"
+orange.skin = "厚"
+
+apple.color = "红"
+orange.color = "橙"
+```
+
+```toml
+# 建议
+
+apple.type = "水果"
+apple.skin = "薄"
+apple.color = "红"
+
+orange.type = "水果"
+orange.skin = "厚"
+orange.color = "红"
 ```
 
 [字符串](#user-content-string)<a id="user-content-string">&nbsp;</a>
@@ -209,7 +276,7 @@ a.b.c = 2
 所有字符串都只能包含有效的 UTF-8 字符。
 
 **基础字符串**由引号包裹。  
-任何 Unicode 字符都可以使用，除了那些必须转义的：引号，反斜杠，以及控制字符（U+0000 至 U+001F，U+007F）。
+任何 Unicode 字符都可以使用，除了那些必须转义的：引号，反斜杠，以及除 tab 外的控制字符（U+0000 至 U+0008，U+000A 至 U+001F，U+007F）。
 
 ```toml
 str = "我是一个字符串。\"你可以把我引起来\"。姓名\tJos\u00E9\n位置\t旧金山。"
@@ -279,8 +346,20 @@ str3 = """\
        """
 ```
 
-任何 Unicode 字符都可以使用，除了那些必须被转义的：反斜杠和控制字符（U+0000 至 U+001F，U+007F）。  
-引号不需要转义，除非它们的存在会造成一个比预期提前的结束标记。
+任何 Unicode 字符都可以使用，除了那些必须被转义的：反斜杠和除 tab、换行、回车外的控制字符（U+0000 至 U+0008，U+000B，U+000C，U+000E 至 U+001F，U+007F）。
+
+你可以在多行基础字符串内的任何地方写一个引号或两个毗连的引号。
+它们也可以写在紧邻界分符内的位置。
+
+```toml
+str4 = """这有两个引号：""。够简单。"""
+# str5 = """这有两个引号："""。"""  # 错误
+str5 = """这有三个引号：""\"。"""
+str6 = """这有十五个引号：""\"""\"""\"""\"""\"。"""
+
+# "这，"她说，"只是个无意义的条款。"
+str7 = """"这，"她说，"只是个无意义的条款。""""
+```
 
 如果你常常要指定 Windows 路径或正则表达式，那么必须转义反斜杠就马上成为啰嗦而易错的了。  
 为了帮助搞定这点，TOML 支持字面量字符串，它完全不允许转义。
@@ -314,6 +393,18 @@ lines  = '''
 '''
 ```
 
+你可以在多行字面量字符串中的任何位置写一个或两个单引号，但三个以上的单引号序列不可以。
+
+```toml
+quot15 = '''这有十五个引号："""""""""""""""'''
+
+# apos15 = '''这有十五个撇号：''''''''''''''''''  # 错误
+apos15 = "这有十五个撇号：'''''''''''''''"
+
+# '那仍然没有意义'，她说。
+str = ''''那仍然没有意义'，她说。'''
+```
+
 除 tab 以外的所有控制字符都不允许出现在字面量字符串中。  
 因此，对于二进制数据，建议你使用 Base64 或其它合适的 ASCII 或 UTF-8 编码。  
 对那些编码的处理方式，将交由应用程序自己来确定。
@@ -345,7 +436,7 @@ int7 = 1_2_3_4_5     # 无误但不鼓励
 整数值 `-0` 与 `+0` 是有效的，并等同于无前缀的零。
 
 非负整数值也可以用十六进制、八进制或二进制来表示。  
-在这些格式中，（前缀后的）前导零是允许的。  
+在这些格式中，`+` 不被允许，而（前缀后的）前导零是允许的。  
 十六进制值大小写不敏感。  
 数字间的下划线是允许的（但不能存在于前缀和值之间）。
 
@@ -370,7 +461,7 @@ bin1 = 0b11010110
 
 浮点数应当被实现为 IEEE 754 binary64 值。
 
-一个浮点数由一个整数部分（遵从与整数值相同的规则）后跟上一个小数部分和/或一个指数部分组成。  
+一个浮点数由一个整数部分（遵从与十进制整数值相同的规则）后跟上一个小数部分和/或一个指数部分组成。  
 如果小数部分和指数部分兼有，那小数部分必须在指数部分前面。
 
 ```toml
@@ -381,7 +472,7 @@ flt3 = -0.01
 
 # 指数
 flt4 = 5e+22
-flt5 = 1e6
+flt5 = 1e06
 flt6 = -2E-2
 
 # 都有
@@ -390,13 +481,13 @@ flt7 = 6.626e-34
 
 小数部分是一个小数点后跟一个或多个数字。
 
-一个指数部分是一个 E（大小写均可）后跟一个整数部分（遵从与整数值相同的规则）。
+一个指数部分是一个 E（大小写均可）后跟一个整数部分（遵从与十进制整数值相同的规则，但可以包含前导零）。
 
 与整数相似，你可以使用下划线来增强可读性。  
 每个下划线必须被至少一个数字围绕。
 
 ```toml
-flt8 = 9_224_617.445_991_228_313
+flt8 = 224_617.445_991_228
 ```
 
 浮点数值 `-0.0` 与 `+0.0` 是有效的，并且应当遵从 IEEE 754。
@@ -413,7 +504,7 @@ sf3 = -inf # 负无穷
 # 非数
 sf4 = nan  # 实际上对应信号非数码还是静默非数码，取决于实现
 sf5 = +nan # 等同于 `nan`
-sf6 = -nan # 有效，实际码取决于实现
+sf6 = -nan # 正确，实际码取决于实现
 ```
 
 [布尔值](#user-content-boolean)<a id="user-content-boolean">&nbsp;</a>
@@ -490,28 +581,34 @@ lt2 = 00:32:00.999999
 数组是内含值的方括号。  
 空白会被忽略。  
 子元素由逗号分隔。  
-子元素的数据类型必须一致（不同写法的字符串应当被认为是相同的类型，不同元素类型的数组也同是数组类型）。
+数组可以包含与键值对所允许的相同数据类型的值。  
+可以混合不同类型的值。
 
 ```toml
-arr1 = [ 1, 2, 3 ]
-arr2 = [ "红", "黄", "绿" ]
-arr3 = [ [ 1, 2 ], [3, 4, 5] ]
-arr4 = [ "所有的", '字符串', """是相同的""", '''类型''' ]
-arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
+integers = [ 1, 2, 3 ]
+colors = [ "红", "黄", "绿" ]
+nested_array_of_int = [ [ 1, 2 ], [3, 4, 5] ]
+nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
+string_array = [ "所有的", '字符串', """是相同的""", '''类型''' ]
 
-arr6 = [ 1, 2.0 ] # 有误
+# 允许混合类型的数组
+numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+contributors = [
+  "Foo Bar <foo@example.com>",
+  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+]
 ```
 
-数组也可以跨多行。  
+数组可以跨行。  
 数组的最后一个值后面可以有终逗号（也称为尾逗号）。  
 值和结束括号前可以存在任意数量的换行和注释。
 
 ```toml
-arr7 = [
+integers2 = [
   1, 2, 3
 ]
 
-arr8 = [
+integers3 = [
   1,
   2, # 这是可以的
 ]
@@ -571,6 +668,8 @@ TOML 知道该怎么办。
 # [x.y] 不
 # [x.y.z] 需要这些
 [x.y.z.w] # 来让这生效
+
+[x] # 后置父表定义是可以的
 ```
 
 空表是允许的，只要里面没有键值对就行了。
@@ -581,21 +680,55 @@ TOML 知道该怎么办。
 ```
 # 不要这样做
 
-[a]
-b = 1
+[fruit]
+apple = "红"
 
-[a]
-c = 2
+[fruit]
+orange = "橙"
 ```
 
 ```
 # 也不要这样做
 
-[a]
-b = 1
+[fruit]
+apple = "红"
 
-[a.b]
-c = 2
+[fruit.apple]
+texture = "光滑"
+```
+
+不鼓励无序地定义表。
+
+```toml
+# 正确但不鼓励
+[fruit.apple]
+[animal]
+[fruit.orange]
+```
+
+```toml
+# 推荐
+[fruit.apple]
+[fruit.orange]
+[animal]
+```
+
+点分隔键将每个点左侧的任何东西定义为表。  
+由于表不能定义多于一次，不允许使用 `[table]` 头重定义这样的表。  
+同样地，使用点分隔键来重定义已经以 `[table]` 形式定义过的表也是不允许的。
+
+不过，`[table]` 形式可以被用来定义通过点分隔键定义的表中的子表。
+
+```toml
+[fruit]
+apple.color = "红"
+apple.taste.sweet = true
+
+# [fruit.apple]  # 错误
+# [fruit.apple.taste]  # 错误
+
+[fruit.apple.texture]  # 你可以添加字表
+smooth = true
 ```
 
 [行内表](#user-content-inline-table)<a id="user-content-inline-table">&nbsp;</a>
@@ -609,6 +742,7 @@ c = 2
 什么类型的值都可以，包括行内表。
 
 行内表得出现在同一行内。  
+行内表中，最后一对键值对后不允许终逗号（也称为尾逗号）。  
 不允许花括号中出现换行，除非它们存在于正确的值当中。  
 即便如此，也强烈不建议把一个行内表搞成纵跨多行的样子。  
 如果你发现自己真的需要，那意味着你应该使用标准表。
@@ -635,13 +769,31 @@ type.name = "哈巴狗"
 
 ```
 
+行内表完全地在内部来定义键和子表。  
+新键和子表不再能被添加进去。
+
+```toml
+[product]
+type = { name = "钉子" }
+# type.edible = false  # 错误
+```
+
+类似地，行内表不能被用来向一个已定义的表添加键或子表。
+
+```toml
+[product]
+type.name = "钉子"
+# type = { edible = false }  # 错误
+```
+
 [表数组](#user-content-array-of-tables)<a id="user-content-array-of-tables">&nbsp;</a>
 --------
 
 最后还剩下一个没法表示的是表数组。  
 这可以通过双方括号来表示。  
-各个具有相同方括号名的表将会成为该数组内的一员。  
-这些表遵循它们出现的顺序。  
+在它下方，直至下一个表或文件结束，都是该表的键值对。  
+各个具有相同方括号名的表将会成为该表数组内的一员。  
+这些表按出现顺序插入。  
 一个没有任何键值对的双方括号表将为视为一个空表。
 
 ```toml
@@ -654,6 +806,7 @@ sku = 738594937
 [[products]]
 name = "Nail"
 sku = 284758393
+
 color = "gray"
 ```
 
@@ -671,17 +824,18 @@ color = "gray"
 
 你还可以创建一个嵌套表数组。  
 只要在子表上使用相同的双方括号语法语法。  
-每个双方括号子表将隶属于上方最近定义的表元素。
+每个双方括号子表将隶属于最近定义的表元素。  
+普通的子表（非数组）同样也隶属于最近定义的表元素。
 
 ```toml
 [[fruit]]
   name = "apple"
 
-  [fruit.physical]
+  [fruit.physical]  # 子表
     color = "red"
     shape = "round"
 
-  [[fruit.variety]]
+  [[fruit.variety]]  # 嵌套表数组
     name = "red delicious"
 
   [[fruit.variety]]
@@ -720,28 +874,50 @@ color = "gray"
 }
 ```
 
+如果一个表或表数组的父级是一个数组元素，该元素必须在定义子级前先定义。  
+顺序颠倒的行为，必须在解析时报错。
+
+```
+# 错误的 TOML 文档
+[fruit.physical]  # 子表，但它应该隶属于哪个父元素？
+  color = "red"
+  shape = "round"
+
+[[fruit]]  # 解析器必须在发现“fruit”是数组而非表时抛出错误
+  name = "apple"
+```
+
 若试图向一个静态定义的数组追加内容，即便数组尚且为空或类型兼容，也必须在解析时报错。
 
-```toml
-# 无效的 TOML 文档
+```
+# 错误的 TOML 文档
 fruit = []
 
 [[fruit]] # 不允许
 ```
 
-若试图用已经确定为数组的名称定义表，必须在解析时报错。
+若试图用已经确定为数组的名称定义表，必须在解析时报错。  
+将数组重定义为普通表的行为，也必须在解析时报错。
 
 ```
-# 无效的 TOML 文档
+# 错误的 TOML 文档
 [[fruit]]
   name = "apple"
 
   [[fruit.variety]]
     name = "red delicious"
 
-  # 这个表与之前的表冲突了
+  # 错误：该表与之前的表数组相冲突
   [fruit.variety]
     name = "granny smith"
+
+  [fruit.physical]
+    color = "red"
+    shape = "round"
+
+  # 错误：该表数组与之前的表相冲突
+  [[fruit.physical]]
+    color = "green"
 ```
 
 你也可以适当使用行内表：
@@ -765,17 +941,23 @@ TOML 文件应当使用 `.toml` 扩展名。
 [与其它格式的比较](#user-content-comparison-with-other-formats)<a id="user-content-comparison-with-other-formats">&nbsp;</a>
 ------------------
 
-某种程度上讲 TOML 与 JSON 非常相似：简单，规则明确，并且宜于转化成普适的数据类型。  
-JSON 适合序列化由计算机程序读写的数据。  
-TOML 与 JSON 的不同之处是它的重点在于宜于人类读写。  
-注释就是一个好例子：当数据在程序之间传送时，它们并无卵用，但是在手工编辑的配置文件中非常有帮助。
+TOML 享有其它用于应用配置和数据序列化的文件格式，诸如 YAML 和 JSON 的共同特性。  
+TOML 和 JSON 都是简单的，且使用普适的数据类型，这使得它们容易为机器编写或解析。  
+TOML 和 YAML 都强调人类可读的特性，像是注释，这使得搞懂给定行的用意更容易。  
+TOML 的不同之处在于结合了这些特性，允许注释（不像 JSON）但保留简单性（不像 YAML）。
 
-YAML 格式就像 TOML 一样，是以配置文件为导向的。  
-然而……因为种种原因，YAML 是一种过于复杂的解决方案。  
-TOML 旨在简易，这是一个在 YAML 的规范中于肉眼不可见的目标→http://www.yaml.org/spec/1.2/spec.html
+因为 TOML 是明确作为配置文件格式设计的，解析它是简单的，但它不是为序列化任意数据结构设计的。  
+TOML 总是以哈希表作为文件的顶层，这便于包含键内数据嵌套，但它不允许顶层数组或浮点数，所以它不能直接序列化某些数据。  
+也不存在标准的 TOML 文件开始或结束标识，用于通过复合流发送。  
+这些细节必须在应用层协商。
 
-INI 格式也常见于配置文件。  
-然而……这个格式并无统一标准，并且通常不料理超过一或两层的嵌套。
+INI 文件也常被用来同 TOML 比较，因为它们在语法和作为配置文件使用上的相似形。  
+然而……INI 并无标准格式，并且不能优雅地料理超过一或两层的嵌套。
+
+延伸阅读：
+ * YAML 规范：https://yaml.org/spec/1.2/spec.html
+ * JSON 规范：https://tools.ietf.org/html/rfc8259
+ * Wikipedia 上的 INI 文件: https://en.wikipedia.org/wiki/INI_file
 
 [参与](#user-content-get-involved)<a id="user-content-get-involved">&nbsp;</a>
 ------
