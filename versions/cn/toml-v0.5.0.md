@@ -86,7 +86,7 @@ hosts = [
 ------
 
 * TOML 是大小写敏感的。
-* TOML 文件必须是合法的 UTF-8 编码的 Unicode 文档。
+* TOML 文件必须是有效的 UTF-8 编码的 Unicode 文档。
 * 空白的意思是 Tab（0x09）或空格（0x20）。
 * 换行的意思是 LF（0x0A）或 CRLF（0x0D0A）。
 

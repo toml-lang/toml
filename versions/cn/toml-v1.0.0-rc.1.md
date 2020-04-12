@@ -83,7 +83,7 @@ hosts = [
 ------
 
 * TOML 是大小写敏感的。
-* TOML 文件必须是合法的 UTF-8 编码的 Unicode 文档。
+* TOML 文件必须是有效的 UTF-8 编码的 Unicode 文档。
 * 空白的意思是 Tab（0x09）或空格（0x20）。
 * 换行的意思是 LF（0x0A）或 CRLF（0x0D 0x0A）。
 
@@ -245,7 +245,7 @@ fruit.apple.smooth = true
 不鼓励跳跃式地定义点分隔键。  
 
 ```toml
-# 合法但不鼓励
+# 有效但不鼓励
 
 apple.type = "水果"
 orange.type = "水果"
