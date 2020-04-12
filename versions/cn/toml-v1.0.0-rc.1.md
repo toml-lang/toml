@@ -726,7 +726,7 @@ apple.taste.sweet = true
 # [fruit.apple]  # 非法
 # [fruit.apple.taste]  # 非法
 
-[fruit.apple.texture]  # 你可以添加字表
+[fruit.apple.texture]  # 你可以添加子表
 smooth = true
 ```
 
