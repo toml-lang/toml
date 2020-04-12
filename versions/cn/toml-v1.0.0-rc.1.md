@@ -20,7 +20,7 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 - [示例](#user-content-example)
 - [说明](#user-content-spec)
 - [注释](#user-content-comment)
-- [键/值对](#user-content-keyvalue-pair)
+- [键值对](#user-content-keyvalue-pair)
 - [键名](#user-content-keys)
 - [字符串](#user-content-string)
 - [整数](#user-content-integer)
@@ -103,7 +103,7 @@ another = "# 这不是一个注释"
 [键值对](#user-content-keyvalue-pair)<a id="user-content-keyvalue-pair">&nbsp;</a>
 --------
 
-TOML 文档最基本的构成区块是键/值对。  
+TOML 文档最基本的构成区块是键值对。  
 
 键名在等号的左边而值在右边。  
 键名和键值周围的空白会被忽略。  
