@@ -1,7 +1,7 @@
 ![TOML Logo](../../logos/toml-200.png)
 
-TOML v1.0.0-rc.1
-================
+TOML v0.5.0
+===========
 
 全称：Tom 的（语义）明显、（配置）最小化的语言。  
 （Tom's Obvious, Minimal Language. By Tom Preston-Werner.）
