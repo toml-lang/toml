@@ -7,15 +7,11 @@ TOML
 
 作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。  
 
-最新标记版本：[v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v1.0.0-rc.1.md)。  
+最新标记版本：[v1.0.0-rc.1](versions/cn/toml-v1.0.0-rc.1.md)。  
 
-注意：  
-此存储库的“master”分支跟随最新的开发，并可能包含任何发布版本上都不存在的功能和更改。  
-要查找特定版本的规范，请查看 `versions` 子目录。  
+注意：此存储库的“master”分支跟随最新的开发，并可能包含任何发布版本上都不存在的功能和更改。要查找特定版本的规范，请查看 `versions` 子目录。  
 
-TOML 1.0.0-rc.1 已经发布。  
-我们认为 TOML 现在应该非常稳定了，and TOML 1.0.0 will not contain any non-critical changes。  
-强烈建议所有的实现都着手兼容 1.0.0 候选版并提供反馈，以便简化发布时迁移到 1.0.0 的工作。  
+TOML 1.0.0-rc.1 已经发布。我们认为 TOML 现在应该非常稳定了，and TOML 1.0.0 will not contain any non-critical changes。强烈建议所有的实现都着手兼容 1.0.0 候选版并提供反馈，以便简化发布时迁移到 1.0.0 的工作。  
 
 宗旨
 ----
