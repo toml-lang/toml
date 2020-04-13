@@ -432,8 +432,8 @@ quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
 # apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
 apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 
-# 'That's still pointless', she said.
-str = ''''That's still pointless', she said.'''
+# 'That,' she said, 'is still pointless.'
+str = ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
