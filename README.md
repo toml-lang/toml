@@ -791,8 +791,8 @@ same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
 
 Inline tables are intended to appear on a single line. A terminating comma (also
-called trailing comma) is not permitted after the last key/value pair in an
-inline table.  No newlines are allowed between the curly braces unless they are
+called trailing comma) is not permitted after the last key/value pair in an
+inline table. No newlines are allowed between the curly braces unless they are
 valid within a value. Even so, it is strongly discouraged to break an inline
 table onto multiples lines. If you find yourself gripped with this desire, it
 means you should be using standard tables.
@@ -941,8 +941,8 @@ reverse that ordering must produce an error at parse time.
   name = "apple"
 ```
 
-Attempting to append to a statically defined array, even if that array is empty
-or of compatible type, must produce an error at parse time.
+Attempting to append to a statically defined array, even if that array is empty,
+must produce an error at parse time.
 
 ```
 # INVALID TOML DOC
