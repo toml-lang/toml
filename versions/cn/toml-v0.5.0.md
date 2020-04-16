@@ -39,6 +39,7 @@ TOML 应当能简单地解析成形形色色的语言中的数据结构。
 - [行内表](#user-content-inline-table)
 - [表数组](#user-content-array-of-tables)
 - [文件扩展名](#user-content-filename-extension)
+- [MIME 类型](#user-content-mime-type)
 - [与其它格式的比较](#user-content-comparison-with-other-formats)
 - [参与](#user-content-get-involved)
 - [百科](#user-content-wiki)
