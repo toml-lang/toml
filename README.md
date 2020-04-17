@@ -348,10 +348,11 @@ str3 = "Roses are red\r\nViolets are blue"
 ```
 
 For writing long strings without introducing extraneous whitespace, use a "line
-ending backslash". When the last non-whitespace character on a line is a `\`, it
-will be trimmed along with all whitespace (including newlines) up to the next
-non-whitespace character or closing delimiter. All of the escape sequences that
-are valid for basic strings are also valid for multi-line basic strings.
+ending backslash". When the last non-whitespace character on a line is an
+unescaped `\`, it will be trimmed along with all whitespace (including newlines)
+up to the next non-whitespace character or closing delimiter. All of the escape
+sequences that are valid for basic strings are also valid for multi-line basic
+strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
