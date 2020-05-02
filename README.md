@@ -103,7 +103,8 @@ Spec
 Comment
 -------
 
-A hash symbol marks the rest of the line as a comment, except when inside a string.
+A hash symbol marks the rest of the line as a comment, except when inside a
+string.
 
 ```toml
 # This is a full-line comment
@@ -146,8 +147,8 @@ Unspecified values are invalid.
 key = # INVALID
 ```
 
-There must be a newline after a key/value pair.
-(See [Inline Table](#user-content-inline-table) for exceptions.)
+There must be a newline (or EOF) after a key/value pair. (See [Inline
+Table](#user-content-inline-table) for exceptions.)
 
 ```
 first = "Tom" last = "Preston-Werner" # INVALID
@@ -318,10 +319,11 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
-The escape codes must be valid Unicode [scalar values](http://unicode.org/glossary/#unicode_scalar_value).
+The escape codes must be valid Unicode [scalar
+values](http://unicode.org/glossary/#unicode_scalar_value).
 
-All other escape sequences not listed above are reserved and, if used, TOML
-should produce an error.
+All other escape sequences not listed above are reserved; if they are used used,
+TOML should produce an error.
 
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
@@ -486,7 +488,8 @@ oct2 = 0o755 # useful for Unix file permissions
 bin1 = 0b11010110
 ```
 
-64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
+TOML implementations should be able to losslessly handle at least all integers
+in the 64 bit (signed long) range (−9,223,372,036,854,775,808 to
 9,223,372,036,854,775,807).
 
 Float
@@ -538,9 +541,9 @@ sf2 = +inf # positive infinity
 sf3 = -inf # negative infinity
 
 # not a number
-sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf4 = nan  # actual sNaN/qNaN encoding is implementation-specific
 sf5 = +nan # same as `nan`
-sf6 = -nan # valid, actual encoding is implementation specific
+sf6 = -nan # valid, actual encoding is implementation-specific
 ```
 
 Boolean
@@ -572,7 +575,7 @@ time with a space (as permitted by RFC 3339 section 5.6).
 odt4 = 1979-05-27 07:32:00Z
 ```
 
-The precision of fractional seconds is implementation specific, but at least
+The precision of fractional seconds is implementation-specific, but at least
 millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
 rounded.
@@ -591,7 +594,7 @@ ldt1 = 1979-05-27T07:32:00
 ldt2 = 1979-05-27T00:32:00.999999
 ```
 
-The precision of fractional seconds is implementation specific, but at least
+The precision of fractional seconds is implementation-specific, but at least
 millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
 rounded.
@@ -620,7 +623,7 @@ lt1 = 07:32:00
 lt2 = 00:32:00.999999
 ```
 
-The precision of fractional seconds is implementation specific, but at least
+The precision of fractional seconds is implementation-specific, but at least
 millisecond precision is expected. If the value contains greater precision than
 the implementation can support, the additional precision must be truncated, not
 rounded.
@@ -686,7 +689,8 @@ key1 = "another string"
 key2 = 456
 ```
 
-Naming rules for tables are the same as for keys (see definition of Keys above).
+Naming rules for tables are the same as for keys (see definition of
+[Keys](#user-content-keys) above).
 
 ```toml
 [dog."tater.man"]
@@ -786,8 +790,8 @@ Inline Table
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
-Inline tables are enclosed in curly braces `{` and `}`. Within the braces, zero
-or more comma separated key/value pairs may appear. Key/value pairs take the
+Inline tables are enclosed in curly braces: `{` and `}`. Within the braces, zero
+or more comma-separated key/value pairs may appear. Key/value pairs take the
 same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
 
@@ -818,7 +822,6 @@ y = 2
 
 [animal]
 type.name = "pug"
-
 ```
 
 Inline tables fully define the keys and sub-tables within them. New keys and
@@ -842,7 +845,7 @@ type.name = "Nail"
 Array of Tables
 ---------------
 
-The last type that has not yet been expressed is an array of tables. These can
+The last type that has not yet been described is an array of tables. These can
 be expressed by using a table name in double brackets. Under that, and until the
 next table or EOF are the key/values of that table. Each table with the same
 double bracketed name will be an element in the array of tables. The tables are
@@ -1038,7 +1041,7 @@ catalogs the following:
 * Projects using TOML
 * Implementations
 * Validators
-* Language agnostic test suite for TOML decoders and encoders
+* Language-agnostic test suite for TOML decoders and encoders
 * Editor support
 * Encoders
 * Converters
