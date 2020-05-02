@@ -488,8 +488,8 @@ oct2 = 0o755 # useful for Unix file permissions
 bin1 = 0b11010110
 ```
 
-TOML implementations should be able to losslessly handle at least all integers
-in the 64 bit (signed long) range (−9,223,372,036,854,775,808 to
+TOML implementations must be able to losslessly handle at least all integers in
+the 64 bit (signed long) range (−9,223,372,036,854,775,808 to
 9,223,372,036,854,775,807).
 
 Float
