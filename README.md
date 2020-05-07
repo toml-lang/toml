@@ -95,7 +95,7 @@ hosts = [
 Spec
 ----
 
-* TOML is case sensitive.
+* TOML is case-sensitive.
 * A TOML file must be a valid UTF-8 encoded Unicode document.
 * Whitespace means tab (0x09) or space (0x20).
 * Newline means LF (0x0A) or CRLF (0x0D 0x0A).
@@ -157,7 +157,7 @@ first = "Tom" last = "Preston-Werner" # INVALID
 Keys
 ----
 
-A key may be either bare, quoted or dotted.
+A key may be either bare, quoted, or dotted.
 
 **Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
 dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
@@ -393,7 +393,7 @@ str7 = """"This," she said, "is just a pointless statement.""""
 ```
 
 If you're a frequent specifier of Windows paths or regular expressions, then
-having to escape backslashes quickly becomes tedious and error prone. To help,
+having to escape backslashes quickly becomes tedious and error-prone. To help,
 TOML supports literal strings which do not allow escaping at all.
 
 **Literal strings** are surrounded by single quotes. Like basic strings, they
@@ -440,8 +440,8 @@ str = ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
-for binary data it is recommended that you use Base64 or another suitable ASCII
-or UTF-8 encoding. The handling of that encoding will be application specific.
+for binary data, it is recommended that you use Base64 or another suitable ASCII
+or UTF-8 encoding. The handling of that encoding will be application-specific.
 
 Integer
 -------
@@ -471,7 +471,7 @@ identical to an unprefixed zero.
 
 Non-negative integer values may also be expressed in hexadecimal, octal, or
 binary. In these formats, leading `+` is not allowed and leading zeros are
-allowed (after the prefix). Hex values are case insensitive. Underscores are
+allowed (after the prefix). Hex values are case-insensitive. Underscores are
 allowed between digits (but not between the prefix and the value).
 
 ```toml
@@ -568,7 +568,7 @@ odt3 = 1979-05-27T00:32:00.999999-07:00
 ```
 
 For the sake of readability, you may replace the T delimiter between date and
-time with a space (as permitted by RFC 3339 section 5.6).
+time with a space character (as permitted by RFC 3339 section 5.6).
 
 ```toml
 odt4 = 1979-05-27 07:32:00Z
@@ -585,8 +585,8 @@ Local Date-Time
 If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
 to an offset or timezone. It cannot be converted to an instant in time without
-additional information. Conversion to an instant, if required, is implementation
-specific.
+additional information. Conversion to an instant, if required, is
+implementation-specific.
 
 ```toml
 ldt1 = 1979-05-27T07:32:00
@@ -721,12 +721,12 @@ how to do it for you.
 # [x.y.z] need these
 [x.y.z.w] # for this to work
 
-[x] # defining a super-table afterwards is ok
+[x] # defining a super-table afterward is ok
 ```
 
 Empty tables are allowed and simply have no key/value pairs within them.
 
-Like keys, you cannot define any table more than once. Doing so is invalid.
+Like keys, you cannot define a table more than once. Doing so is invalid.
 
 ```
 # DO NOT DO THIS
