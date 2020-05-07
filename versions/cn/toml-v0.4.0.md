@@ -382,7 +382,6 @@ c = 2
 ```
 
 所有的表名和键一定不能为空。
-All table names and keys must be non-empty.
 
 ```toml
 # 无效TOML
