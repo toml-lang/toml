@@ -28,7 +28,7 @@ obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
 Table of contents
--------
+-----------------
 
 - [Example](#user-content-example)
 - [Spec](#user-content-spec)
@@ -103,7 +103,8 @@ Spec
 Comment
 -------
 
-A hash symbol marks the rest of the line as a comment, except when inside a string.
+A hash symbol marks the rest of the line as a comment, except when inside a
+string.
 
 ```toml
 # This is a full-line comment
@@ -146,8 +147,8 @@ Unspecified values are invalid.
 key = # INVALID
 ```
 
-There must be a newline after a key/value pair.
-(See [Inline Table](#user-content-inline-table) for exceptions.)
+There must be a newline (or EOF) after a key/value pair. (See [Inline
+Table](#user-content-inline-table) for exceptions.)
 
 ```
 first = "Tom" last = "Preston-Werner" # INVALID
@@ -318,9 +319,10 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
-The escape codes must be valid Unicode [scalar values](http://unicode.org/glossary/#unicode_scalar_value).
+The escape codes must be valid Unicode [scalar
+values](http://unicode.org/glossary/#unicode_scalar_value).
 
-All other escape sequences not listed above are reserved and, if used, TOML
+All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
 
 Sometimes you need to express passages of text (e.g. translation files) or would
@@ -538,9 +540,9 @@ sf2 = +inf # positive infinity
 sf3 = -inf # negative infinity
 
 # not a number
-sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf4 = nan  # actual sNaN/qNaN encoding is implementation-specific
 sf5 = +nan # same as `nan`
-sf6 = -nan # valid, actual encoding is implementation specific
+sf6 = -nan # valid, actual encoding is implementation-specific
 ```
 
 Boolean
@@ -554,7 +556,7 @@ bool2 = false
 ```
 
 Offset Date-Time
----------------
+----------------
 
 To unambiguously represent a specific instant in time, you may use an
 [RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
@@ -578,7 +580,7 @@ the implementation can support, the additional precision must be truncated, not
 rounded.
 
 Local Date-Time
---------------
+---------------
 
 If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
@@ -686,7 +688,8 @@ key1 = "another string"
 key2 = 456
 ```
 
-Naming rules for tables are the same as for keys (see definition of Keys above).
+Naming rules for tables are the same as for keys (see definition of
+[Keys](#user-content-keys) above).
 
 ```toml
 [dog."tater.man"]
@@ -786,7 +789,7 @@ Inline Table
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
-Inline tables are enclosed in curly braces `{` and `}`. Within the braces, zero
+Inline tables are enclosed in curly braces: `{` and `}`. Within the braces, zero
 or more comma-separated key/value pairs may appear. Key/value pairs take the
 same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
@@ -818,7 +821,6 @@ y = 2
 
 [animal]
 type.name = "pug"
-
 ```
 
 Inline tables fully define the keys and sub-tables within them. New keys and
@@ -842,7 +844,7 @@ type.name = "Nail"
 Array of Tables
 ---------------
 
-The last type that has not yet been expressed is an array of tables. These can
+The last type that has not yet been described is an array of tables. These can
 be expressed by using a table name in double brackets. Under that, and until the
 next table or EOF are the key/values of that table. Each table with the same
 double bracketed name will be an element in the array of tables. The tables are
@@ -993,7 +995,7 @@ TOML files should use the extension `.toml`.
 MIME Type
 ---------
 
-When transferring TOML files over the internet, the appropriate MIME-type is
+When transferring TOML files over the internet, the appropriate MIME type is
 `application/toml`.
 
 Comparison with Other Formats
@@ -1030,7 +1032,7 @@ Documentation, bug reports, pull requests, and all other contributions
 are welcome!
 
 Wiki
-----------------------------------------------------------------------
+----
 
 We have an [Official TOML Wiki](https://github.com/toml-lang/toml/wiki) that
 catalogs the following:
@@ -1038,7 +1040,7 @@ catalogs the following:
 * Projects using TOML
 * Implementations
 * Validators
-* Language agnostic test suite for TOML decoders and encoders
+* Language-agnostic test suite for TOML decoders and encoders
 * Editor support
 * Encoders
 * Converters
