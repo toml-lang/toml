@@ -28,7 +28,7 @@ obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
 Table of contents
--------
+-----------------
 
 - [Example](#user-content-example)
 - [Spec](#user-content-spec)
@@ -556,7 +556,7 @@ bool2 = false
 ```
 
 Offset Date-Time
----------------
+----------------
 
 To unambiguously represent a specific instant in time, you may use an
 [RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
@@ -580,7 +580,7 @@ the implementation can support, the additional precision must be truncated, not
 rounded.
 
 Local Date-Time
---------------
+---------------
 
 If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
@@ -1032,7 +1032,7 @@ Documentation, bug reports, pull requests, and all other contributions
 are welcome!
 
 Wiki
-----------------------------------------------------------------------
+----
 
 We have an [Official TOML Wiki](https://github.com/toml-lang/toml/wiki) that
 catalogs the following:
