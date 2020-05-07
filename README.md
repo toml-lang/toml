@@ -8,16 +8,17 @@ Tom's Obvious, Minimal Language.
 By Tom Preston-Werner, Pradyun Gedam, et al.
 
 Latest tagged version:
-[v0.5.0](https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.5.0.md).
+[v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v1.0.0-rc.1.md).
 
 NOTE: The `master` branch of this repository tracks the very latest development
 and may contain features and changes that do not exist on any released version.
 To find the spec for a specific version, look in the `versions` subdirectory.
 
-As of version 0.5.0, TOML should be considered extremely stable. The goal is for
-version 1.0.0 to be backwards compatible (as much as humanly possible) with
-version 0.5.0. All implementations are strongly encouraged to become 0.5.0
-compatible so that the transition to 1.0.0 will be simple when that happens.
+TOML 1.0.0-rc.1 has been released. TOML should be considered extremely stable
+now, and TOML 1.0.0 will not contain any non-critical changes. All
+implementations are strongly encouraged to become compatible with TOML 1.0.0
+release candidates and provide feedback, to ease the transition to 1.0.0, when
+it is released.
 
 Objectives
 ----------
@@ -347,10 +348,11 @@ str3 = "Roses are red\r\nViolets are blue"
 ```
 
 For writing long strings without introducing extraneous whitespace, use a "line
-ending backslash". When the last non-whitespace character on a line is a `\`, it
-will be trimmed along with all whitespace (including newlines) up to the next
-non-whitespace character or closing delimiter. All of the escape sequences that
-are valid for basic strings are also valid for multi-line basic strings.
+ending backslash". When the last non-whitespace character on a line is an
+unescaped `\`, it will be trimmed along with all whitespace (including newlines)
+up to the next non-whitespace character or closing delimiter. All of the escape
+sequences that are valid for basic strings are also valid for multi-line basic
+strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
@@ -431,8 +433,8 @@ quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
 # apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
 apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 
-# 'That's still pointless', she said.
-str = ''''That's still pointless', she said.'''
+# 'That,' she said, 'is still pointless.'
+str = ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
@@ -790,8 +792,8 @@ same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
 
 Inline tables are intended to appear on a single line. A terminating comma (also
-called trailing comma) is not permitted after the last key/value pair in an
-inline table.  No newlines are allowed between the curly braces unless they are
+called trailing comma) is not permitted after the last key/value pair in an
+inline table. No newlines are allowed between the curly braces unless they are
 valid within a value. Even so, it is strongly discouraged to break an inline
 table onto multiples lines. If you find yourself gripped with this desire, it
 means you should be using standard tables.
@@ -940,8 +942,8 @@ reverse that ordering must produce an error at parse time.
   name = "apple"
 ```
 
-Attempting to append to a statically defined array, even if that array is empty
-or of compatible type, must produce an error at parse time.
+Attempting to append to a statically defined array, even if that array is empty,
+must produce an error at parse time.
 
 ```
 # INVALID TOML DOC
