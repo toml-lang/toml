@@ -117,7 +117,8 @@ are not permitted in comments.
 Key/Value Pair
 --------------
 
-The primary building block of a TOML document is the key/value pair.
+The primary building block of a TOML document is the key/value pair. A key is
+simply a string in a table, and a key/value pair defines that string's value.
 
 Keys are on the left of the equals sign and values are on the right. Whitespace
 is ignored around key names and values. The key, equals sign, and value must be
@@ -186,7 +187,13 @@ discouraged).
 
 ```toml
 = "no key name"  # INVALID
+```
+
+```toml
 "" = "blank"     # VALID but discouraged
+```
+
+```toml
 '' = 'blank'     # VALID but discouraged
 ```
 
@@ -218,17 +225,18 @@ In JSON land, that would give you the following structure:
 Whitespace around dot-separated parts is ignored, however, best practice is to
 not use any extraneous whitespace.
 
-Defining a key multiple times is invalid.
+Defining a key multiple times is invalid. You cannot use the same string for a
+key more than once in a table.
 
 ```
 # DO NOT DO THIS
 name = "Tom"
-name = "Pradyun"
+"name" = "Pradyun"
 ```
 
-Since bare keys are allowed to compose of only ASCII integers, it is possible
-to write dotted keys that look like floats but are 2-part dotted keys. Don't do
-this unless you have a good reason to (you probably don't).
+Since bare keys are allowed to be composed of only ASCII integers, it is
+possible to write dotted keys that look like floats but are 2-part dotted keys.
+Don't do this unless you have a good reason to (you probably don't).
 
 ```toml
 3.14159 = "pi"
