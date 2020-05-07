@@ -348,10 +348,11 @@ str3 = "Roses are red\r\nViolets are blue"
 ```
 
 For writing long strings without introducing extraneous whitespace, use a "line
-ending backslash". When the last non-whitespace character on a line is a `\`, it
-will be trimmed along with all whitespace (including newlines) up to the next
-non-whitespace character or closing delimiter. All of the escape sequences that
-are valid for basic strings are also valid for multi-line basic strings.
+ending backslash". When the last non-whitespace character on a line is an
+unescaped `\`, it will be trimmed along with all whitespace (including newlines)
+up to the next non-whitespace character or closing delimiter. All of the escape
+sequences that are valid for basic strings are also valid for multi-line basic
+strings.
 
 ```toml
 # The following strings are byte-for-byte equivalent:
@@ -432,8 +433,8 @@ quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
 # apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
 apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 
-# 'That's still pointless', she said.
-str = ''''That's still pointless', she said.'''
+# 'That,' she said, 'is still pointless.'
+str = ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
@@ -791,8 +792,8 @@ same form as key/value pairs in standard tables. All value types are allowed,
 including inline tables.
 
 Inline tables are intended to appear on a single line. A terminating comma (also
-called trailing comma) is not permitted after the last key/value pair in an
-inline table.  No newlines are allowed between the curly braces unless they are
+called trailing comma) is not permitted after the last key/value pair in an
+inline table. No newlines are allowed between the curly braces unless they are
 valid within a value. Even so, it is strongly discouraged to break an inline
 table onto multiples lines. If you find yourself gripped with this desire, it
 means you should be using standard tables.
@@ -941,8 +942,8 @@ reverse that ordering must produce an error at parse time.
   name = "apple"
 ```
 
-Attempting to append to a statically defined array, even if that array is empty
-or of compatible type, must produce an error at parse time.
+Attempting to append to a statically defined array, even if that array is empty,
+must produce an error at parse time.
 
 ```
 # INVALID TOML DOC

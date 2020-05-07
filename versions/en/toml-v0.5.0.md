@@ -40,6 +40,7 @@ Table of contents
 - [Inline Table](#user-content-inline-table)
 - [Array of Tables](#user-content-array-of-tables)
 - [Filename Extension](#user-content-filename-extension)
+- [MIME Type](#user-content-mime-type)
 - [Comparison with Other Formats](#user-content-comparison-with-other-formats)
 - [Get Involved](#user-content-get-involved)
 - [Wiki](#user-content-wiki)
