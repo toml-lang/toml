@@ -118,9 +118,9 @@ Key/Value Pair
 --------------
 
 The primary building block of a TOML document is the key/value pair. A key is
-simply a string in a table, and a key/value pair defines that string's value.
+simply a string in a table that defines a name for a given value.
 
-Keys are on the left of the equals sign and values are on the right. Whitespace
+Keys are on the left of an equals sign and values are on the right. Whitespace
 is ignored around key names and values. The key, equals sign, and value must be
 on the same line (though some values can be broken over multiple lines).
 
@@ -164,22 +164,25 @@ dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
 ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```toml
-key = "value"
-bare_key = "value"
-bare-key = "value"
-1234 = "value"
+key = "value"       # key
+bare_key = "value"  # bare_key
+bare-key = "value"  # bare-key
+1234 = "value"      # 1234
 ```
 
 **Quoted keys** follow the exact same rules as either basic strings or literal
-strings and allow you to use a much broader set of key names. Best practice is
-to use bare keys except when absolutely necessary.
+strings and allow you to use a much broader set of key names. When you use a
+quoted key, the actual name is what the basic or literal string's interpreted
+value would be. Best practice is to use bare keys except when absolutely
+necessary.
 
 ```toml
-"127.0.0.1" = "value"
-"character encoding" = "value"
-"ʎǝʞ" = "value"
-'key2' = "value"
-'quoted "value"' = "value"
+"127.0.0.1" = "value"            # 127.0.0.1
+"character encoding" = "value"   # character encoding
+"ʎǝʞ" = "value"                  # ʎǝʞ
+'key2' = "value"                 # key2
+"\u006bey3" = "value"            # key3
+'quoted "value"' = "value"       # quoted "value"
 ```
 
 A bare key must be non-empty, but an empty quoted key is allowed (though
@@ -187,9 +190,6 @@ discouraged).
 
 ```toml
 = "no key name"  # INVALID
-```
-
-```toml
 "" = "blank"     # VALID but discouraged
 ```
 
