@@ -4,7 +4,7 @@ TOML v1.0.0-rc.1
 ================
 
 全称：Tom 的（语义）明显、（配置）最小化的语言。（Tom's Obvious, Minimal Language）  
-作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。  
+作者：Tom Preston-Werner、Pradyun Gedam 等人。  
 
 宗旨
 ----
@@ -135,7 +135,7 @@ key = # 非法
 （例外见 [内联表](#内联表)）  
 
 ```
-first = "汤姆" last = "普雷斯顿—维尔纳" # 非法
+first = "Tom" last = "Preston-Werner" # 非法
 ```
 
 键名
@@ -203,7 +203,7 @@ site."google.com" = true
 
 ```
 # 不要这样做
-name = "汤姆"
+name = "Tom"
 name = "Pradyun"
 ```
 
@@ -370,7 +370,7 @@ str7 = """"这，"她说，"只是个无意义的条款。""""
 # 所见即所得。
 winpath  = 'C:\Users\nodejs\templates'
 winpath2 = '\\ServerX\admin$\system32\'
-quoted   = '汤姆·"达布斯"·普雷斯顿—维尔纳'
+quoted   = 'Tom "Dubs" Preston-Werner'
 regex    = '<\i\c*\s*>'
 ```
 
@@ -520,7 +520,7 @@ bool2 = false
 坐标日期时刻
 ------------
 
-要明确无误地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。  
+要准确地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。  
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -644,7 +644,7 @@ key2 = 456
 type.name = "pug"
 ```
 
-这在 JSON 那儿，是以下结构：  
+等价于 JSON 的如下结构：  
 
 ```json
 { "dog": { "tater.man": { "type": { "name": "pug" } } } }
@@ -768,7 +768,7 @@ type.name = "pug"
 
 ```
 
-内联表完全地在内部来定义键和子表。  
+内联表完全在内部定义键和子表。  
 新键和子表不再能被添加进去。  
 
 ```toml
