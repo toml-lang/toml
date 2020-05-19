@@ -489,9 +489,8 @@ bin1 = 0b11010110
 ```
 
 Arbitrary 64-bit signed integers (from −2^63 to 2^63−1) should be accepted and
-handled losslessly. If the result of parsing a value with unlimited precision
-would result in an integer that cannot be represented losslessly, an error must
-be thrown.
+handled losslessly. If an integer cannot be represented losslessly, an error
+must be thrown.
 
 Float
 -----
