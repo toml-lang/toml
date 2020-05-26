@@ -488,8 +488,9 @@ oct2 = 0o755 # useful for Unix file permissions
 bin1 = 0b11010110
 ```
 
-64 bit (signed long) range expected (−9,223,372,036,854,775,808 to
-9,223,372,036,854,775,807).
+Arbitrary 64-bit signed integers (from −2^63 to 2^63−1) should be accepted and
+handled losslessly. If an integer cannot be represented losslessly, an error
+must be thrown.
 
 Float
 -----
@@ -574,9 +575,9 @@ time with a space character (as permitted by RFC 3339 section 5.6).
 odt4 = 1979-05-27 07:32:00Z
 ```
 
-The precision of fractional seconds is implementation-specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
+Millisecond precision is required. Further precision of fractional seconds is
+implementation-specific. If the value contains greater precision than the
+implementation can support, the additional precision must be truncated, not
 rounded.
 
 Local Date-Time
@@ -593,9 +594,9 @@ ldt1 = 1979-05-27T07:32:00
 ldt2 = 1979-05-27T00:32:00.999999
 ```
 
-The precision of fractional seconds is implementation-specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
+Millisecond precision is required. Further precision of fractional seconds is
+implementation-specific. If the value contains greater precision than the
+implementation can support, the additional precision must be truncated, not
 rounded.
 
 Local Date
@@ -622,9 +623,9 @@ lt1 = 07:32:00
 lt2 = 00:32:00.999999
 ```
 
-The precision of fractional seconds is implementation-specific, but at least
-millisecond precision is expected. If the value contains greater precision than
-the implementation can support, the additional precision must be truncated, not
+Millisecond precision is required. Further precision of fractional seconds is
+implementation-specific. If the value contains greater precision than the
+implementation can support, the additional precision must be truncated, not
 rounded.
 
 Array
