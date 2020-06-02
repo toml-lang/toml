@@ -120,9 +120,10 @@ Key/Value Pair
 
 The primary building block of a TOML document is the key/value pair.
 
-Keys are on the left of the equals sign and values are on the right. Whitespace
-is ignored around key names and values. The key, equals sign, and value must be
-on the same line (though some values can be broken over multiple lines).
+A key is simply a string in a table that defines a name for a given value. Keys
+are on the left of an equals sign and values are on the right. Whitespace is
+ignored around key names and values. The key, equals sign, and value must be on
+the same line (though some values can be broken over multiple lines).
 
 ```toml
 key = "value"
