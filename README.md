@@ -157,7 +157,7 @@ first = "Tom" last = "Preston-Werner" # INVALID
 Keys
 ----
 
-A key may be either bare, quoted, or dotted.
+A key is treated as a string and may be either bare, quoted, or dotted.
 
 **Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
 dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
@@ -171,8 +171,9 @@ bare-key = "value"
 ```
 
 **Quoted keys** follow the exact same rules as either basic strings or literal
-strings and allow you to use a much broader set of key names. Best practice is
-to use bare keys except when absolutely necessary.
+strings and allow you to use a much broader set of key names. The quotes
+surrounding a quoted key are not part of the key name. Best practice is to use
+bare keys except when absolutely necessary.
 
 ```toml
 "127.0.0.1" = "value"
