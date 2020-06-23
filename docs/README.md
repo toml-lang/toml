@@ -11,6 +11,8 @@ improving the automation and setting up workflows.
 
 ## Release Process
 
+> TODO: Automate/update this for the new toml.io website!
+
 - Checkout the latest `master` branch.
 - Update the existing files:
   - `README.md`: Update the notice on top of the file, to reflect the
