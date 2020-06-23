@@ -174,6 +174,14 @@ name = "Tom"
 name = "Pradyun"
 ```
 
+Note that bare keys and quoted keys are equivalent:
+
+```
+# THIS WILL NOT WORK
+spelling = "favorite"
+"spelling" = "favourite"
+```
+
 As long as a key hasn't been directly defined, you may still write to it and
 to names within it.
 
