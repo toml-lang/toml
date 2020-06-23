@@ -240,7 +240,7 @@ String
 There are four ways to express strings: basic, multi-line basic, literal, and
 multi-line literal. All strings must contain only valid UTF-8 characters.
 
-**Basic strings** are surrounded by quotation marks. Any Unicode character may
+**Basic strings** are surrounded by quotation marks (`"`). Any Unicode character may
 be used except those that must be escaped: quotation mark, backslash, and the
 control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
