@@ -789,7 +789,8 @@ type.name = "Nail"
 Array of Tables
 ---------------
 
-The last type that has not yet been described is an array of tables. These can
+The last syntax that has not yet been described allows writing arrays of tables.
+These can
 be expressed by using a table name in double brackets. Under that, and until the
 next table or EOF are the key/values of that table. Each table with the same
 double bracketed name will be an element in the array of tables. The tables are
