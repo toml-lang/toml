@@ -79,9 +79,10 @@ use as configuration files. However, there is no standardized format for INI
 and they do not gracefully handle more than one or two levels of nesting.
 
 Further reading:
- * YAML spec: https://yaml.org/spec/1.2/spec.html
- * JSON spec: https://tools.ietf.org/html/rfc8259
- * Wikipedia on INI files: https://en.wikipedia.org/wiki/INI_file
+
+* YAML spec: https://yaml.org/spec/1.2/spec.html
+* JSON spec: https://tools.ietf.org/html/rfc8259
+* Wikipedia on INI files: https://en.wikipedia.org/wiki/INI_file
 
 Get Involved
 ------------
