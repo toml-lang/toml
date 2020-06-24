@@ -171,18 +171,12 @@ name = "Tom"
 name = "Pradyun"
 ```
 
-Since bare keys are allowed to compose of only ASCII integers, it is possible
-to write dotted keys that look like floats but are 2-part dotted keys. Don't do
-this unless you have a good reason to (you probably don't).
+Note that bare keys and quoted keys are equivalent:
 
-```toml
-3.14159 = "pi"
 ```
-
-The above TOML maps to the following JSON.
-
-```json
-{ "3": { "14159": "pi" } }
+# THIS WILL NOT WORK
+spelling = "favorite"
+"spelling" = "favourite"
 ```
 
 As long as a key hasn't been directly defined, you may still write to it and
@@ -232,6 +226,20 @@ apple.color = "red"
 orange.type = "fruit"
 orange.skin = "thick"
 orange.color = "orange"
+```
+
+Since bare keys are allowed to compose of only ASCII integers, it is possible
+to write dotted keys that look like floats but are 2-part dotted keys. Don't do
+this unless you have a good reason to (you probably don't).
+
+```toml
+3.14159 = "pi"
+```
+
+The above TOML maps to the following JSON.
+
+```json
+{ "3": { "14159": "pi" } }
 ```
 
 String
