@@ -407,7 +407,8 @@ side.
 ```toml
 int5 = 1_000
 int6 = 5_349_221
-int7 = 1_2_3_4_5     # VALID but discouraged
+int7 = 53_49_221  # Indian number system grouping
+int8 = 1_2_3_4_5  # VALID but discouraged
 ```
 
 Leading zeros are not allowed. Integer values `-0` and `+0` are valid and
