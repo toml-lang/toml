@@ -798,12 +798,12 @@ type.name = "Nail"
 Array of Tables
 ---------------
 
-The last type that has not yet been described is an array of tables. These can
-be expressed by using a table name in double brackets. Under that, and until the
-next table or EOF are the key/values of that table. Each table with the same
-double bracketed name will be an element in the array of tables. The tables are
-inserted in the order encountered. A double bracketed table without any
-key/value pairs will be considered an empty table.
+The last syntax that has not yet been described allows writing arrays of tables.
+These can be expressed by using a table name in double brackets. Under that, and
+until the next table or EOF are the key/values of that table. Each table with
+the same double bracketed name will be an element in the array of tables. The
+tables are inserted in the order encountered. A double bracketed table without
+any key/value pairs will be considered an empty table.
 
 ```toml
 [[products]]
@@ -832,9 +832,10 @@ In JSON land, that would give you the following structure.
 ```
 
 You can create nested arrays of tables as well. Just use the same double bracket
-syntax on sub-tables. Each double-bracketed sub-table will belong to the most
-recently defined table element. Normal sub-tables (not arrays) likewise belong
-to the most recently defined table element.
+syntax on sub-tables. In nested arrays of tables, each double-bracketed
+sub-table will belong to the most recently defined table element. Normal
+sub-tables (not arrays) likewise belong to the most recently defined table
+element.
 
 ```toml
 [[fruit]]
