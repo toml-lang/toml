@@ -477,6 +477,15 @@ An exponent part is an E (upper or lower case) followed by an integer part
 (which follows the same rules as decimal integer values but may include leading
 zeros).
 
+The decimal point, if used, must be surrounded by at least one digit on each side.
+
+```
+# INVALID FLOATS
+invalid_float_1 = .7
+invalid_float_2 = 7.
+invalid_float_3 = 3.e+20
+```
+
 Similar to integers, you may use underscores to enhance readability. Each
 underscore must be surrounded by at least one digit.
 
