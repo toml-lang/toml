@@ -1,5 +1,9 @@
 # TOML Changelog
 
+## unreleased
+
+Nothing.
+
 ## 1.0.0-rc.2 / 2020-08-09
 
 * Create https://toml.io as the new primary location to read the TOML spec.
