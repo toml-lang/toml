@@ -196,8 +196,8 @@ array = array-open [ array-values ] ws-comment-newline array-close
 array-open =  %x5B ; [
 array-close = %x5D ; ]
 
-array-values =  ws-comment-newline val ws array-sep array-values
-array-values =/ ws-comment-newline val ws [ array-sep ]
+array-values =  ws-comment-newline val ws-comment-newline array-sep array-values
+array-values =/ ws-comment-newline val ws-comment-newline [ array-sep ]
 
 array-sep = %x2C  ; , Comma
 
