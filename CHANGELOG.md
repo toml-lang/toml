@@ -2,7 +2,7 @@
 
 ## unreleased
 
-*  Clarify that comments with newlines are allowed before commas in arrays.
+*  Clarify that comments and newlines are allowed before commas in arrays.
 
 ## 1.0.0-rc.2 / 2020-08-09
 
