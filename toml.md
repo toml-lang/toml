@@ -614,8 +614,8 @@ contributors = [
 ```
 
 Arrays can span multiple lines. A terminating comma (also called trailing comma)
-is ok after the last value of the array. There can be an arbitrary number of
-newlines and comments before a value and before the closing bracket.
+is permitted after the last value of the array. Any number of newlines and
+comments may precede values, commas, and the closing bracket.
 
 ```toml
 integers2 = [
