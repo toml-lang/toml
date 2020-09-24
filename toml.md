@@ -35,6 +35,7 @@ Table of contents
 - [Array of Tables](#user-content-array-of-tables)
 - [Filename Extension](#user-content-filename-extension)
 - [MIME Type](#user-content-mime-type)
+- [ABNF Grammar](#user-content-abnf-grammar)
 
 Spec
 ----
@@ -962,3 +963,10 @@ MIME Type
 
 When transferring TOML files over the internet, the appropriate MIME type is
 `application/toml`.
+
+ABNF Grammar
+------------
+
+A formal description of TOML's syntax is available, as a separate [ABNF file][abnf].
+
+[abnf]: ./toml.abnf
