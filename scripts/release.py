@@ -226,16 +226,22 @@ def prepare_release(version: str, spec_repo: Path, website_repo: Path) -> None:
         git_commit("Bump for development", files=[str(changelog)], repo=spec_repo)
 
     with task("Copy to website"):
-        # TODO: ABNF file, https://github.com/toml-lang/toml.io/issues/19
         source_md = spec_repo / "toml.md"
         destination_md = website_repo / "specs" / "en" / f"v{version}.md"
 
         shutil.copyfile(source_md, destination_md)
 
-    with task("Update title"):
-        new_heading = f"TOML v{version}"
+    new_heading = f"TOML v{version}"
+    new_abnf_link = f"https://github.com/toml-lang/toml/blob/{version}/toml.abnf"
+
+    with task("Updating spec for release"):
         change_line(destination_md, line="TOML", to=[new_heading])
         change_line(destination_md, line="====", to=["=" * len(new_heading)])
+        change_line(
+            destination_md,
+            line="[abnf]: ./toml.abnf",
+            to=[f"[abnf]: {new_abnf_link}"],
+        )
 
     with task("Commit new version"):
         git_commit(release_message, files=[str(destination_md)], repo=website_repo)
