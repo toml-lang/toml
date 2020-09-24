@@ -114,23 +114,29 @@ def run(*args, cwd: Path):
     assert False, f"Exited with non-zero exit code: {result.returncode}"
 
 
-def change_line(path: Path, *, line: str, to: List[str]) -> None:
-    # Create temp file
+@contextmanager
+def replacement_file(path: Path):
     fh, tmp_path = tempfile.mkstemp()
-    with os.fdopen(fh, "w") as tmp_file, path.open() as given_file:
-        for got_line in given_file:
-            # not-to-be-replaced lines
-            if got_line != line + "\n":
-                tmp_file.write(got_line)
-                continue
-            # replacement lines
-            for replacement in to:
-                tmp_file.write(replacement + "\n")
+    with os.fdopen(fh, "w") as dest:
+        with path.open() as source:
+            yield source, dest
 
     # Replace current file with rewritten file
     shutil.copymode(path, tmp_path)
     path.unlink()
     shutil.move(tmp_path, path)
+
+
+def change_line(path: Path, *, line: str, to: List[str]) -> None:
+    with replacement_file(path) as (source, dest):
+        for got_line in source:
+            # not-to-be-replaced lines
+            if got_line != line + "\n":
+                dest.write(got_line)
+                continue
+            # replacement lines
+            for replacement in to:
+                dest.write(replacement + "\n")
 
 
 def git_commit(message: str, *, files: List[str], repo: Path):
