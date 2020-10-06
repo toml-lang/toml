@@ -36,7 +36,7 @@ import textwrap
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
-from typing import List, Tuple
+from typing import Callable, List, Tuple
 
 # Copied from semver.org and broken up for readability + line length.
 SEMVER_REGEX = re.compile(
@@ -127,12 +127,16 @@ def replacement_file(path: Path):
     shutil.move(tmp_path, path)
 
 
-def change_line(path: Path, *, line: str, to: List[str]) -> None:
+def matches(line):
+    return (line + "\n").__eq__
+
+
+def change_line(path: Path, *, marker: Callable[[str], bool], to: List[str]) -> None:
     with replacement_file(path) as (source, dest):
-        for got_line in source:
+        for line in source:
             # not-to-be-replaced lines
-            if got_line != line + "\n":
-                dest.write(got_line)
+            if not marker(line):
+                dest.write(line)
                 continue
             # replacement lines
             for replacement in to:
@@ -217,7 +221,7 @@ def prepare_release(version: str, spec_repo: Path, website_repo: Path) -> None:
         unreleased_heading = "## unreleased"
         changelog = spec_repo / "CHANGELOG.md"
 
-        change_line(changelog, line=unreleased_heading, to=[release_heading])
+        change_line(changelog, marker=matches(unreleased_heading), to=[release_heading])
         git_commit(release_message, files=[str(changelog)], repo=spec_repo)
 
     with task("Creating release tag"):
@@ -226,7 +230,7 @@ def prepare_release(version: str, spec_repo: Path, website_repo: Path) -> None:
     with task("Updating changelog for development"):
         change_line(
             changelog,
-            line=release_heading,
+            marker=matches(release_heading),
             to=[unreleased_heading, "", "Nothing.", "", release_heading],
         )
         git_commit("Bump for development", files=[str(changelog)], repo=spec_repo)
@@ -245,7 +249,7 @@ def prepare_release(version: str, spec_repo: Path, website_repo: Path) -> None:
         change_line(destination_md, line="====", to=["=" * len(new_heading)])
         change_line(
             destination_md,
-            line="[abnf]: ./toml.abnf",
+            line=matches("[abnf]: ./toml.abnf"),
             to=[f"[abnf]: {new_abnf_link}"],
         )
 
