@@ -70,19 +70,21 @@ SEMVER_REGEX = re.compile(
 @contextmanager
 def task(message: str):
     """A little thing to allow for nicer code organization."""
+    global _INDENT
+
     log(f"{message}...")
-    log.indent += 1
+    _INDENT += 1
     try:
         yield
     except AssertionError as e:
         log(f"ERROR: {e}", error=True)
         sys.exit(1)
     finally:
-        log.indent -= 1
+        _INDENT -= 1
 
 
 def log(message: str, *, error=False) -> None:
-    output = textwrap.indent(message, "  " * log.indent)
+    output = textwrap.indent(message, "  " * _INDENT)
 
     if error:
         file = sys.stderr
@@ -95,7 +97,7 @@ def log(message: str, *, error=False) -> None:
     print(output, file=file)
 
 
-log.indent = 0
+_INDENT = 0
 
 
 def run(*args, cwd: Path):
