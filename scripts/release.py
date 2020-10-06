@@ -131,6 +131,13 @@ def matches(line):
     return (line + "\n").__eq__
 
 
+def contains(fragment):
+    def marker(line):
+        return fragment in line
+
+    return marker
+
+
 def change_line(path: Path, *, marker: Callable[[str], bool], to: List[str]) -> None:
     with replacement_file(path) as (source, dest):
         for line in source:
@@ -252,6 +259,13 @@ def prepare_release(version: str, spec_repo: Path, website_repo: Path) -> None:
             line=matches("[abnf]: ./toml.abnf"),
             to=[f"[abnf]: {new_abnf_link}"],
         )
+
+    with task("Update latest redirect"):
+        marker = "RELEASE AUTOMATION MARKER: version"
+        new_line = f'  to = "/en/v{version}"  # {marker}'
+        netlify_toml = website_repo / "netlify.toml"
+
+        change_line(netlify_toml, marker=contains(marker), to=[new_line])
 
     with task("Commit new version"):
         git_commit(release_message, files=[str(destination_md)], repo=website_repo)
