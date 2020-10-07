@@ -1,6 +1,6 @@
 # TOML Changelog
 
-## unreleased
+## 1.0.0-rc.3 / 2020-10-07
 
 * Clarify that comments and newlines are allowed before commas in arrays.
 * Mark the ABNF as canonical, and reference it from the text specification.
