@@ -254,23 +254,28 @@ def prepare_release(version: str, spec_repo: Path, website_repo: Path) -> None:
     new_abnf_link = f"https://github.com/toml-lang/toml/blob/{version}/toml.abnf"
 
     with task("Updating spec for release"):
-        change_line(destination_md, line="TOML", to=[new_heading])
-        change_line(destination_md, line="====", to=["=" * len(new_heading)])
+        change_line(destination_md, marker=matches("TOML"), to=[new_heading])
+        change_line(destination_md, marker=matches("===="), to=["=" * len(new_heading)])
         change_line(
             destination_md,
-            line=matches("[abnf]: ./toml.abnf"),
+            marker=matches("[abnf]: ./toml.abnf"),
             to=[f"[abnf]: {new_abnf_link}"],
         )
+
+    netlify_toml = website_repo / "netlify.toml"
 
     with task("Update latest redirect"):
         marker = "RELEASE AUTOMATION MARKER: version"
         new_line = f'  to = "/en/v{version}"  # {marker}'
-        netlify_toml = website_repo / "netlify.toml"
 
         change_line(netlify_toml, marker=contains(marker), to=[new_line])
 
     with task("Commit new version"):
-        git_commit(release_message, files=[str(destination_md)], repo=website_repo)
+        git_commit(
+            release_message,
+            files=[str(destination_md), str(netlify_toml)],
+            repo=website_repo,
+        )
 
 
 def push_release(version: str, spec_repo: Path, website_repo: Path) -> None:
