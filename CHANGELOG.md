@@ -2,7 +2,8 @@
 
 ## unreleased
 
-*  Clarify that comments and newlines are allowed before commas in arrays.
+* Clarify that comments and newlines are allowed before commas in arrays.
+* Mark the ABNF as canonical, and reference it from the text specification.
 
 ## 1.0.0-rc.2 / 2020-08-09
 
