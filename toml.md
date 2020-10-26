@@ -171,7 +171,6 @@ fruit . flavor = "banana"   # same as fruit.flavor
 ```
 
 Indentation is treated as whitespace. Tabs and spaces before keys are ignored.
-You shouldn't use them. But if you must, use them sparingly.
 
 ```toml
 bad_fruit.name = "banana"
@@ -694,7 +693,6 @@ extraneous whitespace.
 ```
 
 Indentation is treated as whitespace. Tabs and spaces before keys are ignored.
-You shouldn't use them. But if you must, use them sparingly.
 
 ```toml
 [m]      # how to write subtables
