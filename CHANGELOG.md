@@ -2,7 +2,9 @@
 
 ## unreleased
 
-Nothing.
+* Clarify that indentation before keys is insignificant & discouraged.
+* Clarify that indentation before table headers is insignificant & discouraged.
+* Clarify that indentation inside arrays is treated as whitespace.
 
 ## 1.0.0-rc.3 / 2020-10-07
 
