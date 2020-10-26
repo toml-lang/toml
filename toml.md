@@ -631,8 +631,8 @@ contributors = [
 
 Arrays can span multiple lines. A terminating comma (also called a trailing
 comma) is permitted after the last value of the array. Any number of newlines
-and comments may precede values, commas, and the closing bracket. Indentation is
-treated as whitespace.
+and comments may precede values, commas, and the closing bracket. Indentation
+between array values and commas is treated as whitespace, and is ignored.
 
 ```toml
 integers2 = [
