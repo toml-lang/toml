@@ -172,12 +172,6 @@ fruit . flavor = "banana"   # same as fruit.flavor
 
 Indentation is treated as whitespace. Tabs and spaces before keys are ignored.
 
-```toml
-bad_fruit.name = "banana"
-  bad_fruit.color = "green"  # Indentation is VALID, BUT DISCOURAGED.
-bad_fruit.flavor = "blah"
-```
-
 Defining a key multiple times is invalid.
 
 ```
@@ -631,7 +625,7 @@ contributors = [
 Arrays can span multiple lines. A terminating comma (also called a trailing
 comma) is permitted after the last value of the array. Any number of newlines
 and comments may precede values, commas, and the closing bracket. Indentation
-between array values and commas is treated as whitespace, and is ignored.
+between array values and commas is treated as whitespace and ignored.
 
 ```toml
 integers2 = [
@@ -693,15 +687,6 @@ extraneous whitespace.
 ```
 
 Indentation is treated as whitespace. Tabs and spaces before keys are ignored.
-
-```toml
-[m]      # how to write subtables
-[m.n]    # use dotted keys to nest tables
-[m.n.o]  # best practice: write all headers flush-left
-
-[p]      # Indentation is VALID,
-  [p.q]    # BUT DISCOURAGED.
-```
 
 You don't need to specify all the super-tables if you don't want to. TOML knows
 how to do it for you.
