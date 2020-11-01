@@ -170,7 +170,7 @@ fruit. color = "yellow"    # same as fruit.color
 fruit . flavor = "banana"   # same as fruit.flavor
 ```
 
-Indentation is treated as whitespace. Tabs and spaces before keys are ignored.
+Indentation is treated as whitespace and ignored.
 
 Defining a key multiple times is invalid.
 
