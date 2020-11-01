@@ -161,8 +161,16 @@ In JSON land, that would give you the following structure:
 }
 ```
 
-Whitespace around dot-separated parts is ignored, however, best practice is to
+Whitespace around dot-separated parts is ignored. However, best practice is to
 not use any extraneous whitespace.
+
+```toml
+fruit.name = "banana"     # this is best practice
+fruit. color = "yellow"    # same as fruit.color
+fruit . flavor = "banana"   # same as fruit.flavor
+```
+
+Indentation is treated as whitespace and ignored.
 
 Defining a key multiple times is invalid.
 
@@ -614,9 +622,10 @@ contributors = [
 ]
 ```
 
-Arrays can span multiple lines. A terminating comma (also called trailing comma)
-is permitted after the last value of the array. Any number of newlines and
-comments may precede values, commas, and the closing bracket.
+Arrays can span multiple lines. A terminating comma (also called a trailing
+comma) is permitted after the last value of the array. Any number of newlines
+and comments may precede values, commas, and the closing bracket. Indentation
+between array values and commas is treated as whitespace and ignored.
 
 ```toml
 integers2 = [
@@ -667,7 +676,7 @@ In JSON land, that would give you the following structure:
 { "dog": { "tater.man": { "type": { "name": "pug" } } } }
 ```
 
-Whitespace around the key is ignored, however, best practice is to not use any
+Whitespace around the key is ignored. However, best practice is to not use any
 extraneous whitespace.
 
 ```toml
@@ -676,6 +685,8 @@ extraneous whitespace.
 [ g .  h  . i ]    # same as [g.h.i]
 [ j . "ʞ" . 'l' ]  # same as [j."ʞ".'l']
 ```
+
+Indentation is treated as whitespace and ignored.
 
 You don't need to specify all the super-tables if you don't want to. TOML knows
 how to do it for you.
@@ -850,23 +861,23 @@ element.
 
 ```toml
 [[fruit]]
-  name = "apple"
+name = "apple"
 
-  [fruit.physical]  # subtable
-    color = "red"
-    shape = "round"
+[fruit.physical]  # subtable
+color = "red"
+shape = "round"
 
-  [[fruit.variety]]  # nested array of tables
-    name = "red delicious"
+[[fruit.variety]]  # nested array of tables
+name = "red delicious"
 
-  [[fruit.variety]]
-    name = "granny smith"
+[[fruit.variety]]
+name = "granny smith"
 
 [[fruit]]
-  name = "banana"
+name = "banana"
 
-  [[fruit.variety]]
-    name = "plantain"
+[[fruit.variety]]
+name = "plantain"
 ```
 
 The above TOML maps to the following JSON.
@@ -902,12 +913,12 @@ reverse that ordering must produce an error at parse time.
 ```
 # INVALID TOML DOC
 [fruit.physical]  # subtable, but to which parent element should it belong?
-  color = "red"
-  shape = "round"
+color = "red"
+shape = "round"
 
 [[fruit]]  # parser must throw an error upon discovering that "fruit" is
            # an array rather than a table
-  name = "apple"
+name = "apple"
 ```
 
 Attempting to append to a statically defined array, even if that array is empty,
@@ -927,22 +938,22 @@ as an array must likewise produce a parse-time error.
 ```
 # INVALID TOML DOC
 [[fruit]]
-  name = "apple"
+name = "apple"
 
-  [[fruit.variety]]
-    name = "red delicious"
+[[fruit.variety]]
+name = "red delicious"
 
-  # INVALID: This table conflicts with the previous array of tables
-  [fruit.variety]
-    name = "granny smith"
+# INVALID: This table conflicts with the previous array of tables
+[fruit.variety]
+name = "granny smith"
 
-  [fruit.physical]
-    color = "red"
-    shape = "round"
+[fruit.physical]
+color = "red"
+shape = "round"
 
-  # INVALID: This array of tables conflicts with the previous table
-  [[fruit.physical]]
-    color = "green"
+# INVALID: This array of tables conflicts with the previous table
+[[fruit.physical]]
+color = "green"
 ```
 
 You may also use inline tables where appropriate:
