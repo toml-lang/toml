@@ -686,7 +686,7 @@ extraneous whitespace.
 [ j . "ʞ" . 'l' ]  # same as [j."ʞ".'l']
 ```
 
-Indentation is treated as whitespace. Tabs and spaces before keys are ignored.
+Indentation is treated as whitespace and ignored.
 
 You don't need to specify all the super-tables if you don't want to. TOML knows
 how to do it for you.
