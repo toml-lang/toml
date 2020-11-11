@@ -282,7 +282,7 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
 The escape codes must be valid Unicode [scalar
-values](http://unicode.org/glossary/#unicode_scalar_value).
+values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
@@ -532,7 +532,7 @@ Offset Date-Time
 ----------------
 
 To unambiguously represent a specific instant in time, you may use an
-[RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time with offset.
+[RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -555,7 +555,7 @@ rounded.
 Local Date-Time
 ---------------
 
-If you omit the offset from an [RFC 3339](http://tools.ietf.org/html/rfc3339)
+If you omit the offset from an [RFC 3339](https://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
 to an offset or timezone. It cannot be converted to an instant in time without
 additional information. Conversion to an instant, if required, is
@@ -575,7 +575,7 @@ Local Date
 ----------
 
 If you include only the date portion of an
-[RFC 3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will
+[RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
 represent that entire day without any relation to an offset or timezone.
 
 ```toml
@@ -586,7 +586,7 @@ Local Time
 ----------
 
 If you include only the time portion of an [RFC
-3339](http://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
+3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
 that time of day without any relation to a specific day or any offset or
 timezone.
 
