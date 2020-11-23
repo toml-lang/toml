@@ -2,6 +2,7 @@
 
 ## unreleased
 
+* Clarify and describe the top-level table.
 * Clarify that indentation before keys is ignored.
 * Clarify that indentation before table headers is ignored.
 * Clarify that indentation between array values is ignored.
