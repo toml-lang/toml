@@ -274,6 +274,7 @@ For convenience, some popular characters have a compact escape sequence.
 \n         - linefeed        (U+000A)
 \f         - form feed       (U+000C)
 \r         - carriage return (U+000D)
+\e         - escape          (U+001B)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
 \uXXXX     - unicode         (U+XXXX)
