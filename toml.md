@@ -740,6 +740,21 @@ Defining tables out-of-order is discouraged.
 [animal]
 ```
 
+The top-level table, also called the root table, starts at the beginning of the
+document and ends just before the first table header (or EOF). Unlike other
+tables, it is nameless and cannot be relocated.
+
+```toml
+# Top-level table begins.
+name = "Fido"
+breed = "pug"
+
+# Top-level table ends.
+[owner]
+name = "Regina Dogman"
+member_since = 1999-08-04
+```
+
 Dotted keys define everything to the left of each dot as a table. Since tables
 cannot be defined more than once, redefining such tables using a `[table]`
 header is not allowed. Likewise, using dotted keys to redefine tables already
