@@ -686,21 +686,6 @@ extraneous whitespace.
 [ j . "ʞ" . 'l' ]  # same as [j."ʞ".'l']
 ```
 
-The top-level table, also called the root table, starts at the beginning of the
-document and ends just before the first table header (or EOF). Unlike other
-tables, it is nameless and cannot be relocated.
-
-```toml
-# Top-level table begins.
-name = "Fido"
-breed = "pug"
-
-# Top-level table ends.
-[owner]
-name = "Regina Dogman"
-member_since = 1999-08-04
-```
-
 Indentation is treated as whitespace and ignored.
 
 You don't need to specify all the super-tables if you don't want to. TOML knows
@@ -753,6 +738,21 @@ Defining tables out-of-order is discouraged.
 [fruit.apple]
 [fruit.orange]
 [animal]
+```
+
+The top-level table, also called the root table, starts at the beginning of the
+document and ends just before the first table header (or EOF). Unlike other
+tables, it is nameless and cannot be relocated.
+
+```toml
+# Top-level table begins.
+name = "Fido"
+breed = "pug"
+
+# Top-level table ends.
+[owner]
+name = "Regina Dogman"
+member_since = 1999-08-04
 ```
 
 Dotted keys define everything to the left of each dot as a table. Since tables
