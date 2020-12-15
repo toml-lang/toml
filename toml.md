@@ -610,7 +610,7 @@ allowed in key/value pairs. Values of different types may be mixed.
 ```toml
 integers = [ 1, 2, 3 ]
 colors = [ "red", "yellow", "green" ]
-nested_array_of_int = [ [ 1, 2 ], [3, 4, 5] ]
+nested_arrays_of_ints = [ [ 1, 2 ], [3, 4, 5] ]
 nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
 string_array = [ "all", 'strings', """are the same""", '''type''' ]
 
@@ -875,23 +875,23 @@ sub-tables (not arrays) likewise belong to the most recently defined table
 element.
 
 ```toml
-[[fruit]]
+[[fruits]]
 name = "apple"
 
-[fruit.physical]  # subtable
+[fruits.physical]  # subtable
 color = "red"
 shape = "round"
 
-[[fruit.variety]]  # nested array of tables
+[[fruits.varieties]]  # nested array of tables
 name = "red delicious"
 
-[[fruit.variety]]
+[[fruits.varieties]]
 name = "granny smith"
 
-[[fruit]]
+[[fruits]]
 name = "banana"
 
-[[fruit.variety]]
+[[fruits.varieties]]
 name = "plantain"
 ```
 
@@ -899,21 +899,21 @@ The above TOML maps to the following JSON.
 
 ```json
 {
-  "fruit": [
+  "fruits": [
     {
       "name": "apple",
       "physical": {
         "color": "red",
         "shape": "round"
       },
-      "variety": [
+      "varieties": [
         { "name": "red delicious" },
         { "name": "granny smith" }
       ]
     },
     {
       "name": "banana",
-      "variety": [
+      "varieties": [
         { "name": "plantain" }
       ]
     }
@@ -941,9 +941,9 @@ must produce an error at parse time.
 
 ```
 # INVALID TOML DOC
-fruit = []
+fruits = []
 
-[[fruit]] # Not allowed
+[[fruits]] # Not allowed
 ```
 
 Attempting to define a normal table with the same name as an already established
@@ -952,22 +952,22 @@ as an array must likewise produce a parse-time error.
 
 ```
 # INVALID TOML DOC
-[[fruit]]
+[[fruits]]
 name = "apple"
 
-[[fruit.variety]]
+[[fruits.varieties]]
 name = "red delicious"
 
 # INVALID: This table conflicts with the previous array of tables
-[fruit.variety]
+[fruits.varieties]
 name = "granny smith"
 
-[fruit.physical]
+[fruits.physical]
 color = "red"
 shape = "round"
 
 # INVALID: This array of tables conflicts with the previous table
-[[fruit.physical]]
+[[fruits.physical]]
 color = "green"
 ```
 
