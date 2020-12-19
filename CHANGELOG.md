@@ -2,6 +2,7 @@
 
 ## unreleased
 
+* Add \x00 notation to basic strings.
 * Clarify and describe the top-level table.
 * Clarify that indentation before keys is ignored.
 * Clarify that indentation before table headers is ignored.
