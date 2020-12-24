@@ -161,6 +161,9 @@ In JSON land, that would give you the following structure:
 }
 ```
 
+For details regarding the tables that dotted keys define, refer to the
+[Table](#user-content-table) section below.
+
 Whitespace around dot-separated parts is ignored. However, best practice is to
 not use any extraneous whitespace.
 
@@ -237,9 +240,9 @@ orange.skin = "thick"
 orange.color = "orange"
 ```
 
-Since bare keys are allowed to compose of only ASCII integers, it is possible
-to write dotted keys that look like floats but are 2-part dotted keys. Don't do
-this unless you have a good reason to (you probably don't).
+Since bare keys can be composed of only ASCII integers, it is possible to write
+dotted keys that look like floats but are 2-part dotted keys. Don't do this
+unless you have a good reason to (you probably don't).
 
 ```toml
 3.14159 = "pi"
@@ -642,15 +645,17 @@ Table
 -----
 
 Tables (also known as hash tables or dictionaries) are collections of key/value
-pairs. They appear in square brackets on a line by themselves. You can tell them
-apart from arrays because arrays are only ever values.
+pairs. They are defined by headers, with square brackets on a line by
+themselves. You can tell headers apart from arrays because arrays are only ever
+values.
 
 ```toml
 [table]
 ```
 
-Under that, and until the next table or EOF are the key/values of that table.
-Key/value pairs within tables are not guaranteed to be in any specific order.
+Under that, and until the next header or EOF, the table is fully defined,
+meaning that the key/value pairs of that table or specified. They are not
+guaranteed to be in any specific order.
 
 ```toml
 [table-1]
@@ -688,8 +693,9 @@ extraneous whitespace.
 
 Indentation is treated as whitespace and ignored.
 
-You don't need to specify all the super-tables if you don't want to. TOML knows
-how to do it for you.
+You don't need to specify all the super-tables if you don't want to. TOML
+creates all super-tables for you automatically, though they aren't defined
+right away.
 
 ```toml
 # [x] you
@@ -740,9 +746,9 @@ Defining tables out-of-order is discouraged.
 [animal]
 ```
 
-The top-level table, also called the root table, starts at the beginning of the
-document and ends just before the first table header (or EOF). Unlike other
-tables, it is nameless and cannot be relocated.
+The top-level table, also called the root table, is defined starting at the
+beginning of the document and ending just before the first table header (or
+EOF). Unlike other tables, it is nameless and cannot be relocated.
 
 ```toml
 # Top-level table begins.
@@ -755,13 +761,13 @@ name = "Regina Dogman"
 member_since = 1999-08-04
 ```
 
-Dotted keys define everything to the left of each dot as a table. Since tables
-cannot be defined more than once, redefining such tables using a `[table]`
-header is not allowed. Likewise, using dotted keys to redefine tables already
-defined in `[table]` form is not allowed.
-
-The `[table]` form can, however, be used to define sub-tables within tables
-defined via dotted keys.
+Dotted keys define a super-table for each name to the left of each dot that
+doesn't have a table yet. Such tables' definitions end before the next table
+header (or EOF). Since tables cannot be defined more than once, redefining such
+tables using a `[table]` header is not allowed. Likewise, using dotted keys to
+redefine tables already defined in `[table]` form is not allowed. The `[table]`
+form can, however, be used to define sub-tables within tables defined via
+dotted keys.
 
 ```toml
 [fruit]
@@ -780,10 +786,10 @@ Inline Table
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
-Inline tables are enclosed in curly braces: `{` and `}`. Within the braces, zero
-or more comma-separated key/value pairs may appear. Key/value pairs take the
-same form as key/value pairs in standard tables. All value types are allowed,
-including inline tables.
+Inline tables are fully defined within curly braces: `{` and `}`. Within the
+braces, zero or more comma-separated key/value pairs may appear. Key/value
+pairs take the same form as key/value pairs in standard tables. All value types
+are allowed, including inline tables.
 
 Inline tables are intended to appear on a single line. A terminating comma (also
 called trailing comma) is not permitted after the last key/value pair in an
@@ -814,8 +820,8 @@ y = 2
 type.name = "pug"
 ```
 
-Inline tables fully define the keys and sub-tables within them. New keys and
-sub-tables cannot be added to them.
+Inline tables are fully self-contained and define all keys and sub-tables
+within them. Keys and sub-tables cannot be added outside the braces.
 
 ```toml
 [product]
@@ -835,19 +841,19 @@ type.name = "Nail"
 Array of Tables
 ---------------
 
-The last syntax that has not yet been described allows writing arrays of tables.
-These can be expressed by using a table name in double brackets. Under that, and
-until the next table or EOF are the key/values of that table. Each table with
-the same double bracketed name will be an element in the array of tables. The
-tables are inserted in the order encountered. A double bracketed table without
-any key/value pairs will be considered an empty table.
+The last syntax that has not yet been described allows writing arrays of
+tables. These can be expressed by using a header with a name in double
+brackets. The first instance of that header defines the array and its
+first table element, and each subsequent instance creates and defines a new
+table in that array. The tables are inserted into the array in the order
+encountered.
 
 ```toml
 [[products]]
 name = "Hammer"
 sku = 738594937
 
-[[products]]
+[[products]]  # empty table within the array
 
 [[products]]
 name = "Nail"
@@ -868,11 +874,9 @@ In JSON land, that would give you the following structure.
 }
 ```
 
-You can create nested arrays of tables as well. Just use the same double bracket
-syntax on sub-tables. In nested arrays of tables, each double-bracketed
-sub-table will belong to the most recently defined table element. Normal
-sub-tables (not arrays) likewise belong to the most recently defined table
-element.
+Any reference to an array of tables points to the most recently defined table
+element of the array. This allows you to define sub-tables, and even sub-arrays
+of tables, inside the most recent table.
 
 ```toml
 [[fruits]]
@@ -887,6 +891,7 @@ name = "red delicious"
 
 [[fruits.varieties]]
 name = "granny smith"
+
 
 [[fruits]]
 name = "banana"

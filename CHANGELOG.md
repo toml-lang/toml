@@ -2,6 +2,7 @@
 
 ## unreleased
 
+* Clarify how tables are created and defined.
 * Clarify and describe the top-level table.
 * Clarify that indentation before keys is ignored.
 * Clarify that indentation before table headers is ignored.
