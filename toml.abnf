@@ -123,7 +123,7 @@ digit0-7 = %x30-37                 ; 0-7
 digit0-1 = %x30-31                 ; 0-1
 
 hex-prefix = %x30.78               ; 0x
-oct-prefix = %x30.6f               ; 0o
+oct-prefix = %x30.6F               ; 0o
 bin-prefix = %x30.62               ; 0b
 
 dec-int = [ minus / plus ] unsigned-dec-int
