@@ -343,9 +343,8 @@ Any Unicode character may be used except those that must be escaped: backslash
 and the control characters other than tab, line feed, and carriage return
 (U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
 
-You can write a quotation mark, or two adjacent quotation marks, anywhere
-inside a multi-line basic string. They can also be written just inside the
-delimiters.
+You can write a quotation mark, or two adjacent quotation marks, anywhere inside
+a multi-line basic string. They can also be written just inside the delimiters.
 
 ```toml
 str4 = """Here are two quotation marks: "". Simple enough."""
@@ -378,8 +377,8 @@ version of literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each
 side and allow newlines. Like literal strings, there is no escaping whatsoever.
-A newline immediately following the opening delimiter will be trimmed. All
-other content between the delimiters is interpreted as-is without modification.
+A newline immediately following the opening delimiter will be trimmed. All other
+content between the delimiters is interpreted as-is without modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
@@ -489,7 +488,8 @@ An exponent part is an E (upper or lower case) followed by an integer part
 (which follows the same rules as decimal integer values but may include leading
 zeros).
 
-The decimal point, if used, must be surrounded by at least one digit on each side.
+The decimal point, if used, must be surrounded by at least one digit on each
+side.
 
 ```
 # INVALID FLOATS
@@ -534,8 +534,8 @@ bool2 = false
 Offset Date-Time
 ----------------
 
-To unambiguously represent a specific instant in time, you may use an
-[RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
+To unambiguously represent a specific instant in time, you may use an [RFC
+3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -589,9 +589,9 @@ Local Time
 ----------
 
 If you include only the time portion of an [RFC
-3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
-that time of day without any relation to a specific day or any offset or
-timezone.
+3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
+represent that time of day without any relation to a specific day or any offset
+or timezone.
 
 ```toml
 lt1 = 07:32:00
@@ -653,9 +653,8 @@ values.
 [table]
 ```
 
-Under that, and until the next header or EOF, the table is fully defined,
-meaning that the key/value pairs of that table or specified. They are not
-guaranteed to be in any specific order.
+Under that, and until the next header or EOF, are the key/values of that table.
+Key/value pairs within tables are not guaranteed to be in any specific order.
 
 ```toml
 [table-1]
@@ -693,9 +692,8 @@ extraneous whitespace.
 
 Indentation is treated as whitespace and ignored.
 
-You don't need to specify all the super-tables if you don't want to. TOML
-creates all super-tables for you automatically, though they aren't defined
-right away.
+You don't need to specify all the super-tables if you don't want to. TOML knows
+how to do it for you.
 
 ```toml
 # [x] you
@@ -746,9 +744,9 @@ Defining tables out-of-order is discouraged.
 [animal]
 ```
 
-The top-level table, also called the root table, is defined starting at the
-beginning of the document and ending just before the first table header (or
-EOF). Unlike other tables, it is nameless and cannot be relocated.
+The top-level table, also called the root table, starts at the beginning of the
+document and ends just before the first table header (or EOF). Unlike other
+tables, it is nameless and cannot be relocated.
 
 ```toml
 # Top-level table begins.
@@ -761,13 +759,23 @@ name = "Regina Dogman"
 member_since = 1999-08-04
 ```
 
-Dotted keys define a super-table for each name to the left of each dot that
-doesn't have a table yet. Such tables' definitions end before the next table
-header (or EOF). Since tables cannot be defined more than once, redefining such
-tables using a `[table]` header is not allowed. Likewise, using dotted keys to
-redefine tables already defined in `[table]` form is not allowed. The `[table]`
-form can, however, be used to define sub-tables within tables defined via
-dotted keys.
+Dotted keys create and define a table for each key part before the last one,
+provided that such tables were not previously created.
+
+```toml
+fruit.apple.color = "red"
+# Defines a table named fruit
+# Defines a table named fruit.apple
+
+fruit.apple.taste.sweet = true
+# Defines a table named fruit.apple.taste
+# fruit and fruit.apple were already created
+```
+
+Since tables cannot be defined more than once, redefining such tables using a
+`[table]` header is not allowed. Likewise, using dotted keys to redefine tables
+already defined in `[table]` form is not allowed. The `[table]` form can,
+however, be used to define sub-tables within tables defined via dotted keys.
 
 ```toml
 [fruit]
@@ -787,9 +795,9 @@ Inline Table
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
 Inline tables are fully defined within curly braces: `{` and `}`. Within the
-braces, zero or more comma-separated key/value pairs may appear. Key/value
-pairs take the same form as key/value pairs in standard tables. All value types
-are allowed, including inline tables.
+braces, zero or more comma-separated key/value pairs may appear. Key/value pairs
+take the same form as key/value pairs in standard tables. All value types are
+allowed, including inline tables.
 
 Inline tables are intended to appear on a single line. A terminating comma (also
 called trailing comma) is not permitted after the last key/value pair in an
@@ -820,8 +828,8 @@ y = 2
 type.name = "pug"
 ```
 
-Inline tables are fully self-contained and define all keys and sub-tables
-within them. Keys and sub-tables cannot be added outside the braces.
+Inline tables are fully self-contained and define all keys and sub-tables within
+them. Keys and sub-tables cannot be added outside the braces.
 
 ```toml
 [product]
@@ -829,7 +837,7 @@ type = { name = "Nail" }
 # type.edible = false  # INVALID
 ```
 
-Similarly, inline tables can not be used to add keys or sub-tables to an
+Similarly, inline tables cannot be used to add keys or sub-tables to an
 already-defined table.
 
 ```toml
@@ -841,12 +849,11 @@ type.name = "Nail"
 Array of Tables
 ---------------
 
-The last syntax that has not yet been described allows writing arrays of
-tables. These can be expressed by using a header with a name in double
-brackets. The first instance of that header defines the array and its
-first table element, and each subsequent instance creates and defines a new
-table in that array. The tables are inserted into the array in the order
-encountered.
+The last syntax that has not yet been described allows writing arrays of tables.
+These can be expressed by using a header with a name in double brackets. The
+first instance of that header defines the array and its first table element, and
+each subsequent instance creates and defines a new table element in that array.
+The tables are inserted into the array in the order encountered.
 
 ```toml
 [[products]]
