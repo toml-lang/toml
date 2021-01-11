@@ -1,6 +1,6 @@
 # TOML Changelog
 
-## unreleased
+## 1.0.0 / 2021-01-11
 
 * Clarify how tables are created and defined.
 * Clarify and describe the top-level table.
