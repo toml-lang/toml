@@ -1,5 +1,9 @@
 # TOML Changelog
 
+## unreleased
+
+Nothing.
+
 ## 1.0.0 / 2021-01-11
 
 * Clarify how tables are created and defined.
