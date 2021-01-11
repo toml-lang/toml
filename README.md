@@ -1,4 +1,4 @@
-![TOML Logo](logos/toml-200.png)
+<img align="right" src="logos/toml-200.png" alt="TOML logo">
 
 TOML
 ====
