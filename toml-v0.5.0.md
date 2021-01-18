@@ -1,4 +1,4 @@
-![TOML Logo](../../logos/toml-200.png)
+![TOML Logo](logos/toml-200.png)
 
 TOML v0.5.0
 ===========
@@ -231,7 +231,7 @@ str = "我是一个字符串。\"你可以把我引起来\"。姓名\tJos\u00E9\
 ```
 
 任何 Unicode 字符都可以用 `\uXXXX` 或 `\UXXXXXXXX` 的形式来转义。  
-转义码必须是有效的 Unicode [标量值](http://unicode.org/glossary/#unicode_scalar_value)。
+转义码必须是有效的 Unicode [标量值](https://unicode.org/glossary/#unicode_scalar_value)。
 
 所有上面未列出的其它转义序列都是保留的，如果被用了，TOML 应当生成一个错误。
 
@@ -264,19 +264,19 @@ str3 = "玫瑰是红色的\r\n紫罗兰是蓝色的"
 
 ```toml
 # 下列字符串的每一个字节都完全相同：
-str1 = "那只 敏捷的 棕 狐狸 跳 过了 那只 懒 狗。"
+str1 = "那只敏捷的棕狐狸跳过了那只懒狗。"
 
 str2 = """
-那只 敏捷的 棕 \
+那只敏捷的棕\
 
 
-  狐狸 跳 过了 \
-    那只 懒 狗。"""
+  狐狸跳过了\
+    那只懒狗。"""
 
 str3 = """\
-       那只 敏捷的 棕 \
-       狐狸 跳 过了 \
-       那只 懒 狗。\
+       那只敏捷的棕\
+       狐狸跳过了\
+       那只懒狗。\
        """
 ```
 
@@ -431,7 +431,7 @@ bool2 = false
 [坐标日期时刻](#user-content-offset-date-time)<a id="user-content-offset-date-time">&nbsp;</a>
 --------------
 
-要明确无误地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](http://tools.ietf.org/html/rfc3339) 格式的日期时刻。
+要明确无误地表示世上的一个特定时间，你可以使用指定了时区偏移量的 [RFC 3339](https://tools.ietf.org/html/rfc3339) 格式的日期时刻。
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -451,7 +451,7 @@ odt4 = 1979-05-27 07:32:00Z
 [各地日期时刻](#user-content-local-date-time)
 --------------
 
-如果你省略了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的时区偏移量，这表示该日期时刻的使用并不涉及时区偏移。  
+如果你省略了 [RFC 3339](https://tools.ietf.org/html/rfc3339) 日期时刻中的时区偏移量，这表示该日期时刻的使用并不涉及时区偏移。  
 在没有其它信息的情况下，并不知道它究竟该被转化成世上的哪一刻。  
 如果仍被要求转化，那结果将取决于实现。
 
@@ -466,7 +466,7 @@ ldt2 = 1979-05-27T00:32:00.999999
 [各地日期](#user-content-local-date)<a id="user-content-local-date">&nbsp;</a>
 ----------
 
-如果你只写了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的日期部分，那它表示一整天，同时也不涉及时区偏移。
+如果你只写了 [RFC 3339](https://tools.ietf.org/html/rfc3339) 日期时刻中的日期部分，那它表示一整天，同时也不涉及时区偏移。
 
 ```toml
 ld1 = 1979-05-27
@@ -475,7 +475,7 @@ ld1 = 1979-05-27
 [各地时刻](#user-content-local-time)<a id="user-content-local-time">&nbsp;</a>
 ----------
 
-如果你只写了 [RFC 3339](http://tools.ietf.org/html/rfc3339) 日期时刻中的时刻部分，它将只表示一天之中的那个时刻，而与任何特定的日期无关、亦不涉及时区偏移。
+如果你只写了 [RFC 3339](https://tools.ietf.org/html/rfc3339) 日期时刻中的时刻部分，它将只表示一天之中的那个时刻，而与任何特定的日期无关、亦不涉及时区偏移。
 
 ```toml
 lt1 = 07:32:00
@@ -640,22 +640,22 @@ type.name = "哈巴狗"
 --------
 
 最后还剩下一个没法表示的是表数组。  
-这可以通过双方括号来表示。  
+这可以通过把表名写在双方括号里来表示。  
 各个具有相同方括号名的表将会成为该数组内的一员。  
 这些表遵循它们出现的顺序。  
 一个没有任何键值对的双方括号表将被视为一个空表。
 
 ```toml
 [[products]]
-name = "Hammer"
+name = "锤子"
 sku = 738594937
 
 [[products]]
 
 [[products]]
-name = "Nail"
+name = "钉子"
 sku = 284758393
-color = "gray"
+color = "灰色"
 ```
 
 这在 JSON 那儿，是以下结构。
@@ -663,9 +663,9 @@ color = "gray"
 ```json
 {
   "products": [
-    { "name": "Hammer", "sku": 738594937 },
+    { "name": "锤子", "sku": 738594937 },
     { },
-    { "name": "Nail", "sku": 284758393, "color": "gray" }
+    { "name": "钉子", "sku": 284758393, "color": "灰色" }
   ]
 }
 ```
@@ -676,23 +676,23 @@ color = "gray"
 
 ```toml
 [[fruit]]
-  name = "apple"
+  name = "苹果"
 
   [fruit.physical]
-    color = "red"
-    shape = "round"
+    color = "红色"
+    shape = "圆形"
 
   [[fruit.variety]]
-    name = "red delicious"
+    name = "蛇果"
 
   [[fruit.variety]]
-    name = "granny smith"
+    name = "澳洲青苹"
 
 [[fruit]]
-  name = "banana"
+  name = "香蕉"
 
   [[fruit.variety]]
-    name = "plantain"
+    name = "车前草"
 ```
 
 上述 TOML 对应下面的 JSON。
@@ -701,20 +701,20 @@ color = "gray"
 {
   "fruit": [
     {
-      "name": "apple",
+      "name": "苹果",
       "physical": {
-        "color": "red",
-        "shape": "round"
+        "color": "红色",
+        "shape": "圆形"
       },
       "variety": [
-        { "name": "red delicious" },
-        { "name": "granny smith" }
+        { "name": "蛇果" },
+        { "name": "澳洲青苹" }
       ]
     },
     {
-      "name": "banana",
+      "name": "香蕉",
       "variety": [
-        { "name": "plantain" }
+        { "name": "车前草" }
       ]
     }
   ]
@@ -735,14 +735,14 @@ fruit = []
 ```
 # 无效的 TOML 文档
 [[fruit]]
-  name = "apple"
+  name = "苹果"
 
   [[fruit.variety]]
-    name = "red delicious"
+    name = "蛇果"
 
   # 这个表与之前的表冲突了
   [fruit.variety]
-    name = "granny smith"
+    name = "澳洲青苹"
 ```
 
 你也可以适当使用行内表：
@@ -773,7 +773,7 @@ TOML 与 JSON 的不同之处是它的重点在于宜于人类读写。
 
 YAML 格式就像 TOML 一样，是以配置文件为导向的。  
 然而……因为种种原因，YAML 是一种过于复杂的解决方案。  
-TOML 旨在简易，这是一个在 YAML 的规范中于肉眼不可见的目标→http://www.yaml.org/spec/1.2/spec.html
+TOML 旨在简易，这是一个在 YAML 的规范中于肉眼不可见的目标→https://www.yaml.org/spec/1.2/spec.html
 
 INI 格式也常见于配置文件。  
 然而……这个格式并无统一标准，并且通常不料理超过一或两层的嵌套。
