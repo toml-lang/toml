@@ -5,7 +5,7 @@ TOML
 
 汤小明的小巧明晰语言。  
 
-作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。[龙腾道](http://www.LongTengDao.com/)译。  
+作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。  
 
 > `toml.md` 是研发中的版本。`toml-v1.0.0.md` 等文件名中含版本号的为发行版。  
 > （原文：该存储库包含了 TOML 规范的研发版本。你可以在 [https://toml.io](https://toml.io/cn/) 查看发行版。）  
@@ -98,3 +98,5 @@ INI 文件也常被用来同 TOML 比较，因为它们在语法和作为配置�
 
 请点进去看一下，如果你想要阅览或加入其中。  
 感谢你成为 TOML 社区的一员！  
+
+——[龙腾道](http://www.LongTengDao.com/) 译
