@@ -5,7 +5,7 @@ TOML
 
 汤小明的小巧明晰语言。  
 
-作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。  
+作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。[龙腾道](http://www.LongTengDao.com/)译。  
 
 宗旨
 ----
@@ -958,5 +958,3 @@ TOML 文件应当使用 `.toml` 扩展名。
 TOML 语法的严谨说明，由一个 [ABNF 文件][abnf]另行提供。
 
 [abnf]: https://github.com/toml-lang/toml/blob/1.0.0/toml.abnf
-
-——[龙腾道](http://www.LongTengDao.com/) 译
