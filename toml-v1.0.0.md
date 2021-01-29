@@ -91,7 +91,7 @@ key = # 错误
 ```
 
 键值对后必须换行（或结束文件）。  
-（例外见 [行内表](#user-content-inline-table)）  
+（例外见[行内表](#user-content-inline-table)）  
 
 ```
 first = "汤姆" last = "普雷斯顿—维尔纳" # 错误
@@ -527,7 +527,7 @@ odt4 = 1979-05-27 07:32:00Z
 更高精度的小数秒取决于实现。  
 如果它的值超出了实现所支持的精度，那多余的部分必须被舍弃，而不能四舍五入。  
 
-[各地日期时刻](#user-content-local-date-time)
+[各地日期时刻](#user-content-local-date-time)<a id="user-content-local-date-time">&nbsp;</a>
 --------------
 
 如果你省略了 [RFC 3339](https://tools.ietf.org/html/rfc3339) 日期时刻中的时区偏移量，这表示该日期时刻的使用并不涉及时区偏移。  
