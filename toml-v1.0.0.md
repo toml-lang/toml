@@ -5,7 +5,7 @@ TOML v1.0.0
 
 汤小明的小巧明晰语言。  
 
-作者：汤姆·普雷斯顿—维尔纳、Pradyun Gedam 等人。[龙腾道](http://www.LongTengDao.com/)译。  
+作者：[汤姆·普雷斯顿—维尔纳](https://github.com/mojombo)、[Pradyun Gedam](https://github.com/pradyunsg) 等人。[龙腾道](https://github.com/LongTengDao)译。  
 
 宗旨
 ----

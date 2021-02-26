@@ -5,7 +5,7 @@ TOML v0.5.0
 
 汤小明的小巧明晰语言。
 
-汤姆·普雷斯顿—维尔纳所创，[龙腾道](http://www.LongTengDao.com/)译。
+[汤姆·普雷斯顿—维尔纳](https://github.com/mojombo)所创，[龙腾道](https://github.com/LongTengDao)译。
 
 自版本 0.5.0 起，TOML 可以说是非常稳定了。  
 我们的目标是将来正式的 1.0.0 版能够向下兼容到 0.5.0 版（尽人事之可能吧）。  
