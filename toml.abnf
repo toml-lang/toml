@@ -124,9 +124,9 @@ digit1-9 = %x31-39                 ; 1-9
 digit0-7 = %x30-37                 ; 0-7
 digit0-1 = %x30-31                 ; 0-1
 
-hex-prefix = %x30.78               ; 0x
-oct-prefix = %x30.6F               ; 0o
-bin-prefix = %x30.62               ; 0b
+hex-prefix = %x30."x"              ; 0x, 0X
+oct-prefix = %x30."o"              ; 0o, 0O
+bin-prefix = %x30."b"              ; 0b, 0B
 
 dec-int = [ minus / plus ] unsigned-dec-int
 unsigned-dec-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
