@@ -30,6 +30,7 @@ wschar =/ %x09  ; Horizontal tab
 ;; Newline
 
 newline =  %x0A     ; LF
+newline =/ %x0D     ; CR
 newline =/ %x0D.0A  ; CRLF
 
 ;; Comment
