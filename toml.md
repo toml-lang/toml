@@ -387,8 +387,11 @@ version of literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each
 side and allow newlines. Like literal strings, there is no escaping whatsoever.
-A newline immediately following the opening delimiter will be trimmed. All other
-content between the delimiters is interpreted as-is without modification.
+A newline immediately following the opening delimiter will be trimmed. TOML
+parsers must normalize newlines in the same manner as multi-line basic strings.
+
+All other content between the delimiters is interpreted as-is without
+modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
