@@ -759,8 +759,9 @@ name = "Regina Dogman"
 member_since = 1999-08-04
 ```
 
-Dotted keys create and define a table for each key part before the last one,
-provided that such tables were not previously created.
+Dotted keys create and define a table for each key part before the last one. Any
+such table must have all its key/value pairs defined under the current `[table]`
+header, or in the root table if defined before all headers.
 
 ```toml
 fruit.apple.color = "red"
