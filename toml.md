@@ -128,12 +128,13 @@ to use bare keys except when absolutely necessary.
 ```
 
 A bare key must be non-empty, but an empty quoted key is allowed (though
-discouraged).
+discouraged). You cannot use multi-line strings to define quoted keys.
 
 ```toml
-= "no key name"  # INVALID
-"" = "blank"     # VALID but discouraged
-'' = 'blank'     # VALID but discouraged
+= "no key name"           # INVALID
+"""key""" = "not allowed" # INVALID
+"" = "blank"              # VALID but discouraged
+'' = 'blank'              # VALID but discouraged
 ```
 
 **Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
