@@ -128,12 +128,13 @@ to use bare keys except when absolutely necessary.
 ```
 
 A bare key must be non-empty, but an empty quoted key is allowed (though
-discouraged).
+discouraged). You cannot use multi-line strings to define quoted keys.
 
 ```toml
-= "no key name"  # INVALID
-"" = "blank"     # VALID but discouraged
-'' = 'blank'     # VALID but discouraged
+= "no key name"           # INVALID
+"""key""" = "not allowed" # INVALID
+"" = "blank"              # VALID but discouraged
+'' = 'blank'              # VALID but discouraged
 ```
 
 **Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
@@ -160,6 +161,9 @@ In JSON land, that would give you the following structure:
   }
 }
 ```
+
+For details regarding the tables that dotted keys define, refer to the
+[Table](#user-content-table) section below.
 
 Whitespace around dot-separated parts is ignored. However, best practice is to
 not use any extraneous whitespace.
@@ -237,9 +241,9 @@ orange.skin = "thick"
 orange.color = "orange"
 ```
 
-Since bare keys are allowed to compose of only ASCII integers, it is possible
-to write dotted keys that look like floats but are 2-part dotted keys. Don't do
-this unless you have a good reason to (you probably don't).
+Since bare keys can be composed of only ASCII integers, it is possible to write
+dotted keys that look like floats but are 2-part dotted keys. Don't do this
+unless you have a good reason to (you probably don't).
 
 ```toml
 3.14159 = "pi"
@@ -341,9 +345,8 @@ Any Unicode character may be used except those that must be escaped: backslash
 and the control characters other than tab, line feed, and carriage return
 (U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
 
-You can write a quotation mark, or two adjacent quotation marks, anywhere
-inside a multi-line basic string. They can also be written just inside the
-delimiters.
+You can write a quotation mark, or two adjacent quotation marks, anywhere inside
+a multi-line basic string. They can also be written just inside the delimiters.
 
 ```toml
 str4 = """Here are two quotation marks: "". Simple enough."""
@@ -376,8 +379,8 @@ version of literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each
 side and allow newlines. Like literal strings, there is no escaping whatsoever.
-A newline immediately following the opening delimiter will be trimmed. All
-other content between the delimiters is interpreted as-is without modification.
+A newline immediately following the opening delimiter will be trimmed. All other
+content between the delimiters is interpreted as-is without modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
@@ -487,7 +490,8 @@ An exponent part is an E (upper or lower case) followed by an integer part
 (which follows the same rules as decimal integer values but may include leading
 zeros).
 
-The decimal point, if used, must be surrounded by at least one digit on each side.
+The decimal point, if used, must be surrounded by at least one digit on each
+side.
 
 ```
 # INVALID FLOATS
@@ -532,8 +536,8 @@ bool2 = false
 Offset Date-Time
 ----------------
 
-To unambiguously represent a specific instant in time, you may use an
-[RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
+To unambiguously represent a specific instant in time, you may use an [RFC
+3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -587,9 +591,9 @@ Local Time
 ----------
 
 If you include only the time portion of an [RFC
-3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will represent
-that time of day without any relation to a specific day or any offset or
-timezone.
+3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
+represent that time of day without any relation to a specific day or any offset
+or timezone.
 
 ```toml
 lt1 = 07:32:00
@@ -643,14 +647,15 @@ Table
 -----
 
 Tables (also known as hash tables or dictionaries) are collections of key/value
-pairs. They appear in square brackets on a line by themselves. You can tell them
-apart from arrays because arrays are only ever values.
+pairs. They are defined by headers, with square brackets on a line by
+themselves. You can tell headers apart from arrays because arrays are only ever
+values.
 
 ```toml
 [table]
 ```
 
-Under that, and until the next table or EOF are the key/values of that table.
+Under that, and until the next header or EOF, are the key/values of that table.
 Key/value pairs within tables are not guaranteed to be in any specific order.
 
 ```toml
@@ -756,13 +761,23 @@ name = "Regina Dogman"
 member_since = 1999-08-04
 ```
 
-Dotted keys define everything to the left of each dot as a table. Since tables
-cannot be defined more than once, redefining such tables using a `[table]`
-header is not allowed. Likewise, using dotted keys to redefine tables already
-defined in `[table]` form is not allowed.
+Dotted keys create and define a table for each key part before the last one,
+provided that such tables were not previously created.
 
-The `[table]` form can, however, be used to define sub-tables within tables
-defined via dotted keys.
+```toml
+fruit.apple.color = "red"
+# Defines a table named fruit
+# Defines a table named fruit.apple
+
+fruit.apple.taste.sweet = true
+# Defines a table named fruit.apple.taste
+# fruit and fruit.apple were already created
+```
+
+Since tables cannot be defined more than once, redefining such tables using a
+`[table]` header is not allowed. Likewise, using dotted keys to redefine tables
+already defined in `[table]` form is not allowed. The `[table]` form can,
+however, be used to define sub-tables within tables defined via dotted keys.
 
 ```toml
 [fruit]
@@ -781,10 +796,10 @@ Inline Table
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
-Inline tables are enclosed in curly braces: `{` and `}`. Within the braces, zero
-or more comma-separated key/value pairs may appear. Key/value pairs take the
-same form as key/value pairs in standard tables. All value types are allowed,
-including inline tables.
+Inline tables are fully defined within curly braces: `{` and `}`. Within the
+braces, zero or more comma-separated key/value pairs may appear. Key/value pairs
+take the same form as key/value pairs in standard tables. All value types are
+allowed, including inline tables.
 
 Inline tables are intended to appear on a single line. A terminating comma (also
 called trailing comma) is not permitted after the last key/value pair in an
@@ -815,8 +830,8 @@ y = 2
 type.name = "pug"
 ```
 
-Inline tables fully define the keys and sub-tables within them. New keys and
-sub-tables cannot be added to them.
+Inline tables are fully self-contained and define all keys and sub-tables within
+them. Keys and sub-tables cannot be added outside the braces.
 
 ```toml
 [product]
@@ -824,7 +839,7 @@ type = { name = "Nail" }
 # type.edible = false  # INVALID
 ```
 
-Similarly, inline tables can not be used to add keys or sub-tables to an
+Similarly, inline tables cannot be used to add keys or sub-tables to an
 already-defined table.
 
 ```toml
@@ -837,18 +852,17 @@ Array of Tables
 ---------------
 
 The last syntax that has not yet been described allows writing arrays of tables.
-These can be expressed by using a table name in double brackets. Under that, and
-until the next table or EOF are the key/values of that table. Each table with
-the same double bracketed name will be an element in the array of tables. The
-tables are inserted in the order encountered. A double bracketed table without
-any key/value pairs will be considered an empty table.
+These can be expressed by using a header with a name in double brackets. The
+first instance of that header defines the array and its first table element, and
+each subsequent instance creates and defines a new table element in that array.
+The tables are inserted into the array in the order encountered.
 
 ```toml
 [[products]]
 name = "Hammer"
 sku = 738594937
 
-[[products]]
+[[products]]  # empty table within the array
 
 [[products]]
 name = "Nail"
@@ -869,11 +883,9 @@ In JSON land, that would give you the following structure.
 }
 ```
 
-You can create nested arrays of tables as well. Just use the same double bracket
-syntax on sub-tables. In nested arrays of tables, each double-bracketed
-sub-table will belong to the most recently defined table element. Normal
-sub-tables (not arrays) likewise belong to the most recently defined table
-element.
+Any reference to an array of tables points to the most recently defined table
+element of the array. This allows you to define sub-tables, and even sub-arrays
+of tables, inside the most recent table.
 
 ```toml
 [[fruits]]
@@ -888,6 +900,7 @@ name = "red delicious"
 
 [[fruits.varieties]]
 name = "granny smith"
+
 
 [[fruits]]
 name = "banana"

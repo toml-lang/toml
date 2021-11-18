@@ -36,7 +36,7 @@ newline =/ %x0D.0A  ; CRLF
 
 comment-start-symbol = %x23 ; #
 non-ascii = %x80-D7FF / %xE000-10FFFF
-non-eol = %x09 / %x20-7F / non-ascii
+non-eol = %x09 / %x20-7E / non-ascii
 
 comment = comment-start-symbol *non-eol
 
@@ -84,7 +84,8 @@ escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
 
 ;; Multiline Basic String
 
-ml-basic-string = ml-basic-string-delim ml-basic-body ml-basic-string-delim
+ml-basic-string = ml-basic-string-delim [ newline ] ml-basic-body
+                  ml-basic-string-delim
 ml-basic-string-delim = 3quotation-mark
 ml-basic-body = *mlb-content *( mlb-quotes 1*mlb-content ) [ mlb-quotes ]
 
@@ -104,7 +105,8 @@ literal-char = %x09 / %x20-26 / %x28-7E / non-ascii
 
 ;; Multiline Literal String
 
-ml-literal-string = ml-literal-string-delim ml-literal-body ml-literal-string-delim
+ml-literal-string = ml-literal-string-delim [ newline ] ml-literal-body
+                    ml-literal-string-delim
 ml-literal-string-delim = 3apostrophe
 ml-literal-body = *mll-content *( mll-quotes 1*mll-content ) [ mll-quotes ]
 
@@ -124,7 +126,7 @@ digit0-7 = %x30-37                 ; 0-7
 digit0-1 = %x30-31                 ; 0-1
 
 hex-prefix = %x30.78               ; 0x
-oct-prefix = %x30.6f               ; 0o
+oct-prefix = %x30.6F               ; 0o
 bin-prefix = %x30.62               ; 0b
 
 dec-int = [ minus / plus ] unsigned-dec-int

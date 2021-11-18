@@ -13,7 +13,6 @@ Baked assumptions:
   - lines "TOML" and "====" are the main heading.
 - ABNF file:
   - is `toml.abnf`
-  - TODO: figure out where ABNF file goes on the website
 
 Checked assumptions:
 

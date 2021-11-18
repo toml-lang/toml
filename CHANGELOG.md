@@ -3,6 +3,10 @@
 ## unreleased
 
 * Add \x00 notation to basic strings.
+
+## 1.0.0 / 2021-01-11
+
+* Clarify how tables are created and defined.
 * Clarify and describe the top-level table.
 * Clarify that indentation before keys is ignored.
 * Clarify that indentation before table headers is ignored.
@@ -15,7 +19,8 @@
 
 ## 1.0.0-rc.2 / 2020-08-09
 
-* Create https://toml.io as the new primary location to read the TOML spec.
+* Create [https://toml.io](https://toml.io) as the new primary location to read
+  the TOML spec.
 * Clarify meaning of "quotation marks".
 * Clarify meaning of "expected" value ranges.
 * Clarify that EOF is allowed after key/value pair.
