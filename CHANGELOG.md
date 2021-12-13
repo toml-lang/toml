@@ -2,7 +2,7 @@
 
 ## unreleased
 
-Nothing.
+* Clarify where and how dotted keys define tables.
 
 ## 1.0.0 / 2021-01-11
 
