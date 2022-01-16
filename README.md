@@ -1,6 +1,6 @@
 <img align="right" src="logos/toml-200.png" alt="TOML logo">
 
-TOML
+TOML /tɑməl/
 ====
 
 Tom's Obvious, Minimal Language.
