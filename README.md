@@ -1,9 +1,9 @@
 <img align="right" src="logos/toml-200.png" alt="TOML logo">
 
-TOML /tɑməl/
+TOML
 ====
 
-Tom's Obvious, Minimal Language.
+TOML (pronounced /tɒməl/) stands for Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner, Pradyun Gedam, et al.
 
