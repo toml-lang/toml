@@ -342,7 +342,8 @@ str3 = """\
 
 Any Unicode character may be used except those that must be escaped: backslash
 and the control characters other than tab, line feed, and carriage return
-(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
+(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Carriage returns
+(U+000D) are only allowed as part of a newline sequence.
 
 You can write a quotation mark, or two adjacent quotation marks, anywhere inside
 a multi-line basic string. They can also be written just inside the delimiters.
