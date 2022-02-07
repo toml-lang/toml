@@ -3,7 +3,7 @@
 TOML
 ====
 
-TOML (pronounced /tɒməl/) stands for Tom's Obvious, Minimal Language.
+TOML (usually pronounced /tɒməl/) stands for Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner, Pradyun Gedam, et al.
 
