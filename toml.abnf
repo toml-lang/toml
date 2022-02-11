@@ -1,6 +1,10 @@
 ;; This document describes TOML's syntax, using the ABNF format (defined in
 ;; RFC 5234 -- https://www.ietf.org/rfc/rfc5234.txt).
 ;;
+;; Although a TOML document must be valid UTF-8, this grammar is written to
+;; apply to the string of non-negative integers that are the Unicode Scalar
+;; Values obtained from decoding the UTF-8 input.
+;;
 ;; All valid TOML documents will match this description, however certain
 ;; invalid documents would need to be rejected as per the semantics described
 ;; in the supporting text description.
