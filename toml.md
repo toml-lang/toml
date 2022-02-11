@@ -262,9 +262,9 @@ There are four ways to express strings: basic, multi-line basic, literal, and
 multi-line literal.
 
 All strings must contain only valid UTF-8 encoded characters as is the case for
-the TOML file as a whole.  Certain control characters are not allowed to occur
-literally in any kind of string: U+0000 to U+0008, U+000B, U+000C, U+000E to
-U+001F, and U+007F. In basic strings and multi-line basic strings, but not in
+the TOML document as a whole.  Certain control characters are not allowed to
+occur literally in any kind of string: U+0000 to U+0008, U+000B, U+000C, U+000E
+to U+001F, and U+007F. In basic strings and multi-line basic strings, but not in
 literal strings or multi-line literal strings, those control characters can be
 described with escapes as specified below. Additional restrictions are described
 below.
@@ -350,7 +350,7 @@ str3 = """\
 
 In addition to the characters disallowed for all strings mentioned above, U+000D
 (CR) is allowed only as part of a newline sequence U+000D U+000A (CRLF).  As
-with basic strings, Backslash and quotation mark may only occur literally if
+with basic strings, backslash and quotation mark may only occur literally if
 they are part of a valid escape sequence.
 
 You can write a quotation mark, or two adjacent quotation marks, anywhere inside
