@@ -259,20 +259,13 @@ String
 ------
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal.
+multi-line literal. All strings must be encoded as valid UTF-8, and can contain
+any codepoint except control characters other than tab (U+0000 to U+0008, U+000A
+to U+001F, U+007F). Multi-line strings can also contain newlines (U+000A) and
+carriage returns (U+000D).
 
-All strings must contain only valid UTF-8 encoded characters as is the case for
-the TOML document as a whole.  Certain control characters are not allowed to
-occur literally in any kind of string: U+0000 to U+0008, U+000B, U+000C, U+000E
-to U+001F, and U+007F. In basic strings and multi-line basic strings, but not in
-literal strings or multi-line literal strings, those control characters can be
-described with escapes as specified below. Additional restrictions are described
-below.
-
-**Basic strings** are surrounded by quotation marks (`"`). In addition to the
-characters disallowed for all strings mentioned above, U+000A (LF) and U+000D
-(CR) may not occur literally in basic strings.  Backslash and quotation mark may
-only occur literally if they are part of a valid escape sequence.
+**Basic strings** are surrounded by quotation marks (`"`). Backslash and
+quotation mark may only occur if they are part of a valid escape sequence.
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
@@ -305,6 +298,9 @@ like to break up a very long string into multiple lines. TOML makes this easy.
 **Multi-line basic strings** are surrounded by three quotation marks on each
 side and allow newlines. A newline immediately following the opening delimiter
 will be trimmed. All other whitespace and newline characters remain intact.
+Carriage returns (U+000D) are allowed only as part of a newline sequence U+000D
+U+000A (CRLF).  Backslash may only occur if it is part of a valid escape
+sequence.
 
 ```toml
 str1 = """
@@ -347,11 +343,6 @@ str3 = """\
        the lazy dog.\
        """
 ```
-
-In addition to the characters disallowed for all strings mentioned above, U+000D
-(CR) is allowed only as part of a newline sequence U+000D U+000A (CRLF).  As
-with basic strings, backslash and quotation mark may only occur literally if
-they are part of a valid escape sequence.
 
 You can write a quotation mark, or two adjacent quotation marks, anywhere inside
 a multi-line basic string. They can also be written just inside the delimiters.
@@ -413,12 +404,10 @@ apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 str = ''''That,' she said, 'is still pointless.''''
 ```
 
-As in all strings, most control characters are not permitted even in a literal
-string or multi-line literal string.  Thus, these literal strings are not suited
-for representing blobs of binary data.  It is recommended that you use Base64 or
-another suitable ASCII or UTF-8 encoding. The handling of that encoding will be
-application-specific.
-
+Because most control characters are not permitted even in literal and multi-line
+literal strings, these literal strings are not suited for representing blobs of
+binary data.  It is recommended that you use Base64 or another suitable ASCII or
+UTF-8 encoding. The handling of that encoding will be application-specific.
 
 Integer
 -------
