@@ -284,6 +284,8 @@ For convenience, some popular characters have a compact escape sequence.
 \UXXXXXXXX - unicode         (U+XXXXXXXX)
 ```
 
+Tab characters can be used either directly or in their escaped form `\t`.
+
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
 The escape codes must be valid Unicode [scalar
 values](https://unicode.org/glossary/#unicode_scalar_value).
