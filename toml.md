@@ -259,10 +259,10 @@ String
 ------
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must be encoded as valid UTF-8, and can contain
-any codepoint except control characters other than tab (U+0000 to U+0008, U+000A
-to U+001F, U+007F). Multi-line strings can also contain newlines (U+000A) and
-carriage returns (U+000D).
+multi-line literal. Strings can contain any valid Unicode codepoint except the
+following control characters: U+0000 to U+0008, U+000A to U+001F, and
+U+007F. Note that tab (U+0009) is allowed. Multi-line strings can also contain
+newlines (U+000A) and carriage returns (U+000D).
 
 **Basic strings** are surrounded by quotation marks (`"`). Backslash and
 quotation mark may only occur if they are part of a valid escape sequence.
