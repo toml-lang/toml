@@ -3,6 +3,7 @@
 ## unreleased
 
 * Clarify where and how dotted keys define tables.
+* Clarify that a trailing comma is not required on the last item in an array.
 
 ## 1.0.0 / 2021-01-11
 
