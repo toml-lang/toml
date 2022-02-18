@@ -1,4 +1,5 @@
-<img align="right" src="logos/toml-200.png" alt="TOML logo">
+<img align="right" src="logos/toml-200.png#gh-light-mode-only" alt="TOML logo">
+<img align="right" src="logos/toml-200-for-dark.png#gh-dark-mode-only" alt="TOML logo">
 
 TOML
 ====
