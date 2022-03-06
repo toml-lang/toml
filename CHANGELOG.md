@@ -3,6 +3,7 @@
 ## unreleased
 
 * Clarify where and how dotted keys define tables.
+* Add new `\e` shorthand for the escape character.
 
 ## 1.0.0 / 2021-01-11
 
@@ -11,7 +12,6 @@
 * Clarify that indentation before keys is ignored.
 * Clarify that indentation before table headers is ignored.
 * Clarify that indentation between array values is ignored.
-* Add new `\e` shorthand for the escape character.
 
 ## 1.0.0-rc.3 / 2020-10-07
 
