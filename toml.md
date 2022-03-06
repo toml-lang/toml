@@ -128,12 +128,13 @@ to use bare keys except when absolutely necessary.
 ```
 
 A bare key must be non-empty, but an empty quoted key is allowed (though
-discouraged).
+discouraged). You cannot use multi-line strings to define quoted keys.
 
 ```toml
-= "no key name"  # INVALID
-"" = "blank"     # VALID but discouraged
-'' = 'blank'     # VALID but discouraged
+= "no key name"           # INVALID
+"""key""" = "not allowed" # INVALID
+"" = "blank"              # VALID but discouraged
+'' = 'blank'              # VALID but discouraged
 ```
 
 **Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
@@ -277,6 +278,7 @@ For convenience, some popular characters have a compact escape sequence.
 \n         - linefeed        (U+000A)
 \f         - form feed       (U+000C)
 \r         - carriage return (U+000D)
+\e         - escape          (U+001B)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
 \uXXXX     - unicode         (U+XXXX)
@@ -341,7 +343,8 @@ str3 = """\
 
 Any Unicode character may be used except those that must be escaped: backslash
 and the control characters other than tab, line feed, and carriage return
-(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
+(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Carriage returns
+(U+000D) are only allowed as part of a newline sequence.
 
 You can write a quotation mark, or two adjacent quotation marks, anywhere inside
 a multi-line basic string. They can also be written just inside the delimiters.
@@ -759,8 +762,9 @@ name = "Regina Dogman"
 member_since = 1999-08-04
 ```
 
-Dotted keys create and define a table for each key part before the last one,
-provided that such tables were not previously created.
+Dotted keys create and define a table for each key part before the last one. Any
+such table must have all its key/value pairs defined under the current `[table]`
+header, or in the root table if defined before all headers, or in one inline table.
 
 ```toml
 fruit.apple.color = "red"

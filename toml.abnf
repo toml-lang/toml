@@ -1,6 +1,9 @@
 ;; This document describes TOML's syntax, using the ABNF format (defined in
 ;; RFC 5234 -- https://www.ietf.org/rfc/rfc5234.txt).
 ;;
+;; Although a TOML document must be valid UTF-8, this grammar refers to the
+;; Unicode Code Points you get after you decode the UTF-8 input.
+;;
 ;; All valid TOML documents will match this description, however certain
 ;; invalid documents would need to be rejected as per the semantics described
 ;; in the supporting text description.
@@ -74,6 +77,7 @@ escape = %x5C                   ; \
 escape-seq-char =  %x22         ; "    quotation mark  U+0022
 escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
 escape-seq-char =/ %x62         ; b    backspace       U+0008
+escape-seq-char =/ %x65         ; e    escape          U+001B
 escape-seq-char =/ %x66         ; f    form feed       U+000C
 escape-seq-char =/ %x6E         ; n    line feed       U+000A
 escape-seq-char =/ %x72         ; r    carriage return U+000D
