@@ -77,6 +77,7 @@ escape = %x5C                   ; \
 escape-seq-char =  %x22         ; "    quotation mark  U+0022
 escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
 escape-seq-char =/ %x62         ; b    backspace       U+0008
+escape-seq-char =/ %x65         ; e    escape          U+001B
 escape-seq-char =/ %x66         ; f    form feed       U+000C
 escape-seq-char =/ %x6E         ; n    line feed       U+000A
 escape-seq-char =/ %x72         ; r    carriage return U+000D
