@@ -1,2 +1,2 @@
 toml.abnf text eol=crlf
-/scripts/* linguist-vendored=true
+/scripts/* linguist-detectable=false
