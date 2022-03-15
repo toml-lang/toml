@@ -4,6 +4,7 @@
 
 * Clarify where and how dotted keys define tables.
 * Add new `\e` shorthand for the escape character.
+* Allow non-English scripts in unquoted (bare) keys
 
 ## 1.0.0 / 2021-01-11
 

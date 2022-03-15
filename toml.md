@@ -104,27 +104,33 @@ Keys
 
 A key may be either bare, quoted, or dotted.
 
-**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
-dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
-ASCII digits, e.g. `1234`, but are always interpreted as strings.
+**Bare keys** may contain any letter-like Unicode character from any Unicode script,
+may contain ASCII digits, dashes and underscores. Punctuation, spaces, arrows, box drawing 
+and private use characters are not allowed.  Note that bare keys are allowed to be
+composed of only ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```toml
 key = "value"
 bare_key = "value"
 bare-key = "value"
 1234 = "value"
+Fuß = "value"
+😂 = "value"
+汉语大字典 = "value"
+辭源 = "value"
+பெண்டிரேம் = "value"
 ```
 
 **Quoted keys** follow the exact same rules as either basic strings or literal
-strings and allow you to use a much broader set of key names. Best practice is
-to use bare keys except when absolutely necessary.
+strings and allow you to use any Unicode character in a key name, including spaces.
+Best practice is to use bare keys except when absolutely necessary.
 
 ```toml
 "127.0.0.1" = "value"
 "character encoding" = "value"
-"ʎǝʞ" = "value"
-'key2' = "value"
 'quoted "value"' = "value"
+"╠═╣" = "value"
+"⋰∫∬∭⋱" = "value"
 ```
 
 A bare key must be non-empty, but an empty quoted key is allowed (though
@@ -145,6 +151,7 @@ name = "Orange"
 physical.color = "orange"
 physical.shape = "round"
 site."google.com" = true
+பெண்.டிரேம் = "we are women"
 ```
 
 In JSON land, that would give you the following structure:
@@ -158,6 +165,9 @@ In JSON land, that would give you the following structure:
   },
   "site": {
     "google.com": true
+  },
+  "பெண்": {
+    "டிரேம்": "we are women"
   }
 }
 ```
