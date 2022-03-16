@@ -39,7 +39,6 @@ newline =/ %x0D.0A  ; CRLF
 
 comment-start-symbol = %x23 ; #
 non-ascii = %x80-D7FF / %xE000-10FFFF
-
 non-eol = %x09 / %x20-7E / non-ascii
 
 comment = comment-start-symbol *non-eol
@@ -47,17 +46,17 @@ comment = comment-start-symbol *non-eol
 ;; Key-Value pairs
 
 keyval = key keyval-sep val
-
 key = simple-key / dotted-key
 val = string / boolean / array / inline-table / date-time / float / integer
+
 simple-key = quoted-key / unquoted-key
 
 ;; Unquoted key
 
 unquoted-key = 1*unquoted-key-char
 unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _ 
-unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-FF        ; non-symbol chars in Latin block
-unquoted-key-char =/ %x100-2FF / %x300-37D / %x37F-1FFF ; this excludes GREEK QUESTION MARK, which is basically a semi-colon 
+unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
+unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon 
 unquoted-key-char =/ %x200C-200D / %x203F-2040          ; include combining chars used in some languages
 unquoted-key-char =/ %x2070-218F / %x2C00-2FEF          ; this excludes arrows, blocks and the like
 unquoted-key-char =/ %x3001-D7FF                        ; skip 2FF0-3000 ideographic up/down markers and spaces
