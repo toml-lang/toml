@@ -54,9 +54,9 @@ simple-key = quoted-key / unquoted-key
 ;; Unquoted key
 
 unquoted-key = 1*unquoted-key-char
-unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _ 
+unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
 unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
-unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon 
+unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
 unquoted-key-char =/ %x200C-200D / %x203F-2040          ; include combining chars used in some languages
 unquoted-key-char =/ %x2070-218F / %x2C00-2FEF          ; this excludes arrows, blocks and the like
 unquoted-key-char =/ %x3001-D7FF                        ; skip 2FF0-3000 ideographic up/down markers and spaces
