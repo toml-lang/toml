@@ -105,15 +105,15 @@ Keys
 A key may be either bare, quoted, or dotted.
 
 **Bare keys** may contain any letter-like Unicode character from any Unicode script,
-may contain ASCII digits, dashes and underscores. Punctuation, spaces, arrows, box drawing 
+as well as ASCII digits, dashes and underscores. Punctuation, spaces, arrows, box drawing 
 and private use characters are not allowed.  Note that bare keys are allowed to be
 composed of only ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 * From the ASCII characters, only A-Z, a-z, 0-9, _ and - are allowed
-* From the rest of the first 256 characters, only 0080-00BF, "×" (00D7) and "÷" (00F7) are disallowed
-* All of 0100-1FFF are allowed, except ";" (037E)
-* Characters 200C, 200D, 203F, 2040, 2070-218F, 2C00-2FEF are allowed
-* All characters from 3001, except surrogates (D800-D999), Private Use (E000-F8FF, F0000-100000) and process-internal use (FDD0-FDEF)
+* From the rest of the first 256 characters, only U+0080-00BF, "×" (U+00D7) and "÷" (U+00F7) are disallowed
+* All of U+0100-1FFF are allowed, except ";" (U+037E)
+* Characters U+200C, U+200D, U+203F, U+2040, U+2070-218F, U+2C00 to U+2FEF are allowed
+* All characters from U+3001 and higher, except surrogates (U+D800 to U+D999), Private Use (U+E000 to U+F8FF, U+F0000 to U+100000) and process-internal use (U+FDD0 to U+FDEF)
 
 ```toml
 key = "value"
