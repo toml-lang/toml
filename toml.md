@@ -110,7 +110,7 @@ and private use characters are not allowed.  Note that bare keys are allowed to 
 composed of only ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 * From the ASCII characters, only `A-Z`, `a-z`, `0-9`, `_` and `-` are allowed.
-* From the rest of the ISO-8859-1 characters, allowed are U+A2 to U+A5, U+B1 to U+B3, U+B9, U+BC to U+BE, U+C0 to U+D6, U+D8 to U+F6 and U+F8 to U+FF
+* From the rest of the ISO-8859-1 characters, allowed are U+B1 to U+B3, U+B9, U+BC to U+BE, U+C0 to U+D6, U+D8 to U+F6 and U+F8 to U+FF
 * All of U+0100-1FFF are allowed, except `;` (U+037E).
 * Characters U+200C, U+200D, U+203F, U+2040, U+2070 to U+218F, U+2460 to U+24FF, and U+2C00 to U+2FEF are allowed.
 * All characters from U+3001 and higher, except surrogates (U+D800 to U+D999), Private Use (U+E000 to U+F8FF, U+F0000 to U+100000) and process-internal use (U+FDD0 to U+FDEF).
