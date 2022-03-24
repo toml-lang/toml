@@ -112,7 +112,7 @@ composed of only ASCII digits, e.g. `1234`, but are always interpreted as string
 * From the ASCII characters, only `A-Z`, `a-z`, `0-9`, `_` and `-` are allowed.
 * From the rest of the first 256 characters, only U+0080-00BF, `×` (U+00D7) and `÷` (U+00F7) are disallowed.
 * All of U+0100-1FFF are allowed, except `;` (U+037E).
-* Characters U+200C, U+200D, U+203F, U+2040, U+2070 to U+218F, U+2C00 to U+2FEF are allowed.
+* Characters U+200C, U+200D, U+203F, U+2040, U+2070 to U+218F, U+2460 to U+24FF, and U+2C00 to U+2FEF are allowed.
 * All characters from U+3001 and higher, except surrogates (U+D800 to U+D999), Private Use (U+E000 to U+F8FF, U+F0000 to U+100000) and process-internal use (U+FDD0 to U+FDEF).
 
 ```toml
