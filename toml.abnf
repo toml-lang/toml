@@ -61,7 +61,7 @@ unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION
 unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
 unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
 unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
-unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-D999 surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
+unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
 unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
 
 ;; Quoted and dotted key
