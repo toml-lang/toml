@@ -2,6 +2,8 @@
 
 ## unreleased
 
+* Clarify where and how dotted keys define tables.
+* Add new `\e` shorthand for the escape character.
 * Add \x00 notation to basic strings.
 
 ## 1.0.0 / 2021-01-11
