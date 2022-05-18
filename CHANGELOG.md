@@ -2,6 +2,8 @@
 
 ## unreleased
 
+* Allow newline after key/values in inline tables.
+* Allow trailing comma in inline tables.
 * Clarify where and how dotted keys define tables.
 * Add new `\e` shorthand for the escape character.
 

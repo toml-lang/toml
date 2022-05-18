@@ -798,20 +798,20 @@ Inline Table
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped data that can otherwise quickly become verbose.
-Inline tables are fully defined within curly braces: `{` and `}`. Within the
-braces, zero or more comma-separated key/value pairs may appear. Key/value pairs
-take the same form as key/value pairs in standard tables. All value types are
+Inline tables are defined within curly braces: `{` and `}`. Within the braces,
+zero or more comma-separated key/value pairs may appear. Key/value pairs take
+the same form as key/value pairs in standard tables. All value types are
 allowed, including inline tables.
 
-Inline tables are intended to appear on a single line. A terminating comma (also
-called trailing comma) is not permitted after the last key/value pair in an
-inline table. No newlines are allowed between the curly braces unless they are
-valid within a value. Even so, it is strongly discouraged to break an inline
-table onto multiples lines. If you find yourself gripped with this desire, it
-means you should be using standard tables.
+Inline tables can have multiple key/value pairs on the same line, or they can be
+put on different lines. A terminating comma (also called trailing comma) is
+permitted after the last key/value pair.
 
 ```toml
-name = { first = "Tom", last = "Preston-Werner" }
+name = {
+  first = "Tom",
+  last = "Preston-Werner",
+}
 point = { x = 1, y = 2 }
 animal = { type.name = "pug" }
 ```
