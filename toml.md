@@ -797,7 +797,9 @@ Inline Table
 ------------
 
 Inline tables provide a more compact syntax for expressing tables. They are
-especially useful for grouped data that can otherwise quickly become verbose.
+especially useful for grouped data that can otherwise quickly become verbose or
+(deeply) nested data.
+
 Inline tables are defined within curly braces: `{` and `}`. Within the braces,
 zero or more comma-separated key/value pairs may appear. Key/value pairs take
 the same form as key/value pairs in standard tables. All value types are
@@ -808,12 +810,19 @@ put on different lines. A terminating comma (also called trailing comma) is
 permitted after the last key/value pair.
 
 ```toml
-name = {
-  first = "Tom",
-  last = "Preston-Werner",
-}
-point = { x = 1, y = 2 }
+name = { first = "Tom", last = "Preston-Werner" }
+point = {x=1, y=2}
 animal = { type.name = "pug" }
+contact = {
+    personal = {
+        name = "Donald Duck",
+        email = "donald@duckburg.com",
+    },
+    work = {
+        name = "Coin cleaner",
+        email = "donald@ScroogeCorp.com",
+    },
+}
 ```
 
 The inline tables above are identical to the following standard table
@@ -830,6 +839,14 @@ y = 2
 
 [animal]
 type.name = "pug"
+
+[contact.personal]
+name = "Donald Duck"
+email = "donald@duckburg.com"
+
+[contact.work]
+name = "Coin cleaner"
+email = "donald@ScroogeCorp.com"
 ```
 
 Inline tables are fully self-contained and define all keys and sub-tables within
