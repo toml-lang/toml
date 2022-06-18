@@ -71,8 +71,8 @@ start or end of a TOML file, which can complicate sending it through a stream.
 These details must be negotiated on the application layer.
 
 INI files are frequently compared to TOML for their similarities in syntax and
-use as configuration files. However, there is no standardized format for INI
-and they do not gracefully handle more than one or two levels of nesting.
+use as configuration files. However, there is no standardized format for INI and
+they do not gracefully handle more than one or two levels of nesting.
 
 Further reading:
 
@@ -82,8 +82,8 @@ Further reading:
 
 ## Get Involved
 
-Documentation, bug reports, pull requests, and all other contributions
-are welcome!
+Documentation, bug reports, pull requests, and all other contributions are
+welcome!
 
 ## Wiki
 
@@ -98,5 +98,5 @@ catalogs the following:
 - Encoders
 - Converters
 
-Please take a look if you'd like to view or add to that list. Thanks for being
-a part of the TOML community!
+Please take a look if you'd like to view or add to that list. Thanks for being a
+part of the TOML community!

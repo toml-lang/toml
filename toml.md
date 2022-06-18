@@ -86,8 +86,8 @@ Unspecified values are invalid.
 key = # INVALID
 ```
 
-There must be a newline (or EOF) after a key/value pair. (See [Inline
-Table](#user-content-inline-table) for exceptions.)
+There must be a newline (or EOF) after a key/value pair. (See
+[Inline Table](#user-content-inline-table) for exceptions.)
 
 ```
 first = "Tom" last = "Preston-Werner" # INVALID
@@ -185,8 +185,8 @@ spelling = "favorite"
 "spelling" = "favourite"
 ```
 
-As long as a key hasn't been directly defined, you may still write to it and
-to names within it.
+As long as a key hasn't been directly defined, you may still write to it and to
+names within it.
 
 ```
 # This makes the key "fruit" into a table.
@@ -279,8 +279,8 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
-forms. The escape codes must be valid Unicode [scalar
-values](https://unicode.org/glossary/#unicode_scalar_value).
+forms. The escape codes must be valid Unicode
+[scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
@@ -526,8 +526,8 @@ bool2 = false
 
 ## Offset Date-Time
 
-To unambiguously represent a specific instant in time, you may use an [RFC
-3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
+To unambiguously represent a specific instant in time, you may use an
+[RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
 
 ```toml
 odt1 = 1979-05-27T07:32:00Z
@@ -591,8 +591,8 @@ ld1 = 1979-05-27
 
 ## Local Time
 
-If you include only the time portion of an [RFC
-3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
+If you include only the time portion of an
+[RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
 represent that time of day without any relation to a specific day or any offset
 or timezone.
 
@@ -768,7 +768,8 @@ member_since = 1999-08-04
 
 Dotted keys create and define a table for each key part before the last one. Any
 such table must have all its key/value pairs defined under the current `[table]`
-header, or in the root table if defined before all headers, or in one inline table.
+header, or in the root table if defined before all headers, or in one inline
+table.
 
 ```toml
 fruit.apple.color = "red"
@@ -1020,6 +1021,7 @@ When transferring TOML files over the internet, the appropriate MIME type is
 
 ## ABNF Grammar
 
-A formal description of TOML's syntax is available, as a separate [ABNF file][abnf].
+A formal description of TOML's syntax is available, as a separate [ABNF
+file][abnf].
 
 [abnf]: ./toml.abnf
