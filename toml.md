@@ -1,21 +1,18 @@
 ![TOML Logo](logos/toml-200.png)
 
-TOML
-====
+# TOML
 
 Tom's Obvious, Minimal Language.
 
 By Tom Preston-Werner, Pradyun Gedam, et al.
 
-Objectives
-----------
+## Objectives
 
 TOML aims to be a minimal configuration file format that's easy to read due to
 obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
-Table of contents
------------------
+## Table of contents
 
 - [Spec](#user-content-spec)
 - [Comment](#user-content-comment)
@@ -37,16 +34,14 @@ Table of contents
 - [MIME Type](#user-content-mime-type)
 - [ABNF Grammar](#user-content-abnf-grammar)
 
-Spec
-----
+## Spec
 
-* TOML is case-sensitive.
-* A TOML file must be a valid UTF-8 encoded Unicode document.
-* Whitespace means tab (0x09) or space (0x20).
-* Newline means LF (0x0A) or CRLF (0x0D 0x0A).
+- TOML is case-sensitive.
+- A TOML file must be a valid UTF-8 encoded Unicode document.
+- Whitespace means tab (0x09) or space (0x20).
+- Newline means LF (0x0A) or CRLF (0x0D 0x0A).
 
-Comment
--------
+## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
 string.
@@ -60,8 +55,7 @@ another = "# This is not a comment"
 Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F)
 are not permitted in comments.
 
-Key/Value Pair
---------------
+## Key/Value Pair
 
 The primary building block of a TOML document is the key/value pair.
 
@@ -99,8 +93,7 @@ Table](#user-content-inline-table) for exceptions.)
 first = "Tom" last = "Preston-Werner" # INVALID
 ```
 
-Keys
-----
+## Keys
 
 A key may be either bare, quoted, or dotted.
 
@@ -255,8 +248,7 @@ The above TOML maps to the following JSON.
 { "3": { "14159": "pi" } }
 ```
 
-String
-------
+## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
 multi-line literal. All strings must contain only valid UTF-8 characters.
@@ -411,8 +403,7 @@ Control characters other than tab are not permitted in a literal string. Thus,
 for binary data, it is recommended that you use Base64 or another suitable ASCII
 or UTF-8 encoding. The handling of that encoding will be application-specific.
 
-Integer
--------
+## Integer
 
 Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
 Negative numbers are prefixed with a minus sign.
@@ -461,8 +452,7 @@ Arbitrary 64-bit signed integers (from −2^63 to 2^63−1) should be accepted a
 handled losslessly. If an integer cannot be represented losslessly, an error
 must be thrown.
 
-Float
------
+## Float
 
 Floats should be implemented as IEEE 754 binary64 values.
 
@@ -525,8 +515,7 @@ sf5 = +nan # same as `nan`
 sf6 = -nan # valid, actual encoding is implementation-specific
 ```
 
-Boolean
--------
+## Boolean
 
 Booleans are just the tokens you're used to. Always lowercase.
 
@@ -535,8 +524,7 @@ bool1 = true
 bool2 = false
 ```
 
-Offset Date-Time
-----------------
+## Offset Date-Time
 
 To unambiguously represent a specific instant in time, you may use an [RFC
 3339](https://tools.ietf.org/html/rfc3339) formatted date-time with offset.
@@ -567,8 +555,7 @@ implementation-specific. If the value contains greater precision than the
 implementation can support, the additional precision must be truncated, not
 rounded.
 
-Local Date-Time
----------------
+## Local Date-Time
 
 If you omit the offset from an [RFC 3339](https://tools.ietf.org/html/rfc3339)
 formatted date-time, it will represent the given date-time without any relation
@@ -592,8 +579,7 @@ implementation-specific. If the value contains greater precision than the
 implementation can support, the additional precision must be truncated, not
 rounded.
 
-Local Date
-----------
+## Local Date
 
 If you include only the date portion of an
 [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
@@ -603,8 +589,7 @@ represent that entire day without any relation to an offset or timezone.
 ld1 = 1979-05-27
 ```
 
-Local Time
-----------
+## Local Time
 
 If you include only the time portion of an [RFC
 3339](https://tools.ietf.org/html/rfc3339) formatted date-time, it will
@@ -627,8 +612,7 @@ implementation-specific. If the value contains greater precision than the
 implementation can support, the additional precision must be truncated, not
 rounded.
 
-Array
------
+## Array
 
 Arrays are square brackets with values inside. Whitespace is ignored. Elements
 are separated by commas. Arrays can contain values of the same data types as
@@ -665,8 +649,7 @@ integers3 = [
 ]
 ```
 
-Table
------
+## Table
 
 Tables (also known as hash tables or dictionaries) are collections of key/value
 pairs. They are defined by headers, with square brackets on a line by
@@ -814,8 +797,7 @@ apple.taste.sweet = true
 smooth = true
 ```
 
-Inline Table
-------------
+## Inline Table
 
 Inline tables provide a more compact syntax for expressing tables. They are
 especially useful for grouped nested data that can otherwise quickly become
@@ -888,8 +870,7 @@ type.name = "Nail"
 # type = { edible = false }  # INVALID
 ```
 
-Array of Tables
----------------
+## Array of Tables
 
 The last syntax that has not yet been described allows writing arrays of tables.
 These can be expressed by using a header with a name in double brackets. The
@@ -917,7 +898,7 @@ In JSON land, that would give you the following structure.
 {
   "products": [
     { "name": "Hammer", "sku": 738594937 },
-    { },
+    {},
     { "name": "Nail", "sku": 284758393, "color": "gray" }
   ]
 }
@@ -960,16 +941,11 @@ The above TOML maps to the following JSON.
         "color": "red",
         "shape": "round"
       },
-      "varieties": [
-        { "name": "red delicious" },
-        { "name": "granny smith" }
-      ]
+      "varieties": [{ "name": "red delicious" }, { "name": "granny smith" }]
     },
     {
       "name": "banana",
-      "varieties": [
-        { "name": "plantain" }
-      ]
+      "varieties": [{ "name": "plantain" }]
     }
   ]
 }
@@ -1033,19 +1009,16 @@ points = [ { x = 1, y = 2, z = 3 },
            { x = 2, y = 4, z = 8 } ]
 ```
 
-Filename Extension
-------------------
+## Filename Extension
 
 TOML files should use the extension `.toml`.
 
-MIME Type
----------
+## MIME Type
 
 When transferring TOML files over the internet, the appropriate MIME type is
 `application/toml`.
 
-ABNF Grammar
-------------
+## ABNF Grammar
 
 A formal description of TOML's syntax is available, as a separate [ABNF file][abnf].
 
