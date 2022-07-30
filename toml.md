@@ -288,7 +288,7 @@ the control characters other than tab (U+0000 to U+0008, U+000A to U+001F,
 U+007F).
 
 ```toml
-str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str = "I'm a string. \"You can quote me\". Name\tJos\xE9\nLocation\tSF."
 ```
 
 For convenience, some popular characters have a compact escape sequence.
@@ -302,12 +302,13 @@ For convenience, some popular characters have a compact escape sequence.
 \e         - escape          (U+001B)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
-\uXXXX     - unicode         (U+XXXX)
-\UXXXXXXXX - unicode         (U+XXXXXXXX)
+\xHH       - unicode         (U+00HH)
+\uHHHH     - unicode         (U+HHHH)
+\UHHHHHHHH - unicode         (U+HHHHHHHH)
 ```
 
-Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
-The escape codes must be valid Unicode [scalar
+Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
+forms. The escape codes must be valid Unicode [scalar
 values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
@@ -574,6 +575,14 @@ time with a space character (as permitted by RFC 3339 section 5.6).
 odt4 = 1979-05-27 07:32:00Z
 ```
 
+One exception to RFC 3339 is permitted: seconds may be omitted, in which case
+`:00` will be assumed. The offset immediately follows the minutes.
+
+```toml
+odt5 = 1979-05-27 07:32Z
+odt6 = 1979-05-27 07:32-07:00
+```
+
 Millisecond precision is required. Further precision of fractional seconds is
 implementation-specific. If the value contains greater precision than the
 implementation can support, the additional precision must be truncated, not
@@ -591,6 +600,12 @@ implementation-specific.
 ```toml
 ldt1 = 1979-05-27T07:32:00
 ldt2 = 1979-05-27T00:32:00.999999
+```
+
+Seconds may be omitted, in which case `:00` will be assumed.
+
+```toml
+ldt3 = 1979-05-27T07:32
 ```
 
 Millisecond precision is required. Further precision of fractional seconds is
@@ -620,6 +635,12 @@ or timezone.
 ```toml
 lt1 = 07:32:00
 lt2 = 00:32:00.999999
+```
+
+Seconds may be omitted, in which case `:00` will be assumed.
+
+```toml
+lt3 = 07:32
 ```
 
 Millisecond precision is required. Further precision of fractional seconds is
@@ -818,23 +839,32 @@ Inline Table
 ------------
 
 Inline tables provide a more compact syntax for expressing tables. They are
-especially useful for grouped data that can otherwise quickly become verbose.
+especially useful for grouped nested data that can otherwise quickly become
+verbose.
+
 Inline tables are fully defined within curly braces: `{` and `}`. Within the
 braces, zero or more comma-separated key/value pairs may appear. Key/value pairs
 take the same form as key/value pairs in standard tables. All value types are
 allowed, including inline tables.
 
-Inline tables are intended to appear on a single line. A terminating comma (also
-called trailing comma) is not permitted after the last key/value pair in an
-inline table. No newlines are allowed between the curly braces unless they are
-valid within a value. Even so, it is strongly discouraged to break an inline
-table onto multiples lines. If you find yourself gripped with this desire, it
-means you should be using standard tables.
+Inline tables can have multiple key/value pairs on the same line, or they can be
+put on different lines. A terminating comma (also called trailing comma) is
+permitted after the last key/value pair.
 
 ```toml
 name = { first = "Tom", last = "Preston-Werner" }
-point = { x = 1, y = 2 }
+point = {x=1, y=2}
 animal = { type.name = "pug" }
+contact = {
+    personal = {
+        name = "Donald Duck",
+        email = "donald@duckburg.com",
+    },
+    work = {
+        name = "Coin cleaner",
+        email = "donald@ScroogeCorp.com",
+    },
+}
 ```
 
 The inline tables above are identical to the following standard table
@@ -851,6 +881,14 @@ y = 2
 
 [animal]
 type.name = "pug"
+
+[contact.personal]
+name = "Donald Duck"
+email = "donald@duckburg.com"
+
+[contact.work]
+name = "Coin cleaner"
+email = "donald@ScroogeCorp.com"
 ```
 
 Inline tables are fully self-contained and define all keys and sub-tables within
