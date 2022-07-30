@@ -176,7 +176,7 @@ time-secfrac   = "." 1*DIGIT
 time-numoffset = ( "+" / "-" ) time-hour ":" time-minute
 time-offset    = "Z" / time-numoffset
 
-partial-time   = time-hour ":" time-minute ":" time-second [ time-secfrac ]
+partial-time   = time-hour ":" time-minute [ ":" time-second [ time-secfrac ] ]
 full-date      = date-fullyear "-" date-month "-" date-mday
 full-time      = partial-time time-offset
 
