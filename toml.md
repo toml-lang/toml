@@ -797,12 +797,12 @@ Inline Table
 ------------
 
 Inline tables provide a more compact syntax for expressing tables. They are
-especially useful for grouped (deeply) nested data that can otherwise quickly
-become verbose.
+especially useful for grouped nested data that can otherwise quickly become
+verbose.
 
-Inline tables are defined within curly braces: `{` and `}`. Within the braces,
-zero or more comma-separated key/value pairs may appear. Key/value pairs take
-the same form as key/value pairs in standard tables. All value types are
+Inline tables are fully defined within curly braces: `{` and `}`. Within the
+braces, zero or more comma-separated key/value pairs may appear. Key/value pairs
+take the same form as key/value pairs in standard tables. All value types are
 allowed, including inline tables.
 
 Inline tables can have multiple key/value pairs on the same line, or they can be
