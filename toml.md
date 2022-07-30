@@ -259,12 +259,13 @@ String
 ------
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must contain only valid UTF-8 characters.
+multi-line literal. Strings can contain any valid Unicode codepoint except the
+following control characters: U+0000 to U+0008, U+000A to U+001F, and
+U+007F. Note that tab (U+0009) is allowed. Multi-line strings can also contain
+newlines (U+000A) and carriage returns (U+000D).
 
-**Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
-may be used except those that must be escaped: quotation mark, backslash, and
-the control characters other than tab (U+0000 to U+0008, U+000A to U+001F,
-U+007F).
+**Basic strings** are surrounded by quotation marks (`"`). Backslash and
+quotation mark may only occur if they are part of a valid escape sequence.
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\xE9\nLocation\tSF."
@@ -299,6 +300,9 @@ like to break up a very long string into multiple lines. TOML makes this easy.
 **Multi-line basic strings** are surrounded by three quotation marks on each
 side and allow newlines. A newline immediately following the opening delimiter
 will be trimmed. All other whitespace and newline characters remain intact.
+Carriage returns (U+000D) are allowed only as part of a newline sequence U+000D
+U+000A (CRLF).  Backslash may only occur if it is part of a valid escape
+sequence.
 
 ```toml
 str1 = """
@@ -341,11 +345,6 @@ str3 = """\
        the lazy dog.\
        """
 ```
-
-Any Unicode character may be used except those that must be escaped: backslash
-and the control characters other than tab, line feed, and carriage return
-(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Carriage returns
-(U+000D) are only allowed as part of a newline sequence.
 
 You can write a quotation mark, or two adjacent quotation marks, anywhere inside
 a multi-line basic string. They can also be written just inside the delimiters.
@@ -407,9 +406,10 @@ apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 str = ''''That,' she said, 'is still pointless.''''
 ```
 
-Control characters other than tab are not permitted in a literal string. Thus,
-for binary data, it is recommended that you use Base64 or another suitable ASCII
-or UTF-8 encoding. The handling of that encoding will be application-specific.
+Because most control characters are not permitted even in literal and multi-line
+literal strings, these literal strings are not suited for representing blobs of
+binary data.  It is recommended that you use Base64 or another suitable ASCII or
+UTF-8 encoding. The handling of that encoding will be application-specific.
 
 Integer
 -------
@@ -785,7 +785,8 @@ member_since = 1999-08-04
 
 Dotted keys create and define a table for each key part before the last one. Any
 such table must have all its key/value pairs defined under the current `[table]`
-header, or in the root table if defined before all headers, or in one inline table.
+header, or in the root table if defined before all headers, or in one inline
+table.
 
 ```toml
 fruit.apple.color = "red"
@@ -1047,6 +1048,7 @@ When transferring TOML files over the internet, the appropriate MIME type is
 ABNF Grammar
 ------------
 
-A formal description of TOML's syntax is available, as a separate [ABNF file][abnf].
+A formal description of TOML's syntax is available, as a separate
+[ABNF file][abnf].
 
 [abnf]: ./toml.abnf
