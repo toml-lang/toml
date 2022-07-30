@@ -267,7 +267,7 @@ the control characters other than tab (U+0000 to U+0008, U+000A to U+001F,
 U+007F).
 
 ```toml
-str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str = "I'm a string. \"You can quote me\". Name\tJos\xE9\nLocation\tSF."
 ```
 
 For convenience, some popular characters have a compact escape sequence.
@@ -281,12 +281,13 @@ For convenience, some popular characters have a compact escape sequence.
 \e         - escape          (U+001B)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
-\uXXXX     - unicode         (U+XXXX)
-\UXXXXXXXX - unicode         (U+XXXXXXXX)
+\xHH       - unicode         (U+00HH)
+\uHHHH     - unicode         (U+HHHH)
+\UHHHHHHHH - unicode         (U+HHHHHHHH)
 ```
 
-Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms.
-The escape codes must be valid Unicode [scalar
+Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
+forms. The escape codes must be valid Unicode [scalar
 values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
