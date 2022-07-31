@@ -1,7 +1,6 @@
 <img align="right" src="logos/toml-200.png" alt="TOML logo">
 
-TOML
-====
+# TOML
 
 Tom's Obvious, Minimal Language.
 
@@ -10,15 +9,13 @@ By Tom Preston-Werner, Pradyun Gedam, et al.
 > This repository contains the in-development version of the TOML specification.
 > You can find the released versions at https://toml.io.
 
-Objectives
-----------
+## Objectives
 
 TOML aims to be a minimal configuration file format that's easy to read due to
 obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
 should be easy to parse into data structures in a wide variety of languages.
 
-Example
--------
+## Example
 
 ```toml
 # This is a TOML document.
@@ -56,8 +53,7 @@ hosts = [
 ]
 ```
 
-Comparison with Other Formats
------------------------------
+## Comparison with Other Formats
 
 TOML shares traits with other file formats used for application configuration
 and data serialization, such as YAML and JSON. TOML and JSON both are simple and
@@ -75,34 +71,32 @@ start or end of a TOML file, which can complicate sending it through a stream.
 These details must be negotiated on the application layer.
 
 INI files are frequently compared to TOML for their similarities in syntax and
-use as configuration files. However, there is no standardized format for INI
-and they do not gracefully handle more than one or two levels of nesting.
+use as configuration files. However, there is no standardized format for INI and
+they do not gracefully handle more than one or two levels of nesting.
 
 Further reading:
 
-* YAML spec: https://yaml.org/spec/1.2/spec.html
-* JSON spec: https://tools.ietf.org/html/rfc8259
-* Wikipedia on INI files: https://en.wikipedia.org/wiki/INI_file
+- YAML spec: https://yaml.org/spec/1.2/spec.html
+- JSON spec: https://tools.ietf.org/html/rfc8259
+- Wikipedia on INI files: https://en.wikipedia.org/wiki/INI_file
 
-Get Involved
-------------
+## Get Involved
 
-Documentation, bug reports, pull requests, and all other contributions
-are welcome!
+Documentation, bug reports, pull requests, and all other contributions are
+welcome!
 
-Wiki
-----
+## Wiki
 
 We have an [Official TOML Wiki](https://github.com/toml-lang/toml/wiki) that
 catalogs the following:
 
-* Projects using TOML
-* Implementations
-* Validators
-* Language-agnostic test suite for TOML decoders and encoders
-* Editor support
-* Encoders
-* Converters
+- Projects using TOML
+- Implementations
+- Validators
+- Language-agnostic test suite for TOML decoders and encoders
+- Editor support
+- Encoders
+- Converters
 
-Please take a look if you'd like to view or add to that list. Thanks for being
-a part of the TOML community!
+Please take a look if you'd like to view or add to that list. Thanks for being a
+part of the TOML community!
