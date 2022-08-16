@@ -104,7 +104,7 @@ allowed. Note that bare keys are allowed to be composed of only ASCII digits,
 e.g. 1234, but are always interpreted as strings.
 
 &#x2139;&#xfe0f; The exact ranges of allowed code points can be found in the
-[ABNF grammar file](toml.abnf).
+[ABNF grammar file][abnf].
 
 ```toml
 key = "value"
