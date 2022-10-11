@@ -52,8 +52,9 @@ key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 ```
 
-Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F)
-are not permitted in comments.
+All characters except line feeds (0x0A) are permitted in comments and may be
+ignored. At their discretion, parsers that read comments may exclude a final
+carriage return (0x0D) appearing before a terminating line feed.
 
 ## Key/Value Pair
 
