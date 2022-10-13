@@ -44,17 +44,13 @@ should be easy to parse into data structures in a wide variety of languages.
 ## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
-string.
+string. All code points except line feeds (U+000A) are permitted in comments.
 
 ```toml
 # This is a full-line comment
 key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 ```
-
-All characters except line feeds (0x0A) are permitted in comments and may be
-ignored. At their discretion, parsers that read comments may exclude a final
-carriage return (0x0D) appearing before a terminating line feed.
 
 ## Key/Value Pair
 
