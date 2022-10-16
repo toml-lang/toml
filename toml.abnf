@@ -39,7 +39,7 @@ newline =/ %x0D.0A  ; CRLF
 
 comment-start-symbol = %x23 ; #
 non-ascii = %x80-D7FF / %xE000-10FFFF
-non-linefeed = %x00-09 / %x0B-7F / non-ascii
+non-linefeed = %x00-09 / %x0B-0C / %x0E-7F / non-ascii
 
 comment = comment-start-symbol *non-linefeed
 
