@@ -39,7 +39,7 @@ should be easy to parse into data structures in a wide variety of languages.
 - TOML is case-sensitive.
 - A TOML file must be a valid UTF-8 encoded Unicode document.
 - Whitespace means tab (U+0009) or space (U+0020).
-- Newline means LF (U+000A) or CRLF (U+000D U+0x0A).
+- Newline means LF (U+000A) or CRLF (U+000D U+000A).
 
 ## Comment
 
