@@ -44,7 +44,8 @@ should be easy to parse into data structures in a wide variety of languages.
 ## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
-string. All valid code points except CR (U+000D) are permitted in a comment.
+string. All valid code points except NUL (U+0000) and historic line-breaking
+codes (U+000A through U+000D) are permitted in a comment.
 
 ```toml
 # This is a full-line comment

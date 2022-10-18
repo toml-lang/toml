@@ -37,11 +37,9 @@ newline =/ %x0D.0A  ; CRLF
 
 ;; Comment
 
+comment = comment-start-symbol *allowed-comment-char
 comment-start-symbol = %x23 ; #
-non-ascii = %x80-D7FF / %xE000-10FFFF
-non-linefeed = %x00-09 / %x0B-0C / %x0E-7F / non-ascii
-
-comment = comment-start-symbol *non-linefeed
+allowed-comment-char = %x01-%09 / %0E-10FFFF
 
 ;; Key-Value pairs
 
@@ -84,8 +82,9 @@ quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
 basic-unescaped = wschar / %x21 / %x23-5B / %x5D-7E / non-ascii
-escaped = escape escape-seq-char
+non-ascii = %x80-D7FF / %xE000-10FFFF
 
+escaped = escape escape-seq-char
 escape = %x5C                   ; \
 escape-seq-char =  %x22         ; "    quotation mark  U+0022
 escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
