@@ -296,8 +296,8 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
-forms. The escape codes must be Unicode [scalar
-values](https://unicode.org/glossary/#unicode_scalar_value).
+forms. The escape codes must be Unicode
+[scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
