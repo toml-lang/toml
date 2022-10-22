@@ -2,7 +2,7 @@
 
 ## unreleased
 
-- Relax comment parsing; control characters are again permitted.
+- Relax comment parsing; most control characters are again permitted.
 - Allow newline after key/values in inline tables.
 - Allow trailing comma in inline tables.
 - Clarify where and how dotted keys define tables.

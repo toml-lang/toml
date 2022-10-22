@@ -36,7 +36,10 @@ should be easy to parse into data structures in a wide variety of languages.
 
 ## Spec
 
-A TOML file must be a valid UTF-8 encoded Unicode document.
+A TOML file must be a valid UTF-8 encoded Unicode document. Specifically this
+means that, should a file as a whole not form a well-formed code-unit sequence,
+the file must be rejected (preferably) or ill-formed byte sequences must be
+replaced with U+FFFD as per the Unicode spec.
 
 - TOML is case-sensitive.
 - Whitespace means tab (U+0009) or space (U+0020).
@@ -45,9 +48,9 @@ A TOML file must be a valid UTF-8 encoded Unicode document.
 ## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
-string. Comments may contain any valid code points except a limited subset of
-ASCII control codes that could cause problems during editing or processing
-(specifically, U+0000, and U+000A to U+000D).
+string. Comments may contain any Unicode code points except the following
+control codes that could cause problems during editing or processing: U+0000,
+and U+000A to U+000D.
 
 ```toml
 # This is a full-line comment
@@ -265,7 +268,7 @@ The above TOML maps to the following JSON.
 ## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must contain only valid UTF-8 characters.
+multi-line literal. All strings must contain only Unicode characters.
 
 **Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
 may be used except those that must be escaped: quotation mark, backslash, and
@@ -293,8 +296,8 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
-forms. The escape codes must be valid Unicode
-[scalar values](https://unicode.org/glossary/#unicode_scalar_value).
+forms. The escape codes must be Unicode [scalar
+values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
@@ -417,8 +420,8 @@ str = ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
-for binary data, it is recommended that you use Base64 or another suitable ASCII
-or UTF-8 encoding. The handling of that encoding will be application-specific.
+for binary data, it is recommended that you use Base64 or another suitable text
+encoding. The handling of that encoding will be application-specific.
 
 ## Integer
 
