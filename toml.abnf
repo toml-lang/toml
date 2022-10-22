@@ -39,7 +39,8 @@ newline =/ %x0D.0A  ; CRLF
 
 comment = comment-start-symbol *allowed-comment-char
 comment-start-symbol = %x23 ; #
-allowed-comment-char = %x01-%09 / %0E-10FFFF
+allowed-comment-char = %x01-09 / %x0E-7F / non-ascii
+non-ascii = %x80-D7FF / %xE000-10FFFF
 
 ;; Key-Value pairs
 
@@ -82,7 +83,6 @@ quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
 basic-unescaped = wschar / %x21 / %x23-5B / %x5D-7E / non-ascii
-non-ascii = %x80-D7FF / %xE000-10FFFF
 
 escaped = escape escape-seq-char
 escape = %x5C                   ; \

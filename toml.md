@@ -36,16 +36,18 @@ should be easy to parse into data structures in a wide variety of languages.
 
 ## Spec
 
+A TOML file must be a valid UTF-8 encoded Unicode document.
+
 - TOML is case-sensitive.
-- A TOML file must be a valid UTF-8 encoded Unicode document.
 - Whitespace means tab (U+0009) or space (U+0020).
 - Newline means LF (U+000A) or CRLF (U+000D U+000A).
 
 ## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
-string. All valid code points except NUL (U+0000) and historic line-breaking
-codes (U+000A through U+000D) are permitted in a comment.
+string. Comments may contain any valid code points except a limited subset of
+ASCII control codes that could cause problems during editing or processing
+(specifically, U+0000, and U+000A to U+000D).
 
 ```toml
 # This is a full-line comment
