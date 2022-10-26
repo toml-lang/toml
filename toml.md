@@ -260,7 +260,6 @@ String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
 multi-line literal. All strings must contain only valid Unicode characters.
-Strings should be implemented as UTF-8 byte sequences.
 
 **Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
 may be used except those that must be escaped: quotation mark, backslash, and
