@@ -265,7 +265,7 @@ The above TOML maps to the following JSON.
 ## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must contain only valid UTF-8 characters.
+multi-line literal. All strings must contain only valid Unicode characters.
 
 **Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
 may be used except those that must be escaped: quotation mark, backslash, and
