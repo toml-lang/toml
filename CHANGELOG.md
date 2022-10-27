@@ -2,6 +2,7 @@
 
 ## unreleased
 
+- Clarify Unicode and UTF-8 references.
 - Allow newline after key/values in inline tables.
 - Allow trailing comma in inline tables.
 - Clarify where and how dotted keys define tables.

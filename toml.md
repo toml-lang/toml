@@ -36,10 +36,15 @@ should be easy to parse into data structures in a wide variety of languages.
 
 ## Spec
 
+A TOML file must be a valid UTF-8 encoded Unicode document. Specifically this
+means that, should a file as a whole not form a
+[well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence),
+the file must be rejected (preferably) or ill-formed byte sequences must be
+replaced with U+FFFD as per the Unicode spec.
+
 - TOML is case-sensitive.
-- A TOML file must be a valid UTF-8 encoded Unicode document.
-- Whitespace means tab (0x09) or space (0x20).
-- Newline means LF (0x0A) or CRLF (0x0D 0x0A).
+- Whitespace means tab (U+0009) or space (U+0020).
+- Newline means LF (U+000A) or CRLF (U+000D U+000A).
 
 ## Comment
 
@@ -265,7 +270,7 @@ The above TOML maps to the following JSON.
 ## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must contain only valid UTF-8 characters.
+multi-line literal. All strings must contain only Unicode characters.
 
 **Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
 may be used except those that must be escaped: quotation mark, backslash, and
@@ -293,7 +298,7 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
-forms. The escape codes must be valid Unicode
+forms. The escape codes must be Unicode
 [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
 All other escape sequences not listed above are reserved; if they are used, TOML
@@ -417,8 +422,9 @@ str = ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus,
-for binary data, it is recommended that you use Base64 or another suitable ASCII
-or UTF-8 encoding. The handling of that encoding will be application-specific.
+for binary data, it is recommended that you use Base64 or another suitable
+binary-to-text encoding. The handling of that encoding will be
+application-specific.
 
 ## Integer
 
