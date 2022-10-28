@@ -423,8 +423,7 @@ str = ''''That,' she said, 'is still pointless.''''
 
 Control characters other than tab are not permitted in a literal string. Thus,
 for binary data, it is recommended that you use Base64 or another suitable
-binary-to-text encoding. The handling of that encoding will be
-application-specific.
+binary-to-text encoding.
 
 ## Integer
 
