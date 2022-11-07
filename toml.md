@@ -299,10 +299,12 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
 forms. The escape codes must be Unicode
-[scalar values](https://unicode.org/glossary/#unicode_scalar_value). Note that
-there is no low-level byte sequence syntax in TOML, and that these escape codes
-must not be made to work in such a way. So for binary data, it is recommended
-that you use Base64 or another binary-to-text encoding.
+[scalar values](https://unicode.org/glossary/#unicode_scalar_value).
+
+Note that there is no low-level byte sequence syntax in TOML, and that the
+character escape codes must not be made to work in such a way. So for binary
+data, it is recommended that you use Base64 or another binary-to-text encoding,
+and that external tools ought to be used to interpret such encodings.
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
