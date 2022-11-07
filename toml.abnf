@@ -83,8 +83,8 @@ quotation-mark = %x22            ; "
 
 basic-char = basic-unescaped / escaped
 basic-unescaped = wschar / %x21 / %x23-5B / %x5D-7E / non-ascii
-
 escaped = escape escape-seq-char
+
 escape = %x5C                   ; \
 escape-seq-char =  %x22         ; "    quotation mark  U+0022
 escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
