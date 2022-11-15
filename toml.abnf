@@ -1,6 +1,9 @@
 ;; This document describes TOML's syntax, using the ABNF format (defined in
 ;; RFC 5234 -- https://www.ietf.org/rfc/rfc5234.txt).
 ;;
+;; Although a TOML document must be valid UTF-8, this grammar refers to the
+;; Unicode Code Points you get after you decode the UTF-8 input.
+;;
 ;; All valid TOML documents will match this description, however certain
 ;; invalid documents would need to be rejected as per the semantics described
 ;; in the supporting text description.
@@ -36,25 +39,38 @@ newline =/ %x0D.0A  ; CRLF
 
 comment-start-symbol = %x23 ; #
 non-ascii = %x80-D7FF / %xE000-10FFFF
-non-eol = %x09 / %x20-7F / non-ascii
+non-eol = %x09 / %x20-7E / non-ascii
 
 comment = comment-start-symbol *non-eol
 
 ;; Key-Value pairs
 
 keyval = key keyval-sep val
-
 key = simple-key / dotted-key
+val = string / boolean / array / inline-table / date-time / float / integer
+
 simple-key = quoted-key / unquoted-key
 
-unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
+;; Unquoted key
+
+unquoted-key = 1*unquoted-key-char
+unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
+unquoted-key-char =/ %xB2 / %xB3 / %xB9 / %xBC-BE       ; superscript digits, fractions
+unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
+unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
+unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
+unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
+unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
+unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
+unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
+
+;; Quoted and dotted key
+
 quoted-key = basic-string / literal-string
 dotted-key = simple-key 1*( dot-sep simple-key )
 
 dot-sep   = ws %x2E ws  ; . Period
 keyval-sep = ws %x3D ws ; =
-
-val = string / boolean / array / inline-table / date-time / float / integer
 
 ;; String
 
@@ -74,12 +90,14 @@ escape = %x5C                   ; \
 escape-seq-char =  %x22         ; "    quotation mark  U+0022
 escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
 escape-seq-char =/ %x62         ; b    backspace       U+0008
+escape-seq-char =/ %x65         ; e    escape          U+001B
 escape-seq-char =/ %x66         ; f    form feed       U+000C
 escape-seq-char =/ %x6E         ; n    line feed       U+000A
 escape-seq-char =/ %x72         ; r    carriage return U+000D
 escape-seq-char =/ %x74         ; t    tab             U+0009
-escape-seq-char =/ %x75 4HEXDIG ; uXXXX                U+XXXX
-escape-seq-char =/ %x55 8HEXDIG ; UXXXXXXXX            U+XXXXXXXX
+escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
+escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
+escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
 
 ;; Multiline Basic String
 
@@ -88,10 +106,8 @@ ml-basic-string = ml-basic-string-delim [ newline ] ml-basic-body
 ml-basic-string-delim = 3quotation-mark
 ml-basic-body = *mlb-content *( mlb-quotes 1*mlb-content ) [ mlb-quotes ]
 
-mlb-content = mlb-char / newline / mlb-escaped-nl
-mlb-char = mlb-unescaped / escaped
+mlb-content = basic-char / newline / mlb-escaped-nl
 mlb-quotes = 1*2quotation-mark
-mlb-unescaped = wschar / %x21 / %x23-5B / %x5D-7E / non-ascii
 mlb-escaped-nl = escape ws newline *( wschar / newline )
 
 ;; Literal String
@@ -109,8 +125,7 @@ ml-literal-string = ml-literal-string-delim [ newline ] ml-literal-body
 ml-literal-string-delim = 3apostrophe
 ml-literal-body = *mll-content *( mll-quotes 1*mll-content ) [ mll-quotes ]
 
-mll-content = mll-char / newline
-mll-char = %x09 / %x20-26 / %x28-7E / non-ascii
+mll-content = literal-char / newline
 mll-quotes = 1*2apostrophe
 
 ;; Integer
@@ -174,7 +189,7 @@ time-secfrac   = "." 1*DIGIT
 time-numoffset = ( "+" / "-" ) time-hour ":" time-minute
 time-offset    = "Z" / time-numoffset
 
-partial-time   = time-hour ":" time-minute ":" time-second [ time-secfrac ]
+partial-time   = time-hour ":" time-minute [ ":" time-second [ time-secfrac ] ]
 full-date      = date-fullyear "-" date-month "-" date-mday
 full-time      = partial-time time-offset
 
@@ -221,13 +236,14 @@ std-table-close = ws %x5D     ; ] Right square bracket
 
 ;; Inline Table
 
-inline-table = inline-table-open [ inline-table-keyvals ] inline-table-close
+inline-table = inline-table-open [ inline-table-keyvals ] ws-comment-newline inline-table-close
 
-inline-table-open  = %x7B ws     ; {
-inline-table-close = ws %x7D     ; }
-inline-table-sep   = ws %x2C ws  ; , Comma
+inline-table-open  = %x7B  ; {
+inline-table-close = %x7D  ; }
+inline-table-sep   = %x2C  ; , Comma
 
-inline-table-keyvals = keyval [ inline-table-sep inline-table-keyvals ]
+inline-table-keyvals =  ws-comment-newline keyval ws-comment-newline inline-table-sep inline-table-keyvals
+inline-table-keyvals =/ ws-comment-newline keyval ws-comment-newline [ inline-table-sep ]
 
 ;; Array Table
 

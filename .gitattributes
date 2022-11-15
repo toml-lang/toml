@@ -1,0 +1,2 @@
+toml.abnf text eol=crlf
+/scripts/* linguist-detectable=false
