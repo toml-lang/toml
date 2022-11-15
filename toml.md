@@ -551,10 +551,9 @@ time with a space character (as permitted by RFC 3339 section 5.6).
 odt4 = 1979-05-27 07:32:00Z
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
+Implementations are required to support at least millisecond precision.
+Additional digits of precision may be specified, but if they exceed the
+supported precision, then the extra digits must be _truncated_, not rounded.
 
 Local Date-Time
 ---------------
@@ -571,10 +570,9 @@ ldt2 = 1979-05-27T07:32:00.5
 ldt3 = 1979-05-27T00:32:00.999999
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
+Implementations are required to support at least millisecond precision.
+Additional digits of precision may be specified, but if they exceed the
+supported precision, then the extra digits must be _truncated_, not rounded.
 
 Local Date
 ----------
@@ -601,10 +599,9 @@ lt2 = 00:32:00.5
 lt3 = 00:32:00.999999
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
+Implementations are required to support at least millisecond precision.
+Additional digits of precision may be specified, but if they exceed the
+supported precision, then the extra digits must be _truncated_, not rounded.
 
 Array
 -----
