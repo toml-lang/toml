@@ -897,13 +897,13 @@ each subsequent instance creates and defines a new table element in that array.
 The tables are inserted into the array in the order encountered.
 
 ```toml
-[[products]]
+[[product]]
 name = "Hammer"
 sku = 738594937
 
-[[products]]  # empty table within the array
+[[product]]  # empty table within the array
 
-[[products]]
+[[product]]
 name = "Nail"
 sku = 284758393
 
@@ -914,7 +914,7 @@ In JSON land, that would give you the following structure.
 
 ```json
 {
-  "products": [
+  "product": [
     { "name": "Hammer", "sku": 738594937 },
     {},
     { "name": "Nail", "sku": 284758393, "color": "gray" }
