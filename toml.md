@@ -61,6 +61,10 @@ Comments may contain any Unicode code points except the following control codes
 that could cause problems during editing or processing: U+0000, and U+000A to
 U+000D.
 
+Comments are not considered part of the table that the document describes, and
+parsers must never be affected by the presence, or contents, of comments within
+the file when generating that table.
+
 ## Key/Value Pair
 
 The primary building block of a TOML document is the key/value pair.
