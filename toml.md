@@ -43,6 +43,9 @@ should be easy to parse into data structures in a wide variety of languages.
 
 ## Comment
 
+Comments provide notes to the TOML document's users. They never affect the
+resulting table produced by parsers.
+
 A hash symbol marks the rest of the line as a comment, except when inside a
 string.
 
