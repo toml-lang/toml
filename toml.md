@@ -14,7 +14,7 @@ should be easy to parse into data structures in a wide variety of languages.
 
 ## Table of contents
 
-- [Spec](#user-content-spec)
+- [Preliminaries](#user-content-preliminaries)
 - [Comment](#user-content-comment)
 - [Key/Value Pair](#user-content-keyvalue-pair)
 - [Keys](#user-content-keys)
@@ -34,12 +34,17 @@ should be easy to parse into data structures in a wide variety of languages.
 - [MIME Type](#user-content-mime-type)
 - [ABNF Grammar](#user-content-abnf-grammar)
 
-## Spec
+## Preliminaries
 
 - TOML is case-sensitive.
+- Whitespace means tab (U+0009) or space (U+0020).
+- Newline means LF (U+000A) or CRLF (U+000D U+000A).
 - A TOML file must be a valid UTF-8 encoded Unicode document.
-- Whitespace means tab (0x09) or space (0x20).
-- Newline means LF (0x0A) or CRLF (0x0D 0x0A).
+
+  Specifically this means that a file _as a whole_ must form a
+  [well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence)
+  and will be rejected (preferably) or have ill-formed byte sequences replaced
+  with U+FFFD as per the Unicode specification.
 
 ## Comment
 
@@ -52,8 +57,9 @@ key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 ```
 
-Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F)
-are not permitted in comments.
+Comments may contain any Unicode code points except the following control codes
+that could cause problems during editing or processing: U+0000, and U+000A to
+U+000D.
 
 ## Key/Value Pair
 
@@ -265,7 +271,7 @@ The above TOML maps to the following JSON.
 ## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must contain only valid Unicode characters.
+multi-line literal. All strings must contain only Unicode characters.
 
 **Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
 may be used except those that must be escaped: quotation mark, backslash, and
@@ -293,8 +299,14 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
-forms. The escape codes must be valid Unicode
+forms. The escape codes must be Unicode
 [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
+
+Keep in mind that all TOML strings are sequences of Unicode characters, _not_
+byte sequences. For binary data, avoid using these escape codes. Instead,
+external binary-to-text encoding strategies, like hexadecimal sequences or
+[Base64](https://www.base64decode.org/), are recommended for converting between
+bytes and strings.
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
@@ -416,9 +428,7 @@ apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 str = ''''That,' she said, 'is still pointless.''''
 ```
 
-Control characters other than tab are not permitted in a literal string. Thus,
-for binary data, it is recommended that you use Base64 or another suitable ASCII
-or UTF-8 encoding. The handling of that encoding will be application-specific.
+Control characters other than tab are not permitted in a literal string.
 
 ## Integer
 
@@ -897,13 +907,13 @@ each subsequent instance creates and defines a new table element in that array.
 The tables are inserted into the array in the order encountered.
 
 ```toml
-[[products]]
+[[product]]
 name = "Hammer"
 sku = 738594937
 
-[[products]]  # empty table within the array
+[[product]]  # empty table within the array
 
-[[products]]
+[[product]]
 name = "Nail"
 sku = 284758393
 
@@ -914,7 +924,7 @@ In JSON land, that would give you the following structure.
 
 ```json
 {
-  "products": [
+  "product": [
     { "name": "Hammer", "sku": 738594937 },
     {},
     { "name": "Nail", "sku": 284758393, "color": "gray" }
