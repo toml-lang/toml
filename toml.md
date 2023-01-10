@@ -52,8 +52,9 @@ key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 ```
 
-Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F)
-are not permitted in comments.
+Comments may contain any Unicode code points except the following control codes
+that could cause problems during editing or processing: U+0000, and U+000A to
+U+000D.
 
 ## Key/Value Pair
 

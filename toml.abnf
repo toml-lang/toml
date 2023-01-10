@@ -37,11 +37,10 @@ newline =/ %x0D.0A  ; CRLF
 
 ;; Comment
 
+comment = comment-start-symbol *allowed-comment-char
 comment-start-symbol = %x23 ; #
+allowed-comment-char = %x01-09 / %x0E-7F / non-ascii
 non-ascii = %x80-D7FF / %xE000-10FFFF
-non-eol = %x09 / %x20-7E / non-ascii
-
-comment = comment-start-symbol *non-eol
 
 ;; Key-Value pairs
 
