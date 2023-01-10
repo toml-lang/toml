@@ -44,9 +44,7 @@ should be easy to parse into data structures in a wide variety of languages.
 ## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
-string. Comments may contain any Unicode code points except the following
-control codes that could cause problems during editing or processing: U+0000,
-and U+000A to U+000D.
+string.
 
 ```toml
 # This is a full-line comment
@@ -54,6 +52,9 @@ key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 ```
 
+Comments may contain any Unicode code points except the following
+control codes that could cause problems during editing or processing: U+0000,
+and U+000A to U+000D.
 ## Key/Value Pair
 
 The primary building block of a TOML document is the key/value pair.
