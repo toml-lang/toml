@@ -36,15 +36,15 @@ should be easy to parse into data structures in a wide variety of languages.
 
 ## Preliminaries
 
-A TOML file must be a valid UTF-8 encoded Unicode document. Specifically this
-means that, should a file as a whole not form a
-[well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence),
-the file must be rejected (preferably) or ill-formed byte sequences must be
-replaced with U+FFFD as per the Unicode specification.
-
 - TOML is case-sensitive.
 - Whitespace means tab (U+0009) or space (U+0020).
 - Newline means LF (U+000A) or CRLF (U+000D U+000A).
+- A TOML file must be a valid UTF-8 encoded Unicode document.
+
+  Specifically this means that a file _as a whole_ must form a
+  [well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence)
+  and will be rejected (preferably) or have ill-formed byte sequences replaced
+  with U+FFFD as per the Unicode specification.
 
 ## Comment
 
