@@ -42,9 +42,9 @@ should be easy to parse into data structures in a wide variety of languages.
 - A TOML file must be a valid UTF-8 encoded Unicode document.
 
   Specifically this means that a file _as a whole_ must form a
-  [well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence)
-  and will be rejected (preferably) or have ill-formed byte sequences replaced
-  with U+FFFD as per the Unicode specification.
+  [well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence).
+  Otherwise, it must be rejected (preferably) or have ill-formed byte sequences
+  replaced with U+FFFD, as per the Unicode specification.
 
 ## Comment
 
