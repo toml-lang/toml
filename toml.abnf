@@ -47,7 +47,7 @@ comment = comment-start-symbol *non-eol
 
 keyval = key keyval-sep val
 key = simple-key / dotted-key
-val = string / boolean / array / inline-table / date-time / float / integer
+val = string / boolean / array / inline-table / date-time / float / integer / duration / bytesize
 
 simple-key = quoted-key / unquoted-key
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
@@ -140,8 +140,8 @@ bin-int = bin-prefix digit0-1 *( digit0-1 / underscore digit0-1 )
 
 ;; Float
 
-float = float-int-part ( exp / frac [ exp ] )
-float =/ special-float
+float-number = float-int-part ( exp / frac [ exp ] )
+float = ( float-number / special-float )
 
 float-int-part = dec-int
 frac = decimal-point zero-prefixable-int
@@ -154,6 +154,27 @@ float-exp-part = [ minus / plus ] zero-prefixable-int
 special-float = [ minus / plus ] ( inf / nan )
 inf = %x69.6E.66  ; inf
 nan = %x6E.61.6E  ; nan
+
+;; Duration and bytesize suffixes
+
+duration-suffix = (
+    %x6D.73 ; ms
+    %x73    ; s
+    %x6D    ; m
+    %x68    ; h
+    %x64    ; d
+    %x77    ; w
+)
+bytesize-suffix = (
+    %x42    / ; B
+    %x4B.42 / ; KB
+    %x4D.42 / ; MB
+    %x47.42 / ; GB
+    %x54.42 / ; TB
+    %x50.42   ; PB
+)
+duration = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws duration-suffix
+bytesize = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws size-suffix
 
 ;; Boolean
 
