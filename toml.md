@@ -61,9 +61,9 @@ Comments may contain any Unicode code points except the following control codes
 that could cause problems during editing or processing: U+0000, and U+000A to
 U+000D.
 
-Comments are not considered part of the table that the document describes, and
-parsers must never be affected by the presence, or contents, of comments within
-the file when generating that table.
+Comments should be used to communicate between the human readers of a file.
+Parsers must not modify keys or values, based on the presence (or contents) of a
+comment.
 
 ## Key/Value Pair
 
