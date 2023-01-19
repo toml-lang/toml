@@ -407,6 +407,7 @@ modification.
 
 ```toml
 regex2 = '''I [dw]on't need \d{2} apples'''
+literal-apostrophes = '''You're free to use apostrophes in here.'''
 lines  = '''
 The first newline is
 trimmed in raw strings.
