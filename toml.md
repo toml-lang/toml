@@ -103,14 +103,13 @@ first = "Tom" last = "Preston-Werner" # INVALID
 
 A key may be either bare, quoted, or dotted.
 
-**Bare keys** may contain any letter-like or number-like Unicode character from
-any Unicode script, as well as ASCII digits, dashes and underscores.
-Punctuation, spaces, arrows, box drawing and private use characters are not
-allowed. Note that bare keys are allowed to be composed of only ASCII digits,
-e.g. 1234, but are always interpreted as strings.
+**Bare keys** may only contain letters, digits, underscores, and dashes. Bare
+keys are allowed to be composed of only digits, e.g. `1234`, but are always
+interpreted as strings.
 
-&#x2139;&#xfe0f; The exact ranges of allowed code points can be found in the
-[ABNF grammar file][abnf].
+A "letter" is any character in the Unicode category `Lu`, `Ll`, `Lt`, `Lm`, or
+`Lo`. A "digit" is any character in the category `Nd`. Implementations must
+support at least Unicode 9.0, or optionally any later version.
 
 ```toml
 key = "value"
@@ -118,15 +117,14 @@ bare_key = "value"
 bare-key = "value"
 1234 = "value"
 Fuß = "value"
-😂 = "value"
 汉语大字典 = "value"
 辭源 = "value"
 பெண்டிரேம் = "value"
 ```
 
-**Quoted keys** follow the exact same rules as either basic strings or literal
-strings and allow you to use any Unicode character in a key name, including
-spaces. Best practice is to use bare keys except when absolutely necessary.
+**Quoted keys** follow the same rules as either basic strings or literal
+strings, and allow you to use any character in a key name including spaces. Best
+practice is to use bare keys except when absolutely necessary.
 
 ```toml
 "127.0.0.1" = "value"
