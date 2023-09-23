@@ -108,8 +108,9 @@ keys are allowed to be composed of only digits, e.g. `1234`, but are always
 interpreted as strings.
 
 A "letter" is any character in the Unicode category `Lu`, `Ll`, `Lt`, `Lm`, or
-`Lo`. A "digit" is any character in the category `Nd`. Implementations must
-support at least Unicode 9.0, or optionally any later version.
+`Lo`, or with the `Other_Alphabet` property. A "digit" is any character in the
+category `Nd`. Implementations must support at least Unicode 9.0, or optionally
+any later version.
 
 ```toml
 key = "value"
@@ -120,6 +121,7 @@ Fuß = "value"
 汉语大字典 = "value"
 辭源 = "value"
 பெண்டிரேம் = "value"
+औरंगाबाद = "value"
 ```
 
 **Quoted keys** follow the same rules as either basic strings or literal
