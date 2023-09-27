@@ -2,8 +2,12 @@
 
 ## unreleased
 
+- Clarify that comparison for quoted keys is ordinal and doesn't do Unicode
+  normalization ([#993])
+
 - Clarify that tables typically cannot be nested infinitely [#1087]).
 
+[#993]: https://github.com/toml-lang/toml/pull/993
 [#1087]: https://github.com/toml-lang/toml/pull/1087
 
 ## 1.1.0 / 2025-12-18
