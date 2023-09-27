@@ -205,8 +205,9 @@ spelling = "favorite"
 "spelling" = "favourite"
 ```
 
-Keys are considered identical if their code point sequences are the same.
-It is possible to create distinct keys that appear visually identical. Doing so is discouraged:
+Keys are considered identical if their code point sequences are the same. It is
+possible to create distinct keys that appear visually identical. Doing so is
+discouraged:
 
 ```toml
 # VALID BUT DISCOURAGED
