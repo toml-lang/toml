@@ -177,7 +177,7 @@ false   = %x66.61.6C.73.65  ; false
 
 date-time      = offset-date-time / local-date-time / local-date / local-time
 
-date-fullyear  = 4DIGIT
+date-fullyear  = 4DIGIT  ; 0001-9999
 date-month     = 2DIGIT  ; 01-12
 date-mday      = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
 time-delim     = "T" / %x20 ; T, t, or space

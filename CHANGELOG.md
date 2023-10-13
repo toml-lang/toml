@@ -12,6 +12,7 @@
 - Seconds in Date-Time and Time values are now optional.
 - Allow non-English scripts in unquoted (bare) keys
 - Clarify newline normalization in multi-line literal strings.
+- Explicitly disallow year zero.
 
 ## 1.0.0 / 2021-01-11
 
