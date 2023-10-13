@@ -182,8 +182,8 @@ Whitespace around dot-separated parts is ignored. However, best practice is to
 not use any extraneous whitespace.
 
 ```toml
-fruit.name = "banana"     # this is best practice
-fruit. color = "yellow"    # same as fruit.color
+fruit.name = "banana"       # this is best practice
+fruit. color = "yellow"     # same as fruit.color
 fruit . flavor = "banana"   # same as fruit.flavor
 ```
 
@@ -208,7 +208,7 @@ spelling = "favorite"
 As long as a key hasn't been directly defined, you may still write to it and to
 names within it.
 
-```
+```toml
 # This makes the key "fruit" into a table.
 fruit.apple.smooth = true
 
