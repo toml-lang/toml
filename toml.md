@@ -104,10 +104,15 @@ first = "Tom" last = "Preston-Werner" # INVALID
 A key may be either bare, quoted, or dotted.
 
 **Bare keys** may contain any letter-like or number-like Unicode character from
-any Unicode script, as well as ASCII digits, dashes and underscores.
-Punctuation, spaces, arrows, box drawing and private use characters are not
-allowed. Note that bare keys are allowed to be composed of only ASCII digits,
-e.g. 1234, but are always interpreted as strings.
+any Unicode script, as well as digits, dashes and underscores. Various symbols
+(such as emojis or arrows) and punctuation marks from outside the ASCII range
+are also allowed, while whitespace and private use characters are forbidden. It
+is advisable to use only words (in arbitrary languages) as bare keys, as they
+are generally accepted, while not all symbols and punctuation marks are. If you
+want to use a bare key made up of several words, use a suitable separator
+character (such as a underscore or hyphen) between the words, as spaces are not
+allowed. Note that bare keys are allowed to be composed of only digits, e.g.
+1234, but are always interpreted as strings.
 
 &#x2139;&#xfe0f; The exact ranges of allowed code points can be found in the
 [ABNF grammar file][abnf].
@@ -118,7 +123,6 @@ bare_key = "value"
 bare-key = "value"
 1234 = "value"
 Fuß = "value"
-😂 = "value"
 汉语大字典 = "value"
 辭源 = "value"
 பெண்டிரேம் = "value"
