@@ -110,7 +110,7 @@ are also allowed, while whitespace and private use characters are forbidden. It
 is advisable to use only words (in arbitrary languages) as bare keys, as they
 are generally accepted, while not all symbols and punctuation marks are. If you
 want to use a bare key made up of several words, use a suitable separator
-character (such as a underscore or hyphen) between the words, as spaces are not
+character (such as an underscore or hyphen) between the words, as spaces are not
 allowed. Note that bare keys are allowed to be composed of only digits, e.g.
 1234, but are always interpreted as strings.
 
