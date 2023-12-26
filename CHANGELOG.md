@@ -10,7 +10,6 @@
 - Add new `\e` shorthand for the escape character.
 - Add \x00 notation to basic strings.
 - Seconds in Date-Time and Time values are now optional.
-- Allow non-English scripts in unquoted (bare) keys
 - Clarify newline normalization in multi-line literal strings.
 
 ## 1.0.0 / 2021-01-11
