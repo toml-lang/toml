@@ -2,6 +2,7 @@
 
 ## unreleased
 
+- Clarify that comments never affect the tables produced by parsers.
 - Clarify Unicode and UTF-8 references.
 - Relax comment parsing; most control characters are again permitted.
 - Allow newline after key/values in inline tables.
