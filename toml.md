@@ -582,6 +582,13 @@ implementation-specific. If the value contains greater precision than the
 implementation can support, the additional precision must be truncated, not
 rounded.
 
+The first year in the Gregorian calendar is year 1 (1 BC is followed by 1 AD),
+and year 0 is not allowed:
+
+```
+odt7 = 0000-01-01 07:32:32Z  # INVALID
+```
+
 ## Local Date-Time
 
 If you omit the offset from an [RFC 3339](https://tools.ietf.org/html/rfc3339)
