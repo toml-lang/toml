@@ -559,7 +559,8 @@ To unambiguously represent a specific instant in time, you may use an
 ```toml
 odt1 = 1979-05-27T07:32:00Z
 odt2 = 1979-05-27T00:32:00-07:00
-odt3 = 1979-05-27T00:32:00.999999-07:00
+odt3 = 1979-05-27T00:32:00.5-07:00
+odt4 = 1979-05-27T00:32:00.999999-07:00
 ```
 
 For the sake of readability, you may replace the T delimiter between date and
@@ -577,10 +578,9 @@ odt5 = 1979-05-27 07:32Z
 odt6 = 1979-05-27 07:32-07:00
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
+Implementations are required to support at least millisecond precision.
+Additional digits of precision may be specified, but if they exceed the
+supported precision, then the extra digits must be _truncated_, not rounded.
 
 ## Local Date-Time
 
@@ -592,7 +592,8 @@ implementation-specific.
 
 ```toml
 ldt1 = 1979-05-27T07:32:00
-ldt2 = 1979-05-27T00:32:00.999999
+ldt2 = 1979-05-27T07:32:00.5
+ldt3 = 1979-05-27T00:32:00.999999
 ```
 
 Seconds may be omitted, in which case `:00` will be assumed.
@@ -601,10 +602,9 @@ Seconds may be omitted, in which case `:00` will be assumed.
 ldt3 = 1979-05-27T07:32
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
+Implementations are required to support at least millisecond precision.
+Additional digits of precision may be specified, but if they exceed the
+supported precision, then the extra digits must be _truncated_, not rounded.
 
 ## Local Date
 
@@ -625,7 +625,8 @@ or timezone.
 
 ```toml
 lt1 = 07:32:00
-lt2 = 00:32:00.999999
+lt2 = 00:32:00.5
+lt3 = 00:32:00.999999
 ```
 
 Seconds may be omitted, in which case `:00` will be assumed.
@@ -634,10 +635,9 @@ Seconds may be omitted, in which case `:00` will be assumed.
 lt3 = 07:32
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
+Implementations are required to support at least millisecond precision.
+Additional digits of precision may be specified, but if they exceed the
+supported precision, then the extra digits must be _truncated_, not rounded.
 
 ## Array
 
