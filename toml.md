@@ -569,12 +569,22 @@ time with a space character (as permitted by RFC 3339 section 5.6).
 odt4 = 1979-05-27 07:32:00Z
 ```
 
-One exception to RFC 3339 is permitted: seconds may be omitted, in which case
-`:00` will be assumed. The offset immediately follows the minutes.
+Contrary to RFC 3339, seconds may be omitted, in which case `:00` will be assumed. The
+offset immediately follows the minutes.
 
 ```toml
 odt5 = 1979-05-27 07:32Z
 odt6 = 1979-05-27 07:32-07:00
+```
+
+Valid years run from `0001` to `9999`. We disallow the year `0000` for a few reasons.
+First off, the standard Gregorian calendar doesn't have a year zero. And then, although
+RFC 3339 and proleptic calendars may allow them, dates with yero zero are not
+well-supported across all platforms.
+
+```toml
+# odt_year0 = 0000-12-31 23:59:59Z  # INVALID
+odt_year1 = 0001-01-01 00:00:00Z    # VALID
 ```
 
 Millisecond precision is required. Further precision of fractional seconds is
@@ -601,6 +611,13 @@ Seconds may be omitted, in which case `:00` will be assumed.
 ldt3 = 1979-05-27T07:32
 ```
 
+Valid years run from `0001` to `9999`.
+
+```toml
+# ldt_year0 = 0000-12-31 23:59:59  # INVALID
+ldt_year1 = 0001-01-01 00:00:00    # VALID
+```
+
 Millisecond precision is required. Further precision of fractional seconds is
 implementation-specific. If the value contains greater precision than the
 implementation can support, the additional precision must be truncated, not
@@ -614,6 +631,13 @@ represent that entire day without any relation to an offset or timezone.
 
 ```toml
 ld1 = 1979-05-27
+```
+
+Valid years run from `0001` to `9999`.
+
+```toml
+# ld_year0 = 0000-12-31  # INVALID
+ld_year1 = 0001-01-01    # VALID; this is the earliest valid local date.
 ```
 
 ## Local Time
