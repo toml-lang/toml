@@ -2,7 +2,7 @@
 
 ## unreleased
 
-- Disallow year `0000` in Date-Time and Date values.
+- Year `0000` may be disallowed in Date-Times and Dates.
 - Clarify Unicode and UTF-8 references.
 - Relax comment parsing; most control characters are again permitted.
 - Allow newline after key/values in inline tables.

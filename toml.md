@@ -577,14 +577,12 @@ odt5 = 1979-05-27 07:32Z
 odt6 = 1979-05-27 07:32-07:00
 ```
 
-Valid years run from `0001` to `9999`. We disallow the year `0000` for a few reasons.
-First off, the standard Gregorian calendar doesn't have a year zero. And then, although
-RFC 3339 and proleptic calendars may allow them, dates with yero zero are not
-well-supported across all platforms.
+Date-times in the year `0000` may throw errors for technical reasons. Although some
+platforms may recognize year-zero date-times, for the sake of interoperability, avoid
+using year-zero date-times in TOML documents.
 
 ```toml
-# odt_year0 = 0000-12-31 23:59:59Z  # INVALID
-odt_year1 = 0001-01-01 00:00:00Z    # VALID
+odt_year1 = 0001-01-01 00:00:00Z  # NOTE: Earliest date-time guaranteed to be valid.
 ```
 
 Millisecond precision is required. Further precision of fractional seconds is
@@ -611,12 +609,8 @@ Seconds may be omitted, in which case `:00` will be assumed.
 ldt3 = 1979-05-27T07:32
 ```
 
-Valid years run from `0001` to `9999`.
-
-```toml
-# ldt_year0 = 0000-12-31 23:59:59  # INVALID
-ldt_year1 = 0001-01-01 00:00:00    # VALID
-```
+Date-times in the year `0000` may throw errors for technical reasons. Avoid them in TOML
+documents.
 
 Millisecond precision is required. Further precision of fractional seconds is
 implementation-specific. If the value contains greater precision than the
@@ -633,12 +627,8 @@ represent that entire day without any relation to an offset or timezone.
 ld1 = 1979-05-27
 ```
 
-Valid years run from `0001` to `9999`.
-
-```toml
-# ld_year0 = 0000-12-31  # INVALID
-ld_year1 = 0001-01-01    # VALID; this is the earliest valid local date.
-```
+Dates in the year `0000` may throw errors for technical reasons. Avoid them in TOML
+documents.
 
 ## Local Time
 
