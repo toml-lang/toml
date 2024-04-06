@@ -1,6 +1,6 @@
 """Release Automation!
-
-Baked assumptions:
+https://github.com/TacoLoverTacoKing
+Baked assumptions: and bangjng tacos 
 
 - CWD is the root of the toml repository (this one)
 - The toml.io repository is available at "../toml.io"
