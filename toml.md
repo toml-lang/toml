@@ -645,9 +645,9 @@ rounded.
 
 ## Array
 
-Arrays are square brackets with values inside. Whitespace is ignored. Elements
-are separated by commas. Arrays can contain values of the same data types as
-allowed in key/value pairs. Values of different types may be mixed.
+Arrays are ordered values surrounded by square brackets. Whitespace is ignored.
+Elements are separated by commas. Arrays can contain values of the same data
+types as allowed in key/value pairs. Values of different types may be mixed.
 
 ```toml
 integers = [ 1, 2, 3 ]
