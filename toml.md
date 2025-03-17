@@ -209,6 +209,20 @@ spelling = "favorite"
 "spelling" = "favourite"
 ```
 
+Keys are considered identical if their code point sequences are the same. It is
+possible to create distinct keys that appear visually identical. Doing so is
+discouraged:
+
+```toml
+# VALID BUT DISCOURAGED
+
+# prénom = "Françoise", using NFC
+"pr\u00e9nom" = "Françoise"
+
+# prénom = "Françoise", using NFD
+"pr\u0065\u0301nom" = "Françoise"
+```
+
 As long as a key hasn't been directly defined, you may still write to it and to
 names within it.
 

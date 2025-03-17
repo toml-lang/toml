@@ -13,6 +13,7 @@
 - Seconds in Date-Time and Time values are now optional.
 - Allow non-English scripts in unquoted (bare) keys
 - Clarify newline normalization in multi-line literal strings.
+- Clarify that key comparison is ordinal (i.e. does no Unicode normalization)
 
 ## 1.0.0 / 2021-01-11
 
