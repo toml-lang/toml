@@ -1,4 +1,4 @@
-<img align="right" src="logos/logo-fallback.svg" alt="TOML logo">
+<img align="right" src="logos/logo.svg" alt="TOML logo">
 
 # TOML
 
