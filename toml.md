@@ -464,13 +464,12 @@ oct2 = 0o755 # useful for Unix file permissions
 bin1 = 0b11010110
 ```
 
-Arbitrary 64-bit signed integers (from −2^63 to 2^63−1) should be accepted and
-handled losslessly. If an integer cannot be represented losslessly, an error
-must be thrown.
+Implementations are free to support any integer size. It's recommended that at
+least 64-bit signed integers (from −2^63 to 2^63−1) are accepted and handled
+losslessly. If an integer cannot be represented losslessly, an error must be
+thrown.
 
 ## Float
-
-Floats should be implemented as IEEE 754 binary64 values.
 
 A float consists of an integer part (which follows the same rules as decimal
 integer values) followed by a fractional part and/or an exponent part. If both a
@@ -530,6 +529,9 @@ sf4 = nan  # actual sNaN/qNaN encoding is implementation-specific
 sf5 = +nan # same as `nan`
 sf6 = -nan # valid, actual encoding is implementation-specific
 ```
+
+Implementations are free to support any precision level. It's recommended that
+at least IEEE 754 binary64 values are supported.
 
 ## Boolean
 

@@ -38,6 +38,8 @@
 
 - Clarify sub-millisecond precision is allowed ([#805]).
 
+- Clarify that parsers are free to support any int or float size ([#1058]).
+
 [#790]: https://github.com/toml-lang/toml/pull/790
 [#796]: https://github.com/toml-lang/toml/pull/796
 [#805]: https://github.com/toml-lang/toml/pull/805
@@ -47,6 +49,7 @@
 [#904]: https://github.com/toml-lang/toml/pull/904
 [#929]: https://github.com/toml-lang/toml/pull/929
 [#950]: https://github.com/toml-lang/toml/pull/950
+[#1058]: https://github.com/toml-lang/toml/pull/1058
 
 ## 1.0.0 / 2021-01-11
 
