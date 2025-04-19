@@ -2,16 +2,51 @@
 
 ## unreleased
 
-- Clarify that comments never affect the tables produced by parsers.
-- Clarify Unicode and UTF-8 references.
-- Allow newline after key/values in inline tables.
-- Allow trailing comma in inline tables.
-- Clarify where and how dotted keys define tables.
-- Add new `\e` shorthand for the escape character.
-- Add \x00 notation to basic strings.
-- Seconds in Date-Time and Time values are now optional.
-- Allow non-English scripts in unquoted (bare) keys
-- Clarify newline normalization in multi-line literal strings.
+- Allow newlines and trailing commas in inline tables ([#904]).
+
+  Previously an inline table had to be on a single line and couldn't end with a
+  trailing comma. This is now relaxed so that the following is valid:
+
+      tbl = {
+          key      = "a string",
+          moar-tbl =  {
+              key = 1,
+          },
+      }
+
+- Add `\xHH` notation to basic strings for codepoints <255 ([#796]):
+
+      null = "null byte: \x00; letter a: \x61"
+
+- Add `\e` escape for the escape character ([#790]):
+
+      csi = "\e["
+
+- Seconds in datetime and time values are now optional ([#894]). The following
+  are now valid:
+
+      dt = 2010-02-03 14:15
+      t  = 14:15
+
+- Clarify that comments never affect the tables produced by parsers ([#950]).
+
+- Clarify Unicode and UTF-8 references ([#929]).
+
+- Clarify where and how dotted keys define tables ([#859]).
+
+- Clarify newline normalization in multi-line literal strings ([#842]).
+
+- Clarify sub-millisecond precision is allowed ([#805]).
+
+[#790]: https://github.com/toml-lang/toml/pull/790
+[#796]: https://github.com/toml-lang/toml/pull/796
+[#805]: https://github.com/toml-lang/toml/pull/805
+[#842]: https://github.com/toml-lang/toml/pull/842
+[#859]: https://github.com/toml-lang/toml/pull/859
+[#894]: https://github.com/toml-lang/toml/pull/894
+[#904]: https://github.com/toml-lang/toml/pull/904
+[#929]: https://github.com/toml-lang/toml/pull/929
+[#950]: https://github.com/toml-lang/toml/pull/950
 
 ## 1.0.0 / 2021-01-11
 
