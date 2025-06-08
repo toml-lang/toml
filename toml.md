@@ -260,12 +260,11 @@ The above TOML maps to the following JSON.
 ## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and
-multi-line literal. All strings must contain only Unicode characters.
+multi-line literal. All strings must be encoded as UTF-8.
 
-**Basic strings** are surrounded by quotation marks (`"`). Any Unicode character
-may be used except those that must be escaped: quotation mark, backslash, and
-the control characters other than tab (U+0000 to U+0008, U+000A to U+001F,
-U+007F).
+**Basic strings** are surrounded by quotation marks (`"`). Any codepoint may be
+used except those that must be escaped: quotation mark, backslash, and the
+control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
 ```toml
 str = "I'm a string. \"You can quote me\". Name\tJos\xE9\nLocation\tSF."
@@ -282,19 +281,18 @@ For convenience, some popular characters have a compact escape sequence.
 \e         - escape          (U+001B)
 \"         - quote           (U+0022)
 \\         - backslash       (U+005C)
-\xHH       - unicode         (U+00HH)
-\uHHHH     - unicode         (U+HHHH)
-\UHHHHHHHH - unicode         (U+HHHHHHHH)
+\xHH       - codepoint       (U+00HH)
+\uHHHH     - codepoint       (U+HHHH)
+\UHHHHHHHH - codepoint       (U+HHHHHHHH)
 ```
 
-Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
+Any codepoint may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
 forms. The escape codes must be Unicode
 [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
-Keep in mind that all TOML strings are sequences of Unicode characters, _not_
-byte sequences. For binary data, avoid using these escape codes. Instead,
-external binary-to-text encoding strategies, like hexadecimal sequences or
-[Base64](https://www.base64decode.org/), are recommended for converting between
+All TOML strings are UTF-8 encoded, _not_ byte sequences. For binary data, avoid
+using these escape codes. Instead, external binary-to-text encoding strategies,
+like hexadecimal sequences or base64, are recommended for converting between
 bytes and strings.
 
 All other escape sequences not listed above are reserved; if they are used, TOML
@@ -306,6 +304,11 @@ like to break up a very long string into multiple lines. TOML makes this easy.
 **Multi-line basic strings** are surrounded by three quotation marks on each
 side and allow newlines. A newline immediately following the opening delimiter
 will be trimmed. All other whitespace and newline characters remain intact.
+
+Any codepoint may be used except those that must be escaped: backslash and the
+control characters other than tab, line feed, and carriage return (U+0000 to
+U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Carriage returns (U+000D) are
+only allowed as part of a newline sequence.
 
 ```toml
 str1 = """
@@ -349,11 +352,6 @@ str3 = """\
        """
 ```
 
-Any Unicode character may be used except those that must be escaped: backslash
-and the control characters other than tab, line feed, and carriage return
-(U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F). Carriage returns
-(U+000D) are only allowed as part of a newline sequence.
-
 You can write a quotation mark, or two adjacent quotation marks, anywhere inside
 a multi-line basic string. They can also be written just inside the delimiters.
 
@@ -371,8 +369,10 @@ If you're a frequent specifier of Windows paths or regular expressions, then
 having to escape backslashes quickly becomes tedious and error-prone. To help,
 TOML supports literal strings which do not allow escaping at all.
 
-**Literal strings** are surrounded by single quotes. Like basic strings, they
-must appear on a single line:
+**Literal strings** are surrounded by single quotes and don't support `\`
+escapes. Any codepoint may be used except for control characters other than tab.
+
+Like basic strings, they must appear on a single line:
 
 ```toml
 # What you see is what you get.
@@ -383,11 +383,13 @@ regex    = '<\i\c*\s*>'
 ```
 
 Since there is no escaping, there is no way to write a single quote inside a
-literal string enclosed by single quotes. Luckily, TOML supports a multi-line
-version of literal strings that solves this problem.
+literal string enclosed by single quotes. TOML supports a multi-line version of
+literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each
-side and allow newlines. Like literal strings, there is no escaping whatsoever.
+side and allow newlines. Like literal strings, there are `\` escapes. Any
+codepoint may be used except for control characters other than tab.
+
 A newline immediately following the opening delimiter will be trimmed. TOML
 parsers must normalize newlines in the same manner as multi-line basic strings.
 
@@ -416,8 +418,6 @@ apos15 = "Here are fifteen apostrophes: '''''''''''''''"
 # 'That,' she said, 'is still pointless.'
 str = ''''That,' she said, 'is still pointless.''''
 ```
-
-Control characters other than tab are not permitted in a literal string.
 
 ## Integer
 
