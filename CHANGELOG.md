@@ -1,6 +1,6 @@
 # TOML Changelog
 
-## unreleased
+## 1.1.0 / 2025-12-18
 
 - Allow newlines and trailing commas in inline tables ([#904]).
 
