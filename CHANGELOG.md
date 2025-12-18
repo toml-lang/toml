@@ -14,7 +14,7 @@
           },
       }
 
-- Add `\xHH` notation to basic strings for codepoints <255 ([#796]):
+- Add `\xHH` notation to basic strings for codepoints ≤255 ([#796]):
 
       null = "null byte: \x00; letter a: \x61"
 
