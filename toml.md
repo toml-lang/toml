@@ -593,11 +593,6 @@ Seconds may be omitted, in which case `:00` will be assumed.
 ldt3 = 1979-05-27T07:32
 ```
 
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
-
 Implementations are required to support at least millisecond precision.
 Additional digits of precision may be specified, but if they exceed the
 supported precision then the extra digits must be truncated, not rounded.
@@ -630,11 +625,6 @@ Seconds may be omitted, in which case `:00` will be assumed.
 ```toml
 lt3 = 07:32
 ```
-
-Millisecond precision is required. Further precision of fractional seconds is
-implementation-specific. If the value contains greater precision than the
-implementation can support, the additional precision must be truncated, not
-rounded.
 
 Implementations are required to support at least millisecond precision.
 Additional digits of precision may be specified, but if they exceed the
