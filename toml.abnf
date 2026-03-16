@@ -58,7 +58,8 @@ quoted-key = basic-string / literal-string
 dotted-key = simple-key 1*( dot-sep simple-key )
 
 dot-sep   = ws %x2E ws  ; . Period
-keyval-sep = ws %x3D ws ; =
+equals    = %x3D        ; =
+keyval-sep = ws equals ws
 
 ;; String
 
