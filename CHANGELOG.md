@@ -1,5 +1,11 @@
 # TOML Changelog
 
+## unreleased
+
+- Clarify that tables typically cannot be nested infinitely [#1087]).
+
+[#1087]: https://github.com/toml-lang/toml/pull/1087
+
 ## 1.1.0 / 2025-12-18
 
 - Allow newlines and trailing commas in inline tables ([#904]).

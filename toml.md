@@ -705,6 +705,10 @@ In JSON land, that would give you the following structure:
 { "dog": { "tater.man": { "type": { "name": "pug" } } } }
 ```
 
+There is no limit on the nesting depth. However, in practice most
+implementations impose some limit to prevent excessive resource usage and/or
+crashes. It's recommended to allow at least 100 levels of nesting.
+
 Whitespace around the key is ignored. However, best practice is to not use any
 extraneous whitespace.
 
