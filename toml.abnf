@@ -59,6 +59,7 @@ dotted-key = simple-key 1*( dot-sep simple-key )
 
 dot-sep   = ws %x2E ws  ; . Period
 equals    = %x3D        ; =
+colon     = %x3A        ; :
 keyval-sep = ws equals ws
 
 ;; String
@@ -175,10 +176,10 @@ time-hour      = 2DIGIT  ; 00-23
 time-minute    = 2DIGIT  ; 00-59
 time-second    = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap second rules
 time-secfrac   = "." 1*DIGIT
-time-numoffset = ( "+" / "-" ) time-hour ":" time-minute
+time-numoffset = ( "+" / "-" ) time-hour colon time-minute
 time-offset    = "Z" / time-numoffset
 
-partial-time   = time-hour ":" time-minute [ ":" time-second [ time-secfrac ] ]
+partial-time   = time-hour colon time-minute [ colon time-second [ time-secfrac ] ]
 full-date      = date-fullyear "-" date-month "-" date-mday
 full-time      = partial-time time-offset
 
