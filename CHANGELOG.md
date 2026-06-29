@@ -12,10 +12,13 @@
 - Clarify that TOML parsers must never write a BOM, and that reading a BOM is
   allowed but discouraged ([#1106]).
 
+- Clarify the reason for allowing empty keys ([#1095]).
+
 [#993]: https://github.com/toml-lang/toml/pull/993
 [#1087]: https://github.com/toml-lang/toml/pull/1087
 [#1103]: https://github.com/toml-lang/toml/pull/1103
 [#1106]: https://github.com/toml-lang/toml/pull/1106
+[#1095]: https://github.com/toml-lang/toml/pull/1095
 
 ## 1.1.0 / 2025-12-18
 
