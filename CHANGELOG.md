@@ -2,9 +2,12 @@
 
 ## unreleased
 
-- Clarify that tables typically cannot be nested infinitely [#1087]).
+- Clarify that tables typically cannot be nested infinitely ([#1087]).
+
+- Clarify the reason for allowing empty keys ([#1095]).
 
 [#1087]: https://github.com/toml-lang/toml/pull/1087
+[#1095]: https://github.com/toml-lang/toml/pull/1095
 
 ## 1.1.0 / 2025-12-18
 
