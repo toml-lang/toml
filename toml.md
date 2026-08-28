@@ -909,11 +909,11 @@ type.name = "Nail"
 
 ## Array of Tables
 
-The last syntax that has not yet been described allows writing arrays of tables.
-These can be expressed by using a header with a name in double brackets. The
-first instance of that header defines the array and its first table element, and
-each subsequent instance creates and defines a new table element in that array.
-The tables are inserted into the array in the order encountered.
+Arrays of tables can be expressed by using a header with a name in double
+brackets. The first instance of that header defines the array and its first
+table element, and each subsequent instance creates and defines a new table
+element in that array. The tables are inserted into the array in the order
+encountered.
 
 ```toml
 [[product]]
@@ -929,16 +929,14 @@ sku = 284758393
 color = "gray"
 ```
 
-In JSON land, that would give you the following structure.
+You can also use inline tables; the following is identical:
 
-```json
-{
-  "product": [
-    { "name": "Hammer", "sku": 738594937 },
+```toml
+product = [
+    { name = "Hammer", sku = 738594937 },
     {},
-    { "name": "Nail", "sku": 284758393, "color": "gray" }
-  ]
-}
+    { name = "Nail",   sku = 284758393, color = "gray" },
+]
 ```
 
 Any reference to an array of tables points to the most recently defined table
@@ -967,7 +965,7 @@ name = "banana"
 name = "plantain"
 ```
 
-The above TOML maps to the following JSON.
+The above TOML maps to the following JSON:
 
 ```json
 {
@@ -1038,12 +1036,42 @@ shape = "round"
 color = "green"
 ```
 
-You may also use inline tables where appropriate:
+Defining arrays of tables out-of-order is discouraged.
 
 ```toml
-points = [ { x = 1, y = 2, z = 3 },
-           { x = 7, y = 8, z = 9 },
-           { x = 2, y = 4, z = 8 } ]
+# VALID BUT DISCOURAGED
+[[fruit]]
+name = "apple"
+
+[store]
+name = "Fruit 'n Veg Emporium"
+
+[[vegetable]]
+name = "broccoli"
+
+[[fruit]]
+name = "pear"
+
+[[vegetable]]
+name = "courgette"
+```
+
+```toml
+# RECOMMENDED
+[store]
+name = "Fruit 'n Veg Emporium"
+
+[[fruit]]
+name = "apple"
+
+[[fruit]]
+name = "pear"
+
+[[vegetable]]
+name = "broccoli"
+
+[[vegetable]]
+name = "courgette"
 ```
 
 ## Filename Extension
