@@ -9,9 +9,12 @@
 
 - Clarify that arrays of tables do not need to be grouped together ([#1103]).
 
+- Clarify the reason for allowing empty keys ([#1095]).
+
 [#993]: https://github.com/toml-lang/toml/pull/993
 [#1087]: https://github.com/toml-lang/toml/pull/1087
 [#1103]: https://github.com/toml-lang/toml/pull/1103
+[#1095]: https://github.com/toml-lang/toml/pull/1095
 
 ## 1.1.0 / 2025-12-18
 
