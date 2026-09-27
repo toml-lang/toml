@@ -554,7 +554,7 @@ at least IEEE 754 binary64 values are supported.
 
 ## Number Suffixes
 
-Any number (integer or float) may be suffixed with a unit to make representing
+Any decimal integer or float may be suffixed with a unit to make representing
 time durations and byte sizes easier.
 
 To use a suffix, write any number followed by a suffix, optionally separated by
@@ -575,20 +575,20 @@ k = 1
 ```
 
 Unit names are case-sensitive. Only one unit can be used. The rules for the
-number part are exactly the same as regular integers or floats, except that inf
-or nan are not allowed.
+number part are exactly the same as decimal integers or floats, except that inf
+or nan are not allowed. Floats with exponent are allowed.
 
 ```toml
 million-days    = 1_000_000 d
 day-and-a-half  = 1.5 d
-255-days        = 0xff d
 500-days        = 5e+2 d
 yesterday       = -1 d
 tomorrow        = +1 d
 
-upperday        = 1 D     # INVALID
-day-and-an-hour = 1d1h    # INVALID
-short-wait      = inf d   # INVALID
+255-days        = 0xff d  # INVALID: hex, oct, and bin numbers not allowed
+upperday        = 1 D     # INVALID: upper-case "D"
+day-and-an-hour = 1d1h    # INVALID: only one suffix allowed
+short-wait      = inf d   # INVALID: inf is not allowed
 ```
 
 It is strongly encouraged that TOML implementations allow applications to see if

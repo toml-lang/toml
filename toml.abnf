@@ -173,8 +173,8 @@ bytesize-suffix = (
     %x54.42 / ; TB
     %x50.42   ; PB
 )
-duration = ( dec-int / hex-int / oct-int / bin-int / float-number ) [" "] duration-suffix
-bytesize = ( dec-int / hex-int / oct-int / bin-int / float-number ) [" "] bytesize-suffix
+duration = float-number [" "] duration-suffix
+bytesize = float-number [" "] bytesize-suffix
 
 ;; Boolean
 
