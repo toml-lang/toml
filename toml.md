@@ -566,14 +566,6 @@ b = 1 h
 c = 1  h  # INVALID: only a single space allowed.
 ```
 
-The number and suffix must be on the same line:
-
-```toml
-# INVALID TOML DOC
-k = 1
-    h
-```
-
 Unit names are case-sensitive. Only one unit can be used. The rules for the
 number part are exactly the same as decimal integers or floats, except that inf
 or nan are not allowed. Floats with exponent are allowed.
