@@ -610,7 +610,7 @@ suffixes are:
     s      = 1000 milliseconds
     m      = 60 seconds
     h      = 60 minutes
-    d      = 86'400 seconds
+    d      = 24 hours
     w      = 7 days
 
 Because there is no specific start time leap days and leap seconds are ignored.
