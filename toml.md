@@ -558,12 +558,12 @@ Any number (integer or float) may be suffixed with a unit to make representing
 time durations and byte sizes easier.
 
 To use a suffix, write any number followed by a suffix, optionally separated by
-any amount of whitespace:
+a single space:
 
 ```toml
 a = 1h
 b = 1 h
-c = 1    h
+c = 1  h  # INVALID: only a single space allowed.
 ```
 
 The number and suffix must be on the same line:
