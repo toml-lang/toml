@@ -158,23 +158,22 @@ nan = %x6E.61.6E  ; nan
 ;; Duration and bytesize suffixes
 
 duration-suffix = (
-    %x6D.73 ; ms
-    %x73    ; s
-    %x6D    ; m
-    %x68    ; h
-    %x64    ; d
-    %x77    ; w
-)
+    %x6D.73 / ; ms
+    %x73    / ; s
+    %x6D    / ; m
+    %x68    / ; h
+    %x64    / ; d
+    %x77      ; w
+ )
 bytesize-suffix = (
-    %x42    / ; B
-    %x4B.42 / ; KB
-    %x4D.42 / ; MB
-    %x47.42 / ; GB
-    %x54.42 / ; TB
-    %x50.42   ; PB
-)
-duration = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws duration-suffix
-bytesize = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws size-suffix
+    %x4B / ; K
+    %x4D / ; M
+    %x47 / ; G
+    %x54 / ; T
+    %x50   ; P
+ )
+duration = ( dec-int / float-number ) [" "] duration-suffix
+bytesize = ( dec-int / float-number ) [" "] bytesize-suffix
 
 ;; Boolean
 
