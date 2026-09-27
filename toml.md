@@ -598,7 +598,7 @@ suffixed values:
 
 ```toml
 sz1 = 128 MB # Correct usage, usually represented as int 134217728.
-sz2 = 128    # Valid TOML but incorrect usage, parses to int 128
+sz2 = 128    # Valid TOML but possibly incorrect usage, parses to int 128
 ```
 
 ### Duration
