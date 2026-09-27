@@ -598,12 +598,12 @@ sz2 = 128    # Valid TOML but possibly incorrect usage, parses to int 128
 A duration is a time period without a specific start time. Accepted duration
 suffixes are:
 
-    ms
-    s      = 1000 milliseconds
-    m      = 60 seconds
-    h      = 60 minutes
-    d      = 24 hours
-    w      = 7 days
+    ms  = 1 millisecond
+    s   = 1000 milliseconds
+    m   = 60 seconds
+    h   = 60 minutes
+    d   = 24 hours
+    w   = 7 days
 
 Fractions are not allowed for milliseconds:
 
@@ -618,21 +618,11 @@ ms-and-a-half     = 1.5ms  # INVALID
 
 Byte sizes are supported with the following suffixes:
 
-    B      byte
-    KB     = 1024 bytes
-    MB     = 1024 KB
-    GB     = 1024 MB
-    TB     = 1024 GB
-    PB     = 1024 TB
-
-Fractions are not allowed for bytes:
-
-```toml
-mb-and-a-half   = 1.5MB
-
-byte-and-a-half = 1.5B   # INVALID
-very-small      = 0.5B   # INVALID
-```
+    KB  = 1024 (bytes)
+    MB  = 1024 KB
+    GB  = 1024 MB
+    TB  = 1024 GB
+    PB  = 1024 TB
 
 ## Boolean
 
