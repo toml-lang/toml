@@ -174,7 +174,7 @@ bytesize-suffix = (
     %x50.42   ; PB
 )
 duration = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws duration-suffix
-bytesize = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws size-suffix
+bytesize = ( dec-int / hex-int / oct-int / bin-int / float-number ) ws bytesize-suffix
 
 ;; Boolean
 
