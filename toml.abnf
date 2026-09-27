@@ -166,7 +166,6 @@ duration-suffix = (
     %x77      ; w
 )
 bytesize-suffix = (
-    %x42    / ; B
     %x4B.42 / ; KB
     %x4D.42 / ; MB
     %x47.42 / ; GB
