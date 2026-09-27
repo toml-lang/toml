@@ -613,9 +613,6 @@ suffixes are:
     d      = 24 hours
     w      = 7 days
 
-Because there is no specific start time leap days and leap seconds are ignored.
-They may be inserted by the application if appropriate.
-
 Fractions are not allowed for milliseconds:
 
 ```toml
