@@ -21,6 +21,9 @@ should be easy to parse into data structures in a wide variety of languages.
 - [String](#user-content-string)
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
+- [Number Suffixes](#user-content-number-suffixes)
+- [Duration](#user-content-duration)
+- [Bytesize](#user-content-bytesize)
 - [Boolean](#user-content-boolean)
 - [Offset Date-Time](#user-content-offset-date-time)
 - [Local Date-Time](#user-content-local-date-time)
@@ -86,6 +89,8 @@ Values must have one of the following types.
 - [Local Date-Time](#user-content-local-date-time)
 - [Local Date](#user-content-local-date)
 - [Local Time](#user-content-local-time)
+- [Duration](#user-content-duration)
+- [Bytesize](#user-content-bytesize)
 - [Array](#user-content-array)
 - [Inline Table](#user-content-inline-table)
 
@@ -546,6 +551,78 @@ sf6 = -nan # valid, actual encoding is implementation-specific
 
 Implementations are free to support any precision level. It's recommended that
 at least IEEE 754 binary64 values are supported.
+
+## Number Suffixes
+
+Any decimal integer or float may be suffixed with a unit to make representing
+time durations and byte sizes easier.
+
+To use a suffix, write any number followed by a suffix, optionally separated by
+a single space:
+
+```toml
+a = 1h
+b = 1 h
+c = 1  h  # INVALID: only a single space allowed.
+```
+
+Unit names are case-sensitive. Only one unit can be used. The rules for the
+number part are exactly the same as decimal integers or floats, except that inf
+or nan are not allowed. Floats with exponent are allowed.
+
+```toml
+million-days    = 1_000_000 d
+day-and-a-half  = 1.5 d
+500-days        = 5e+2 d
+yesterday       = -1 d
+tomorrow        = +1 d
+
+255-days        = 0xff d  # INVALID: hex, oct, and bin numbers not allowed
+upperday        = 1 D     # INVALID: upper-case "D"
+day-and-an-hour = 1d1h    # INVALID: only one suffix allowed
+short-wait      = inf d   # INVALID: inf is not allowed
+```
+
+It is strongly encouraged that TOML implementations allow applications to see if
+a unit suffix was used, for example by ensuring it parses to a separate type.
+This is so that applications can distinguish between plain number values and
+suffixed values:
+
+```toml
+sz1 = 128 MB # Correct usage, usually represented as int 134217728.
+sz2 = 128    # Valid TOML but possibly incorrect usage, parses to int 128
+```
+
+### Duration
+
+A duration is a time period without a specific start time. Accepted duration
+suffixes are:
+
+    ms  = 1 millisecond
+    s   = 1000 milliseconds
+    m   = 60 seconds
+    h   = 60 minutes
+    d   = 24 hours
+    w   = 7 days
+
+Fractions are not allowed for milliseconds:
+
+```toml
+second-and-a-half = 1.5s
+
+very-short        = 0.5ms  # INVALID
+ms-and-a-half     = 1.5ms  # INVALID
+```
+
+### Bytesize
+
+Byte sizes are supported with the following suffixes:
+
+    KB  = 1024 (bytes)
+    MB  = 1024 KB
+    GB  = 1024 MB
+    TB  = 1024 GB
+    PB  = 1024 TB
 
 ## Boolean
 
