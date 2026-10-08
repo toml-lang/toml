@@ -172,8 +172,8 @@ bytesize-suffix = (
     %x54.42 / ; TB
     %x50.42   ; PB
 )
-duration = float-number [" "] duration-suffix
-bytesize = float-number [" "] bytesize-suffix
+duration = ( dec-int / float-number ) [" "] duration-suffix
+bytesize = ( dec-int / float-number ) [" "] bytesize-suffix
 
 ;; Boolean
 
