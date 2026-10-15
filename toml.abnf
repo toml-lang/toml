@@ -166,11 +166,11 @@ duration-suffix = (
     %x77      ; w
 )
 bytesize-suffix = (
-    %x4B.42 / ; KB
-    %x4D.42 / ; MB
-    %x47.42 / ; GB
-    %x54.42 / ; TB
-    %x50.42   ; PB
+    %x4B / ; K
+    %x4D / ; M
+    %x47 / ; G
+    %x54 / ; T
+    %x50   ; P
 )
 duration = ( dec-int / float-number ) [" "] duration-suffix
 bytesize = ( dec-int / float-number ) [" "] bytesize-suffix
