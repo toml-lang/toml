@@ -44,9 +44,10 @@ should be easy to parse into data structures in a wide variety of languages.
   Otherwise, it must be rejected (preferably) or have ill-formed byte sequences
   replaced with U+FFFD, as per the Unicode specification.
 
-  It is encouraged implementations do not read a byte order mark (U+FEFF) at the
-  start of the document, but they may choose to accept it for reasons of
-  compatibility. Implementations must never write a BOM.
+  A TOML document should not start with a byte order mark (BOM, U+FEFF). For
+  compatibility TOML parsers may accept a single BOM at the very start of the
+  document which must be discarded and not treated as part of the document.
+  Implementations must never write a BOM.
 
 [well-formed code-unit sequence]: https://unicode.org/glossary/#well_formed_code_unit_sequence
 

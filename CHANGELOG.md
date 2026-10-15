@@ -10,7 +10,7 @@
 - Clarify that arrays of tables do not need to be grouped together ([#1103]).
 
 - Clarify that TOML parsers must never write a BOM, and that reading a BOM is
-  implementation-defined ([#1106]).
+  allowed but discouraged ([#1106]).
 
 [#993]: https://github.com/toml-lang/toml/pull/993
 [#1087]: https://github.com/toml-lang/toml/pull/1087
