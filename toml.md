@@ -597,7 +597,7 @@ This is so that applications can distinguish between plain number values and
 suffixed values:
 
 ```toml
-sz1 = 128 MB # Correct usage, usually represented as int 134217728.
+sz1 = 128 M  # Correct usage, usually represented as int 134217728.
 sz2 = 128    # Valid TOML but possibly incorrect usage, parses to int 128
 ```
 
@@ -626,11 +626,11 @@ ms-and-a-half     = 1.5ms  # INVALID
 
 Byte sizes are supported with the following suffixes:
 
-    KB  = 1024 (bytes)
-    MB  = 1024 KB
-    GB  = 1024 MB
-    TB  = 1024 GB
-    PB  = 1024 TB
+    K  = 1024 (bytes)
+    M  = 1024 K
+    G  = 1024 M
+    T  = 1024 G
+    P  = 1024 T
 
 ## Boolean
 
