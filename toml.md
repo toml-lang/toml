@@ -614,13 +614,16 @@ suffixes are:
     d   = 24 hours
     w   = 7 days
 
-Fractions are not allowed for milliseconds:
+Implementations are required to support at least millisecond precision. If a
+duration exceeds the supported precision then the extra digits must be
+truncated, not rounded.
 
 ```toml
 second-and-a-half = 1.5s
 
-very-short        = 0.5ms  # INVALID
-ms-and-a-half     = 1.5ms  # INVALID
+very-short        = 0.5ms         # May be truncated to 0ms.
+ms-and-a-half     = 1.567ms       # May be truncated to 1ms, 1.5ms, or 1.56ms.
+s                 = 5.1234_56789s # 5.1234s is guaranteed to work, but may be truncated beyond that.
 ```
 
 ### Bytesize
