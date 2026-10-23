@@ -310,20 +310,21 @@ For convenience, some popular characters have a compact escape sequence.
 ```
 
 Any Unicode character may be escaped with the `\xHH`, `\uHHHH`, or `\UHHHHHHHH`
-forms. The escape codes must be Unicode
-[scalar values](https://unicode.org/glossary/#unicode_scalar_value).
+forms. The escape codes must be Unicode [scalar values].
 
 Keep in mind that all TOML strings are sequences of Unicode characters, _not_
 byte sequences. For binary data, avoid using these escape codes. Instead,
 external binary-to-text encoding strategies, like hexadecimal sequences or
-[Base64](https://www.base64decode.org/), are recommended for converting between
-bytes and strings.
+[Base64], are recommended for converting between bytes and strings.
 
 All other escape sequences not listed above are reserved; if they are used, TOML
 should produce an error.
 
 Sometimes you need to express passages of text (e.g. translation files) or would
 like to break up a very long string into multiple lines. TOML makes this easy.
+
+[scalar values]: https://unicode.org/glossary/#unicode_scalar_value
+[Base64]: https://en.wikipedia.org/wiki/Base64
 
 **Multi-line basic strings** are surrounded by three quotation marks on each
 side and allow newlines. A newline immediately following the opening delimiter
