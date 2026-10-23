@@ -2,6 +2,11 @@
 
 ## unreleased
 
+- Add number suffixes for durations and bytesizes ([#1105]):
+
+      cache-size = 128 MB  # Space is optional.
+      timeout    = 10s
+
 - Clarify that comparison for quoted keys is ordinal and doesn't do Unicode
   normalization ([#993])
 
@@ -14,6 +19,7 @@
 
 - Clarify the reason for allowing empty keys ([#1095]).
 
+[#1105]: https://github.com/toml-lang/toml/pull/1105
 [#993]: https://github.com/toml-lang/toml/pull/993
 [#1087]: https://github.com/toml-lang/toml/pull/1087
 [#1103]: https://github.com/toml-lang/toml/pull/1103
