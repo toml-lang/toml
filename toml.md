@@ -39,12 +39,17 @@ should be easy to parse into data structures in a wide variety of languages.
 - TOML is case-sensitive.
 - Whitespace means tab (U+0009) or space (U+0020).
 - Newline means LF (U+000A) or CRLF (U+000D U+000A).
-- A TOML file must be a valid UTF-8 encoded Unicode document.
-
-  Specifically this means that a file _as a whole_ must form a
-  [well-formed code-unit sequence](https://unicode.org/glossary/#well_formed_code_unit_sequence).
+- A TOML file must be a valid UTF-8 encoded Unicode document. Specifically this
+  means that a file _as a whole_ must form a [well-formed code-unit sequence].
   Otherwise, it must be rejected (preferably) or have ill-formed byte sequences
   replaced with U+FFFD, as per the Unicode specification.
+
+  A TOML document should not start with a byte order mark (BOM, U+FEFF). For
+  compatibility TOML parsers may accept a single BOM at the very start of the
+  document which must be discarded and not treated as part of the document.
+  Implementations must never write a BOM.
+
+[well-formed code-unit sequence]: https://unicode.org/glossary/#well_formed_code_unit_sequence
 
 ## Comment
 
