@@ -22,8 +22,8 @@ should be easy to parse into data structures in a wide variety of languages.
 - [Integer](#user-content-integer)
 - [Float](#user-content-float)
 - [Number Suffixes](#user-content-number-suffixes)
-- [Duration](#user-content-duration)
-- [Bytesize](#user-content-bytesize)
+  - [Duration](#user-content-duration)
+  - [Bytesize](#user-content-bytesize)
 - [Boolean](#user-content-boolean)
 - [Offset Date-Time](#user-content-offset-date-time)
 - [Local Date-Time](#user-content-local-date-time)
@@ -623,7 +623,7 @@ second-and-a-half = 1.5s
 
 very-short        = 0.5ms         # May be truncated to 0ms.
 ms-and-a-half     = 1.567ms       # May be truncated to 1ms, 1.5ms, or 1.56ms.
-s                 = 5.1234_56789s # 5.1234s is guaranteed to work, but may be truncated beyond that.
+s                 = 5.1234_56789s # 5.123s is guaranteed to work, but may be truncated beyond that.
 ```
 
 ### Bytesize
