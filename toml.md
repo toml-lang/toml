@@ -636,10 +636,10 @@ Byte sizes are supported with the following suffixes:
     T  = 1024 G
     P  = 1024 T
 
-Byte sizes must be rounded to the nearest byte, with 0.5 rounding up:
+Byte sizes must be truncated to the nearest byte, not rounded:
 
     one            = 1 M     # 1_048_576 bytes
-    half-and-a-bit = 0.51 M  # 534_773.76 bytes, should be rounded to 534_774.
+    half-and-a-bit = 0.51 M  # 534_773.76 bytes, should be truncated to 534_773.
 
 ## Boolean
 
