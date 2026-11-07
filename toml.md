@@ -602,6 +602,12 @@ sz1 = 128 M  # Correct usage, usually represented as int 134217728.
 sz2 = 128    # Valid TOML but possibly incorrect usage, parses to int 128
 ```
 
+It is recommended that implementations support at least the range of 64-bit
+signed integers after conversion to milliseconds or bytes, handling all integer
+values in this range losslessly. If the converted value cannot be represented,
+an error must be thrown. Truncating sub-millisecond or sub-byte fractions is not
+an error.
+
 ### Duration
 
 A duration is a time period without a specific start time. Accepted duration
