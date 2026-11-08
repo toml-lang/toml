@@ -4,7 +4,7 @@
 
 - Add number suffixes for durations and bytesizes ([#1105]):
 
-      cache-size = 128 M  # Space is optional.
+      cache-size = 128M
       timeout    = 10s
 
 - Clarify that comparison for quoted keys is ordinal and doesn't do Unicode

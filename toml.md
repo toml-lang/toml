@@ -566,13 +566,11 @@ at least IEEE 754 binary64 values are supported.
 Any decimal integer or float may be suffixed with a unit to make representing
 time durations and byte sizes easier.
 
-To use a suffix, write any number followed by a suffix, optionally separated by
-a single space:
+To use a suffix, write any number directly followed by a suffix:
 
 ```toml
 a = 1h
-b = 1 h
-c = 1  h  # INVALID: only a single space allowed.
+b = 1 h   # INVALID: space is not allowed
 ```
 
 Unit names are case-sensitive. Only one unit can be used. The rules for the
@@ -580,16 +578,16 @@ number part are exactly the same as decimal integers or floats, except that inf
 or nan are not allowed. Floats with exponent are allowed.
 
 ```toml
-million-days    = 1_000_000 d
-day-and-a-half  = 1.5 d
-500-days        = 5e+2 d
-yesterday       = -1 d
-tomorrow        = +1 d
+million-days    = 1_000_000d
+day-and-a-half  = 1.5d
+500-days        = 5e+2d
+yesterday       = -1d
+tomorrow        = +1d
 
-255-days        = 0xff d  # INVALID: hex, oct, and bin numbers not allowed
-upperday        = 1 D     # INVALID: upper-case "D"
-day-and-an-hour = 1d1h    # INVALID: only one suffix allowed
-short-wait      = inf d   # INVALID: inf is not allowed
+255-days        = 0xffd  # INVALID: hex, oct, and bin numbers not allowed
+upperday        = 1D     # INVALID: upper-case "D"
+day-and-an-hour = 1d1h   # INVALID: only one suffix allowed
+short-wait      = infd   # INVALID: inf is not allowed
 ```
 
 It is strongly encouraged that TOML implementations allow applications to see if
@@ -598,8 +596,8 @@ This is so that applications can distinguish between plain number values and
 suffixed values:
 
 ```toml
-sz1 = 128 M  # Correct usage, usually represented as int 134217728.
-sz2 = 128    # Valid TOML but possibly incorrect usage, parses to int 128
+sz1 = 128M  # Correct usage, usually represented as int 134217728.
+sz2 = 128   # Valid TOML but possibly incorrect usage, parses to int 128
 ```
 
 It is recommended that implementations support at least the range of 64-bit
@@ -645,8 +643,8 @@ Byte sizes are supported with the following suffixes:
 Byte sizes must be truncated to the nearest byte, not rounded:
 
 ```toml
-one            = 1 M     # 1_048_576 bytes
-half-and-a-bit = 0.51 M  # 534_773.76 bytes, should be truncated to 534_773.
+one            = 1M     # 1_048_576 bytes
+half-and-a-bit = 0.51M  # 534_773.76 bytes, should be truncated to 534_773.
 ```
 
 ## Boolean
